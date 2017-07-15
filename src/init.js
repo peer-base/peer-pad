@@ -29,13 +29,14 @@ module.exports = function init () {
 
   const Y = require('yjs')
   require('y-memory')(Y)
+  require('y-indexeddb')(Y)
   require('y-array')(Y)
   require('y-richtext')(Y)
   require('y-ipfs-connector')(Y)
 
   Y({
     db: {
-      name: 'memory'
+      name: 'indexeddb'
     },
     connector: {
       name: 'ipfs',
