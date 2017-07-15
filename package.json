@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/pgte/peerpad#readme",
   "dependencies": {
+    "async": "^2.5.0",
     "browserify": "^14.4.0",
     "http-server": "^0.10.0",
     "ipfs": "^0.25.0",

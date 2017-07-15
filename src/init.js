@@ -15,7 +15,7 @@ module.exports = function init () {
   const IPFS = require('ipfs')
 
   const ipfs = new IPFS({
-    repo: repo(),
+    // repo: repo(),
     EXPERIMENTAL: {
       pubsub: true
     }
@@ -32,8 +32,8 @@ module.exports = function init () {
     console.error(err)
   })
 
-  saver.on('saved', (hash) => {
-    console.log('saved, hash = ' + hash)
+  saver.on('saved', (cid) => {
+    console.log('saved, cid = ' + cid)
   })
 
   const observer = (event) => {
