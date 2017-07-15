@@ -25,6 +25,22 @@ module.exports = function init () {
     console.log('IPFS node started with ID ' + info.id)
   }))
 
+  const saver = require('./view-saver')(ipfs)
+
+  saver.on('error', (err) => {
+    // TODO: handle error
+    console.error(err)
+  })
+
+  saver.on('saved', (hash) => {
+    console.log('saved, hash = ' + hash)
+  })
+
+  const observer = (event) => {
+    const delta = event.object.toDelta()
+    saver.save(delta)
+  }
+
   // Yjs
 
   const Y = require('yjs')
@@ -48,6 +64,8 @@ module.exports = function init () {
     }
   }).then((y) => {
     y.share.richtext.bindQuill(editor)
+
+    y.share.richtext.observe(observer)
   })
 }
 
