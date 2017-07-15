@@ -1,0 +1,35 @@
+{
+  "name": "peerpad",
+  "version": "0.0.1",
+  "description": "Peerpad",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1 -p 12345 public",
+    "compile": "browserify src/index.js -o public/js/peerpad.js -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgte/peerpad.git"
+  },
+  "keywords": [
+    "p2p",
+    "decentralized",
+    "editor"
+  ],
+  "author": "Pedro Teixeira <i@pgte.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pgte/peerpad/issues"
+  },
+  "homepage": "https://github.com/pgte/peerpad#readme",
+  "dependencies": {
+    "browserify": "^14.4.0",
+    "http-server": "^0.10.0",
+    "ipfs": "^0.25.0",
+    "y-array": "^10.1.3",
+    "y-ipfs-connector": "^1.1.2",
+    "y-memory": "^8.0.9",
+    "y-richtext": "^9.0.8",
+    "yjs": "^12.3.1"
+  }
+}
