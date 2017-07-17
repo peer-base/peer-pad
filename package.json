@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1 -p 12345 public",
-    "compile": "browserify src/index.js -o public/js/peerpad.js -d"
+    "compile": "npm run compile:index && npm run compile:doc",
+    "compile:index": "browserify src/index.js -o public/js/index.js -d",
+    "compile:doc": "browserify src/doc.js -o public/js/doc.js -d"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,9 @@
     "browserify": "^14.4.0",
     "http-server": "^0.10.0",
     "ipfs": "^0.25.0",
+    "libp2p-crypto": "^0.8.8",
     "lodash.debounce": "^4.0.8",
+    "safe-buffer": "^5.1.1",
     "y-array": "^10.1.3",
     "y-indexeddb": "^8.1.9",
     "y-ipfs-connector": "^1.1.2",
