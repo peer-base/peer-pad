@@ -38,13 +38,13 @@ module.exports = (ipfs, _options) => {
   function _save () {
     const doc = saving
 
-    saveToIPFS(doc, (err, cid) => {
+    saveToIPFS(doc, (err, res) => {
       if (err) {
         emitter.emit('error', err)
         return
       }
       saving = null
-      emitter.emit('saved', cid)
+      emitter.emit('saved', res)
       if (pending) {
         const doc = pending
         pending = null
@@ -53,30 +53,20 @@ module.exports = (ipfs, _options) => {
     })
   }
 
-  function saveToIPFS (docElements, callback) {
-    emitter.emit('saving', docElements)
+  function saveToIPFS (doc, callback) {
+    emitter.emit('saving', doc)
 
-    waterfall(
-      [
-        (cb) => map(
-          docElements,
-          (docElem, callback) => {
-            ipfs.dag.put(docElem, { format: 'dag-cbor' }, callback)
-          },
-          cb),
-        (cids, cb) => cb(null, cids.map((cid) => cid.toBaseEncodedString())),
-        (cids, cb) => {
-          cb(null, {
-            children: cids.map(cid => ({'/': cid}))
-          })
-        },
-        (doc, cb) => {
-          ipfs.dag.put(doc, { format: 'dag-cbor' }, cb)
-        },
-        (cid, cb) => {
-          cb(null, cid.toBaseEncodedString())
-        }
-      ],
-      callback)
+    ipfs.files.add(Buffer.from(doc), (err, resArray) => {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      if (resArray.length !== 1) {
+        callback(new Error('result array length returned from IPFS.files.add was ' + resArray.length))
+        return
+      }
+      callback(null, resArray[0])
+    })
   }
 }

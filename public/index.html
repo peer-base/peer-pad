@@ -3,17 +3,37 @@
   <head>
     <!-- Include Quill stylesheet -->
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
-    <!-- Create the toolbar container -->
-    <div id="toolbar">
-      <button class="ql-bold">Bold</button>
-      <button class="ql-italic">Italic</button>
-    </div>
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-header">
+          <a class="navbar-brand">peerpad</a>
+        </div>
+      </div>
+      <!-- Create the toolbar container -->
+      <div id="toolbar" style="display: none">
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+      </div>
 
-    <!-- Create the editor container -->
-    <div id="editor">
-      <p>Hello World!</p>
+      <!-- Create the editor container -->
+      <div id="editor">
+        <p>Hello World!</p>
+      </div>
+
+      <hr>
+
+      <form>
+        <div class="form-group">
+          <label for="hash">hash</label>
+          <input type="text" style="width: 30%" id="hash">
+          <label for="url">URL</label>
+          <input type="text" style="width: 30%" id="url">&nbsp;
+          <a id="link" target="_blank">Link</a>
+        </div>
+      </form>
     </div>
 
     <!-- Include the Quill library -->
