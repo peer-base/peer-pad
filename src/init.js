@@ -3,8 +3,8 @@
 module.exports = function init () {
   const keys = window.location.hash.substring(1).split('/')
   const id = keys[0]
-  const secretKey = keys[1]
-  const canEdit = Boolean(secretKey)
+  // const secretKey = keys[1]
+  const canEdit = true //Boolean(secretKey)
 
   // document elements
   const $hash = document.getElementById('hash')
@@ -13,18 +13,9 @@ module.exports = function init () {
 
   let observer
 
-  // Quill
+  // Quill editor
 
-  const quillModules = {
-    toolbar: '#toolbar'
-  }
-  if (!canEdit) {
-    quillModules.toolbar = false
-  } else {
-    document.getElementById('toolbar').style.display = 'block'
-  }
   const editor = new Quill('#editor', {
-    modules: quillModules,
     theme: 'snow'
   })
 
@@ -37,7 +28,6 @@ module.exports = function init () {
   const IPFS = require('ipfs')
 
   const ipfs = new IPFS({
-    // repo: repo(),
     EXPERIMENTAL: {
       pubsub: true
     }
@@ -97,8 +87,4 @@ module.exports = function init () {
       y.share.richtext.observe(observer)
     }
   })
-}
-
-function repo () {
-  return 'ipfs/peerpad/' + Math.random()
 }
