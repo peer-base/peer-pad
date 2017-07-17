@@ -1,5 +1,3 @@
 'use strict'
 
-const init = require('./init')
-
-init()
+require('./init')()
