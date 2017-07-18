@@ -1,7 +1,6 @@
 'use strict'
 
 const crypto = require('libp2p-crypto')
-const Buffer = require('safe-buffer').Buffer
 
 exports.from = (_publicKey, _privateKey, callback) => {
   console.log('creating keys from', _publicKey.length, _privateKey && _privateKey.length)
@@ -19,8 +18,4 @@ exports.from = (_publicKey, _privateKey, callback) => {
       'private': privateKey
     })
   })
-}
-
-function randomMessage () {
-  return Buffer.from('some message ' + Math.random() + Date.now())
 }

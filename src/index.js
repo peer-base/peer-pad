@@ -8,7 +8,7 @@ $button.addEventListener('click', () => {
   require('./generate-keys')((err, keys) => {
     if (err) {
       console.error(err)
-      $message.innerHTML = err.message
+      alert(err.message)
       return
     }
 

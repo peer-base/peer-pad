@@ -2,8 +2,6 @@
 
 const EventEmitter = require('events')
 const debounce = require('lodash.debounce')
-const waterfall = require('async/waterfall')
-const map = require('async/map')
 
 const defaultOptions = {
   debounceMS: 2000,
@@ -25,7 +23,7 @@ module.exports = (ipfs, _options) => {
 
   return emitter
 
-  function saveDoc(doc) {
+  function saveDoc (doc) {
     console.log('saveDoc', doc)
     if (!saving) {
       saving = doc
