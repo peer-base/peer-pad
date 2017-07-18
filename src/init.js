@@ -61,7 +61,6 @@ module.exports = function init () {
       const IPFS = require('ipfs')
 
       const ipfs = new IPFS({
-        repo: 'ipfs/peerpad/' + Math.random(),
         EXPERIMENTAL: {
           pubsub: true
         }
@@ -125,7 +124,7 @@ module.exports = function init () {
 
           Y({
             db: {
-              name: 'memory'
+              name: 'indexeddb'
             },
             connector: connectorOptions,
             share: {
