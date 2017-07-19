@@ -47,7 +47,7 @@ module.exports = function init () {
       const roomEmitter = new EventEmitter()
       roomEmitter.on('peer joined', (peer) => {
         room[peer] = {
-          // TODO: just by knowing the channel, users can read?
+          // TODO: just by knowing the public key, can a user read?
           // Perhaps turn this into an option?
           canRead: true
         }
@@ -161,38 +161,27 @@ module.exports = function init () {
         })
       }
 
-      function checkAuth (authToken) {
-        const p = new Promise((resolve, reject) => {
+      function checkAuth (authToken, y, sender) {
+        return new Promise((resolve, reject) => {
+          if (!authToken) {
+            // TODO: is this correct?
+            return resolve('read')
+          }
 
-          // TODO: FIXME: major hack, going through the Yjs internals.. :(
-          setImmediate(() => {
-            const sender =
-              Object.keys(this.connections).find((peer) => this.connections[peer].auth === p)
-            if (!sender) {
-              throw new Error('could not find sender for auth token')
-            }
-
-            if (!authToken) {
-              // TODO: is this correct?
-              return resolve('read')
-            }
-
-            verifySignature(
-              sender,
-              Buffer.from(sender),
-              Buffer.from(authToken, 'base64'),
-              (err, ok) => {
-                if (err) { throw err }
-                if (!ok) {
-                  return console.error('invalid signature for sender ' + sender)
-                }
-                room[sender].canRead = true
-                room[sender].canWrite = true
-                resolve('write')
-              })
-          })
+          verifySignature(
+            sender,
+            Buffer.from(sender),
+            Buffer.from(authToken, 'base64'),
+            (err, ok) => {
+              if (err) { throw err }
+              if (!ok) {
+                return console.error('invalid signature for sender ' + sender)
+              }
+              room[sender].canRead = true
+              room[sender].canWrite = true
+              resolve('write')
+            })
         })
-        return p
       }
     }
   )
@@ -207,11 +196,12 @@ function authTokenFromIpfsId (ipfs, keys, callback) {
         cb(null, info.id)
       },
       (nodeId, cb) => {
+        thisNodeId = nodeId
         if (!keys.private) {
           cb(null, null)
+        } else {
+          keys.private.sign(Buffer.from(nodeId), cb)
         }
-        thisNodeId = nodeId
-        keys.private.sign(Buffer.from(nodeId), cb)
       },
       (signature, cb) => {
         cb(null, signature && signature.toString('base64'), thisNodeId)

@@ -37,6 +37,6 @@
     "y-ipfs-connector": "^1.2.0",
     "y-memory": "^8.0.9",
     "y-richtext": "^9.0.8",
-    "yjs": "^12.3.1"
+    "yjs": "^12.3.2"
   }
 }
