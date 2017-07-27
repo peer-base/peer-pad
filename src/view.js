@@ -64,7 +64,6 @@ parseKeys(
     const IPFS = require('ipfs')
 
     const ipfs = new IPFS({
-      repo: '/ipfs/peerpad/' + Math.random(),
       EXPERIMENTAL: {
         pubsub: true
       }
