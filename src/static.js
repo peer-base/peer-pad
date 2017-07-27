@@ -1,5 +1,7 @@
 'use strict'
 
+require('./error-handling')
+
 const waterfall = require('async/waterfall')
 const concat = require('concat-stream')
 const uriDecode = require('./keys/uri-decode')
@@ -41,7 +43,7 @@ require('./keys/parse')(key, null, (err, keys) => {
       }
 
       $.LoadingOverlay('hide')
-      document.getElementById('content').innerHTML = content.toString()
+      $('#content').html(content.toString())
     })
   })
 })

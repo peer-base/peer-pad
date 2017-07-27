@@ -1,5 +1,7 @@
 'use strict'
 
+require('./error-handling')
+
 const waterfall = require('async/waterfall')
 const setImmediate = require('async/setImmediate')
 const EventEmitter = require('events')
@@ -54,7 +56,7 @@ parseKeys(
     })
 
     function peersChanged () {
-      document.getElementById('peers').innerHTML = Object.keys(room).sort().map(peer => '<li>' + peer + '</li>')
+      $('#peers').html(Object.keys(room).sort().map(peer => '<li>' + peer + '</li>'))
     }
 
     // IPFS

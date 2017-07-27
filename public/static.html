@@ -6,18 +6,26 @@
     <link rel="stylesheet" href="/vendor/bootstrap.min.css">
   </head>
   <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="navbar-header">
-          <a class="navbar-brand">peerpad</a>
+    <div class="container-fluid">
+      <div class="navbar navbar-default" style="margin-top: 1em">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="navbar-brand">Peerpad</li>
+          </ul>
         </div>
       </div>
 
-      <div id="content"></div>
+      <div id="error-alert" class="alert alert-danger fade in">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          <div id="error-message"></div>
+      </div>
+
+      <div id="content" class="panel"></div>
 
     <!-- App -->
     <script src="/vendor/jquery-3.2.1.min.js"></script>
     <script src="/vendor/loadingoverlay.min.js"></script>
+    <script src="/vendor/bootstrap.min.js"></script>
     <script async src="/js/static.js"></script>
   </body>
 </html>
