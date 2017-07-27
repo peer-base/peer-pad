@@ -53,8 +53,6 @@ module.exports = (ipfs, cipher, _options) => {
   }
 
   function saveToIPFS (doc, callback) {
-    emitter.emit('saving', doc)
-
     const clear = Buffer.from(doc)
 
     waterfall([

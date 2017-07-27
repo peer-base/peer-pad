@@ -20,14 +20,6 @@ parseKeys(
       alert(err.message)
       return
     }
-    // document elements
-    const $hash = document.getElementById('hash')
-    const $url = document.getElementById('url')
-    const $link = document.getElementById('link')
-    const $publicLink = document.getElementById('publiclink')
-    const $publicLinkInput = document.getElementById('publiclinkinput')
-
-    $publicLinkInput.value = $publicLink.href = '/view.html/#' + encodeURIComponent(id)
 
     let observer
 
@@ -60,7 +52,6 @@ parseKeys(
     })
 
     function peersChanged () {
-      console.log('peer changed')
       document.getElementById('peers').innerHTML = Object.keys(room).sort().map(peer => '<li>' + peer + '</li>')
     }
 
@@ -75,8 +66,6 @@ parseKeys(
       }
     })
 
-    console.log('starting IPFS...')
-
     ipfs.once('ready', () => {
       authTokenFromIpfsId(ipfs, keys, (err, authToken, thisNodeId) => {
         if (err) {
@@ -89,6 +78,9 @@ parseKeys(
 
         if (canEdit) {
           const saver = require('./view-saver')(ipfs, keys.cipher)
+          const saves = []
+
+          const $saves = $('#saves')
 
           saver.on('error', (err) => {
             // TODO: handle error
@@ -96,17 +88,22 @@ parseKeys(
           })
 
           saver.on('saved', (res) => {
-            $hash.value = res.hash
             const staticLink = encodeURIComponent(id) + '/' + encodeURIComponent(res.hash)
             const url = '/static.html/#' + staticLink
-            $url.value = url
-            $link.href = url
+            saves.unshift({
+              url: url,
+              hash: res.hash
+            })
+            $saves.html(saves.map((save, index) => {
+              let label = save.hash
+              if (index === 0) {
+                label = '<b>' + label + '</b>'
+              }
+              return '<li><a href="' + save.url + '">' + label + '</a></li>'
+            }))
           })
 
-          observer = (event) => {
-            const html = editor.root.innerHTML
-            saver.save(html)
-          }
+          $('#save').click(() => saver.save(editor.root.innerHTML))
         }
 
         // Yjs
@@ -147,7 +144,6 @@ parseKeys(
           if (observer) {
             y.share.richtext.observe(observer)
           }
-          console.log('Yjs is bound to editor')
         })
       })
     })
