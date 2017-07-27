@@ -51,16 +51,25 @@ parseKeys(
         // Perhaps turn this into an option?
         canRead: true
       }
+
+      peersChanged()
     })
     roomEmitter.on('peer left', (peer) => {
       delete room[peer]
+      peersChanged()
     })
+
+    function peersChanged () {
+      console.log('peer changed')
+      document.getElementById('peers').innerHTML = Object.keys(room).sort().map(peer => '<li>' + peer + '</li>')
+    }
 
     // IPFS
 
     const IPFS = require('ipfs')
 
     const ipfs = new IPFS({
+      repo: '/ipfs/peerpad/' + Math.random(),
       EXPERIMENTAL: {
         pubsub: true
       }
@@ -188,7 +197,6 @@ parseKeys(
     }
   }
 )
-
 
 function authTokenFromIpfsId (ipfs, keys, callback) {
   let thisNodeId
