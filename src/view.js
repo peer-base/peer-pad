@@ -11,6 +11,8 @@ const id = decodeURIComponent(keys[0])
 const secretKey = keys[1] && decodeURIComponent(keys[1])
 const canEdit = Boolean(secretKey)
 
+$.LoadingOverlay('show')
+
 parseKeys(
   bs58.decode(id),
   secretKey && bs58.decode(secretKey),
@@ -75,6 +77,8 @@ parseKeys(
         }
 
         console.log('IPFS node started with ID ' + thisNodeId)
+
+        $.LoadingOverlay('hide')
 
         if (canEdit) {
           const saver = require('./view-saver')(ipfs, keys.cipher)
