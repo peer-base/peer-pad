@@ -8,6 +8,8 @@ const keys = window.location.hash.substring(1).split('/')
 const key = uriDecode(keys[0])
 const hash = decodeURIComponent(keys[1])
 
+$.LoadingOverlay('show')
+
 require('./keys/parse')(key, null, (err, keys) => {
   if (err) { throw err }
 
@@ -38,6 +40,7 @@ require('./keys/parse')(key, null, (err, keys) => {
         throw err
       }
 
+      $.LoadingOverlay('hide')
       document.getElementById('content').innerHTML = content.toString()
     })
   })
