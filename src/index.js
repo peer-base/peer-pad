@@ -1,11 +1,12 @@
 'use strict'
 
 const Buffer = require('safe-buffer').Buffer
+const encodeKey = require('./keys/uri-encode')
 
 const $button = document.getElementById('start')
 
 $button.addEventListener('click', () => {
-  require('./generate-keys')((err, keys) => {
+  require('./keys/generate')((err, keys) => {
     if (err) {
       console.error(err)
       alert(err.message)
@@ -22,7 +23,3 @@ $button.addEventListener('click', () => {
       encodeKey(keys.public) + '/' + encodeKey(keys.private)
   })
 })
-
-function encodeKey (key) {
-  return encodeURIComponent(Buffer.from(key).toString('base64'))
-}

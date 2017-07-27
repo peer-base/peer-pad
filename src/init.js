@@ -3,7 +3,8 @@
 const waterfall = require('async/waterfall')
 const setImmediate = require('async/setImmediate')
 const EventEmitter = require('events')
-const Keys = require('./keys')
+const bs58 = require('bs58')
+const parseKeys = require('./keys/parse')
 
 module.exports = function init () {
   const keys = window.location.hash.substring(1).split('/')
@@ -11,9 +12,9 @@ module.exports = function init () {
   const secretKey = keys[1] && decodeURIComponent(keys[1])
   const canEdit = Boolean(secretKey)
 
-  Keys.from(
-    Buffer.from(id, 'base64'),
-    secretKey && Buffer.from(secretKey, 'base64'),
+  parseKeys(
+    bs58.decode(id),
+    secretKey && bs58.decode(secretKey),
     (err, keys) => {
       if (err) {
         console.error(err)
@@ -66,6 +67,8 @@ module.exports = function init () {
         }
       })
 
+      console.log('starting IPFS...')
+
       ipfs.once('ready', () => {
         authTokenFromIpfsId(ipfs, keys, (err, authToken, thisNodeId) => {
           if (err) {
@@ -77,7 +80,7 @@ module.exports = function init () {
           console.log('IPFS node started with ID ' + thisNodeId)
 
           if (canEdit) {
-            const saver = require('./view-saver')(ipfs)
+            const saver = require('./view-saver')(ipfs, keys.cipher)
 
             saver.on('error', (err) => {
               // TODO: handle error
@@ -86,7 +89,8 @@ module.exports = function init () {
 
             saver.on('saved', (res) => {
               $hash.value = res.hash
-              const url = 'https://gateway.ipfs.io/ipfs/' + res.hash
+              const staticLink = encodeURIComponent(id) + '/' + encodeURIComponent(res.hash)
+              const url = '/static.html/#' + staticLink
               $url.value = url
               $link.href = url
             })

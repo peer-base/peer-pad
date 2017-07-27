@@ -2,13 +2,14 @@
 
 const EventEmitter = require('events')
 const debounce = require('lodash.debounce')
+const waterfall = require('async/waterfall')
 
 const defaultOptions = {
   debounceMS: 2000,
   maxWaitMS: 5000
 }
 
-module.exports = (ipfs, _options) => {
+module.exports = (ipfs, cipher, _options) => {
   let saving = null
   let pending = null
 
@@ -54,17 +55,19 @@ module.exports = (ipfs, _options) => {
   function saveToIPFS (doc, callback) {
     emitter.emit('saving', doc)
 
-    ipfs.files.add(Buffer.from(doc), (err, resArray) => {
-      if (err) {
-        callback(err)
-        return
-      }
+    const clear = Buffer.from(doc)
 
-      if (resArray.length !== 1) {
-        callback(new Error('result array length returned from IPFS.files.add was ' + resArray.length))
-        return
+    waterfall([
+      (callback) => cipher(callback),
+      (cipher, callback) => cipher.encrypt(clear, callback),
+      (ciphered, callback) => ipfs.files.add(ciphered, callback),
+      (resArray, callback) => {
+        if (resArray.length !== 1) {
+          callback(new Error('result array length returned from IPFS.files.add was ' + resArray.length))
+          return
+        }
+        callback(null, resArray[0])
       }
-      callback(null, resArray[0])
-    })
+    ], callback)
   }
 }

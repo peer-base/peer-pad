@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1 -p 12345 public",
-    "compile": "npm run compile:index && npm run compile:doc",
+    "compile": "npm run compile:index && npm run compile:doc && npm run compile:static",
     "compile:index": "browserify src/index.js -o public/js/index.js -d",
-    "compile:doc": "browserify src/doc.js -o public/js/doc.js -d"
+    "compile:doc": "browserify src/doc.js -o public/js/doc.js -d",
+    "compile:static": "browserify src/static.js -o public/js/static.js -d"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
   "dependencies": {
     "async": "^2.5.0",
     "browserify": "^14.4.0",
+    "bs58": "^4.0.1",
+    "concat-stream": "^1.6.0",
     "http-server": "^0.10.0",
     "ipfs": "^0.25.0",
     "libp2p-crypto": "^0.8.8",
