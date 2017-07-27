@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1 -p 12345 public",
-    "compile": "npm run compile:index && npm run compile:doc && npm run compile:static",
-    "compile:index": "browserify src/index.js -o public/js/index.js -d",
-    "compile:doc": "browserify src/doc.js -o public/js/doc.js -d",
+    "compile": "npm run compile:new && npm run compile:view && npm run compile:static",
+    "compile:new": "browserify src/new.js -o public/js/new.js -d",
+    "compile:view": "browserify src/view.js -o public/js/view.js -d",
     "compile:static": "browserify src/static.js -o public/js/static.js -d"
   },
   "repository": {
