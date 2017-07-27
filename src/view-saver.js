@@ -25,7 +25,6 @@ module.exports = (ipfs, cipher, _options) => {
   return emitter
 
   function saveDoc (doc) {
-    console.log('saveDoc', doc)
     if (!saving) {
       saving = doc
       _save()
