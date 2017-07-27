@@ -12,9 +12,6 @@
           <ul class="nav navbar-nav">
             <li class="navbar-brand">Peerpad</li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a id="share">Share</a></li>
-          </ul>
         </div>
       </div>
 
@@ -27,7 +24,19 @@
         <div class="col-md-9">
           <div id="editor"></div>
         </div>
+
         <div class="col-md-3">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Share links</h3>
+            </div>
+            <div class="panel-body">
+              <a href="" id="share-readonly">Read-only</a>
+              <a href="" id="share-writable">Writable</a>
+            </div>
+          </div>
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Peers</h3>
@@ -36,6 +45,7 @@
               <ul id="peers" class="list-unstyled" style="font-size: 50%"></ul>
             </div>
           </div>
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Saves <button class="button" id="save">Save</button></h3>

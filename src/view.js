@@ -15,6 +15,17 @@ const canEdit = Boolean(secretKey)
 
 $.LoadingOverlay('show')
 
+const readOnlyURI = '/view.html/#' + encodeURIComponent(id)
+$('#share-readonly').attr('href', readOnlyURI)
+
+if (secretKey) {
+  const writableURI = readOnlyURI + '/' + encodeURIComponent(secretKey)
+  console.log(writableURI)
+  $('#share-writable').attr('href', writableURI)
+} else {
+  $('#share-writable').hide()
+}
+
 parseKeys(
   bs58.decode(id),
   secretKey && bs58.decode(secretKey),
