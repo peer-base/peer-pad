@@ -58,13 +58,7 @@ module.exports = (ipfs, cipher, _options) => {
       (callback) => cipher(callback),
       (cipher, callback) => cipher.encrypt(clear, callback),
       (ciphered, callback) => ipfs.files.add(ciphered, callback),
-      (resArray, callback) => {
-        if (resArray.length !== 1) {
-          callback(new Error('result array length returned from IPFS.files.add was ' + resArray.length))
-          return
-        }
-        callback(null, resArray[0])
-      }
+      (resArray, callback) => callback(null, resArray[resArray.length - 1])
     ], callback)
   }
 }
