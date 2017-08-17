@@ -133,7 +133,7 @@ parseKeys(
 
         const connectorOptions = {
           name: 'ipfs',
-          room: 'peerpad/' + id,
+          room: roomName(id),
           ipfs: ipfs,
           verifySignature: verifySignature,
           auth: authToken,
@@ -232,4 +232,8 @@ function authTokenFromIpfsId (ipfs, keys, callback) {
     ],
     callback
   )
+}
+
+function roomName (id) {
+  return 'peerpad/' + id.substring(0, Math.round(id.length / 2))
 }
