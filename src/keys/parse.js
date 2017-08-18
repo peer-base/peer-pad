@@ -1,11 +1,7 @@
-'use strict'
+import crypto from 'libp2p-crypto'
+import parallel from 'async/parallel'
 
-const crypto = require('libp2p-crypto')
-const parallel = require('async/parallel')
-
-module.exports = parseKeys
-
-function parseKeys (publicKey, privateKey, callback) {
+export default function parseKeys (publicKey, privateKey, callback) {
   parallel({
     'public':  (callback) => callback(null, crypto.unmarshalPublicKey(publicKey)),
     'private': (callback) => privateKey ? crypto.unmarshalPrivateKey(privateKey, callback) : callback(null, null),

@@ -1,24 +1,21 @@
-'use strict'
-
-const crypto = require('libp2p-crypto')
+import { keys } from 'libp2p-crypto'
 
 const defaultOptions = {
   algo: 'RSA',
   bits: 1024
 }
 
-module.exports = (options, callback) => {
-  if (typeof options === 'function') {
-    callback = options
-    options = {}
-  }
-
-  options = Object.assign({}, defaultOptions, options)
-  crypto.generateKeyPair(options.algo, options.bits, (err, key) => {
-    if (err) { return callback(err) }
-    callback(null, {
-      'public': crypto.marshalPublicKey(key.public),
-      'private': crypto.marshalPrivateKey(key)
+async function generateKeys (options) {
+  return new Promise((resolve, reject) => {
+    options = Object.assign({}, defaultOptions, options)
+    keys.generateKeyPair(options.algo, options.bits, (err, key) => {
+      if (err) { return reject(err) }
+      resolve({
+        'public': keys.marshalPublicKey(key.public),
+        'private': keys.marshalPrivateKey(key)
+      })
     })
   })
 }
+
+export default generateKeys

@@ -1,7 +1,5 @@
-'use strict'
+import { encode } from 'bs58'
 
-const bs58 = require('bs58')
-
-module.exports = function encodeKey (key) {
-  return encodeURIComponent(bs58.encode(Buffer.from(key)))
+export default function encodeKey (key) {
+  return encodeURIComponent(encode(Buffer.from(key)))
 }

@@ -1,7 +1,5 @@
-'use strict'
+import { decode } from 'bs58'
 
-const bs58 = require('bs58')
-
-module.exports = function decodeKey (key) {
-  return bs58.decode(decodeURIComponent(key))
+export default function decodeKey (key) {
+  return decode(decodeURIComponent(key))
 }
