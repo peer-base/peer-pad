@@ -15,6 +15,7 @@ class Edit extends Component {
     const { readKey, writeKey } = props.match.params
     this.state = {
       room: {},
+      peers: [],
       canEdit: !!writeKey,
       rawKeys: {
         id: readKey,
@@ -25,7 +26,47 @@ class Edit extends Component {
   }
 
   render () {
-    return (<div id="editor"></div>)
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-9">
+            <div id="editor"></div>
+          </div>
+          <div className="col-md-3">
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">Share links</h3>
+              </div>
+              <div className="panel-body">
+                <ul id="peers" className="list-unstyled">
+                  <li><a href="/{this.state.rawKeys.read}/{this.shahe.rawKeys.write}">Writable</a></li>
+                  <li><a href="/{this.state.rawKeys.read}">Read-only</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">Peers</h3>
+              </div>
+              <div className="panel-body">
+                <ul id="peers" className="list-unstyled" style={{fontSize: '50%'}}>
+                  {this.state.peers.map((peer) => <li key={peer}>{peer}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">Saves <button className="button" id="save">Save</button></h3>
+              </div>
+              <div className="panel-body">
+                <ul id="saves" className="list-unstyled" style={{fontSize: '50%'}}></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>)
   }
 
   async componentDidMount () {
@@ -39,6 +80,10 @@ class Edit extends Component {
 
     // Room
 
+    const roomChanged = () => {
+      this.setState({peers: Object.keys(this.state.room).sort()})
+    }
+
     const roomEmitter = new EventEmitter()
     roomEmitter.on('peer joined', (peer) => {
       this.state.room[peer] = {
@@ -46,11 +91,15 @@ class Edit extends Component {
         // Perhaps turn this into an option?
         canRead: true
       }
+
+      roomChanged()
     })
 
     roomEmitter.on('peer left', (peer) => {
       delete this.state.room[peer]
+      roomChanged()
     })
+
 
     // Editor
 
