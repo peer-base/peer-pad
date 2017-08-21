@@ -5,33 +5,23 @@ Peerpad is a decentralized editor that allows concurrent writing of text. Beside
 ## Environment
 
 
-
-                          ┌─────────────┐
-                          │             │
-                          │             ▼
-       ┌─────────┐        │        ┌─────────┐
-       │         │        │        │         │
-       │ Peerpad │        │        │ Peerpad │
-    ┌─▶│  Node   │◀───────┼───────▶│  Node   │
-    │  │         │        │        │         │
-    │  └─────────┘        │        └─────────┘
-    │       ▲             │             ▲
-    │       │             │             │
-    │       │             │             │
-    │       └─────────────┼─────────────┼───────┐
-    └────────┐            │             │       │
-             │            │             │       │
-             │            │             │       │
-             ▼            │             ▼       │
-        ┌─────────┐       │        ┌─────────┐  │
-        │         │       │        │         │  │
-        │ Peerpad │       │        │ Peerpad │  │
-        │  Node   │◀──────┼───────▶│  Node   │◀─┘
-        │         │       │        │         │
-        └─────────┘       │        └─────────┘
-             ▲            │
-             │            │
-             └────────────┘
+    ┌─────────┐                 ┌─────────┐
+    │         │                 │         │
+    │ Peerpad │                 │ Peerpad │
+    │  Node   │◀───────────────▶│  Node   │
+    │         │                 │         │
+    └─────────┘                 └─────────┘
+         ▲                           ▲
+         │                           │
+         │                           │
+         │                           │
+         │                           │
+         │        ┌─────────┐        │
+         │        │         │        │
+         │        │ Peerpad │        │
+         └───────▶│  Node   │◀───────┘
+                  │         │
+                  └─────────┘
 
 
 Peerpad nodes are self-contained, they live in a browser and don't need any other type of node to go about their business. They connect to each other without any intermediary, exchanging messages directly in peer-to-peer style.
