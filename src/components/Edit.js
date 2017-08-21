@@ -7,6 +7,7 @@ import waterfall from 'async/waterfall'
 import IPFS from '../ipfs'
 import parseKeys from '../keys/parse'
 import CRDT from '../crdt'
+import Snapshoter from '../snapshoter'
 
 class Edit extends Component {
 
@@ -16,6 +17,7 @@ class Edit extends Component {
     this.state = {
       room: {},
       peers: [],
+      snapshots: [],
       canEdit: !!writeKey,
       rawKeys: {
         id: readKey,
@@ -58,10 +60,14 @@ class Edit extends Component {
 
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h3 className="panel-title">Saves <button className="button" id="save">Save</button></h3>
+                <h3 className="panel-title">Snapshots
+                  <button className="button" onClick={this.handleSnap.bind(this)}>Snap</button>
+                </h3>
               </div>
               <div className="panel-body">
-                <ul id="saves" className="list-unstyled" style={{fontSize: '50%'}}></ul>
+                <ul className="list-unstyled" style={{fontSize: '50%'}}>
+                  {this.state.snapshots.map((ss, index) => <li key={index}><a href={ss.url}>{ss.hash}</a></li>)}
+                </ul>
               </div>
             </div>
           </div>
@@ -103,7 +109,7 @@ class Edit extends Component {
 
     // Editor
 
-    const editor = new Quill('#editor', {
+    const editor = this.state.editor = new Quill('#editor', {
       theme: 'snow'
     })
 
@@ -112,6 +118,23 @@ class Edit extends Component {
     }
 
     await CRDT(rawKeys.id, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
+
+
+    // Snapshots
+
+    this.state.snapshoter = Snapshoter(ipfs, this.state.keys.cipher)
+
+    this.state.snapshoter.on('saved', (snap) => {
+      this.state.snapshots.unshift({
+        url: encodeURIComponent(this.state.rawKeys.id) + '/' + encodeURIComponent(snap.hash),
+        hash: snap.hash
+      })
+      this.setState({snapshots: this.state.snapshots})
+    })
+  }
+
+  handleSnap () {
+    this.state.snapshoter.save(this.state.editor.root.innerHTML)
   }
 }
 
