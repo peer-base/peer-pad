@@ -27,13 +27,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "npm run lint && react-scripts test --env=jsdom",
     "lint": "standard",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
+    "pre-commit": "^1.2.2",
     "standard": "^10.0.3"
-  }
+  },
+  "pre-commit": [ "test" ]
 }

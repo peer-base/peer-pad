@@ -1,4 +1,4 @@
-/* global it, expect, click */
+/* global it, expect */
 import React from 'react'
 import { mount } from 'enzyme'
 import { createMemoryHistory } from 'history'
@@ -23,18 +23,3 @@ it('can create document via button', (done) => {
   const button = home.find('button').last()
   button.simulate('click', 1)
 })
-
-
-import { withRouter } from 'react-router-dom';
-
-const myComponent = ({ listen }) => {
-
-    listen((location, action) => {
-        // location is an object like window.location
-        console.log(action, location.pathname, location.state)
-    });
-
-    return <div>...</div>;
-};
-
-export default withRouter(myComponent);
