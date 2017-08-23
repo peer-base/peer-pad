@@ -3,11 +3,16 @@ import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 import { decode as b58Decode } from 'bs58'
 import EventEmitter from 'events'
-import waterfall from 'async/waterfall'
 import IPFS from '../ipfs'
 import parseKeys from '../keys/parse'
 import CRDT from '../crdt'
 import Snapshoter from '../snapshoter'
+import authToken from '../auth-token'
+
+import Status from './Status'
+import Peers from './Peers'
+import Snapshots from './Snapshots'
+import Links from './Links'
 
 class Edit extends Component {
 
@@ -18,12 +23,11 @@ class Edit extends Component {
       status: 'offline',
       room: {},
       peers: [],
-      snapshots: [],
       canEdit: !!writeKey,
       rawKeys: {
         id: readKey,
-        read: b58Decode(readKey),
-        write: writeKey && b58Decode(writeKey)
+        read: readKey,
+        write: writeKey
       }
     }
   }
@@ -35,51 +39,13 @@ class Edit extends Component {
           <div className="col-md-9">
             <div id="editor"></div>
           </div>
+
           <div className="col-md-3">
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Share links</h3>
-              </div>
-              <div className="panel-body">
-                <ul id="peers" className="list-unstyled">
-                  <li><a href="/{this.state.rawKeys.read}/{this.shahe.rawKeys.write}">Writable</a></li>
-                  <li><a href="/{this.state.rawKeys.read}">Read-only</a></li>
-                </ul>
-              </div>
-            </div>
 
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Status</h3>
-              </div>
-              <div className="panel-body">
-                {this.state.status}
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Peers</h3>
-              </div>
-              <div className="panel-body">
-                <ul id="peers" className="list-unstyled" style={{fontSize: '50%'}}>
-                  {this.state.peers.map((peer) => <li key={peer}>{peer}</li>)}
-                </ul>
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Snapshots
-                  <button className="button" onClick={this.handleSnap.bind(this)}>Snap</button>
-                </h3>
-              </div>
-              <div className="panel-body">
-                <ul className="list-unstyled" style={{fontSize: '50%'}}>
-                  {this.state.snapshots.map((ss, index) => <li key={index}><a href={ss.url}>{ss.hash}</a></li>)}
-                </ul>
-              </div>
-            </div>
+            <Links keys={this.state.rawKeys} />
+            <Status status={this.state.status} />
+            <Peers peers={this.state.peers} />
+            <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
           </div>
         </div>
       </div>)
@@ -89,12 +55,12 @@ class Edit extends Component {
 
     // Keys
     const rawKeys = this.state.rawKeys
-    this.state.keys = await parseKeys(rawKeys.read, rawKeys.write)
+    this.state.keys = await parseKeys(b58Decode(rawKeys.read), b58Decode(rawKeys.write))
 
     const ipfs = await IPFS()
     this.setState({status: 'online'})
 
-    const auth = await authTokenFromIpfsId(ipfs, this.state.keys)
+    const auth = await authToken(ipfs, this.state.keys)
 
     // Room
 
@@ -118,7 +84,6 @@ class Edit extends Component {
       roomChanged()
     })
 
-
     // Editor
 
     const editor = this.state.editor = new Quill('#editor', {
@@ -134,55 +99,14 @@ class Edit extends Component {
 
     // Snapshots
 
-    this.state.snapshoter = Snapshoter(ipfs, this.state.keys.cipher)
-
-    this.state.snapshoter.on('saved', (snap) => {
-      this.state.snapshots.unshift({
-        url: encodeURIComponent(this.state.rawKeys.id) + '/' + encodeURIComponent(snap.hash),
-        hash: snap.hash
-      })
-      this.setState({snapshots: this.state.snapshots})
-    })
+    this.state.takeSnapshot = Snapshoter(ipfs, this.state.keys.cipher)
   }
 
-  handleSnap () {
-    this.state.snapshoter.save(this.state.editor.root.innerHTML)
+  async takeSnapshot () {
+    return this.state.takeSnapshot(this.state.editor.root.innerHTML)
   }
 }
 
-async function authTokenFromIpfsId (ipfs, keys) {
-  return new Promise((resolve, reject) => {
-    let thisNodeId
-    waterfall(
-      [
-        (cb) => ipfs.id(cb),
-        (info, cb) => {
-          cb(null, info.id)
-        },
-        (nodeId, cb) => {
-          thisNodeId = nodeId
-          if (!keys.private) {
-            cb(null, null)
-          } else {
-            keys.private.sign(Buffer.from(nodeId), cb)
-          }
-        },
-        (token, cb) => {
-          cb(null, token && token.toString('base64'))
-        }
-      ],
-      (err, token) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve({
-            token: token,
-            nodeId: thisNodeId
-          })
-        }
-      }
-    )
-  })
-}
+
 export default Edit
 
