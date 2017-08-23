@@ -15,6 +15,7 @@ class Edit extends Component {
     super(props)
     const { readKey, writeKey } = props.match.params
     this.state = {
+      status: 'offline',
       room: {},
       peers: [],
       snapshots: [],
@@ -44,6 +45,15 @@ class Edit extends Component {
                   <li><a href="/{this.state.rawKeys.read}/{this.shahe.rawKeys.write}">Writable</a></li>
                   <li><a href="/{this.state.rawKeys.read}">Read-only</a></li>
                 </ul>
+              </div>
+            </div>
+
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">Status</h3>
+              </div>
+              <div className="panel-body">
+                {this.state.status}
               </div>
             </div>
 
@@ -82,6 +92,8 @@ class Edit extends Component {
     this.state.keys = await parseKeys(rawKeys.read, rawKeys.write)
 
     const ipfs = await IPFS()
+    this.setState({status: 'online'})
+
     const auth = await authTokenFromIpfsId(ipfs, this.state.keys)
 
     // Room
