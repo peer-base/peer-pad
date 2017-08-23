@@ -13,7 +13,7 @@ class CreateDocument extends Component {
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to={this.state.redirect} />)
+      return (<Redirect to={this.state.redirect} push={true} />)
     }
 
     return (

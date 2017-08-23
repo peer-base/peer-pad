@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can create document via button 1`] = `
+<Home>
+  <div
+    className="Home"
+  >
+    <div
+      className="Home-header"
+    >
+      <h2>
+        Welcome to PeerPad
+      </h2>
+    </div>
+    <p
+      className="Home-intro"
+    >
+      <CreateDocument>
+        <Button
+          active={false}
+          block={false}
+          bsClass="btn"
+          bsSize="large"
+          bsStyle="default"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <button
+            className="btn btn-lg btn-default"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Create new Document
+          </button>
+        </Button>
+      </CreateDocument>
+    </p>
+  </div>
+</Home>
+`;
