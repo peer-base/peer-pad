@@ -15,7 +15,7 @@ $ cd peerpad
 $ npm start
 ```
 
-Head out to [http://localhost:12345](http://localhost:12345)
+Head out to [http://localhost:3000](http://localhost:3000)
 
 ## Docs
 
