@@ -26,7 +26,7 @@ class CreateDocument extends Component {
 
   async handleClick () {
     const keys = await generateKeys()
-    const url = '/' + encodeKey(keys.public) + '/' + encodeKey(keys.private)
+    const url = '/w/' + encodeKey(keys.public) + '/' + encodeKey(keys.private)
     this.setState({redirect: url})
   }
 }

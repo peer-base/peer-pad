@@ -11,8 +11,8 @@ class Links extends Component {
         </div>
         <div className="panel-body">
           <ul id="peers" className="list-unstyled">
-            <li><a href={'/' + this.props.keys.read + '/' + this.props.keys.write}>Writable</a></li>
-            <li><a href={'/' + this.props.keys.read}>Read-only</a></li>
+            <li><a href={'/w/' + this.props.keys.read + '/' + this.props.keys.write}>Writable</a></li>
+            <li><a href={'/r/' + this.props.keys.read}>Read-only</a></li>
           </ul>
         </div>
       </div>

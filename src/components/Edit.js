@@ -54,7 +54,7 @@ class Edit extends Component {
 
     // Keys
     const rawKeys = this.state.rawKeys
-    this.state.keys = await parseKeys(b58Decode(rawKeys.read), b58Decode(rawKeys.write))
+    this.state.keys = await parseKeys(b58Decode(rawKeys.read), rawKeys.write && b58Decode(rawKeys.write))
 
     const ipfs = await IPFS()
     this.setState({status: 'online'})
