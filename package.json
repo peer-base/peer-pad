@@ -26,7 +26,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "npm run lint && react-scripts test --env=jsdom",
+    "lint": "standard src/**/*.js",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 import { decode as b58Decode } from 'bs58'
@@ -15,7 +15,6 @@ import Snapshots from './Snapshots'
 import Links from './Links'
 
 class Edit extends Component {
-
   constructor (props) {
     super(props)
     const { readKey, writeKey } = props.match.params
@@ -33,13 +32,13 @@ class Edit extends Component {
 
   render () {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-9">
-            <div id="editor"></div>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-md-9'>
+            <div id='editor' />
           </div>
 
-          <div className="col-md-3">
+          <div className='col-md-3'>
 
             <Links keys={this.state.rawKeys} />
             <Status status={this.state.status} />
@@ -51,7 +50,6 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-
     // Keys
     const rawKeys = this.state.rawKeys
     this.state.keys = await parseKeys(b58Decode(rawKeys.read), rawKeys.write && b58Decode(rawKeys.write))
@@ -95,7 +93,6 @@ class Edit extends Component {
 
     await CRDT(rawKeys.read, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
 
-
     // Snapshots
 
     this.state.takeSnapshot = Snapshoter(ipfs, this.state.keys.cipher)
@@ -106,6 +103,4 @@ class Edit extends Component {
   }
 }
 
-
 export default Edit
-

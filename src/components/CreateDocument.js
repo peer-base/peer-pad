@@ -1,7 +1,7 @@
 import encodeKey from '../keys/uri-encode'
 import generateKeys from '../keys/generate'
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 
@@ -11,14 +11,14 @@ class CreateDocument extends Component {
     this.state = {}
   }
 
-  render() {
+  render () {
     if (this.state.redirect) {
       return (<Redirect to={this.state.redirect} />)
     }
 
     return (
-      <Button bsSize="large"
-              onClick={this.handleClick.bind(this)}>
+      <Button bsSize='large'
+        onClick={this.handleClick.bind(this)}>
         Create new Document
       </Button>
     )
@@ -31,4 +31,4 @@ class CreateDocument extends Component {
   }
 }
 
-export default CreateDocument;
+export default CreateDocument
