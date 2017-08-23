@@ -6,8 +6,7 @@ import YArray from 'y-array'
 import YRichtext from 'y-richtext'
 import YIPFS from 'y-ipfs-connector'
 
-export default async function startCRDT(id, authToken, canEdit, keys, room, ipfs, editor, roomEmitter) {
-
+export default async function startCRDT (id, authToken, canEdit, keys, room, ipfs, editor, roomEmitter) {
   YMemory(Y)
   YIndexeddb(Y)
   YArray(Y)

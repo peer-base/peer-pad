@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "npm run lint && react-scripts test --env=jsdom",
-    "lint": "standard src/**/*.js",
+    "lint": "standard",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
