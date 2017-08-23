@@ -21,5 +21,5 @@ it('can create document via button', (done) => {
   })
 
   const button = home.find('button').last()
-  button.simulate('click', 1)
+  button.simulate('click')
 })
