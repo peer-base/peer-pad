@@ -25,7 +25,6 @@ class Edit extends Component {
       peers: [],
       canEdit: !!writeKey,
       rawKeys: {
-        id: readKey,
         read: readKey,
         write: writeKey
       }
@@ -94,7 +93,7 @@ class Edit extends Component {
       editor.disable()
     }
 
-    await CRDT(rawKeys.id, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
+    await CRDT(rawKeys.read, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
 
 
     // Snapshots
