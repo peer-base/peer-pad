@@ -108,6 +108,11 @@ Remove permission to peer. Arguments:
 * `permission` (string): can be `read`, `write` or `admin`
 
 
+### `peerpad.access.get(peerId)`
+
+Gets access for given peer. Returns array of permissions (strings), each of which can be `read`, `write` or `admin`.
+
+
 ## Peers: `peerpad.peers`
 
 ### `peerpad.peers.all()`
