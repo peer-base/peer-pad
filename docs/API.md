@@ -19,6 +19,7 @@ Creates a Peerpad
 ```js
 const options = {
   name: 'name of the pad',
+  type: 'richtext',
   readKey: 'gobelegook',
   writeKey: 'moregobelegook'
 }
@@ -29,11 +30,67 @@ const peerpad = Peerpad(options)
 ## `options`:
 
 * `name`: string that uniquely identifies this
+* `type`: string that identifies type of document. Currently supports `text` or `richtext`.
 * `readKey`: b58-encoded string or buffer that contains the read key
 * `writeKey`: b58-encoded string or buffer that contains the write key (optional)
+* `produceSignature`: a function you supply that produces a signature for a given blob. See the section "Authentication" further down.
+* `validateSignature`: a function you supply that produces a signature for a given blob. See the section "Authentication" further down.
+* `ipfs`: IPFS node that is already created (optional)
 
 
-## `peerpad.peers`
+## Authentication: `peerpad.auth`
+
+### `peerpad.auth.setCredential(credential)`
+
+Sets the current user credential.
+
+* `credential`: a JSON-encodable object that represents the current user credential.
+
+### Signatures
+
+The constructor options accept a function to produce a signature and another to validate a signature.
+
+#### `options.produceSignature`
+
+This function accepts two arguments: the first is a credential of the current user (if set through `peerpad.auth.setCredential(credential)`) and the second is a buffer to sign. It should return a promise that resolves to a buffer containing the signature.
+
+Example:
+
+```js
+function produceSignature(credential, message) {
+  return new Promise((resolve, reject) => {
+    signMessageSomehow(message, (err, signature) => {
+      if (err) {
+        return reject(err)
+      }
+      resolve(signature)
+    })
+  })
+}
+```
+
+#### `options.validateSignature`
+
+Function provided to validate a signature of a remote message.
+
+This function accepts three arguments: the first is a credential of the remote user (if set), the second is the message to sign (a buffer) and the third is a singature (buffer). It should return a promise that resolves if the signature is valid and rejects if it's not.
+
+Example:
+
+```js
+function validateSignature(credential, message, signature) {
+  return new Promise((resolve, reject) => {
+    validateSignatureSomehow(message, signature (err, isValid) => {
+      if (err || !isValid) {
+        return reject(err)
+      }
+      resolve(iValid)
+    })
+  })
+}
+```
+
+## Peers: `peerpad.peers`
 
 ### `peerpad.peers.all()`
 
@@ -45,8 +102,8 @@ peerpad.peers.all()
 [
   {
     id: 'QmHashHash1',
-    person: {
-      // attributes from http://schema.org/Person
+    credential: {
+      // an arbitrary JSON-encodable object
     },
     permissions: {
       admin: false,
@@ -56,8 +113,8 @@ peerpad.peers.all()
   },
   {
     id: 'QmHashHash2',
-    person: {
-      // attributes from http://schema.org/Person
+    credential: {
+      // // an arbitrary JSON-encodable object
     },
     permissions: {
       admin: false,
@@ -78,33 +135,46 @@ peerpad.peers.on('change', () => {
 })
 ```
 
-## `peerpad.network`
+## Network: `peerpad.network`
 
-Exposes some IPFS network statistics. TODO
+Exposes some IPFS network statistics.
 
-## `peerpad.document`
+## Document: `peerpad.document`
 
-### `peerpad.document.bind(editor)`
+### `peerpad.document.bindEditor(editor)`
 
-Two-way bind to a [Quill](https://quilljs.com) editor. Example:
+Bind [CodeMirror](https://codemirror.net) editor (for pad of type `text`) or [Quill](https://quilljs.com) editor (for pad of type `richtext`).
+
+Two-way bind to a  editor. Example for Quill:
 
 ```js
 import Quill from 'quill'
 
 const editor = new Quill('#editor')
 
-peerpad.document.bind(editor)
+peerpad.document.bindEditor(editor)
 ```
 
-### `peerpad.document.unbind(editor)`
+Example for CodeMirror:
+
+```js
+import Codemirror from 'codemirror'
+
+const editor = CodeMirror.fromTextArea(myTextArea)
+
+peerpad.document.bindEditor(editor)
+```
+
+### `peerpad.document.unbindEditor(editor)`
+
+Unbinds editor.
 
 ### `peerpad.document.on('change', fn)`
 
 Emitted when the document changes. `fn` is called with the arguments:
 
 * `peer` (a Peer object)
-* `delta` a [Quill-Delta](https://github.com/quilljs/delta/#readme)
-
+* `operation` (object of type Operation, see further down)
 
 ## `peerpad.attachments`
 
@@ -122,6 +192,10 @@ If `progressFn` is passed in, progress is reported every now and then by calling
 ### `peerpad.history.all()`
 
 Returns the entire history of this document as an array of History objects.
+
+### `peerpad.history.allFor(peerId)`
+
+Returns the entire history of edits for a given peer, identified by peerId (string).
 
 
 ## `peerpad.snapshots`
@@ -143,8 +217,8 @@ peerpad.snapshots.take().then((hash) => {
 ```
 {
   id: 'QmHashHash1',
-  person: {
-    // attributes from http://schema.org/Person
+  credential: {
+    // an arbitrary JSON-encodable object
   },
   permissions: {
     admin: false,
@@ -159,17 +233,21 @@ peerpad.snapshots.take().then((hash) => {
 ```
 {
   when: date, // of type Date
-  delta: delta, // of type Delta
-  peer: {
-    id: 'QmHashHash1',
-    person: {
-      // attributes from http://schema.org/Person
-    },
-    permissions: {
-      admin: false,
-      write: true,
-      read: true
-    }
-  }
+  operation: {...}, // of type Operation
+  peer: {...} // of type Peer
 }
 ```
+
+### Operation
+
+Describes an operation. An operation can be an insertion or a deletion at a given position. This position can either be:
+
+* the character position for type `text`
+* the delta position for type `richtext`
+
+Has the following attributes:
+
+* `type`: can be `insert` or `delete`
+* `position`: integer representing the operation position
+* `values`: can an array of strings (for a pad of type `text`) or an array of [Deltas](https://github.com/quilljs/delta) (for a pad of type `richtext`)
+* `length`: integer, representing the amount of operations inserted or deleted
