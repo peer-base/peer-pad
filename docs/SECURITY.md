@@ -68,8 +68,6 @@ ATTENTION: THIS IS NOT IMPLEMENTED YET! CRDT records are stored locally in the c
 
 ### Access control
 
-(this is not required for 0.2)
-
 You can give users permissions to read, write and admin.
 
 * "Read" permissions means that the users can read the document and follow the changes, but cannot make changes to the document.

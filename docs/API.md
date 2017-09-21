@@ -84,11 +84,29 @@ function validateSignature(credential, message, signature) {
       if (err || !isValid) {
         return reject(err)
       }
-      resolve(iValid)
+      resolve()
     })
   })
 }
 ```
+
+## Access Control: `peerpad.access`
+
+### `peerpad.access.add(peerId, permission)`
+
+Give permission to peer. Arguments:
+
+* `peerId`: string representing the peer.
+* `permission` (string): can be `read`, `write` or `admin`
+
+
+### `peerpad.access.remove(peerId, permission)`
+
+Remove permission to peer. Arguments:
+
+* `peerId`: string representing the peer.
+* `permission` (string): can be `read`, `write` or `admin`
+
 
 ## Peers: `peerpad.peers`
 
