@@ -1,3 +1,5 @@
+'use strict'
+
 import waterfall from 'async/waterfall'
 
 export default async function authTokenFromIpfsId (ipfs, keys) {
@@ -25,10 +27,7 @@ export default async function authTokenFromIpfsId (ipfs, keys) {
         if (err) {
           reject(err)
         } else {
-          resolve({
-            token: token,
-            nodeId: thisNodeId
-          })
+          resolve(token)
         }
       }
     )

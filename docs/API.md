@@ -31,8 +31,8 @@ const peerpad = Peerpad(options)
 
 * `name`: string that uniquely identifies this
 * `type`: string that identifies type of document. Currently supports `text` or `richtext`.
-* `readKey`: b58-encoded string or buffer that contains the read key
-* `writeKey`: b58-encoded string or buffer that contains the write key (optional)
+* `readKey`: string containing the read key
+* `writeKey`: string containing the write key (optional)
 * `produceSignature`: a function you supply that produces a signature for a given blob. See the section "Authentication" further down.
 * `validateSignature`: a function you supply that produces a signature for a given blob. See the section "Authentication" further down.
 * `ipfs`: IPFS node that is already created (optional)
@@ -159,6 +159,12 @@ peerpad.peers.on('change', () => {
 ```
 
 ## Network: `peerpad.network`
+
+### `peerpad.network.once('started', fn)`
+
+Emitted once the IPFS node starts. If you passed in an IPFS node that is already started (via `options.ipfs`), this event doesn't get emitted.
+
+### `peerpad.network.stats`
 
 Exposes some IPFS network statistics.
 

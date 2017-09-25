@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
-import { decode as b58Decode } from 'bs58'
-import EventEmitter from 'events'
-import IPFS from '../ipfs'
-import parseKeys from '../keys/parse'
-import CRDT from '../crdt'
-import Snapshoter from '../snapshoter'
-import authToken from '../auth-token'
+
+import Peerpad from '../core'
 
 import Status from './Status'
 import Peers from './Peers'
@@ -17,7 +12,7 @@ import Links from './Links'
 class Edit extends Component {
   constructor (props) {
     super(props)
-    const { readKey, writeKey } = props.match.params
+
     this.state = {
       status: 'offline',
       room: {},
@@ -28,6 +23,12 @@ class Edit extends Component {
         write: writeKey
       }
     }
+    const { name, readKey, writeKey } = props.match.params
+
+    const peerpad = this._peerpad = Peerpad({name, readyJey, writeKey})
+
+    peerpad.network.once('started', () => this.setState({ status: 'started' }))
+    peerpad.peers.on('change', () => this.setState({ peers: [...peerpad.peers.all()] }))
   }
 
   render () {
@@ -50,40 +51,15 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
+    await this._peerpad.start()
+
     // Keys
     const rawKeys = this.state.rawKeys
     this.state.keys = await parseKeys(b58Decode(rawKeys.read), rawKeys.write && b58Decode(rawKeys.write))
 
-    const ipfs = await IPFS()
-    this.setState({status: 'online'})
-
-    const auth = await authToken(ipfs, this.state.keys)
-
-    // Room
-
-    const roomChanged = () => {
-      this.setState({peers: Object.keys(this.state.room).sort()})
-    }
-
-    const roomEmitter = new EventEmitter()
-    roomEmitter.on('peer joined', (peer) => {
-      this.state.room[peer] = {
-        // TODO: just by knowing the public key, can a user read?
-        // Perhaps turn this into an option?
-        canRead: true
-      }
-
-      roomChanged()
-    })
-
-    roomEmitter.on('peer left', (peer) => {
-      delete this.state.room[peer]
-      roomChanged()
-    })
-
     // Editor
 
-    const editor = this.state.editor = new Quill('#editor', {
+    const editor = this._editor = new Quill('#editor', {
       theme: 'snow'
     })
 
@@ -91,15 +67,13 @@ class Edit extends Component {
       editor.disable()
     }
 
-    await CRDT(rawKeys.read, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
-
-    // Snapshots
-
-    this.state.takeSnapshot = Snapshoter(ipfs, this.state.keys.cipher)
+    await this._peerpad.document.bindEditor(editor)
   }
 
   async takeSnapshot () {
-    return this.state.takeSnapshot(this.state.editor.root.innerHTML)
+    if (this._editor) {
+      await this._peerpad.snapshots.take()
+    }
   }
 }
 
