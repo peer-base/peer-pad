@@ -1,9 +1,6 @@
-'use strict'
-
 import EventEmitter from 'events'
 
 export default function auth (keys, roomEmitter) {
-
   const emitter = new EventEmitter()
   const capabilitiesByPeer = {}
 
@@ -42,13 +39,13 @@ export default function auth (keys, roomEmitter) {
     return capabilities
   }
 
-  function addPermission(peerId, permission) {
+  function addPermission (peerId, permission) {
     let capabilities = ensurePeer(peerId)
     capabilities[permission] = true
     emitter.emit('change', peerId, capabilities)
   }
 
-  function removePermission(peerId, permission) {
+  function removePermission (peerId, permission) {
     const capabilities = ensurePeer(peerId)
     capabilities[permission] = false
     emitter.emit('change', peerId, capabilities)
@@ -88,10 +85,10 @@ export default function auth (keys, roomEmitter) {
           if (!ok) {
             return console.error('invalid signature for sender ' + sender)
           }
-          const capabilities = capabilitiesByPeer[sender]
+          const capabilities = ensurePeer(sender)
           capabilities.read = true
           capabilities.write = true
-          emitter.emit('change', peer, capabilities)
+          emitter.emit('change', sender, capabilities)
           resolve('write')
         })
     })
@@ -99,11 +96,12 @@ export default function auth (keys, roomEmitter) {
 
   function observer () {
     return (event) => {
-      event.path // contains path
+      // event.path // contains path
       switch (event.type) {
         case 'add':
         case 'update':
         case 'delete':
+        default:
       }
     }
   }

@@ -1,7 +1,6 @@
-'use strict'
+import EventEmitter from 'events'
 
-const EventEmitter = require('events')
-
+import Backend from './backend'
 import Auth from './auth'
 import Access from './access'
 import Peers from './peers'
@@ -29,12 +28,13 @@ class Peerpad extends EventEmitter {
     this.network = new Network(options, backend)
     this.document = new Document(options, backend)
     this.history = new History(options, backend)
-    this.attachments = new History(options, backend)
+    this.attachments = new Attachments(options, backend)
     this.snapshots = new Snapshots(options, backend)
   }
 
   async start () {
     await this._backend.start()
+    this.emit('started')
   }
 }
 

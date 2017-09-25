@@ -15,7 +15,6 @@ YRichtext(Y)
 YIPFS(Y)
 
 export default async function startCRDT (id, authToken, keys, ipfs, roomEmitter, auth) {
-
   const connectorOptions = {
     name: 'ipfs',
     room: roomName(id),
@@ -30,7 +29,7 @@ export default async function startCRDT (id, authToken, keys, ipfs, roomEmitter,
     connectorOptions.sign = sign
   }
 
-  connectorOptions.role = canEdit ? 'master' : 'slave'
+  connectorOptions.role = keys.write ? 'master' : 'slave'
 
   return Y({
     db: {

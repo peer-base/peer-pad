@@ -1,5 +1,3 @@
-'use strict'
-
 import EventEmitter from 'events'
 import { decode as b58Decode } from 'bs58'
 
@@ -7,12 +5,14 @@ import parseKeys from './keys/parse'
 import IPFS from './ipfs'
 import authToken from './auth-token'
 import CRDT from './crdt'
+import Auth from './auth'
 
-class Backend {
+class Backend extends EventEmitter {
   constructor (options) {
+    super()
     this._options = options
     this.room = new EventEmitter()
-    const ipfs = this.ipfs = IPFS(options.ipfs)
+    this.ipfs = IPFS(options.ipfs)
   }
 
   async start () {
@@ -26,10 +26,18 @@ class Backend {
       return
     }
 
-    const token = await authToken(ipfs, this._keys)
+    const token = await authToken(this.ipfs, this._keys)
     this.auth = Auth(this._keys, this.room)
-    this.crdt = await CRDT(rawKeys.read, token, this._keys, ipfs, this.room, this.auth)
-    this.crdt.share.access.observeDeep(auth.observer())
+    this.crdt = await CRDT(this._options.readKey, token, this._keys, this.ipfs, this.room, this.auth)
+    this._observer = this.auth.observer()
+    this.crdt.share.access.observeDeep(this._observer)
+
+    this.emit('started')
+  }
+
+  stop () {
+    this.crdt.share.access.unobserve(this._observer)
+    this._observer = null
   }
 }
 

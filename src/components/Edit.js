@@ -13,6 +13,8 @@ class Edit extends Component {
   constructor (props) {
     super(props)
 
+    const { name, readKey, writeKey } = props.match.params
+
     this.state = {
       status: 'offline',
       room: {},
@@ -23,9 +25,11 @@ class Edit extends Component {
         write: writeKey
       }
     }
-    const { name, readKey, writeKey } = props.match.params
-
-    const peerpad = this._peerpad = Peerpad({name, readyJey, writeKey})
+    const peerpad = this._peerpad = Peerpad({
+      type: 'richtext', // TODO: make this variable
+      name,
+      readKey,
+      writeKey})
 
     peerpad.network.once('started', () => this.setState({ status: 'started' }))
     peerpad.peers.on('change', () => this.setState({ peers: [...peerpad.peers.all()] }))
@@ -53,10 +57,6 @@ class Edit extends Component {
   async componentDidMount () {
     await this._peerpad.start()
 
-    // Keys
-    const rawKeys = this.state.rawKeys
-    this.state.keys = await parseKeys(b58Decode(rawKeys.read), rawKeys.write && b58Decode(rawKeys.write))
-
     // Editor
 
     const editor = this._editor = new Quill('#editor', {
@@ -66,8 +66,10 @@ class Edit extends Component {
     if (!this.state.canEdit) {
       editor.disable()
     }
+  }
 
-    await this._peerpad.document.bindEditor(editor)
+  componentWillUnmount () {
+    this._peerpad.stop()
   }
 
   async takeSnapshot () {

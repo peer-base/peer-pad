@@ -5,7 +5,7 @@ export default async function parseKeys (readKey, writeKey) {
   return new Promise((resolve, reject) => {
     parallel({
       'read': (callback) => callback(null, crypto.keys.unmarshalPublicKey(readKey)),
-      'write': (callback) => privateKey ? crypto.keys.unmarshalPrivateKey(writeKey, callback) : callback(null, null),
+      'write': (callback) => writeKey ? crypto.keys.unmarshalPrivateKey(writeKey, callback) : callback(null, null),
       'cipher': (callback) => callback(null, createAESKeyFromReadKey(readKey))
     }, (err, results) => {
       if (err) {

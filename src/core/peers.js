@@ -1,5 +1,3 @@
-'use strict'
-
 const EventEmitter = require('events')
 
 class Peers extends EventEmitter {
@@ -8,20 +6,22 @@ class Peers extends EventEmitter {
 
     this._peers = {}
 
-    backend.auth.on('change', (peer, capabilities) => {
-      if (!capabilities) {
-        delete this._peers[peer]
-      } else {
-        let peer = this._peers[peer]
-        if (!peer) {
-          peer = this._peers[peer] = {
-            id: peer
+    backend.once('started', () => {
+      backend.auth.on('change', (peerId, capabilities) => {
+        if (!capabilities) {
+          delete this._peers[peerId]
+        } else {
+          let peer = this._peers[peerId]
+          if (!peer) {
+            peer = this._peers[peer] = {
+              id: peer
+            }
           }
+          peer.permissions = Object.assign({}, capabilities)
         }
-        peer.permissions = Object.assign({}, capabilities)
-      }
 
-      this._roomChanged()
+        this._roomChanged()
+      })
     })
   }
 

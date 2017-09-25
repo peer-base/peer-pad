@@ -1,9 +1,6 @@
-'use strict'
-
 const EventEmitter = require('events')
 
 class Document extends EventEmitter {
-
   constructor (options, backend) {
     super()
     this._options = options

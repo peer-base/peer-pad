@@ -1,10 +1,7 @@
-'use strict'
-
 import waterfall from 'async/waterfall'
 
 export default async function authTokenFromIpfsId (ipfs, keys) {
   return new Promise((resolve, reject) => {
-    let thisNodeId
     waterfall(
       [
         (cb) => ipfs.id(cb),
@@ -12,7 +9,6 @@ export default async function authTokenFromIpfsId (ipfs, keys) {
           cb(null, info.id)
         },
         (nodeId, cb) => {
-          thisNodeId = nodeId
           if (!keys.private) {
             cb(null, null)
           } else {

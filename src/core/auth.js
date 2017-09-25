@@ -1,5 +1,3 @@
-'use strict'
-
 class Auth {
   setCredential (credential) {
 
