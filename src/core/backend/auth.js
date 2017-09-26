@@ -1,30 +1,30 @@
 import EventEmitter from 'events'
 
-export default function auth (keys, roomEmitter) {
-  const emitter = new EventEmitter()
+export default function Auth (keys, roomEmitter) {
+  const auth = new EventEmitter()
   const capabilitiesByPeer = {}
 
   roomEmitter.on('peer joined', (peerId) => {
     const capabilities = ensurePeer(peerId)
 
-    emitter.emit('change', peerId, capabilities)
+    auth.emit('change', peerId, capabilities)
   })
 
   roomEmitter.on('peer left', (peerId) => {
     delete capabilitiesByPeer[peerId]
-    emitter.emit('change', peerId, null)
+    auth.emit('change', peerId, null)
   })
 
-  emitter.add = addPermission
-  emitter.remove = removePermission
-  emitter.get = getPermissions
+  auth.add = addPermission
+  auth.remove = removePermission
+  auth.get = getPermissions
 
-  emitter.verifySignature = verifySignature
-  emitter.checkAuth = checkAuth
+  auth.verifySignature = verifySignature
+  auth.checkAuth = checkAuth
 
-  emitter.observer = observer
+  auth.observer = observer
 
-  return emitter
+  return auth
 
   function ensurePeer (peerId) {
     let capabilities = capabilitiesByPeer[peerId]
@@ -42,13 +42,13 @@ export default function auth (keys, roomEmitter) {
   function addPermission (peerId, permission) {
     let capabilities = ensurePeer(peerId)
     capabilities[permission] = true
-    emitter.emit('change', peerId, capabilities)
+    auth.emit('change', peerId, capabilities)
   }
 
   function removePermission (peerId, permission) {
     const capabilities = ensurePeer(peerId)
     capabilities[permission] = false
-    emitter.emit('change', peerId, capabilities)
+    auth.emit('change', peerId, capabilities)
   }
 
   function getPermissions (peerId) {
@@ -88,7 +88,7 @@ export default function auth (keys, roomEmitter) {
           const capabilities = ensurePeer(sender)
           capabilities.read = true
           capabilities.write = true
-          emitter.emit('change', sender, capabilities)
+          auth.emit('change', sender, capabilities)
           resolve('write')
         })
     })
