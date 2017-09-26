@@ -22,9 +22,9 @@ class CreateDocument extends Component {
       <form>
         <FormGroup>
           <FormControl
-            type="text"
+            type='text'
             value={this.state.name}
-            placeholder="pad name"
+            placeholder='pad name'
             onChange={this.handleNameChange.bind(this)} />
 
           <Button bsSize='large'

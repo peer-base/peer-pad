@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Peers extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      peers: {}
+    }
+
+    props.peers.on('change', () => {
+      this.setState({ peers: props.peers.all() })
+    })
+  }
+
   render () {
     return (
       <div className='panel panel-default'>
@@ -10,7 +21,7 @@ class Peers extends Component {
         </div>
         <div className='panel-body'>
           <ul id='peers' className='list-unstyled' style={{fontSize: '50%'}}>
-            {this.props.peers.map((peer) => <li key={peer}>{peer}</li>)}
+            {Object.keys(this.state.peers).sort().map((peerId) => <li key={peerId}>{peerId}</li>)}
           </ul>
         </div>
       </div>
@@ -19,7 +30,7 @@ class Peers extends Component {
 }
 
 Peers.propTypes = {
-  peers: PropTypes.arrayOf(PropTypes.string).isRequired
+  peers: PropTypes.object.isRequired
 }
 
 export default Peers

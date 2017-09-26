@@ -4,15 +4,19 @@ export default function auth (keys, roomEmitter) {
   const emitter = new EventEmitter()
   const capabilitiesByPeer = {}
 
-  roomEmitter.on('peer joined', (peer) => {
-    const capabilities = ensurePeer(peer)
+  roomEmitter.on('peer joined', (peerId) => {
+    // const peerId = peer.id.toB58String()
+    console.log('peer joined:', peerId)
+    const capabilities = ensurePeer(peerId)
 
-    emitter.emit('change', peer, capabilities)
+    emitter.emit('change', peerId, capabilities)
   })
 
-  roomEmitter.on('peer left', (peer) => {
-    delete capabilitiesByPeer[peer]
-    emitter.emit('change', peer, null)
+  roomEmitter.on('peer left', (peerId) => {
+    // const peerId = peer.id.toB58String()
+    console.log('peer left:', peerId)
+    delete capabilitiesByPeer[peerId]
+    emitter.emit('change', peerId, null)
   })
 
   emitter.add = addPermission

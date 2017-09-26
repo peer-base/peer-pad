@@ -47,7 +47,7 @@ class Edit extends Component {
 
             <Links keys={this.state.rawKeys} />
             <Status status={this.state.status} />
-            <Peers peers={this.state.peers} />
+            <Peers peers={this._peerpad.peers} />
             <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
           </div>
         </div>
