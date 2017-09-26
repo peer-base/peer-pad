@@ -25,6 +25,7 @@ class Edit extends Component {
         write: writeKey
       }
     }
+
     const peerpad = this._peerpad = Peerpad({
       type: 'richtext', // TODO: make this variable
       name,

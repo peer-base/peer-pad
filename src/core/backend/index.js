@@ -16,7 +16,6 @@ class Backend extends EventEmitter {
   }
 
   async start () {
-    console.log('starting backend...')
     const options = this._options
     // Keys
     this._keys = await parseKeys(b58Decode(options.readKey), options.writeKey && b58Decode(options.writeKey))
@@ -31,7 +30,6 @@ class Backend extends EventEmitter {
     const token = await authToken(this.ipfs, this._keys)
     this.auth = Auth(this._keys, this.room)
     this.crdt = await CRDT(this._options.readKey, token, this._keys, this.ipfs, this.room, this.auth)
-    console.log('have CRDT:', this.crdt)
     this._observer = this.auth.observer()
     this.crdt.share.access.observeDeep(this._observer)
 

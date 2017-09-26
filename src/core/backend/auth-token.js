@@ -9,10 +9,10 @@ export default async function authTokenFromIpfsId (ipfs, keys) {
           cb(null, info.id)
         },
         (nodeId, cb) => {
-          if (!keys.private) {
+          if (!keys.write) {
             cb(null, null)
           } else {
-            keys.private.sign(Buffer.from(nodeId), cb)
+            keys.write.sign(Buffer.from(nodeId), cb)
           }
         },
         (token, cb) => {
