@@ -7,7 +7,9 @@ class Peers extends EventEmitter {
     this._peers = {}
 
     backend.once('started', () => {
+      console.log('backend started')
       backend.auth.on('change', (peerId, capabilities) => {
+        console.log('backend auth change', peerId)
         if (!capabilities) {
           delete this._peers[peerId]
         } else {

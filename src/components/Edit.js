@@ -66,6 +66,8 @@ class Edit extends Component {
     if (!this.state.canEdit) {
       editor.disable()
     }
+
+    this._peerpad.document.bindEditor(editor)
   }
 
   componentWillUnmount () {

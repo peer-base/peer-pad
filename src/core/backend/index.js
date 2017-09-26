@@ -16,19 +16,22 @@ class Backend extends EventEmitter {
   }
 
   async start () {
+    console.log('starting backend...')
     const options = this._options
     // Keys
     this._keys = await parseKeys(b58Decode(options.readKey), options.writeKey && b58Decode(options.writeKey))
 
     // if IPFS node is not online yet, delay the start until it is
     if (!this.ipfs.isOnline()) {
-      this.ipfs.once('ready', this.start.bind(this))
-      return
+      await (new Promise((resolve, reject) => {
+        this.ipfs.once('ready', () => resolve())
+      }))
     }
 
     const token = await authToken(this.ipfs, this._keys)
     this.auth = Auth(this._keys, this.room)
     this.crdt = await CRDT(this._options.readKey, token, this._keys, this.ipfs, this.room, this.auth)
+    console.log('have CRDT:', this.crdt)
     this._observer = this.auth.observer()
     this.crdt.share.access.observeDeep(this._observer)
 

@@ -31,7 +31,7 @@ export default async function startCRDT (id, authToken, keys, ipfs, roomEmitter,
 
   connectorOptions.role = keys.write ? 'master' : 'slave'
 
-  return Y({
+  return await Y({
     db: {
       name: 'indexeddb'
     },
