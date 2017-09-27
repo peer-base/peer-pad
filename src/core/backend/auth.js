@@ -95,8 +95,9 @@ export default function Auth (keys, roomEmitter) {
   }
 
   function observer () {
-    return (event) => {
+    return (event, access) => {
       // event.path // contains path
+      console.log('event', event)
       switch (event.type) {
         case 'add':
         case 'update':

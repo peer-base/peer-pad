@@ -19,7 +19,6 @@ class Edit extends Component {
       name: 'name',
       status: 'offline',
       room: {},
-      peers: [],
       canEdit: !!writeKey,
       rawKeys: {
         read: readKey,
@@ -34,7 +33,6 @@ class Edit extends Component {
       writeKey})
 
     peerpad.network.once('started', () => this.setState({ status: 'started' }))
-    peerpad.peers.on('change', () => this.setState({ peers: [...peerpad.peers.all()] }))
   }
 
   render () {

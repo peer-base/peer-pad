@@ -1,5 +1,6 @@
 import EventEmitter from 'events'
 import { decode as b58Decode } from 'bs58'
+import Y from 'yjs'
 
 import parseKeys from './keys/parse'
 import IPFS from './ipfs'
@@ -30,8 +31,27 @@ class Backend extends EventEmitter {
     const token = await authToken(this.ipfs, this._keys)
     this.auth = Auth(this._keys, this.room)
     this.crdt = await CRDT(this._options.readKey, token, this._keys, this.ipfs, this.room, this.auth)
-    this._observer = this.auth.observer()
-    this.crdt.share.access.observeDeep(this._observer)
+    const observer = this.auth.observer()
+    this.crdt.share.access.observeDeep((event) => {
+      observer(event, this.crdt.share.access)
+    })
+
+    this.auth.on('change', (peerId, newCapabilities) => {
+      let capabilities = this.crdt.share.access.get(peerId)
+      if (!capabilities) {
+        this.crdt.share.access.set(peerId, Y.Map)
+        capabilities = this.crdt.share.access.get(peerId)
+      }
+      if (newCapabilities) {
+        Object.keys(newCapabilities).forEach((capabilityName, hasPermission) => {
+          if (capabilities.get(capabilityName) !== newCapabilities[capabilityName]) {
+            capabilities.set(capabilityName, hasPermission)
+          }
+        })
+      } else {
+        capabilities.delete(peerId)
+      }
+    })
 
     this.emit('started')
   }

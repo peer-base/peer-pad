@@ -21,7 +21,13 @@ class Peers extends Component {
         </div>
         <div className='panel-body'>
           <ul id='peers' className='list-unstyled' style={{fontSize: '50%'}}>
-            {Object.keys(this.state.peers).sort().map((peerId) => <li key={peerId}>{peerId}</li>)}
+            {Object.keys(this.state.peers).sort().map((peerId) => {
+              const capabilities = this.state.peers[peerId].permissions
+              const permissions = Object.keys(capabilities)
+                .filter((capability) => capabilities[capability])
+                .join(', ')
+              return (<li key={peerId}>{peerId} ({permissions})</li>)
+            })}
           </ul>
         </div>
       </div>
