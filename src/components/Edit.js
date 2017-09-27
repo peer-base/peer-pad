@@ -16,6 +16,7 @@ class Edit extends Component {
     const { name, readKey, writeKey } = props.match.params
 
     this.state = {
+      name: 'name',
       status: 'offline',
       room: {},
       peers: [],
@@ -46,7 +47,7 @@ class Edit extends Component {
 
           <div className='col-md-3'>
 
-            <Links keys={this.state.rawKeys} />
+            <Links name={this.state.name} keys={this.state.rawKeys} />
             <Status status={this.state.status} />
             <Peers peers={this._peerpad.peers} />
             <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
