@@ -76,9 +76,7 @@ class Edit extends Component {
   }
 
   async takeSnapshot () {
-    if (this._editor) {
-      await this._peerpad.snapshots.take()
-    }
+    return await this._peerpad.snapshots.take()
   }
 }
 

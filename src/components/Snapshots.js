@@ -20,7 +20,7 @@ class Snapshots extends Component {
         </div>
         <div className='panel-body'>
           <ul className='list-unstyled' style={{fontSize: '50%'}}>
-            {this.state.snapshots.map((ss, index) => <li key={index}><a href={ss.url}>{ss.hash}</a></li>)}
+            {this.state.snapshots.map((ss, index) => <li key={index}>{ss}</li>)}
           </ul>
         </div>
       </div>
@@ -29,9 +29,11 @@ class Snapshots extends Component {
 
   async handleSnap () {
     const newSnapshot = await this.props.takeSnapshot()
-    this.setState({
-      snapshots: [newSnapshot, ...this.state.snapshots]
-    })
+    if (newSnapshot) {
+      this.setState({
+        snapshots: [newSnapshot, ...this.state.snapshots]
+      })
+    }
   }
 }
 
