@@ -95,9 +95,18 @@ export default function Auth (keys, roomEmitter) {
   }
 
   function observer () {
-    return (event, access) => {
+    return (event) => {
       // event.path // contains path
       console.log('event', event)
+      const author = event.object.map[event.name][0]
+      console.log('author', author)
+      const peerCapabilities = capabilitiesByPeer[author]
+
+      // peer has to have admin capabilities
+      if (!peerCapabilities || !peerCapabilities.admin) {
+        return
+      }
+
       switch (event.type) {
         case 'add':
         case 'update':

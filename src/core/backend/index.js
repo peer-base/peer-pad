@@ -31,10 +31,7 @@ class Backend extends EventEmitter {
     const token = await authToken(this.ipfs, this._keys)
     this.auth = Auth(this._keys, this.room)
     this.crdt = await CRDT(this._options.readKey, token, this._keys, this.ipfs, this.room, this.auth)
-    const observer = this.auth.observer()
-    this.crdt.share.access.observeDeep((event) => {
-      observer(event, this.crdt.share.access)
-    })
+    this.crdt.share.access.observeDeep(this.auth.observer())
 
     this.auth.on('change', (peerId, newCapabilities) => {
       let capabilities = this.crdt.share.access.get(peerId)
