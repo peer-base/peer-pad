@@ -7,6 +7,7 @@ import IPFS from './ipfs'
 import authToken from './auth-token'
 import CRDT from './crdt'
 import Auth from './auth'
+import { generateSymmetrical as generateSymmetricalKey } from './keys'
 
 class Backend extends EventEmitter {
   constructor (options) {
@@ -14,6 +15,9 @@ class Backend extends EventEmitter {
     this._options = options
     this.room = new EventEmitter()
     this.ipfs = IPFS(options.ipfs)
+    this.keys = {
+      generateSymmetrical: generateSymmetricalKey
+    }
   }
 
   async start () {

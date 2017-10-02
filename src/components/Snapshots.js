@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+const GATEWAY_PREFIX = 'https://gateway.ipfs.io/ipfs/'
+
 class Snapshots extends Component {
   constructor (props) {
     super(props)
@@ -20,7 +22,12 @@ class Snapshots extends Component {
         </div>
         <div className='panel-body'>
           <ul className='list-unstyled' style={{fontSize: '50%'}}>
-            {this.state.snapshots.map((ss, index) => <li key={index}>{ss}</li>)}
+            {
+              this.state.snapshots.map((ss, index) => {
+                const url = GATEWAY_PREFIX + ss.hash + '#' + ss.key
+                return (<li key={index}><a href={url}>{ss.hash}</a></li>)
+              })
+            }
           </ul>
         </div>
       </div>
