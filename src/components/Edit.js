@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 
-import Peerpad from '../core'
+import Peerpad from 'peerpad-core'
 
 import Status from './Status'
 import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
+import DocViewer from './DocViewer'
 
 class Edit extends Component {
   constructor (props) {
@@ -30,7 +31,9 @@ class Edit extends Component {
       type: 'richtext', // TODO: make this variable
       name,
       readKey,
-      writeKey})
+      writeKey,
+      docViewer: DocViewer
+    })
 
     peerpad.network.once('started', () => this.setState({ status: 'started' }))
   }

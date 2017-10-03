@@ -1,5 +1,4 @@
-import encodeKey from '../core/backend/keys/uri-encode'
-import generateKeys from '../core/backend/keys/generate'
+import { generateRandomKeys } from 'peerpad-core'
 
 import React, { Component } from 'react'
 import { Button, FormGroup, FormControl } from 'react-bootstrap'
@@ -43,9 +42,9 @@ class CreateDocument extends Component {
   }
 
   async handleClick () {
-    const keys = await generateKeys()
+    const keys = await generateRandomKeys()
     const name = encodeURIComponent(this.state.name)
-    const url = '/w/' + name + '/' + encodeKey(keys.public) + '/' + encodeKey(keys.private)
+    const url = '/w/' + name + '/' + keys.read + '/' + keys.write
     this.setState({redirect: url})
   }
 }

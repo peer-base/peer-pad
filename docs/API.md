@@ -12,6 +12,20 @@ $ npm install peerpad-core --save
 import Peerpad from 'peerpad-core'
 ```
 
+## `async generateRandomKeys()`
+
+Generates a set of read and write random keys.
+
+Returns a promise that resolves to:
+
+```js
+{
+  "read": "base58-encoded string",
+  "write": "base58-encoded string",
+}
+```
+
+
 ## `Peerpad(options)`
 
 Creates a Peerpad

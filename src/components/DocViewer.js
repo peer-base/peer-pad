@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import DocHTML from './DocHTML'
+import DocViewerHTML from './DocViewerHTML'
 
 class Doc extends Component {
   render () {
@@ -16,7 +16,7 @@ class Doc extends Component {
           <noscript>
             You need to enable JavaScript to get this document.
           </noscript>
-          <DocHTML encryptedDoc={this.props.encryptedDoc} />
+          <DocViewerHTML encryptedDoc={this.props.encryptedDoc} />
         </body>
       </html>
     )
