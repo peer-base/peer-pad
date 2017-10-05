@@ -17,7 +17,7 @@ class DocViewerHTML extends Component {
     return (
       <div>
         {error}
-        <div id="doc"dangerouslySetInnerHTML={{__html: !this.state.error && this.state.doc || '' }} />
+        <div id="doc"dangerouslySetInnerHTML={{__html: (!this.state.error && this.state.doc) || '' }} />
       </div>
     )
   }
