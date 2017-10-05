@@ -17,7 +17,7 @@ class Edit extends Component {
     const { name, readKey, writeKey } = props.match.params
 
     this.state = {
-      name: 'name',
+      name,
       status: 'offline',
       room: {},
       canEdit: !!writeKey,
@@ -26,19 +26,10 @@ class Edit extends Component {
         write: writeKey
       }
     }
-
-    const peerpad = this._peerpad = Peerpad({
-      type: 'richtext', // TODO: make this variable
-      name,
-      readKey,
-      writeKey,
-      docViewer: DocViewer
-    })
-
-    peerpad.network.once('started', () => this.setState({ status: 'started' }))
   }
 
   render () {
+    const peers = this._peerpad && (<Peers peers={this._peerpad.peers} />)
     return (
       <div className='container-fluid'>
         <div className='row'>
@@ -50,7 +41,7 @@ class Edit extends Component {
 
             <Links name={this.state.name} keys={this.state.rawKeys} />
             <Status status={this.state.status} />
-            <Peers peers={this._peerpad.peers} />
+            {peers}
             <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
           </div>
         </div>
@@ -58,7 +49,17 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-    await this._peerpad.start()
+    const peerpad = this._peerpad = Peerpad({
+      type: 'richtext', // TODO: make this variable
+      name: this.state.name,
+      readKey: this.state.rawKeys.read,
+      writeKey: this.state.rawKeys.write,
+      docViewer: DocViewer
+    })
+
+    peerpad.network.once('started', () => this.setState({ status: 'started' }))
+
+    await peerpad.start()
 
     // Editor
 
@@ -70,7 +71,7 @@ class Edit extends Component {
       editor.disable()
     }
 
-    this._peerpad.document.bindEditor(editor)
+    peerpad.document.bindEditor(editor)
   }
 
   componentWillUnmount () {

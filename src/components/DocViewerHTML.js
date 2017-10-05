@@ -1,23 +1,45 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { parseSymmetricalKey } from 'peerpad-core'
 
-class Doc extends Component {
+class DocViewerHTML extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      doc: 'Decrypting doc...',
+      error: null
+    }
+  }
+
   render () {
+    const error = this.state.error && (<p class="error">Error: {this.state.error}</p>)
     return (
       <div>
-        <div id="doc">Decrypting doc...</div>
-        <script dangerouslySetInnerHTML={{__html: `
-          const encryptedDoc = new Uint8Array([${this.props.encryptedDoc.join(',')}]);
-          document.getElementById('doc').innerHTML = 'Decrypted!!!';
-        `}}
-        />
+        {error}
+        <div id="doc"dangerouslySetInnerHTML={{__html: !this.state.error && this.state.doc || '' }} />
       </div>
     )
   }
+
+  async componentDidMount () {
+    try {
+      const key = await parseSymmetricalKey(window.location.hash.substr(1))
+      key.decrypt(this.props.encryptedDoc, (err, decrypted) => {
+        if (err) {
+          this.setState({error: err.message})
+        } else {
+          this.setState({ doc: decrypted.toString('utf8') })
+        }
+      })
+    } catch (err) {
+      this.setState({error: err.message })
+    }
+  }
 }
 
-Doc.propTypes = {
+DocViewerHTML.propTypes = {
   encryptedDoc: PropTypes.object.isRequired
 }
 
-export default Doc
+export default DocViewerHTML
