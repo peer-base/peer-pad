@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { parseSymmetricalKey } from 'peerpad-core'
+// Hack to minimize source code size of doc snapshot..
+import parseSymmetricalKey from 'peerpad-core/src/backend/keys/parse-symm-key'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/css/bootstrap-theme.min.css'
 
