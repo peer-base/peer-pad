@@ -64,7 +64,7 @@ class Edit extends Component {
 
           <div className='col-md-3'>
 
-            <Links name={this.state.name} keys={this.state.rawKeys} />
+            <Links type={this.state.type} name={this.state.name} keys={this.state.rawKeys} />
             <Status status={this.state.status} />
             {peers}
             <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
@@ -101,8 +101,7 @@ class Edit extends Component {
     } else {
       editor = CodeMirror(editorContainer, {
         lineNumbers: true,
-        value: 'function myscript() {}',
-        readOnly: !this.state.canEdit
+        value: 'function myscript() {}'
       })
 
       editor.on('change', () => {
@@ -112,7 +111,6 @@ class Edit extends Component {
           }
           this.setState({ html })
         })
-
       })
     }
 

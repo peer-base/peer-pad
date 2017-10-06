@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class Links extends Component {
   render () {
+    const type = encodeURIComponent(this.props.type)
+    const name = encodeURIComponent(this.props.name)
     return (
       <div className='panel panel-default'>
         <div className='panel-heading'>
@@ -10,8 +13,8 @@ class Links extends Component {
         </div>
         <div className='panel-body'>
           <ul id='peers' className='list-unstyled'>
-            <li><a href={'/w/' + this.props.name + '/' + this.props.keys.read + '/' + this.props.keys.write}>Writable</a></li>
-            <li><a href={'/r/' + this.props.name + '/' + this.props.keys.read}>Read-only</a></li>
+            <li><Link to={'/w/' + type + '/' + name + '/' + this.props.keys.read + '/' + this.props.keys.write}>Writable</Link></li>
+            <li><Link to={'/r/' + type + '/' + name + '/' + this.props.keys.read}>Read-only</Link></li>
           </ul>
         </div>
       </div>
@@ -20,6 +23,7 @@ class Links extends Component {
 }
 
 Links.propTypes = {
+  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   keys: PropTypes.shape(
     {
