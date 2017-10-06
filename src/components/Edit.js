@@ -5,6 +5,7 @@ import 'quill/dist/quill.snow.css'
 
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
+import './Codemirror.css'
 
 import Peerpad from 'peerpad-core'
 import Remark from 'remark'
@@ -101,7 +102,8 @@ class Edit extends Component {
     } else {
       editor = CodeMirror(editorContainer, {
         lineNumbers: true,
-        value: 'function myscript() {}'
+        value: 'function myscript() {}',
+        viewportMargin: Infinity
       })
 
       editor.on('change', () => {
