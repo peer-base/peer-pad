@@ -75,12 +75,15 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
+    const docScript = await (await fetch('static/js/viewer.bundle.js')).text()
+
     const peerpad = this._peerpad = Peerpad({
       type: this.state.type, // TODO: make this variable
       name: this.state.name,
       readKey: this.state.rawKeys.read,
       writeKey: this.state.rawKeys.write,
-      docViewer: DocViewer
+      docViewer: DocViewer,
+      docScript
     })
 
     peerpad.network.once('started', () => this.setState({ status: 'started' }))
