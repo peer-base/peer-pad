@@ -56,7 +56,7 @@ class CreateDocument extends Component {
 
   async handleClick () {
     const type = encodeURIComponent(this.state.type)
-    const name = encodeURIComponent(this.state.name)
+    const name = encodeURIComponent(encodeURIComponent(this.state.name))
     const keys = await generateRandomKeys()
     const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
     this.setState({redirect: url})
