@@ -53,7 +53,7 @@ module.exports = {
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
     ],
-    'viewer': paths.docViewer
+    viewer: paths.docViewer
   },
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
