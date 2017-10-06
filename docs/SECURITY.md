@@ -8,7 +8,7 @@ Below we describe the security model and take the opportunity to describe the un
 
 Peerpad aims to be private. All data that is published into the network is encrypted and requires a key to decrypt. To participate in the real-time network of updates to a given document, the node must be in possession of the key. To read a snapshot, the reading node must also be in possession of a read key.
 
-These keys are to be transmitted in the URL.
+These keys are to be transmitted in the URL in a way that no server gets them (through the hash portion of the URL).
 
 ### Creating a document
 

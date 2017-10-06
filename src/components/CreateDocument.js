@@ -26,6 +26,15 @@ class CreateDocument extends Component {
             placeholder='pad name'
             onChange={this.handleNameChange.bind(this)} />
 
+          <FormControl
+            componentClass="select"
+            placeholder="select type"
+            onChange={this.handleTypeChange.bind(this)}>
+              <option value="select">select type</option>
+              <option value="markdown">Markdown</option>
+              <option value="richtext">Rich text</option>
+          </FormControl>
+
           <Button bsSize='large'
             onClick={this.handleClick.bind(this)}>
             Create new Document
@@ -41,10 +50,15 @@ class CreateDocument extends Component {
     this.setState({name: event.target.value})
   }
 
+  handleTypeChange (event) {
+    this.setState({type: event.target.value})
+  }
+
   async handleClick () {
-    const keys = await generateRandomKeys()
+    const type = encodeURIComponent(this.state.type)
     const name = encodeURIComponent(this.state.name)
-    const url = '/w/' + name + '/' + keys.read + '/' + keys.write
+    const keys = await generateRandomKeys()
+    const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
     this.setState({redirect: url})
   }
 }

@@ -11,8 +11,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path='/' component={Home} />
-          <Route exact path='/w/:name/:readKey/:writeKey' component={Edit} />
-          <Route path='/r/:name/:readKey' component={Edit} />
+          <Route exact path='/w/:type/:name/:readKey/:writeKey' component={Edit} />
+          <Route path='/r/:type/:name/:readKey' component={Edit} />
         </div>
       </Router>
     )

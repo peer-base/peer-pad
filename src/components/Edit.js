@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+
 import Peerpad from 'peerpad-core'
+import Remark from 'remark'
+import RemarkHtml from 'remark-html'
 
 import Status from './Status'
 import Peers from './Peers'
@@ -10,14 +16,18 @@ import Snapshots from './Snapshots'
 import Links from './Links'
 import DocViewer from './DocViewer'
 
+const markdown = Remark().use(RemarkHtml)
+
 class Edit extends Component {
   constructor (props) {
     super(props)
 
-    const { name, readKey, writeKey } = props.match.params
+    const { type, name, readKey, writeKey } = props.match.params
 
     this.state = {
       name,
+      type: type,
+      html: '',
       status: 'offline',
       room: {},
       canEdit: !!writeKey,
@@ -30,11 +40,26 @@ class Edit extends Component {
 
   render () {
     const peers = this._peerpad && (<Peers peers={this._peerpad.peers} />)
+    const editorContainer = this.state.type !== 'richtext' ?
+      (
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-md-6'>
+              <div id="editor"></div>
+            </div>
+            <div className='col-md-6'>
+              <div dangerouslySetInnerHTML={{__html: this.state.html}} />
+            </div>
+          </div>
+        </div>
+      ) :
+      (<div id='editor'></div>)
+
     return (
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-md-9'>
-            <div id='editor' />
+            {editorContainer}
           </div>
 
           <div className='col-md-3'>
@@ -50,7 +75,7 @@ class Edit extends Component {
 
   async componentDidMount () {
     const peerpad = this._peerpad = Peerpad({
-      type: 'richtext', // TODO: make this variable
+      type: this.state.type, // TODO: make this variable
       name: this.state.name,
       readKey: this.state.rawKeys.read,
       writeKey: this.state.rawKeys.write,
@@ -61,14 +86,34 @@ class Edit extends Component {
 
     await peerpad.start()
 
+    const editorContainer = document.getElementById('editor')
+    let editor
+
     // Editor
+    if (this.state.type === 'richtext') {
+      editor = new Quill(editorContainer, {
+        theme: 'snow'
+      })
 
-    const editor = this._editor = new Quill('#editor', {
-      theme: 'snow'
-    })
+      if (!this.state.canEdit) {
+        editor.disable()
+      }
+    } else {
+      editor = CodeMirror(editorContainer, {
+        lineNumbers: true,
+        value: 'function myscript() {}',
+        readOnly: !this.state.canEdit
+      })
 
-    if (!this.state.canEdit) {
-      editor.disable()
+      editor.on('change', () => {
+        markdown.process(editor.getValue(), (err, html) => {
+          if (err) {
+            throw err
+          }
+          this.setState({ html })
+        })
+
+      })
     }
 
     peerpad.document.bindEditor(editor)
