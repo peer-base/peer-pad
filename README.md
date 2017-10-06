@@ -15,13 +15,21 @@ $ cd peerpad
 $ npm install
 ```
 
-## Start
+## Use locally
 
 ```bash
 $ npm start
 ```
 
 Head out to [http://localhost:3000](http://localhost:3000)
+
+## Build
+
+To build into the `build` dir, run:
+
+```bash
+$ npm run build
+```
 
 ## Docs
 
