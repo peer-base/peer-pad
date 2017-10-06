@@ -254,7 +254,7 @@ module.exports = {
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
     dgram: 'empty',
-    // fs: 'empty',
+    fs: 'empty',
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
