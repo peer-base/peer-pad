@@ -6,7 +6,7 @@ import { Router } from 'react-router'
 import toJSON from 'enzyme-to-json'
 import Home from './Home'
 
-it('can create document via button', (done) => {
+it('can create document via button', () => {
   const history = createMemoryHistory()
   const all = mount(
     <Router history={history}><Home /></Router>)
@@ -15,7 +15,7 @@ it('can create document via button', (done) => {
   expect(toJSON(home)).toMatchSnapshot()
 
   const unlisten = history.listen((location, action) => {
-    expect(location.pathname).toMatch(/^\/w\/\w+\/\w+$/)
+    expect(location.pathname).toMatch(/^\/w\/\w+\/\w+\/\w+$/)
     unlisten()
     done()
   })

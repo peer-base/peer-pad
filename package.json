@@ -31,7 +31,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
-    "peerpad-core": "^0.1.0",
+    "peerpad-core": "^0.2.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
@@ -52,18 +52,19 @@
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "npm run lint && node scripts/test.js --env=jsdom",
+    "test": "npm run lint && jest --no-cache --debug --env=jsdom",
     "lint": "standard src",
     "deploy:ipfs": "ipfs add -r build/"
   },
   "devDependencies": {
     "enzyme": "^3.0.0",
-    "enzyme-to-json": "^2.0.1",
+    "enzyme-adapter-react-15": "^1.0.1",
+    "enzyme-to-json": "^3.1.2",
     "pre-commit": "^1.2.2",
     "react-test-renderer": "^15.6.2",
     "standard": "^10.0.3"
@@ -76,7 +77,8 @@
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/enzyme.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
@@ -89,9 +91,6 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
@@ -102,6 +101,9 @@
       "web.jsx",
       "jsx",
       "node"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ]
   },
   "babel": {
