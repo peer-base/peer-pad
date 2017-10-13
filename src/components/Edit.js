@@ -1,27 +1,38 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
-import { decode as b58Decode } from 'bs58'
-import EventEmitter from 'events'
-import IPFS from '../ipfs'
-import parseKeys from '../keys/parse'
-import CRDT from '../crdt'
-import Snapshoter from '../snapshoter'
-import authToken from '../auth-token'
+
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import './Codemirror.css'
+
+import Remark from 'remark'
+import RemarkHtml from 'remark-html'
 
 import Status from './Status'
 import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
+import DocViewer from './DocViewer'
+
+const markdown = Remark().use(RemarkHtml)
 
 class Edit extends Component {
   constructor (props) {
     super(props)
-    const { readKey, writeKey } = props.match.params
+
+    console.log('props:', props)
+    this._backend = props.backend
+    const { type, name, readKey, writeKey } = props.match.params
+
     this.state = {
+      name,
+      type: type,
+      html: '',
       status: 'offline',
       room: {},
-      peers: [],
       canEdit: !!writeKey,
       rawKeys: {
         read: readKey,
@@ -31,18 +42,34 @@ class Edit extends Component {
   }
 
   render () {
+    const peers = this._document && (<Peers peers={this._document.peers} />)
+    const editorContainer = this.state.type !== 'richtext' ?
+      (
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-md-6'>
+              <div id="editor"></div>
+            </div>
+            <div className='col-md-6'>
+              <div dangerouslySetInnerHTML={{__html: this.state.html}} />
+            </div>
+          </div>
+        </div>
+      ) :
+      (<div id='editor'></div>)
+
     return (
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-md-9'>
-            <div id='editor' />
+            {editorContainer}
           </div>
 
           <div className='col-md-3'>
 
-            <Links keys={this.state.rawKeys} />
+            <Links type={this.state.type} name={this.state.name} keys={this.state.rawKeys} />
             <Status status={this.state.status} />
-            <Peers peers={this.state.peers} />
+            {peers}
             <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
           </div>
         </div>
@@ -50,57 +77,65 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-    // Keys
-    const rawKeys = this.state.rawKeys
-    this.state.keys = await parseKeys(b58Decode(rawKeys.read), rawKeys.write && b58Decode(rawKeys.write))
+    const docScript = await (await fetch('static/js/viewer.bundle.js')).text()
 
-    const ipfs = await IPFS()
-    this.setState({status: 'online'})
-
-    const auth = await authToken(ipfs, this.state.keys)
-
-    // Room
-
-    const roomChanged = () => {
-      this.setState({peers: Object.keys(this.state.room).sort()})
-    }
-
-    const roomEmitter = new EventEmitter()
-    roomEmitter.on('peer joined', (peer) => {
-      this.state.room[peer] = {
-        // TODO: just by knowing the public key, can a user read?
-        // Perhaps turn this into an option?
-        canRead: true
-      }
-
-      roomChanged()
+    const peerpad = this._document = this._backend.createDocument({
+      type: this.state.type, // TODO: make this variable
+      name: this.state.name,
+      readKey: this.state.rawKeys.read,
+      writeKey: this.state.rawKeys.write,
+      docViewer: DocViewer,
+      docScript
     })
 
-    roomEmitter.on('peer left', (peer) => {
-      delete this.state.room[peer]
-      roomChanged()
-    })
+    this._backend.network.once('started', () => this.setState({ status: 'started' }))
+
+    await peerpad.start()
+
+    const editorContainer = document.getElementById('editor')
+    let editor
 
     // Editor
+    if (this.state.type === 'richtext') {
+      editor = new Quill(editorContainer, {
+        theme: 'snow'
+      })
 
-    const editor = this.state.editor = new Quill('#editor', {
-      theme: 'snow'
-    })
+      if (!this.state.canEdit) {
+        editor.disable()
+      }
+    } else {
+      editor = CodeMirror(editorContainer, {
+        lineNumbers: true,
+        value: 'function myscript() {}',
+        viewportMargin: Infinity
+      })
 
-    if (!this.state.canEdit) {
-      editor.disable()
+      editor.on('change', () => {
+        markdown.process(editor.getValue(), (err, html) => {
+          if (err) {
+            throw err
+          }
+          this.setState({ html })
+        })
+      })
     }
 
-    await CRDT(rawKeys.read, auth.token, this.state.canEdit, this.state.keys, this.state.room, ipfs, editor, roomEmitter)
+    peerpad.bindEditor(editor)
+  }
 
-    // Snapshots
-
-    this.state.takeSnapshot = Snapshoter(ipfs, this.state.keys.cipher)
+  componentWillUnmount () {
+    this._document.stop()
   }
 
   async takeSnapshot () {
-    return this.state.takeSnapshot(this.state.editor.root.innerHTML)
+    return await this._document.snapshots.take()
   }
 }
+
+DocViewer.propTypes = {
+  backend: PropTypes.object.isRequired
+}
+
 
 export default Edit

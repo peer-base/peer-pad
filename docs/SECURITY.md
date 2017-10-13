@@ -8,11 +8,11 @@ Below we describe the security model and take the opportunity to describe the un
 
 Peerpad aims to be private. All data that is published into the network is encrypted and requires a key to decrypt. To participate in the real-time network of updates to a given document, the node must be in possession of the key. To read a snapshot, the reading node must also be in possession of a read key.
 
-These keys are to be transmitted in the URL.
+These keys are to be transmitted in the URL in a way that no server gets them (through the hash portion of the URL).
 
 ### Creating a document
 
-Creating a document creates two keys: the read key and the write key. These keys make an asymetric key pair, which means that anything signed with the private key can be validated with the public key.
+When creating a document, two keys are created: the read key and the write key. These keys make an asymetric key pair, which means that anything signed with the private key can be validated with the public key. Nodes that have the write keys sign the operation messages using it. All nodes detaining the read key can validate the message signature and apply the respective operations if it checks out.
 
 ### Security: Real-time collaborative editing
 
@@ -20,25 +20,62 @@ To allow for concurrent real-time collaborative editing of a document, Peerpad u
 
 These messages use the IPFS pubsub network, and are by nature ciphered in transit.
 
-The name of the topic of the pubsub channel (AKA the room name) of these messages is a large portion of the read key, which makes it impossible to guess the topic name. Only in possession of the topic name will nodes get the CRDT messages.
+
+### Networking privacy
+
+For privacy, these messages are encrypted using the read key, and then decrypted upon reception by a node containing the read key. A node that, knowing the pub-sub channel, listens to the messages, still can't decrypt them without the read key.
+
+
+### Non-repudiation of a node in possession of the write key
 
 These messages come signed with the __write key__, so that nodes in possession of the read key can validate the signature.
 
+Upon reception, a node can validate the signature using the read key, thus validating that the message came from a node containing the write key.
+
 > The only exception to this are messages coming from read-only nodes (see later), but these nodes don't have CRDT write permission locally.
 
-### Security: Real-time following
+
+### User authentication and non-repudiation
+
+(this is not required for 0.2)
+
+Each message should come wrapped with the origin user identifier and a signature of the message. Upon reception, the node:
+
+* validates that the current has the right to send such a message
+* retrieves the user public key
+* validates the message signature
+
+Should any of these steps fail, the node should ignore the message.
+
+
+### Real-time following by read-only nodes
 
 When only in possession of the read key, nodes can only follow in real-time. They get the CRDT messages but cannot follow. They can also send acknowledge messages to other nodes, but these messages are not signed (and don't need to be, since they don't convey any change to the document).
 
 When a read-only node gets a message, it checks the signature against the read key, validating that the message issuer has write permissions and, if ok, passes that message to the CRDT.
 
-### Security: Snapshotting
+
+### Snapshotting
 
 Participating nodes can also publish self-contained snapshots of the document. Before generating a snapshot, a new random key is generated and is used to encrypt the content. This encrypted content is then bundled with a simple JS application that decrypts and shows it.
 
 
-### Security: local store
+### Security of data at rest
 
 Peerpad uses the local store to store some records. These are the records that make up the CRDT and contain data and operations to the document. In order for this to be safe from people with access to the local store that don't have the key, these records are encrypted using a symmetric key derived from the "read key".
 
 ATTENTION: THIS IS NOT IMPLEMENTED YET! CRDT records are stored locally in the clear, so anyone with access to the local store can extract the CRDT. [Track this issue here](https://github.com/ipfs-shipyard/peerpad/issues/4).
+
+### Access control
+
+You can give users permissions to read, write and admin.
+
+* "Read" permissions means that the users can read the document and follow the changes, but cannot make changes to the document.
+* "Write" permissions means that the user can make changes to the document, but cannot make changes to the access control list.
+* "Admin" permission means that the user can make changes to the access control list.
+
+A user is represented by a string, a unique identifier that can be easily transmitted off-band.
+
+This access control list is itself a CRDT shared amongst peers. When a peer creates a document, it is itself included in the list. By default, a node does not accept changes to this list from any other peer, unless it's already in the admin list. An node that is admin can add other nodes to the admin list.
+
+Nodes with admin right can also give other nodes and users the permission by changing the ACL CRDT.

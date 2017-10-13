@@ -12,30 +12,91 @@ exports[`can create document via button 1`] = `
         Welcome to PeerPad
       </h2>
     </div>
-    <p
+    <div
       className="Home-intro"
     >
       <CreateDocument>
-        <Button
-          active={false}
-          block={false}
-          bsClass="btn"
-          bsSize="large"
-          bsStyle="default"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <button
-            className="btn btn-lg btn-default"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
+        <form>
+          <FormGroup
+            bsClass="form-group"
           >
-            Create new Document
-          </button>
-        </Button>
+            <div
+              className="form-group has-feedback"
+            >
+              <FormControl
+                bsClass="form-control"
+                componentClass="input"
+                onChange={[Function]}
+                placeholder="pad name"
+                type="text"
+                value=""
+              >
+                <input
+                  className="form-control"
+                  id={undefined}
+                  onChange={[Function]}
+                  placeholder="pad name"
+                  type="text"
+                  value=""
+                />
+              </FormControl>
+              <FormControl
+                bsClass="form-control"
+                componentClass="select"
+                onChange={[Function]}
+                placeholder="select type"
+              >
+                <select
+                  className="form-control"
+                  id={undefined}
+                  onChange={[Function]}
+                  placeholder="select type"
+                  type={undefined}
+                >
+                  <option
+                    value="select"
+                  >
+                    select type
+                  </option>
+                  <option
+                    value="markdown"
+                  >
+                    Markdown
+                  </option>
+                  <option
+                    value="richtext"
+                  >
+                    Rich text
+                  </option>
+                </select>
+              </FormControl>
+              <Button
+                active={false}
+                block={false}
+                bsClass="btn"
+                bsSize="large"
+                bsStyle="default"
+                disabled={false}
+                onClick={[Function]}
+              >
+                <button
+                  className="btn btn-lg btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Create new Document
+                </button>
+              </Button>
+              <FormControlFeedback
+                bsClass="form-control-feedback"
+                bsRole="feedback"
+              />
+            </div>
+          </FormGroup>
+        </form>
       </CreateDocument>
-    </p>
+    </div>
   </div>
 </Home>
 `;

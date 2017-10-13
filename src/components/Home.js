@@ -20,9 +20,9 @@ class Home extends Component {
           <h2>Welcome to PeerPad</h2>
         </div>
         {error}
-        <p className='Home-intro'>
+        <div className='Home-intro'>
           <CreateDocument />
-        </p>
+        </div>
       </div>
     )
   }
