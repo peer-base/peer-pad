@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
@@ -7,7 +8,6 @@ import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import './Codemirror.css'
 
-import Peerpad from 'peerpad-core'
 import Remark from 'remark'
 import RemarkHtml from 'remark-html'
 
@@ -23,6 +23,8 @@ class Edit extends Component {
   constructor (props) {
     super(props)
 
+    console.log('props:', props)
+    this._backend = props.backend
     const { type, name, readKey, writeKey } = props.match.params
 
     this.state = {
@@ -40,7 +42,7 @@ class Edit extends Component {
   }
 
   render () {
-    const peers = this._peerpad && (<Peers peers={this._peerpad.peers} />)
+    const peers = this._document && (<Peers peers={this._document.peers} />)
     const editorContainer = this.state.type !== 'richtext' ?
       (
         <div className='container-fluid'>
@@ -77,7 +79,7 @@ class Edit extends Component {
   async componentDidMount () {
     const docScript = await (await fetch('static/js/viewer.bundle.js')).text()
 
-    const peerpad = this._peerpad = Peerpad({
+    const peerpad = this._document = this._backend.createDocument({
       type: this.state.type, // TODO: make this variable
       name: this.state.name,
       readKey: this.state.rawKeys.read,
@@ -86,7 +88,7 @@ class Edit extends Component {
       docScript
     })
 
-    peerpad.network.once('started', () => this.setState({ status: 'started' }))
+    this._backend.network.once('started', () => this.setState({ status: 'started' }))
 
     await peerpad.start()
 
@@ -119,16 +121,21 @@ class Edit extends Component {
       })
     }
 
-    peerpad.document.bindEditor(editor)
+    peerpad.bindEditor(editor)
   }
 
   componentWillUnmount () {
-    this._peerpad.stop()
+    this._document.stop()
   }
 
   async takeSnapshot () {
-    return await this._peerpad.snapshots.take()
+    return await this._document.snapshots.take()
   }
 }
+
+DocViewer.propTypes = {
+  backend: PropTypes.object.isRequired
+}
+
 
 export default Edit
