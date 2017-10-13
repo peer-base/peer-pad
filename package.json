@@ -57,7 +57,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "npm run lint && jest --no-cache --debug --env=jsdom",
+    "test": "npm run lint && jest --no-cache --env=jsdom",
     "lint": "standard src",
     "deploy:ipfs": "ipfs add -r build/"
   },
