@@ -70,7 +70,7 @@
     "standard": "^10.0.3"
   },
   "pre-commit": [
-    "lint"
+    "test"
   ],
   "jest": {
     "collectCoverageFrom": [
