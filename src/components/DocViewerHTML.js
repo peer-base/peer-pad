@@ -10,7 +10,7 @@ class DocViewerHTML extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      doc: 'Decrypting doc...',
+      doc: 'Loading and decrypting doc...',
       error: null
     }
   }

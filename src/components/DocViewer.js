@@ -18,7 +18,7 @@ class DocViewer extends Component {
             You need to enable JavaScript to get this document.
           </noscript>
           <div className='container-fluid'>
-            <div id="react-app">Decrypting...</div>
+            <div id="react-app">Loading and decrypting...</div>
           </div>
           <script dangerouslySetInnerHTML={{__html: `
             window.peerpad = {
