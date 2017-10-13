@@ -31,6 +31,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
+    "peerpad-core": "^0.1.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
@@ -57,7 +58,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "npm run lint && node scripts/test.js --env=jsdom",
-    "lint": "standard",
+    "lint": "standard src",
     "deploy:ipfs": "ipfs add -r build/"
   },
   "devDependencies": {
@@ -68,7 +69,7 @@
     "standard": "^10.0.3"
   },
   "pre-commit": [
-    "test"
+    "lint"
   ],
   "jest": {
     "collectCoverageFrom": [
