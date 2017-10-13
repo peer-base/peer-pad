@@ -10,7 +10,7 @@ Peerpad is a decentralized editor that allows concurrent writing of text. Beside
 ## Install
 
 ```bash
-$ git checkout https://github.com/ipfs-shipyard/peerpad.git
+$ git clone https://github.com/ipfs-shipyard/peerpad.git
 $ cd peerpad
 $ npm install
 ```
