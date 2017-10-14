@@ -6,7 +6,7 @@ import { Router } from 'react-router'
 import toJSON from 'enzyme-to-json'
 import Home from './Home'
 
-it('can create document via button', () => {
+it('can create document via button', (done) => {
   const history = createMemoryHistory()
   const all = mount(
     <Router history={history}><Home /></Router>)
