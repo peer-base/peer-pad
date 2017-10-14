@@ -7,6 +7,8 @@
 
 Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
 
+# 🔓 Peerpad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
+
 ## Install
 
 ```bash
