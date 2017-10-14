@@ -15,7 +15,7 @@ class CreateDocument extends Component {
   render () {
     if (this.state.redirect) {
       const redir = this.state.redirect
-      this.state.redirect = null
+      this.setState({ redirect: null })
       return (<Redirect to={redir} push />)
     }
 
