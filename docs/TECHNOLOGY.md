@@ -2,7 +2,7 @@
 
 ## Technologies
 
-- Preact
+- React
 - Webpack
 - Jest for testing
 - {editing libraries} - Still to be decided upon research is concluded
