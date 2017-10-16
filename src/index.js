@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 // TODO: register service worker:
 // import registerServiceWorker from './registerServiceWorker'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap-theme.css'
+import 'tachyons/css/tachyons.css'
 import './index.css'
 
 import App from './components/App'

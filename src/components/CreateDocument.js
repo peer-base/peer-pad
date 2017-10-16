@@ -1,7 +1,6 @@
 import { generateRandomKeys } from 'peerpad-core'
 
 import React, { Component } from 'react'
-import { Button, FormGroup, FormControl } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 
 class CreateDocument extends Component {
@@ -21,29 +20,26 @@ class CreateDocument extends Component {
 
     return (
       <form>
-        <FormGroup>
-          <FormControl
-            type='text'
+        <div>
+          <input
             value={this.state.name}
             placeholder='pad name'
             onChange={this.handleNameChange.bind(this)} />
 
-          <FormControl
-            componentClass="select"
-            placeholder="select type"
+          <select
+            placeholder='select type'
             onChange={this.handleTypeChange.bind(this)}>
-              <option value="select">select type</option>
-              <option value="markdown">Markdown</option>
-              <option value="richtext">Rich text</option>
-          </FormControl>
+            <option value=''>select type</option>
+            <option value='markdown'>Markdown</option>
+            <option value='richtext'>Rich text</option>
+          </select>
 
-          <Button bsSize='large'
+          <button
+            type='button'
             onClick={this.handleClick.bind(this)}>
             Create new Document
-          </Button>
-
-          <FormControl.Feedback />
-        </FormGroup>
+          </button>
+        </div>
       </form>
     )
   }
@@ -57,7 +53,7 @@ class CreateDocument extends Component {
   }
 
   async handleClick () {
-    const type = encodeURIComponent(this.state.type)
+    const type = encodeURIComponent(this.state.type || 'markdown')
     const name = encodeURIComponent(encodeURIComponent(this.state.name))
     const keys = await generateRandomKeys()
     const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
