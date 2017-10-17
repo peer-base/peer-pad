@@ -44,8 +44,28 @@ class Edit extends Component {
       rawKeys: {
         read: readKey,
         write: writeKey
-      }
+      },
+      editingTitle: false
     }
+
+    this.onTitleClick = this.onTitleClick.bind(this)
+    this.onTitleInputBlur = this.onTitleInputBlur.bind(this)
+  }
+
+  onTitleClick () {
+    if (!this.state.canEdit) return
+    this.setState({ editingTitle: true })
+  }
+
+  onTitleInputFocus (e) {
+    // Position the caret at the end of the text
+    const len = e.target.value.length
+    e.target.setSelectionRange(len, len)
+  }
+
+  onTitleInputBlur () {
+    // TODO: persist document title
+    this.setState({ editingTitle: false })
   }
 
   render () {
@@ -65,9 +85,12 @@ class Edit extends Component {
       ) :
       (<div id='editor'></div>)
 
+    const { canEdit, editingTitle } = this.state
+    const { onTitleClick, onTitleInputFocus, onTitleInputBlur } = this
+
     return (
       <div>
-        <div className='pa3 bg-big-stone'>
+        <div className='pa3 bg-big-stone mb4'>
           <div className='mw8 center'>
             <div className='flex flex-row items-center'>
               <Link to='/'>
@@ -101,13 +124,28 @@ class Edit extends Component {
             </div>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-md-9'>
+        <div className='mw8 center'>
+          <div className='mb4 bb b--pigeon-post'>
+            <div className='flex flex-row items-center'>
+              <div className='flex-auto'>
+                {canEdit && editingTitle ? (
+                  <input type='text' className='input-reset sans-serif bw0 pa2 f4 blue-bayox w-100 lh-solid' defaultValue='Document Title' placeholder='Document Title' autoFocus onFocus={onTitleInputFocus} onBlur={onTitleInputBlur} />
+                ) : (
+                  <h1 className='normal ma0 pa2 f4 blue-bayox lh-solid pointer' onClick={onTitleClick}>
+                    Document Title
+                  </h1>
+                )}
+              </div>
+              <div className='f7 pigeon-post'>
+                <b className='fw5'>Last change:</b> today, 12:00AM
+              </div>
+            </div>
+          </div>
+          <div>
             {editorContainer}
           </div>
 
-          <div className='col-md-3'>
-
+          <div>
             <Links type={this.state.type} name={this.state.name} keys={this.state.rawKeys} />
             <Status status={this.state.status} />
             {peers}

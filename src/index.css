@@ -1,5 +1,6 @@
 @import 'colors.css';
 
+input:focus,
 button:focus {
   outline: 0;
 }
@@ -12,6 +13,15 @@ button:focus {
 }
 .bright-turquoise {
   color: var(--bright-turquoise);
+}
+.pigeon-post {
+  color: var(--pigeon-post);
+}
+.dove-gray {
+  color: var(--dove-gray);
+}
+.blue-bayox {
+  color: var(--blue-bayox);
 }
 
 .hover--white:hover {
@@ -40,6 +50,9 @@ button:focus {
 }
 .b--bright-turquoise {
   border-color: var(--bright-turquoise);
+}
+.b--pigeon-post {
+  border-color: var(--pigeon-post);
 }
 
 .stroke--current-color path,
