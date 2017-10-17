@@ -20,6 +20,9 @@ import DocViewer from './DocViewer'
 
 import CodeIcon from './icons/code'
 import TextIcon from './icons/text'
+import PlusIcon from './icons/plus'
+import UserIcon from './icons/user'
+import BellIcon from './icons/bell'
 
 const markdown = Remark().use(RemarkHtml)
 
@@ -70,16 +73,29 @@ class Edit extends Component {
               <Link to='/'>
                 <img src='images/logo-peerpad.png' style={{ width: '42px' }} alt='PeerPad logo' className='mr4' />
               </Link>
-              <div>
+              <div className='flex-auto'>
                 <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--left'>
                   <div className='bt bw1 b--firefly white hover--bright-turquoise' style={{padding: '0 2px 2px'}}>
-                    <CodeIcon className='db stroke-current-color' />
+                    <CodeIcon className='db stroke--current-color' />
                   </div>
                 </button>
                 <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--right'>
                   <div className='bt bw1 b--bright-turquoise bright-turquoise' style={{padding: '0 2px 2px'}}>
-                    <TextIcon className='db stroke-current-color' />
+                    <TextIcon className='db stroke--current-color' />
                   </div>
+                </button>
+              </div>
+              <div>
+                <button type='button' className='button-reset ba b--black-stone bg-bright-turquoise pa2 br-100 white-lilac hover--white pointer mr2'>
+                  <PlusIcon className='db stroke--current-color' />
+                </button>
+                <button type='button' className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target pointer mr2'>
+                  <UserIcon className='db stroke--current-color hover--bright-turquoise' />
+                  <span className='absolute top-0 right-0 br-100 bg-bright-turquoise' style={{width: '12px', lineHeight: '12px', fontSize: '9px', right: '-3px'}}>1</span>
+                </button>
+                <button type='button' className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target hover--bg-cloud-burst pointer'>
+                  <BellIcon className='db stroke--current-color hover--bright-turquoise' />
+                  <span className='absolute top-0 right-0 br-100 bg-bright-turquoise' style={{width: '12px', lineHeight: '12px', fontSize: '9px', right: '-3px'}}>2</span>
                 </button>
               </div>
             </div>

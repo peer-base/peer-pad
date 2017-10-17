@@ -4,12 +4,20 @@ button:focus {
   outline: 0;
 }
 
+.white-lilac {
+  color: var(--white-lilac);
+}
 .dove-gray {
   color: var(--dove-gray);
 }
 .bright-turquoise {
   color: var(--bright-turquoise);
 }
+
+.hover--white:hover {
+  color: white;
+}
+.hover-target:hover .hover--bright-turquoise,
 .hover--bright-turquoise:hover {
   color: var(--bright-turquoise);
 }
@@ -19,6 +27,9 @@ button:focus {
 }
 .bg-firefly {
   background-color: var(--firefly);
+}
+.bg-bright-turquoise {
+  background-color: var(--bright-turquoise);
 }
 
 .b--black-stone {
@@ -31,10 +42,8 @@ button:focus {
   border-color: var(--bright-turquoise);
 }
 
-.fill-current-color path {
-  fill: currentColor;
-}
-
-.stroke-current-color path, .stroke-current-color polyline {
+.stroke--current-color path,
+.stroke--current-color polyline,
+.stroke--current-color circle {
   stroke: currentColor;
 }
