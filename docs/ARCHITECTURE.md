@@ -96,9 +96,9 @@ Peerpad consists of 3 main packages:
 
 A document has a name, which uniquely identifies it in the Peerpad space.
 
-After instantiated, the user can provide the document with a read key, which allows the user to read the document. Without itm it's not possible for the user to read the document.
+After instantiated, the user can provide the document with a read key, which allows the user to read the document. Without it, it's not possible for the user to read the document.
 
-The user can also provide a write key
+The user can also provide a write key.
 
 These keys can be provided either through the URL or be prompted to the user.
 
@@ -110,7 +110,7 @@ A Peerpad instance contains a [js-ipfs](https://github.com/ipfs/js-ipfs#readme) 
 
 ### CRDT
 
-Each document is a CRDT of the text type. Underneath, Peerpad uses [the Y.js library](http://y-js.org) to create a shared data structure representing a document. This data structure is conflict free, allowing concurrend edition of the document by multiple nodes. ([Read more about CRDTs here](https://github.com/ipfs/research-CRDT)).
+Each document is a CRDT of the text type. Underneath, Peerpad uses [the Y.js library](http://y-js.org) to create a shared data structure representing a document. This data structure is conflict free, allowing concurrent edition of the document by multiple nodes. ([Read more about CRDTs here](https://github.com/ipfs/research-CRDT)).
 
 ### CRDT Transport
 
