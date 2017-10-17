@@ -82,12 +82,6 @@ class Edit extends Component {
                   </div>
                 </button>
               </div>
-              <div className='dtc'>
-                {/* Search */}
-              </div>
-              <div className='dtc'>
-                {/* Account */}
-              </div>
             </div>
           </div>
         </div>
