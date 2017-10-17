@@ -66,8 +66,6 @@ Participating nodes can also publish self-contained snapshots of the document. B
 
 Peerpad uses the local store to store some records. These are the records that make up the CRDT and contain data and operations to the document. In order for this to be safe from people with access to the local store that don't have the key, these records are encrypted using a symmetric key derived from the "read key".
 
-ATTENTION: THIS IS NOT IMPLEMENTED YET! CRDT records are stored locally in the clear, so anyone with access to the local store can extract the CRDT. [Track this issue here](https://github.com/ipfs-shipyard/peerpad/issues/4).
-
 ### Access control
 
 You can give users permissions to read, write and admin.
