@@ -17,83 +17,39 @@ exports[`can create document via button 1`] = `
     >
       <CreateDocument>
         <form>
-          <FormGroup
-            bsClass="form-group"
-          >
-            <div
-              className="form-group has-feedback"
+          <div>
+            <input
+              onChange={[Function]}
+              placeholder="pad name"
+              value=""
+            />
+            <select
+              onChange={[Function]}
+              placeholder="select type"
             >
-              <FormControl
-                bsClass="form-control"
-                componentClass="input"
-                onChange={[Function]}
-                placeholder="pad name"
-                type="text"
+              <option
                 value=""
               >
-                <input
-                  className="form-control"
-                  id={undefined}
-                  onChange={[Function]}
-                  placeholder="pad name"
-                  type="text"
-                  value=""
-                />
-              </FormControl>
-              <FormControl
-                bsClass="form-control"
-                componentClass="select"
-                onChange={[Function]}
-                placeholder="select type"
+                select type
+              </option>
+              <option
+                value="markdown"
               >
-                <select
-                  className="form-control"
-                  id={undefined}
-                  onChange={[Function]}
-                  placeholder="select type"
-                  type={undefined}
-                >
-                  <option
-                    value="select"
-                  >
-                    select type
-                  </option>
-                  <option
-                    value="markdown"
-                  >
-                    Markdown
-                  </option>
-                  <option
-                    value="richtext"
-                  >
-                    Rich text
-                  </option>
-                </select>
-              </FormControl>
-              <Button
-                active={false}
-                block={false}
-                bsClass="btn"
-                bsSize="large"
-                bsStyle="default"
-                disabled={false}
-                onClick={[Function]}
+                Markdown
+              </option>
+              <option
+                value="richtext"
               >
-                <button
-                  className="btn btn-lg btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Create new Document
-                </button>
-              </Button>
-              <FormControlFeedback
-                bsClass="form-control-feedback"
-                bsRole="feedback"
-              />
-            </div>
-          </FormGroup>
+                Rich text
+              </option>
+            </select>
+            <button
+              onClick={[Function]}
+              type="button"
+            >
+              Create new Document
+            </button>
+          </div>
         </form>
       </CreateDocument>
     </div>
