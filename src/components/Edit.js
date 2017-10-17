@@ -133,7 +133,7 @@ class Edit extends Component {
   }
 }
 
-DocViewer.propTypes = {
+Edit.propTypes = {
   backend: PropTypes.object.isRequired
 }
 
