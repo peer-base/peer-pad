@@ -1,11 +1,9 @@
-@import '../globals.css';
-
 .Home {
   text-align: center;
 }
 
 .Home-header {
-  background-color: var(--alantest);
+  background-color: #222;
   height: 150px;
   padding: 40px;
   color: white;

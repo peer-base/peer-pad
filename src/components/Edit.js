@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
@@ -16,6 +17,9 @@ import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
 import DocViewer from './DocViewer'
+
+import CodeIcon from './icons/code'
+import TextIcon from './icons/text'
 
 const markdown = Remark().use(RemarkHtml)
 
@@ -59,7 +63,34 @@ class Edit extends Component {
       (<div id='editor'></div>)
 
     return (
-      <div className='container-fluid'>
+      <div>
+        <div className='pa3 bg-big-stone'>
+          <div className='mw8 center'>
+            <div className='flex flex-row items-center'>
+              <Link to='/'>
+                <img src='images/logo-peerpad.png' style={{ width: '42px' }} alt='PeerPad logo' className='mr4' />
+              </Link>
+              <div>
+                <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--left'>
+                  <div className='bt bw1 b--firefly white hover--bright-turquoise' style={{padding: '0 2px 2px'}}>
+                    <CodeIcon className='db stroke-current-color' />
+                  </div>
+                </button>
+                <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--right'>
+                  <div className='bt bw1 b--bright-turquoise bright-turquoise' style={{padding: '0 2px 2px'}}>
+                    <TextIcon className='db stroke-current-color' />
+                  </div>
+                </button>
+              </div>
+              <div className='dtc'>
+                {/* Search */}
+              </div>
+              <div className='dtc'>
+                {/* Account */}
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='row'>
           <div className='col-md-9'>
             {editorContainer}

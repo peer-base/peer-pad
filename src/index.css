@@ -1,8 +1,40 @@
-@import 'globals.css';
+@import 'colors.css';
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: var(--blue);
+button:focus {
+  outline: 0;
+}
+
+.dove-gray {
+  color: var(--dove-gray);
+}
+.bright-turquoise {
+  color: var(--bright-turquoise);
+}
+.hover--bright-turquoise:hover {
+  color: var(--bright-turquoise);
+}
+
+.bg-big-stone {
+  background-color: var(--big-stone);
+}
+.bg-firefly {
+  background-color: var(--firefly);
+}
+
+.b--black-stone {
+  border-color: var(--black-pearl);
+}
+.b--firefly {
+  border-color: var(--firefly);
+}
+.b--bright-turquoise {
+  border-color: var(--bright-turquoise);
+}
+
+.fill-current-color path {
+  fill: currentColor;
+}
+
+.stroke-current-color path, .stroke-current-color polyline {
+  stroke: currentColor;
 }
