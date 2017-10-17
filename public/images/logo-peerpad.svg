@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="62px" viewBox="0 0 41 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g transform="translate(0.000000, 1.000000)">
+        <circle stroke="#23CADC" cx="31.5" cy="58.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="2.5" cy="31.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="38.5" cy="31.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="2.5" cy="11.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="38.5" cy="11.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="20.5" cy="41.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="20.5" cy="1.5" r="1.5"></circle>
+        <circle stroke="#23CADC" cx="8.5" cy="58.5" r="1.5"></circle>
+        <path d="M29.5,58.5 L10,58.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M9.5,56.5 L19.5,43.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M18.5,40.5 L4.5,32.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M22.5,40.5 L36.5,32.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M2.5,29.5 L2.5,13.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M38.5,29.5 L38.5,13.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M4.5,10.5 L18.5,2.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M22.5,2.5 L36.5,10.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <path d="M36.5,30.5 L4.5,12.5" stroke="#23CADC" stroke-linecap="square"></path>
+        <polygon fill="#23CADC" points="38.5 13 40.5 16 36.5 16"></polygon>
+        <polygon fill="#23CADC" points="2.5 13 4.5 16 0.5 16"></polygon>
+        <polygon fill="#23CADC" transform="translate(19.098675, 44.175880) rotate(35.000000) translate(-19.098675, -44.175880) " points="19.0986748 42.6758802 21.0986748 45.6758802 17.0986748 45.6758802"></polygon>
+        <polygon fill="#23CADC" transform="translate(11.500000, 58.500000) rotate(270.000000) translate(-11.500000, -58.500000) " points="11.5 57 13.5 60 9.5 60"></polygon>
+        <polygon fill="#23CADC" transform="translate(5.190695, 32.899711) rotate(306.000000) translate(-5.190695, -32.899711) " points="5.19069487 31.3997115 7.19069487 34.3997115 3.19069487 34.3997115"></polygon>
+        <polygon fill="#23CADC" transform="translate(35.861942, 32.996865) rotate(56.000000) translate(-35.861942, -32.996865) " points="35.8619422 31.4968645 37.8619422 34.4968645 33.8619422 34.4968645"></polygon>
+        <polygon fill="#23CADC" transform="translate(17.771946, 2.896864) rotate(56.000000) translate(-17.771946, -2.896864) " points="17.7719458 1.39686412 19.7719458 4.39686412 15.7719458 4.39686412"></polygon>
+        <polygon fill="#23CADC" transform="translate(23.161945, 2.896864) rotate(304.000000) translate(-23.161945, -2.896864) " points="23.1619452 1.39686412 25.1619452 4.39686412 21.1619452 4.39686412"></polygon>
+        <polygon fill="#23CADC" transform="translate(4.841938, 12.698669) rotate(305.000000) translate(-4.841938, -12.698669) " points="4.84193789 11.1986687 6.84193789 14.1986687 2.84193789 14.1986687"></polygon>
+    </g>
+  </g>
+</svg>

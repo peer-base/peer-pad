@@ -71,7 +71,7 @@ class Edit extends Component {
           <div className='mw8 center'>
             <div className='flex flex-row items-center'>
               <Link to='/'>
-                <img src='images/logo-peerpad.png' style={{ width: '42px' }} alt='PeerPad logo' className='mr4' />
+                <img src='images/logo-peerpad.svg' alt='PeerPad logo' className='mr4' />
               </Link>
               <div className='flex-auto'>
                 <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--left'>
