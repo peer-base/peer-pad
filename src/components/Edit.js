@@ -61,7 +61,7 @@ class Edit extends Component {
     // Unbind current editor if we have a current editor and a document
     if (doc && editor) doc.unbindEditor(editor)
 
-    // Save the referebnce to the editor so we can unbind later or so we can
+    // Save the reference to the editor so we can unbind later or so we can
     // bind if there's no doc available yet
     this._editor = nextEditor
 
