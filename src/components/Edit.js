@@ -1,28 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-
-import Quill from 'quill'
-import 'quill/dist/quill.snow.css'
-
-import CodeMirror from 'codemirror'
-import 'codemirror/lib/codemirror.css'
-import './Codemirror.css'
 
 import Remark from 'remark'
 import RemarkHtml from 'remark-html'
 
+import Header from './header/Header'
+import ViewMode from './header/ViewMode'
+import { NewButton, UserButton, NotificationsButton } from './header/buttons'
+import Name from './Name'
+import Editor from './Editor'
 import Status from './Status'
 import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
 import DocViewer from './DocViewer'
-
-import CodeIcon from './icons/code'
-import TextIcon from './icons/text'
-import PlusIcon from './icons/plus'
-import UserIcon from './icons/user'
-import BellIcon from './icons/bell'
 
 const markdown = Remark().use(RemarkHtml)
 
@@ -45,120 +36,132 @@ class Edit extends Component {
         read: readKey,
         write: writeKey
       },
-      editingTitle: false
+      viewMode: 'both'
     }
 
-    this.onTitleClick = this.onTitleClick.bind(this)
-    this.onTitleInputBlur = this.onTitleInputBlur.bind(this)
+    this.onNameChange = this.onNameChange.bind(this)
+    this.onViewModeChange = this.onViewModeChange.bind(this)
+    this.onEditor = this.onEditor.bind(this)
+    this.onEditorValueChange = this.onEditorValueChange.bind(this)
+    this.takeSnapshot = this.takeSnapshot.bind(this)
   }
 
-  onTitleClick () {
-    if (!this.state.canEdit) return
-    this.setState({ editingTitle: true })
+  onNameChange (name) {
+    // TODO: persist document name
+    this.setState({ name })
   }
 
-  onTitleInputFocus (e) {
-    // Position the caret at the end of the text
-    const len = e.target.value.length
-    e.target.setSelectionRange(len, len)
+  onViewModeChange (viewMode) {
+    this.setState({ viewMode })
   }
 
-  onTitleInputBlur () {
-    // TODO: persist document title
-    this.setState({ editingTitle: false })
+  onEditor (nextEditor) {
+    const { _document: doc, _editor: editor } = this
+
+    // Unbind current editor if we have a current editor and a document
+    if (doc && editor) doc.unbindEditor(editor)
+
+    // Save the referebnce to the editor so we can unbind later or so we can
+    // bind if there's no doc available yet
+    this._editor = nextEditor
+
+    // Bind new editor if not null and we have a document
+    if (doc && nextEditor) doc.bindEditor(nextEditor)
+  }
+
+  onEditorValueChange (value) {
+    markdown.process(value, (err, html) => {
+      if (err) return console.error('Failed to convert markdown to HTML', err)
+      this.setState({ html })
+    })
   }
 
   render () {
     const peers = this._document && (<Peers peers={this._document.peers} />)
-    const editorContainer = this.state.type !== 'richtext' ?
-      (
-        <div className='container-fluid'>
-          <div className='row'>
-            <div className='col-md-6'>
-              <div id="editor"></div>
-            </div>
-            <div className='col-md-6'>
-              <div dangerouslySetInnerHTML={{__html: this.state.html}} />
-            </div>
-          </div>
-        </div>
-      ) :
-      (<div id='editor'></div>)
+    const { name, type, html, rawKeys, status, canEdit, viewMode } = this.state
+    const { onEditor, onEditorValueChange, onViewModeChange, onNameChange } = this
 
-    const { canEdit, editingTitle } = this.state
-    const { onTitleClick, onTitleInputFocus, onTitleInputBlur } = this
+    let editorContainer
+
+    if (type === 'richtext') {
+      editorContainer = (
+        <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
+      )
+    } else {
+      editorContainer = (
+        <div>
+          {viewMode === 'both' ? (
+            <div className='cf'>
+              <div className='fl w-100 w-50-ns ph2 pl0-ns pr2-ns'>
+                <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
+              </div>
+              <div className='fl w-100 w-50-ns ph2 pl2 pr0-ns'>
+                <div dangerouslySetInnerHTML={{__html: html}} />
+              </div>
+            </div>
+          ) : (
+            <div>
+              {viewMode === 'source' ? (
+                <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
+              ) : (
+                <div dangerouslySetInnerHTML={{__html: html}} />
+              )}
+            </div>
+          )}
+        </div>
+      )
+    }
 
     return (
       <div>
-        <div className='pa3 bg-big-stone mb4'>
+        <Header>
+          <div className='flex-auto'>
+            <ViewMode mode={viewMode} onChange={onViewModeChange} />
+          </div>
+          <div>
+            <span className='mr1'>
+              <NewButton onClick={() => console.log('TODO')} />
+            </span>
+            <span className='mr1'>
+              <UserButton onClick={() => console.log('TODO')} count={1} />
+            </span>
+            <span>
+              <NotificationsButton onClick={() => console.log('TODO')} count={2} />
+            </span>
+          </div>
+        </Header>
+        <div className='ph3'>
           <div className='mw8 center'>
-            <div className='flex flex-row items-center'>
-              <Link to='/'>
-                <img src='images/logo-peerpad.svg' alt='PeerPad logo' className='mr4' />
-              </Link>
-              <div className='flex-auto'>
-                <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--left'>
-                  <div className='bt bw1 b--firefly white hover--bright-turquoise' style={{padding: '0 2px 2px'}}>
-                    <CodeIcon className='db stroke--current-color' />
-                  </div>
-                </button>
-                <button type='button' className='button-reset ba b--black-stone bg-firefly pa0 pointer br1 br--right'>
-                  <div className='bt bw1 b--bright-turquoise bright-turquoise' style={{padding: '0 2px 2px'}}>
-                    <TextIcon className='db stroke--current-color' />
-                  </div>
-                </button>
-              </div>
-              <div>
-                <button type='button' className='button-reset ba b--black-stone bg-bright-turquoise pa2 br-100 white-lilac hover--white pointer mr2'>
-                  <PlusIcon className='db stroke--current-color' />
-                </button>
-                <button type='button' className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target pointer mr2'>
-                  <UserIcon className='db stroke--current-color hover--bright-turquoise' />
-                  <span className='absolute top-0 right-0 br-100 bg-bright-turquoise' style={{width: '12px', lineHeight: '12px', fontSize: '9px', right: '-3px'}}>1</span>
-                </button>
-                <button type='button' className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target hover--bg-cloud-burst pointer'>
-                  <BellIcon className='db stroke--current-color hover--bright-turquoise' />
-                  <span className='absolute top-0 right-0 br-100 bg-bright-turquoise' style={{width: '12px', lineHeight: '12px', fontSize: '9px', right: '-3px'}}>2</span>
-                </button>
+            <div className='mb3 pb3 bb b--pigeon-post'>
+              <div className='flex flex-row items-center'>
+                <div className='flex-auto'>
+                  <Name value={name} onChange={onNameChange} editable={canEdit} />
+                </div>
+                <div className='f7 pigeon-post'>
+                  <b className='fw5'>Last change:</b> today, 12:00AM
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className='mw8 center'>
-          <div className='mb4 bb b--pigeon-post'>
-            <div className='flex flex-row items-center'>
-              <div className='flex-auto'>
-                {canEdit && editingTitle ? (
-                  <input type='text' className='input-reset sans-serif bw0 pa2 f4 blue-bayox w-100 lh-solid' defaultValue='Document Title' placeholder='Document Title' autoFocus onFocus={onTitleInputFocus} onBlur={onTitleInputBlur} />
-                ) : (
-                  <h1 className='normal ma0 pa2 f4 blue-bayox lh-solid pointer' onClick={onTitleClick}>
-                    Document Title
-                  </h1>
-                )}
-              </div>
-              <div className='f7 pigeon-post'>
-                <b className='fw5'>Last change:</b> today, 12:00AM
-              </div>
+            <div>
+              {editorContainer}
             </div>
-          </div>
-          <div>
-            {editorContainer}
-          </div>
 
-          <div>
-            <Links type={this.state.type} name={this.state.name} keys={this.state.rawKeys} />
-            <Status status={this.state.status} />
-            {peers}
-            <Snapshots takeSnapshot={this.takeSnapshot.bind(this)} />
+            <div>
+              <Links type={type} name={name} keys={rawKeys} />
+              <Status status={status} />
+              {peers}
+              <Snapshots takeSnapshot={this.takeSnapshot} />
+            </div>
           </div>
         </div>
-      </div>)
+      </div>
+    )
   }
 
   async componentDidMount () {
-    const docScript = await (await fetch('static/js/viewer.bundle.js')).text()
+    const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
 
-    const peerpad = this._document = this._backend.createDocument({
+    const doc = this._backend.createDocument({
       type: this.state.type, // TODO: make this variable
       name: this.state.name,
       readKey: this.state.rawKeys.read,
@@ -169,52 +172,26 @@ class Edit extends Component {
 
     this._backend.network.once('started', () => this.setState({ status: 'started' }))
 
-    await peerpad.start()
+    await doc.start()
 
-    const editorContainer = document.getElementById('editor')
-    let editor
+    this._document = doc
 
-    // Editor
-    if (this.state.type === 'richtext') {
-      editor = new Quill(editorContainer, {
-        theme: 'snow'
-      })
-
-      if (!this.state.canEdit) {
-        editor.disable()
-      }
-    } else {
-      editor = CodeMirror(editorContainer, {
-        lineNumbers: true,
-        value: 'function myscript() {}',
-        viewportMargin: Infinity
-      })
-
-      editor.on('change', () => {
-        markdown.process(editor.getValue(), (err, html) => {
-          if (err) {
-            throw err
-          }
-          this.setState({ html })
-        })
-      })
-    }
-
-    peerpad.bindEditor(editor)
+    // Bind the editor if we got an instance while the doc was starting
+    if (this._editor) doc.bindEditor(this._editor)
   }
 
   componentWillUnmount () {
     this._document.stop()
+    this._editor = null
   }
 
   async takeSnapshot () {
-    return await this._document.snapshots.take()
+    return this._document.snapshots.take()
   }
 }
 
 Edit.propTypes = {
   backend: PropTypes.object.isRequired
 }
-
 
 export default Edit
