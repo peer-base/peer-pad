@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Remark from 'remark'
-import RemarkHtml from 'remark-html'
-
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
 import { NewButton, UserButton, NotificationsButton } from './header/buttons'
 import Name from './Name'
 import Editor from './Editor'
+import Preview from './Preview'
+import Toolbar from './Toolbar'
 import Status from './Status'
 import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
 import DocViewer from './DocViewer'
-
-const markdown = Remark().use(RemarkHtml)
 
 class Edit extends Component {
   constructor (props) {
@@ -26,9 +23,9 @@ class Edit extends Component {
     const { type, name, readKey, writeKey } = props.match.params
 
     this.state = {
-      name,
+      name: decodeURIComponent(name),
       type: type,
-      html: '',
+      md: '',
       status: 'offline',
       room: {},
       canEdit: !!writeKey,
@@ -69,16 +66,13 @@ class Edit extends Component {
     if (doc && nextEditor) doc.bindEditor(nextEditor)
   }
 
-  onEditorValueChange (value) {
-    markdown.process(value, (err, html) => {
-      if (err) return console.error('Failed to convert markdown to HTML', err)
-      this.setState({ html })
-    })
+  onEditorValueChange (md) {
+    this.setState({ md })
   }
 
   render () {
     const peers = this._document && (<Peers peers={this._document.peers} />)
-    const { name, type, html, rawKeys, status, canEdit, viewMode } = this.state
+    const { name, type, md, rawKeys, status, canEdit, viewMode } = this.state
     const { onEditor, onEditorValueChange, onViewModeChange, onNameChange } = this
 
     let editorContainer
@@ -91,20 +85,33 @@ class Edit extends Component {
       editorContainer = (
         <div>
           {viewMode === 'both' ? (
-            <div className='cf'>
-              <div className='fl w-100 w-50-ns ph2 pl0-ns pr2-ns'>
+            <div className='flex-ns flex-row' style={{ minHeight: '500px' }}>
+              <div className='ph3 pl0-ns pr3-ns w-50-ns'>
                 <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
               </div>
-              <div className='fl w-100 w-50-ns ph2 pl2 pr0-ns'>
-                <div dangerouslySetInnerHTML={{__html: html}} />
+              <div className='ph3 pl3 pr0-ns w-50-ns'>
+                <Preview md={md} />
+              </div>
+              <div style={{ flexGrow: 0 }}>
+                <Toolbar theme='light' />
               </div>
             </div>
           ) : (
             <div>
               {viewMode === 'source' ? (
-                <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
+                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
+                  <div className='flex-auto'>
+                    <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
+                  </div>
+                  <Toolbar theme='dark' />
+                </div>
               ) : (
-                <div dangerouslySetInnerHTML={{__html: html}} />
+                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
+                  <div className='flex-auto'>
+                    <Preview md={md} />
+                  </div>
+                  <Toolbar theme='light' />
+                </div>
               )}
             </div>
           )}
@@ -116,13 +123,15 @@ class Edit extends Component {
       <div>
         <Header>
           <div className='flex-auto'>
-            <ViewMode mode={viewMode} onChange={onViewModeChange} />
+            {type === 'richtext' ? null : (
+              <ViewMode mode={viewMode} onChange={onViewModeChange} />
+            )}
           </div>
           <div>
-            <span className='mr1'>
+            <span className='mr2'>
               <NewButton onClick={() => console.log('TODO')} />
             </span>
-            <span className='mr1'>
+            <span className='mr2'>
               <UserButton onClick={() => console.log('TODO')} count={1} />
             </span>
             <span>

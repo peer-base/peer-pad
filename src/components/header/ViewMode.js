@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import CodeIcon from '../icons/code'
-import TextIcon from '../icons/text'
+import { CodeIcon, TextIcon } from '../icons'
 
 export default class ViewMode extends Component {
   constructor (props) {
@@ -11,9 +10,15 @@ export default class ViewMode extends Component {
 
   onClick (e) {
     const mode = e.currentTarget.getAttribute('data-mode')
+    const active = this.isActive(mode)
+
+    if (active && this.props.mode !== 'both') {
+      return
+    }
+
     let nextMode
 
-    if (this.isActive(mode)) {
+    if (active) {
       nextMode = mode === 'source' ? 'preview' : 'source'
     } else {
       nextMode = 'both'

@@ -1,3 +1,29 @@
+@import '../colors.css';
+
 .CodeMirror {
-  height: auto
+  color: var(--white-lilac);
+  background-color: var(--big-stone);
+  height: auto;
+  min-height: 300px;
+}
+.CodeMirror pre {
+  padding-left: 30px;
+}
+.CodeMirror-gutters {
+  background-color: var(--cloud-burst);
+  border-right: 0;
+}
+.CodeMirror-scroll {
+  min-height: 440px;
+}
+.CodeMirror-lines {
+  padding: 30px 0;
+}
+.CodeMirror-linenumber {
+  color: var(--blue-bayox);
+  padding: 0 13px 0 7px;
+  font-size: 10px;
+}
+.CodeMirror-cursor {
+  border-color: var(--white-lilac);
 }

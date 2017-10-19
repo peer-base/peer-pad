@@ -29,7 +29,8 @@ export default class Editor extends Component {
         editor = CodeMirror(ref, {
           lineNumbers: true,
           value: '',
-          viewportMargin: Infinity
+          viewportMargin: Infinity,
+          lineWrapping: true
         })
 
         editor.on('change', () => {

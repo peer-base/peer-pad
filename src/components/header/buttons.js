@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PlusIcon from '../icons/plus'
-import UserIcon from '../icons/user'
-import BellIcon from '../icons/bell'
+import { PlusIcon, UserIcon, BellIcon } from '../icons'
 
 export const NewButton = ({ onClick }) => (
   <button type='button' className='button-reset ba b--black-stone bg-bright-turquoise pa2 br-100 white-lilac hover--white pointer' onClick={onClick}>
