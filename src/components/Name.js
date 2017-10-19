@@ -39,12 +39,12 @@ class Name extends Component {
 
     if (editable && editing) {
       return (
-        <input type='text' className='input-reset sans-serif bw0 f4 blue-bayox w-100 lh-solid' value={value} placeholder='Document Title' autoFocus onFocus={onFocus} onBlur={onBlur} onChange={onChange} />
+        <input type='text' className='input-reset sans-serif bw0 f4 blue-bayox w-100 pa0' value={value} placeholder='Document Title' autoFocus onFocus={onFocus} onBlur={onBlur} onChange={onChange} />
       )
     }
 
     return (
-      <h1 className='normal ma0 f4 blue-bayox lh-solid pointer' onClick={onClick}>
+      <h1 className='normal ma0 f4 blue-bayox pointer' onClick={onClick}>
         {value || 'Document Title'}
       </h1>
     )

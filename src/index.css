@@ -24,12 +24,18 @@ button:focus {
   color: var(--blue-bayox);
 }
 
+.hover--white-lilac:hover {
+  color: var(--white-lilac);
+}
 .hover--white:hover {
   color: white;
 }
 .hover-target:hover .hover--bright-turquoise,
 .hover--bright-turquoise:hover {
   color: var(--bright-turquoise);
+}
+.hover--blue-bayox:hover {
+  color: var(--blue-bayox);
 }
 
 .bg-big-stone {
@@ -40,6 +46,9 @@ button:focus {
 }
 .bg-bright-turquoise {
   background-color: var(--bright-turquoise);
+}
+.bg-cloud-burst {
+  background-color: var(--cloud-burst);
 }
 
 .b--black-stone {
@@ -53,6 +62,10 @@ button:focus {
 }
 .b--pigeon-post {
   border-color: var(--pigeon-post);
+}
+
+.fill--current-color path {
+  fill: currentColor;
 }
 
 .stroke--current-color path,
