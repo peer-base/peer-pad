@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, DropdownMenu } from '../../Dropdown'
+import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
 import { UserIcon } from '../../icons'
 
 export default class PeersButton extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { peers: {}, dropdownOpen: false }
+    const initialState = { peers: {}, dropdownOpen: false }
 
     if (props.peerGroup) {
-      this.state.peers = props.peerGroup.all()
+      initialState.peers = props.peerGroup.all()
       props.peerGroup.on('change', this.onPeersChange)
     }
+
+    this.state = initialState
 
     this.onPeersChange = this.onPeersChange.bind(this)
     this.onDropdownClick = this.onDropdownClick.bind(this)
@@ -29,6 +31,12 @@ export default class PeersButton extends Component {
     if (nextProps.peerGroup && nextProps.peerGroup !== this.props.peerGroup) {
       nextProps.peerGroup.on('change', this.onPeersChange)
       this.setState({ peers: nextProps.peerGroup.all() })
+    }
+  }
+
+  componentWillUnmount () {
+    if (this.props.peerGroup) {
+      this.props.peerGroup.removeListener('change', this.onPeersChange)
     }
   }
 

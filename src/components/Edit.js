@@ -7,10 +7,9 @@ import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
 import Name from './Name'
 import Editor from './Editor'
 import Preview from './Preview'
-import Toolbar from './Toolbar'
+import Toolbar from './toolbar/Toolbar'
 import Status from './Status'
 import Snapshots from './Snapshots'
-import Links from './Links'
 import DocViewer from './DocViewer'
 
 class Edit extends Component {
@@ -91,7 +90,11 @@ class Edit extends Component {
                 <Preview md={md} />
               </div>
               <div style={{ flexGrow: 0 }}>
-                <Toolbar theme='light' />
+                <Toolbar
+                  theme='light'
+                  docType={type}
+                  docName={name}
+                  docKeys={rawKeys} />
               </div>
             </div>
           ) : (
@@ -101,14 +104,22 @@ class Edit extends Component {
                   <div className='flex-auto'>
                     <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
                   </div>
-                  <Toolbar theme='dark' />
+                  <Toolbar
+                    theme='dark'
+                    docType={type}
+                    docName={name}
+                    docKeys={rawKeys} />
                 </div>
               ) : (
                 <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
                   <div className='flex-auto'>
                     <Preview md={md} />
                   </div>
-                  <Toolbar theme='light' />
+                  <Toolbar
+                    theme='light'
+                    docType={type}
+                    docName={name}
+                    docKeys={rawKeys} />
                 </div>
               )}
             </div>
@@ -154,7 +165,6 @@ class Edit extends Component {
             </div>
 
             <div>
-              <Links type={type} name={name} keys={rawKeys} />
               <Status status={status} />
               <Snapshots takeSnapshot={this.takeSnapshot} />
             </div>

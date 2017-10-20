@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Overlay from './Overlay'
+import Menu from './Menu'
 
 /*
  * Dropdown & DropdownMenu
@@ -20,18 +22,6 @@ export const Dropdown = ({children, className}) => (
   </div>
 )
 
-// Invisible click grabber, to detect when the user clicks away.
-const Overlay = ({onClick}) => {
-  return (
-    <div onClick={onClick} style={{
-      position: 'fixed',
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0}} />
-  )
-}
-
 // `open` is used to show and hide the menu
 // `top` is used to move the menu and arrow down.
 const Container = ({open, top = 0, children}) => (
@@ -45,7 +35,7 @@ const Container = ({open, top = 0, children}) => (
 )
 
 // An arrow tip that appears at the top middle of the dropdown menu
-const MenuArrowUp = ({height, align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowUp = ({height = 12, align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -75,7 +65,7 @@ const MenuArrowUp = ({height, align = 'center', marginLeft = 'auto', marginRight
 }
 
 // An arrow tip that appears at the bottom middle of the dropdown menu
-const MenuArrowDown = ({height, align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowDown = ({height = 12, align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -120,19 +110,6 @@ const MenuPosition = ({width, left = `calc(50% - ${width / 2}px)`, children}) =>
   </div>
 )
 
-// Styling for the dropdown box and shadow, and reset positon to relative.
-const Menu = ({children}) => (
-  <div style={{
-    position: 'relative',
-    textAlign: 'left',
-    zIndex: 500,
-    background: 'white',
-    boxShadow: '0 1px 5px 0 rgba(0,0,0,0.20)'
-  }} className='br1'>
-    {children}
-  </div>
-)
-
 export const DropdownMenu = ({open, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, children}) => {
   return (
     <Container open={open} top={top + arrowHeight}>
@@ -154,6 +131,9 @@ DropdownMenu.propTypes = {
   left: PropTypes.number,
   top: PropTypes.number,
   arrowHeight: PropTypes.number,
+  arrowAlign: PropTypes.oneOf(['left', 'center', 'right']),
+  arrowMarginTop: PropTypes.number,
+  arrowMarginBottom: PropTypes.number,
   onDismiss: PropTypes.func,
   children: PropTypes.node
 }
