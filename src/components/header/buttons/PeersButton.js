@@ -32,6 +32,12 @@ export default class PeersButton extends Component {
     }
   }
 
+  componentWillUnmount () {
+    if (this.props.peerGroup) {
+      this.props.peerGroup.removeListener('change', this.onPeersChange)
+    }
+  }
+
   onPeersChange () {
     this.setState({ peers: this.props.peerGroup.all() })
   }

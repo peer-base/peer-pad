@@ -104,6 +104,34 @@ const MenuArrowDown = ({height, align = 'center', marginLeft = 'auto', marginRig
   )
 }
 
+const MenuArrowRight = ({height, align = 'middle', marginTop = 'auto', marginBottom = 'auto'}) => {
+  const side = Math.round(Math.sqrt(2) * height)
+
+  return (
+    <div style={{
+      zIndex: 600,
+      width: `${height + 5}px`,
+      height: '100%',
+      overflow: 'hidden'
+    }}>
+      <div style={{
+        display: 'inline-block',
+        position: 'relative',
+        width: `${side}px`,
+        height: `${side}px`,
+        transform: `translate(0, ${height / 2}px) rotate(45deg)`,
+        borderRadius: '2px 0 0 0',
+        background: 'white',
+        boxShadow: '0px 1px 10px 0px rgba(0,0,0,0.20)',
+        right: `-${height + 2}px`,
+        top: marginTop,
+        bottom: marginBottom,
+        zIndex: 601
+      }} />
+    </div>
+  )
+}
+
 // `width` forces the width of the Menu.
 //         width is required to make other calculaitons possible.
 // `left` is the pixels from the left edge of the trigger element...
@@ -133,7 +161,7 @@ const Menu = ({children}) => (
   </div>
 )
 
-export const DropdownMenu = ({open, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, children}) => {
+export const DropdownMenu = ({open, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, arrowMarginTop, arrowMarginBottom, onDismiss, children}) => {
   return (
     <Container open={open} top={top + arrowHeight}>
       <Overlay onClick={onDismiss} />
@@ -142,6 +170,7 @@ export const DropdownMenu = ({open, width, left, top = 0, arrowHeight = 12, arro
         <Menu>
           {children}
         </Menu>
+        {arrowPosition === 'right' && <MenuArrowRight height={arrowHeight} align={arrowAlign} marginTop={arrowMarginTop} marginBottom={arrowMarginBottom} />}
         {arrowPosition === 'bottom' && <MenuArrowDown height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
       </MenuPosition>
     </Container>
