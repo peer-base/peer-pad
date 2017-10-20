@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import './Home.css'
 import CreateDocument from './CreateDocument'
+import Warning from './home/Warning'
 
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = { error: false }
+    this.state = {
+      error: false,
+      showWarning: true
+    }
   }
 
   render () {
@@ -16,6 +20,9 @@ class Home extends Component {
 
     return (
       <div className='Home'>
+        {this.state.showWarning && (
+          <Warning onClose={() => this.setState({showWarning: false})} />
+        )}
         <div className='Home-header'>
           <h2>Welcome to PeerPad</h2>
         </div>

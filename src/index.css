@@ -50,6 +50,9 @@ button:focus {
 .bg-cloud-burst {
   background-color: var(--cloud-burst);
 }
+.bg-razzmatazz {
+  background-color: var(--razzmatazz);
+}
 
 .b--black-stone {
   border-color: var(--black-pearl);
