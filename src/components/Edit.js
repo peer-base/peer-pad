@@ -91,7 +91,11 @@ class Edit extends Component {
                 <Preview md={md} />
               </div>
               <div style={{ flexGrow: 0 }}>
-                <Toolbar theme='light' />
+                <Toolbar
+                  theme='light'
+                  docType={type}
+                  docName={name}
+                  docKeys={rawKeys} />
               </div>
             </div>
           ) : (
@@ -101,14 +105,22 @@ class Edit extends Component {
                   <div className='flex-auto'>
                     <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
                   </div>
-                  <Toolbar theme='dark' />
+                  <Toolbar
+                    theme='dark'
+                    docType={type}
+                    docName={name}
+                    docKeys={rawKeys} />
                 </div>
               ) : (
                 <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
                   <div className='flex-auto'>
                     <Preview md={md} />
                   </div>
-                  <Toolbar theme='light' />
+                  <Toolbar
+                    theme='light'
+                    docType={type}
+                    docName={name}
+                    docKeys={rawKeys} />
                 </div>
               )}
             </div>

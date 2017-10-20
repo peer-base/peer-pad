@@ -7,12 +7,14 @@ export default class PeersButton extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { peers: {}, dropdownOpen: false }
+    const initialState = { peers: {}, dropdownOpen: false }
 
     if (props.peerGroup) {
-      this.state.peers = props.peerGroup.all()
+      initialState.peers = props.peerGroup.all()
       props.peerGroup.on('change', this.onPeersChange)
     }
+
+    this.state = initialState
 
     this.onPeersChange = this.onPeersChange.bind(this)
     this.onDropdownClick = this.onDropdownClick.bind(this)
