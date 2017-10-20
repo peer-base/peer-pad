@@ -83,33 +83,31 @@ export default class LinkButton extends Component {
     const writeUrl = this.getWriteUrl()
 
     return (
-      <div className='mb3'>
-        <Dropleft>
-          <Button theme={theme} icon={LinkIcon} title='Share link' onClick={onDropleftTriggerClick} />
-          <DropleftMenu width={300} height={132} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
-            <div className='pa3'>
-              <label htmlFor='LinkButton-read-url' className='f7 dib mb1'>Read-only link:</label>
-              <div className='flex flex-row mb2'>
-                <div className='flex-auto mr2'>
-                  <input id='LinkButton-read-url' type='text' className='input-reset ba b--pigeon-post pa1 f7 w-100 mr1 blue-bayox br1' value={readUrl} readOnly ref={onReadUrlRef} />
-                </div>
-                <div>
-                  <button type='button' className='button-reset f7 white-lilac bg-bright-turquoise hover--white ph2 pv1 bw0 ttu pointer br1' data-type='read' onClick={onCopyReadUrlClick}>Copy</button>
-                </div>
+      <Dropleft>
+        <Button theme={theme} icon={LinkIcon} title='Share link' onClick={onDropleftTriggerClick} />
+        <DropleftMenu width={300} height={132} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
+          <div className='pa3'>
+            <label htmlFor='LinkButton-read-url' className='f7 dib mb1'>Read-only link:</label>
+            <div className='flex flex-row mb2'>
+              <div className='flex-auto mr2'>
+                <input id='LinkButton-read-url' type='text' className='input-reset ba b--pigeon-post pa1 f7 w-100 mr1 blue-bayox br1' value={readUrl} readOnly ref={onReadUrlRef} />
               </div>
-              <label htmlFor='LinkButton-write-url' className='f7 dib mb1'>Writable link:</label>
-              <div className='flex flex-row'>
-                <div className='flex-auto mr2'>
-                  <input id='LinkButton-write-url' type='text' className='input-reset ba b--pigeon-post pa1 f7 w-100 blue-bayox br1' value={writeUrl} readOnly ref={onWriteUrlRef} />
-                </div>
-                <div>
-                  <button type='button' className='button-reset f7 white-lilac bg-bright-turquoise hover--white ba b--bright-turquoise ph2 pv1 bw0 ttu pointer br1' data-type='write' onClick={onCopyWriteUrlClick}>Copy</button>
-                </div>
+              <div>
+                <button type='button' className='button-reset f7 white-lilac bg-bright-turquoise hover--white ph2 pv1 bw0 ttu pointer br1' onClick={onCopyReadUrlClick}>Copy</button>
               </div>
             </div>
-          </DropleftMenu>
-        </Dropleft>
-      </div>
+            <label htmlFor='LinkButton-write-url' className='f7 dib mb1'>Writable link:</label>
+            <div className='flex flex-row'>
+              <div className='flex-auto mr2'>
+                <input id='LinkButton-write-url' type='text' className='input-reset ba b--pigeon-post pa1 f7 w-100 blue-bayox br1' value={writeUrl} readOnly ref={onWriteUrlRef} />
+              </div>
+              <div>
+                <button type='button' className='button-reset f7 white-lilac bg-bright-turquoise hover--white ba b--bright-turquoise ph2 pv1 bw0 ttu pointer br1' onClick={onCopyWriteUrlClick}>Copy</button>
+              </div>
+            </div>
+          </div>
+        </DropleftMenu>
+      </Dropleft>
     )
   }
 }

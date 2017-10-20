@@ -1,26 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  SnapshotIcon,
   DirectoryIcon,
   SettingsIcon,
   ShortcutsIcon
 } from '../icons'
-import { Button, LinkButton } from './buttons'
+import { Button, LinkButton, SnapshotsButton } from './buttons'
 
 const Toolbar = ({
   theme = 'light',
   docType,
   docName,
   docKeys,
-  takeSnapshot,
+  onTakeSnapshot,
   snapshots
 }) => (
   <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
     <div className='mb3'>
-      <Button theme={theme} icon={SnapshotIcon} title='Take snapshot' onClick={takeSnapshot} />
+      <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} />
     </div>
-    <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
+    <div className='mb3'>
+      <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
+    </div>
     <div className='mb3'>
       <Button theme={theme} icon={DirectoryIcon} title='View directory' onClick={null} />
     </div>
@@ -41,7 +42,7 @@ Toolbar.propTypes = {
     read: PropTypes.string.isRequired,
     write: PropTypes.string
   }).isRequired,
-  takeSnapshot: PropTypes.func.isRequired,
+  onTakeSnapshot: PropTypes.func.isRequired,
   snapshots: PropTypes.array.isRequired,
   onDirectoryClick: PropTypes.func.isRequired,
   onSettingsClick: PropTypes.func.isRequired,

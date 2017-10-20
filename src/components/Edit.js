@@ -9,7 +9,6 @@ import Editor from './Editor'
 import Preview from './Preview'
 import Toolbar from './toolbar/Toolbar'
 import Status from './Status'
-import Snapshots from './Snapshots'
 import DocViewer from './DocViewer'
 
 class Edit extends Component {
@@ -31,14 +30,15 @@ class Edit extends Component {
         read: readKey,
         write: writeKey
       },
-      viewMode: 'both'
+      viewMode: 'both',
+      snapshots: []
     }
 
     this.onNameChange = this.onNameChange.bind(this)
     this.onViewModeChange = this.onViewModeChange.bind(this)
     this.onEditor = this.onEditor.bind(this)
     this.onEditorValueChange = this.onEditorValueChange.bind(this)
-    this.takeSnapshot = this.takeSnapshot.bind(this)
+    this.onTakeSnapshot = this.onTakeSnapshot.bind(this)
   }
 
   onNameChange (name) {
@@ -68,9 +68,31 @@ class Edit extends Component {
     this.setState({ md })
   }
 
+  async onTakeSnapshot () {
+    const snapshot = await this._document.snapshots.take()
+    console.log({ snapshot })
+    this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
+  }
+
   render () {
-    const { name, type, md, rawKeys, status, canEdit, viewMode } = this.state
-    const { onEditor, onEditorValueChange, onViewModeChange, onNameChange } = this
+    const {
+      name,
+      type,
+      md,
+      rawKeys,
+      status,
+      canEdit,
+      viewMode,
+      snapshots
+    } = this.state
+
+    const {
+      onEditor,
+      onEditorValueChange,
+      onViewModeChange,
+      onNameChange,
+      onTakeSnapshot
+    } = this
 
     let editorContainer
 
@@ -94,7 +116,9 @@ class Edit extends Component {
                   theme='light'
                   docType={type}
                   docName={name}
-                  docKeys={rawKeys} />
+                  docKeys={rawKeys}
+                  snapshots={snapshots}
+                  onTakeSnapshot={onTakeSnapshot} />
               </div>
             </div>
           ) : (
@@ -108,7 +132,9 @@ class Edit extends Component {
                     theme='dark'
                     docType={type}
                     docName={name}
-                    docKeys={rawKeys} />
+                    docKeys={rawKeys}
+                    snapshots={snapshots}
+                    onTakeSnapshot={onTakeSnapshot} />
                 </div>
               ) : (
                 <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
@@ -119,7 +145,9 @@ class Edit extends Component {
                     theme='light'
                     docType={type}
                     docName={name}
-                    docKeys={rawKeys} />
+                    docKeys={rawKeys}
+                    snapshots={snapshots}
+                    onTakeSnapshot={onTakeSnapshot} />
                 </div>
               )}
             </div>
@@ -166,7 +194,6 @@ class Edit extends Component {
 
             <div>
               <Status status={status} />
-              <Snapshots takeSnapshot={this.takeSnapshot} />
             </div>
           </div>
         </div>
@@ -199,10 +226,6 @@ class Edit extends Component {
   componentWillUnmount () {
     this._document.stop()
     this._editor = null
-  }
-
-  async takeSnapshot () {
-    return this._document.snapshots.take()
   }
 }
 
