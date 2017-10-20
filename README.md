@@ -1,13 +1,17 @@
-# Peerpad
+<h1 align="center" title="PeerPad">
+  <img width="555" alt="PeerPad logo" src="https://user-images.githubusercontent.com/152863/31819860-8a3d5080-b596-11e7-8e69-55c27f95d95d.png">
+</h1>
 
-[![made by Protocol Labs](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](https://protocol.io)
-[![Freenode](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
+<p align="center">
+  <a href="https://protocol.io"><img src="https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square" /></a>
+  <a href="http://peerpad.net/"><img src="https://img.shields.io/badge/project-PeerPad-blue.svg?style=flat-square" /></a>
+  <a href="http://webchat.freenode.net/?channels=%23ipfs"><img src="https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square" /></a>
+  <a href="https://travis-ci.org/ipfs-shipyard/peerpad"><img src="https://img.shields.io/travis/ipfs-shipyard/peerpad/master.svg?style=flat-square" /></a>
+</p>
 
-[![Build Status](https://travis-ci.org/ipfs-shipyard/peerpad.svg?branch=master)](https://travis-ci.org/ipfs-shipyard/peerpad)
+PeerPad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
 
-Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
-
-# 🔓 Peerpad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
+# 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
 ## Install
 
@@ -38,7 +42,7 @@ $ npm run build
 * [Architecture](docs/ARCHITECTURE.md).
 * [Security](docs/SECURITY.md).
 
-### Want to hack on Peerpad?
+### Want to hack on PeerPad?
 
 [![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/contributing.md)
 
