@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, DropdownMenu } from '../../Dropdown'
+import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
 import { UserIcon } from '../../icons'
 
 export default class PeersButton extends Component {

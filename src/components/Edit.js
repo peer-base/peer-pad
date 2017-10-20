@@ -10,7 +10,6 @@ import Preview from './Preview'
 import Toolbar from './toolbar/Toolbar'
 import Status from './Status'
 import Snapshots from './Snapshots'
-import Links from './Links'
 import DocViewer from './DocViewer'
 
 class Edit extends Component {
@@ -166,7 +165,6 @@ class Edit extends Component {
             </div>
 
             <div>
-              <Links type={type} name={name} keys={rawKeys} />
               <Status status={status} />
               <Snapshots takeSnapshot={this.takeSnapshot} />
             </div>

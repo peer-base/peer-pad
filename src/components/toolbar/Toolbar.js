@@ -16,12 +16,20 @@ const Toolbar = ({
   takeSnapshot,
   snapshots
 }) => (
-  <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'}`}>
-    <Button theme={theme} icon={SnapshotIcon} title='Take snapshot' onClick={takeSnapshot} />
+  <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
+    <div className='mb3'>
+      <Button theme={theme} icon={SnapshotIcon} title='Take snapshot' onClick={takeSnapshot} />
+    </div>
     <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
-    <Button theme={theme} icon={DirectoryIcon} title='View directory' onClick={null} />
-    <Button theme={theme} icon={SettingsIcon} title='Settings' onClick={null} />
-    <Button theme={theme} icon={ShortcutsIcon} title='Shortcuts' onClick={null} />
+    <div className='mb3'>
+      <Button theme={theme} icon={DirectoryIcon} title='View directory' onClick={null} />
+    </div>
+    <div className='mb3'>
+      <Button theme={theme} icon={SettingsIcon} title='Settings' onClick={null} />
+    </div>
+    <div className='mb3'>
+      <Button theme={theme} icon={ShortcutsIcon} title='Shortcuts' onClick={null} />
+    </div>
   </div>
 )
 
