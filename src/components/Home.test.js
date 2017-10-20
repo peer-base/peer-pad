@@ -15,7 +15,7 @@ it('can create document via button', (done) => {
   expect(toJSON(home)).toMatchSnapshot()
 
   const unlisten = history.listen((location, action) => {
-    expect(location.pathname).toMatch(/^\/w\/\w+\/\/\w+\/\w+$/)
+    expect(location.pathname).toMatch(/^\/w\/markdown\/New%20PeerPad\/\w+\/\w+$/)
     unlisten()
     done()
   })

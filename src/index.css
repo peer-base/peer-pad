@@ -23,6 +23,9 @@ button:focus {
 .blue-bayox {
   color: var(--blue-bayox);
 }
+.razzmatazz {
+  color: var(--razzmatazz);
+}
 
 .hover--white-lilac:hover {
   color: var(--white-lilac);
@@ -53,6 +56,9 @@ button:focus {
 .bg-razzmatazz {
   background-color: var(--razzmatazz);
 }
+.bg-caribbean-green {
+  background-color: var(--caribbean-green);
+}
 
 .b--black-stone {
   border-color: var(--black-pearl);
@@ -66,6 +72,9 @@ button:focus {
 .b--pigeon-post {
   border-color: var(--pigeon-post);
 }
+.b--caribbean-green {
+  border-color: var(--caribbean-green);
+}
 
 .fill--current-color path {
   fill: currentColor;
@@ -75,4 +84,21 @@ button:focus {
 .stroke--current-color polyline,
 .stroke--current-color circle {
   stroke: currentColor;
+}
+
+.tracked--1 {
+  letter-spacing: 1px;
+}
+
+.fancy-underline::after {
+  content: '';
+  display: block;
+  background: var(--caribbean-green);
+  width: 100px;
+  height: 1px;
+  margin: 10px auto;
+}
+
+.appearance-none {
+  appearance: none;
 }
