@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 import CodeMirror from 'codemirror'
+import 'codemirror/mode/markdown/markdown'
 import 'codemirror/lib/codemirror.css'
 import './Codemirror.css'
 
@@ -30,7 +31,8 @@ export default class Editor extends Component {
           lineNumbers: true,
           value: '',
           viewportMargin: Infinity,
-          lineWrapping: true
+          lineWrapping: true,
+          mode: 'markdown'
         })
 
         editor.on('change', () => {
