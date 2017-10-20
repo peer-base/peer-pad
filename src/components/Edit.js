@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
-import { NewButton, UserButton, NotificationsButton } from './header/buttons'
+import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
 import Name from './Name'
 import Editor from './Editor'
 import Preview from './Preview'
 import Toolbar from './Toolbar'
 import Status from './Status'
-import Peers from './Peers'
 import Snapshots from './Snapshots'
 import Links from './Links'
 import DocViewer from './DocViewer'
@@ -71,7 +70,6 @@ class Edit extends Component {
   }
 
   render () {
-    const peers = this._document && (<Peers peers={this._document.peers} />)
     const { name, type, md, rawKeys, status, canEdit, viewMode } = this.state
     const { onEditor, onEditorValueChange, onViewModeChange, onNameChange } = this
 
@@ -132,7 +130,7 @@ class Edit extends Component {
               <NewButton onClick={() => console.log('TODO')} />
             </span>
             <span className='mr2'>
-              <UserButton onClick={() => console.log('TODO')} count={1} />
+              <PeersButton peerGroup={this._document && this._document.peers} />
             </span>
             <span>
               <NotificationsButton onClick={() => console.log('TODO')} count={2} />
@@ -141,7 +139,7 @@ class Edit extends Component {
         </Header>
         <div className='ph3'>
           <div className='mw8 center'>
-            <div className='mb3 pb3 bb b--pigeon-post'>
+            <div className='mb4 pb3 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>
                   <Name value={name} onChange={onNameChange} editable={canEdit} />
@@ -158,7 +156,6 @@ class Edit extends Component {
             <div>
               <Links type={type} name={name} keys={rawKeys} />
               <Status status={status} />
-              {peers}
               <Snapshots takeSnapshot={this.takeSnapshot} />
             </div>
           </div>
