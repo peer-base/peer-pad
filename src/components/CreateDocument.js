@@ -25,8 +25,8 @@ class CreateDocument extends Component {
             Create new:
           </label>
           <select
-            className='appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed white tc'
-            style={{fontSize: '18px', borderRadius: 0, background: 'none', borderColor: 'rgba(0, 222, 219, 0.4)'}}
+            className='appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc'
+            style={{fontSize: '18px', borderRadius: 0, background: 'none'}}
             placeholder='select type'
             onChange={this.handleTypeChange.bind(this)}>
             <option className='black' style={{fontSize: '18px'}} value='markdown'>Markdown pad</option>

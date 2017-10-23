@@ -75,6 +75,9 @@ button:focus {
 .b--caribbean-green {
   border-color: var(--caribbean-green);
 }
+.b--caribbean-green-soft {
+  border-color: rgba(0, 222, 219, 0.4);
+}
 
 .fill--current-color path {
   fill: currentColor;
