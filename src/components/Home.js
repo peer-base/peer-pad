@@ -31,6 +31,7 @@ class Home extends Component {
             </div>
           </nav>
         </header>
+
         <section id='hero' className='db ph2 pb6 mw8 center'>
           <h1 className='f2 f1-ns fw2 lh-copy tracked bright-turquoise'>HELLO WORLD</h1>
           <h2 className='f3 f2-ns fw2 lh-copy tracked'>
@@ -44,7 +45,8 @@ class Home extends Component {
             ) : null}
           </div>
         </section>
-        <section id='about' className='pa3 mw8 center'>
+
+        <section id='about' className='pa3 mv5 mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             About us
           </h2>
@@ -52,7 +54,8 @@ class Home extends Component {
             Peerpad is collaborative real-time editor that works on the decentralised web, built on top of IPFS and Y.js. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is open-source and built by Protocol Labs and the IPFS community.
           </p>
         </section>
-        <section id='features' className='pa3'>
+
+        <section id='features' className='pa3 mv5'>
           <div className='mw8 center'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               Features
@@ -101,7 +104,8 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <section id='how-it-works' className='pa3 mw8 center'>
+
+        <section id='how-it-works' className='pa3 mv5 mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             How it works
           </h2>
@@ -118,8 +122,9 @@ class Home extends Component {
             src='/images/how-it-works.png'
             alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
         </section>
-        <section id='benefits' className='pa3 mb6'>
-          <div className='mw8 center'>
+
+        <section id='benefits' className='pa3 mv5'>
+          <div className='mw8 center mb6'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               What you can do with PeerPad
             </h2>
@@ -127,46 +132,76 @@ class Home extends Component {
               Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
             </p>
           </div>
-          <div className='dt-ns center tl mw8'>
-            <div className='dtr-ns'>
-              <div className='dtc-ns pa4'>
-                <h3 className='f4 fw2 white tracked--1'>
-                  Take meeting notes
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
-                </p>
-              </div>
-              <div className='dtc-ns'>
-                <h3 className='f4 fw1 white tracked--1'>
-                  Collaborate or share snippets of code
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
-                </p>
+
+          <div className='center tl mw8'>
+
+            <div className='dib-l w-50-l v-top pb4 mw6 center'>
+              <div className='dt w-100'>
+                <div className='dtc v-top' style={{width: 108}}>
+                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                </div>
+                <div className='dtc v-top pl3 pr4-l'>
+                  <h3 className='f6 fw4 white tracked--1'>
+                    Take meeting notes
+                  </h3>
+                  <p className='f6 fw2 lh-copy'>
+                    Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
+                  </p>
+                </div>
               </div>
             </div>
-            <div className='dtr-ns'>
-              <div className='dtc-ns pa4'>
-                <h3 className='f4 fw2 white tracked--1'>
-                  Write articles and share them
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  You can publish a snapshot of a pad to IPFS, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
-                </p>
+
+            <div className='dib-l w-50-l v-top pb4 mw6 center'>
+              <div className='dt w-100'>
+                <div className='dtc v-top' style={{width: 108}}>
+                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                </div>
+                <div className='dtc v-top pl3 pr4-l'>
+                  <h3 className='f6 fw4 white tracked--1'>
+                    Collaborate or share snippets of code
+                  </h3>
+                  <p className='f6 fw2 lh-copy'>
+                    Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
+                  </p>
+                </div>
               </div>
-              <div className='dtc-ns'>
-                <h3 className='f4 fw2 white tracked--1'>
-                  Work with multiple users at the same time
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
-                </p>
+            </div>
+
+            <div className='dib-l w-50-l v-top pb4 mw6 center'>
+              <div className='dt w-100'>
+                <div className='dtc v-top' style={{width: 108}}>
+                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                </div>
+                <div className='dtc v-top pl3 pr4-l'>
+                  <h3 className='f6 fw4 white tracked--1'>
+                    Write articles and share them
+                  </h3>
+                  <p className='f6 fw2 lh-copy'>
+                    You can publish a snapshot of a pad to IPFS, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className='dib-l w-50-l v-top pb4 mw6 center'>
+              <div className='dt w-100'>
+                <div className='dtc v-top' style={{width: 108}}>
+                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                </div>
+                <div className='dtc v-top pl3 pr4-l'>
+                  <h3 className='f6 fw4 white tracked--1'>
+                    Work with multiple users at the same time
+                  </h3>
+                  <p className='f6 fw2 lh-copy'>
+                    Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <footer>
+
+        <footer className='mt6'>
           <div className='dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed'}} >
             <nav className='db dtc-l v-mid w-100 w-50-l tl-l'>
               <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#about' title='About'>What is PeerPad</a>
