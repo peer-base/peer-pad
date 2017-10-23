@@ -67,12 +67,12 @@ class Home extends Component {
         <footer>
           <div className='dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed'}} >
             <nav className='db dtc-l v-mid w-100 w-50-l tl-l'>
-              <a className='link dim white f6 fw3 db dib-ns mh1 pa3' href='#about' title='About'>What is PeerPad</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1 pa3' href='#features' title='Features'>Features</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1 pa3' href='#how-it-works' title='How it works'>How it works</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1 pa3' href='#benefits' title=''>Benefits</a>
+              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#about' title='About'>What is PeerPad</a>
+              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#features' title='Features'>Features</a>
+              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#how-it-works' title='How it works'>How it works</a>
+              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#benefits' title=''>Benefits</a>
             </nav>
-            <small className='db dtc-l v-mid w-100 w-50-l tr-r f7 f6-ns pv4 pv0-l lh-copy'>
+            <small className='db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
               <a className='link white db dib-ns mb3 mb0-ns' href='https://protocol.ai/'>© Protocol Labs </a>
               <span className='dn dib-ns mh1'> | </span>
               Except as <a className='link bright-turquoise' href='https://protocol.ai/legal/'>noted</a>,
