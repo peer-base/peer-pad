@@ -174,13 +174,12 @@ exports[`can create document via button 1`] = `
               Create new:
             </label>
             <select
-              className="appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed white tc"
+              className="appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
               onChange={[Function]}
               placeholder="select type"
               style={
                 Object {
                   "background": "none",
-                  "borderColor": "rgba(0, 222, 219, 0.4)",
                   "borderRadius": 0,
                   "fontSize": "18px",
                 }
@@ -291,6 +290,78 @@ exports[`can create document via button 1`] = `
         Benefits
       </h2>
     </section>
+    <footer>
+      <div
+        className="dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft"
+        style={
+          Object {
+            "borderTopStyle": "dashed",
+          }
+        }
+      >
+        <nav
+          className="db dtc-l v-mid w-100 w-50-l tl-l"
+        >
+          <a
+            className="link dim white f6 fw3 db dib-ns mh1 pa3"
+            href="#about"
+            title="About"
+          >
+            What is PeerPad
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1 pa3"
+            href="#features"
+            title="Features"
+          >
+            Features
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1 pa3"
+            href="#how-it-works"
+            title="How it works"
+          >
+            How it works
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1 pa3"
+            href="#benefits"
+            title=""
+          >
+            Benefits
+          </a>
+        </nav>
+        <small
+          className="db dtc-l v-mid w-100 w-50-l tr-r f7 f6-ns pv4 pv0-l lh-copy"
+        >
+          <a
+            className="link white db dib-ns mb3 mb0-ns"
+            href="https://protocol.ai/"
+          >
+            © Protocol Labs 
+          </a>
+          <span
+            className="dn dib-ns mh1"
+          >
+             | 
+          </span>
+          Except as 
+          <a
+            className="link bright-turquoise"
+            href="https://protocol.ai/legal/"
+          >
+            noted
+          </a>
+          , content licensed 
+          <a
+            className="link bright-turquoise"
+            href="https://creativecommons.org/licenses/by/3.0/"
+          >
+            CC-BY 3.0
+          </a>
+        </small>
+      </div>
+    </footer>
   </div>
 </Home>
 `;
