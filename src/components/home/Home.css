@@ -4,44 +4,82 @@
   text-shadow:
     var(--caribbean-green) 0 0 60px,
     var(--caribbean-green) 0 0 40px,
-    var(--caribbean-green) 0 0 20px;
+    var(--caribbean-green) 0 0 20px,
+    var(--caribbean-green) 0 0 10px;
   position: relative;
   display: inline-block;
-  z-index: 200;
 }
 
 .caribbean-green-glow::after {
-  content: ' ';
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
   display: block;
   width: 0px;
   height: 0px;
-  box-shadow: var(--caribbean-green) 0 0 500px 50px;
+  box-shadow: var(--caribbean-green) 0 0 500px 30px;
   border-radius: 100%;
-  z-index: -100;
+  z-index: -900;
 }
 
 .bright-turquoise-glow {
   text-shadow:
     var(--bright-turquoise) 0 0 60px,
     var(--bright-turquoise) 0 0 40px,
-    var(--bright-turquoise) 0 0 20px;
+    var(--bright-turquoise) 0 0 20px,
+    var(--bright-turquoise) 0 0 10px;
   position: relative;
   display: inline-block;
-  z-index: 200;
 }
 
 .bright-turquoise-glow::after {
-  content: ' ';
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
   display: block;
   width: 0px;
   height: 0px;
-  box-shadow: var(--bright-turquoise) 0 0 500px 50px;
+  box-shadow: var(--bright-turquoise) 0 0 500px 30px;
   border-radius: 100%;
-  z-index: -100;
+  z-index: -900;
+}
+
+@media screen and (min-width: 680px) {
+  /* The big wave backgrounds are heavy and complex, so skip them on mobile devices. */
+  .bg-hero-wave {
+    position: relative;
+    z-index: 200;
+    height: auto;
+  }
+
+  .bg-hero-wave::after {
+    content: '';
+    display: block;
+    z-index: -100;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: transparent url(/images/hero-wave.png) center no-repeat;
+    background-size: 100% auto;
+    opacity: 0.33;
+    mix-blend-mode: soft-light;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* The spot lights make the text hard to read on small screens so we dial them
+   * down by default and dial them up on larger screens.
+   */
+ .bright-turquoise-glow::after {
+   width: 400px;
+   box-shadow: var(--bright-turquoise) -350px -20px 1000px 35px;
+ }
+ .caribbean-green-glow::after {
+   width: 400px;
+   box-shadow: var(--caribbean-green) -250px -20px 1000px 35px;
+ }
 }
