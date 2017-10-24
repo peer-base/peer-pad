@@ -44,6 +44,7 @@
     "react-dom": "^15.6.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-hash-link": "^1.1.1",
     "remark": "^8.0.0",
     "remark-html": "^6.0.1",
     "style-loader": "0.18.2",

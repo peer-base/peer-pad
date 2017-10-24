@@ -20,25 +20,22 @@ class CreateDocument extends Component {
 
     return (
       <form>
-        <div>
-          <label className='dib fw1 tracked--1 white' style={{fontSize: '28px'}}>
+        <div className='lh-copy'>
+          <label className='db dib-ns fw1 tracked--1 white mv2' style={{fontSize: '28px'}}>
             Create new:
           </label>
           <select
-            className='appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc'
+            className='appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc'
             style={{fontSize: '18px', borderRadius: 0, background: 'none'}}
             placeholder='select type'
             onChange={this.handleTypeChange.bind(this)}>
             <option className='black' style={{fontSize: '18px'}} value='markdown'>Markdown pad</option>
             <option className='black' style={{fontSize: '18px'}} value='richtext'>Rich text pad</option>
           </select>
-
           <button
             type='button'
-            className='input-reset bg-caribbean-green ba b--caribbean-green white ph3 pv2  dim'
-            onClick={this.handleClick.bind(this)}>
-            Go
-          </button>
+            className='input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 dim tracked--1'
+            onClick={this.handleClick.bind(this)}>GO</button>
         </div>
       </form>
     )

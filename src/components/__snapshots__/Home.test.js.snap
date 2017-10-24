@@ -10,74 +10,7 @@ exports[`can create document via button 1`] = `
       }
     }
   >
-    <Component
-      onClose={[Function]}
-    >
-      <div
-        className="bg-razzmatazz white"
-        style={
-          Object {
-            "padding": "10px 15px",
-          }
-        }
-      >
-        <Component
-          className="dib fill--current-color v-mid mr3"
-        >
-          <svg
-            className="dib fill--current-color v-mid mr3"
-            height="26"
-            style={undefined}
-            viewBox="0 0 149 146.7"
-            width="26"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M119.38 117.8a30 30 0 0 0 3.8-8.39 47.86 47.86 0 0 0 1.48-8.37c.14-1.49.28-3.24.3-4.95a.53.53 0 0 0-.56-.58c-1.58-.07-3.19-.06-4.79 0a.58.58 0 0 0-.53.58c0 .44-.08.88-.1 1.32s0 .73-.08 1.09a22.82 22.82 0 0 1-1.06 5.28 6.56 6.56 0 0 1-4.95 4.35 6.88 6.88 0 0 1-6.43-1.92 18.9 18.9 0 0 1-3.05-4.64 53.77 53.77 0 0 1-3.47-10.65 3.36 3.36 0 0 1 .06-1.68c2.25-8.21 4.11-16.28 5.64-23.1s3.09-13.74 4.64-20.61q2.15-9.51 4.28-19a1.42 1.42 0 0 0 0-.58c-.06-.24-.13-.49-.85-.49H96.93c-.77 0-.93.13-1.1.89l-4 18.16-2 5.63L87 44c-.25-.56-.48-1.1-.72-1.63a51 51 0 0 0-6.91-11.5 22.5 22.5 0 0 0-8.7-6.53 24.46 24.46 0 0 0-9.57-1.94 27.43 27.43 0 0 0-4.79.43 34.58 34.58 0 0 0-17.76 9 41.61 41.61 0 0 0-11.17 18.25A72.85 72.85 0 0 0 24.06 71a89.74 89.74 0 0 0 1.27 17.82 52.69 52.69 0 0 0 6.5 18.29 35.92 35.92 0 0 0 8.07 9.41 34.41 34.41 0 0 0 17.93 7.54 36.91 36.91 0 0 0 12.74-.91 31.43 31.43 0 0 0 9.6-4 35.18 35.18 0 0 0 9-8.14c.49-.62 1-1.24 1.44-1.89l3.15-4.12 1.56 3.81-2.17.89 2.23-.77.14.35a39.84 39.84 0 0 0 3.53 7.72 17.35 17.35 0 0 0 5.18 5.7 9.87 9.87 0 0 0 11.25-.44 17.54 17.54 0 0 0 3.9-4.46zm-34.3-41.58c-.57 2.12-1.09 4.26-1.6 6.4s-1 4-1.49 6a66.81 66.81 0 0 1-4.55 12.72 28.46 28.46 0 0 1-6.13 8.66 13.36 13.36 0 0 1-9.25 3.78h-.68c-4.86 0-8.76-2.26-11.61-6.73a31.35 31.35 0 0 1-3.9-9.76 73.72 73.72 0 0 1-1.79-12 144.6 144.6 0 0 1-.28-16 96.75 96.75 0 0 1 2-17.6A37.79 37.79 0 0 1 49.1 42a17.82 17.82 0 0 1 5.44-6.58 13.25 13.25 0 0 1 8-2.49 7.51 7.51 0 0 1 4.4 1.7 18.54 18.54 0 0 1 3.81 3.92 61.7 61.7 0 0 1 6.76 11.95 205.86 205.86 0 0 1 7.44 20 9.59 9.59 0 0 1 .13 5.72z"
-            />
-          </svg>
-        </Component>
-        <span
-          className="dib-ns v-mid f6 fw6 "
-        >
-          Peerpad is in Alpha. 
-        </span>
-        <span
-          className="db dib-ns pt3 pt0-l v-mid f6 fw3"
-        >
-          The codebase hasn't been audited by Security specialists and it shouldn't be used to store, share or publish sensitive information.
-        </span>
-        <button
-          className="db dib-ns w-100 w-auto-ns tc ml3-ns pv3 p0-ns input-reset bg-transparent b--none  white v-mid"
-          onClick={[Function]}
-        >
-          <span
-            className="dn-l v-mid f7 fw3"
-          >
-            Close 
-          </span>
-          <Component
-            className="fill--current-color v-mid"
-          >
-            <svg
-              className="fill--current-color v-mid"
-              height="16"
-              style={undefined}
-              viewBox="0 0 149 146.7"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M74.5 11a62.3 62.3 0 1 0 62.3 62.3A62.37 62.37 0 0 0 74.5 11zm55 62.39a55 55 0 1 1-55-55 55.11 55.11 0 0 1 55.04 55.05z"
-              />
-              <path
-                d="M104 45.34a3.34 3.34 0 0 0-4.72 0L75 69.67 50.67 45.34A3.34 3.34 0 0 0 46 50.06l24.28 24.33L46 98.71a3.34 3.34 0 0 0 4.72 4.72L75 79.11l24.33 24.33a3.34 3.34 0 1 0 4.67-4.73L79.72 74.39 104 50.06a3.34 3.34 0 0 0 0-4.72z"
-              />
-            </svg>
-          </Component>
-        </button>
-      </div>
-    </Component>
+    <WarningContainer />
     <header
       className="db pt3 pb4"
     >
@@ -86,7 +19,7 @@ exports[`can create document via button 1`] = `
       >
         <a
           className="db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l"
-          href="#home"
+          href="/"
           title="Home"
         >
           <img
@@ -104,34 +37,94 @@ exports[`can create document via button 1`] = `
         <div
           className="db dtc-l v-btm w-100 w-75-l tc tr-l"
         >
-          <a
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
-            href="#about"
             title="About"
+            to="#about"
           >
-            What is PeerPad
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+              onClick={[Function]}
+              replace={false}
+              title="About"
+              to="#about"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+                href="#about"
+                onClick={[Function]}
+                title="About"
+              >
+                What is PeerPad
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#features"
             title="Features"
+            to="#features"
           >
-            Features
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title="Features"
+              to="#features"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#features"
+                onClick={[Function]}
+                title="Features"
+              >
+                Features
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#how-it-works"
             title="How it works"
+            to="#how-it-works"
           >
-            How it works
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title="How it works"
+              to="#how-it-works"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#how-it-works"
+                onClick={[Function]}
+                title="How it works"
+              >
+                How it works
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#benefits"
             title=""
+            to="#benefits"
           >
-            Benefits
-          </a>
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title=""
+              to="#benefits"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#benefits"
+                onClick={[Function]}
+                title=""
+              >
+                Benefits
+              </a>
+            </Link>
+          </HashLink>
         </div>
       </nav>
     </header>
@@ -149,78 +142,84 @@ exports[`can create document via button 1`] = `
       >
         PeerPad is a realtime collaborative editing tool, powered by 
         <span
-          className="fw5"
+          className="fw5 bright-turquoise-glow"
         >
           IPFS
         </span>
          and 
         <span
-          className="fw5"
+          className="fw5 caribbean-green-glow"
         >
           CRDTs
         </span>
       </h2>
-      <CreateDocument>
-        <form>
-          <div>
-            <label
-              className="dib fw1 tracked--1 white"
-              style={
-                Object {
-                  "fontSize": "28px",
-                }
-              }
+      <div
+        className="mt5"
+      >
+        <CreateDocument>
+          <form>
+            <div
+              className="lh-copy"
             >
-              Create new:
-            </label>
-            <select
-              className="appearance-none fw1 tracked--1 mh3 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
-              onChange={[Function]}
-              placeholder="select type"
-              style={
-                Object {
-                  "background": "none",
-                  "borderRadius": 0,
-                  "fontSize": "18px",
-                }
-              }
-            >
-              <option
-                className="black"
+              <label
+                className="db dib-ns fw1 tracked--1 white mv2"
                 style={
                   Object {
+                    "fontSize": "28px",
+                  }
+                }
+              >
+                Create new:
+              </label>
+              <select
+                className="appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
+                onChange={[Function]}
+                placeholder="select type"
+                style={
+                  Object {
+                    "background": "none",
+                    "borderRadius": 0,
                     "fontSize": "18px",
                   }
                 }
-                value="markdown"
               >
-                Markdown pad
-              </option>
-              <option
-                className="black"
-                style={
-                  Object {
-                    "fontSize": "18px",
+                <option
+                  className="black"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
                   }
-                }
-                value="richtext"
+                  value="markdown"
+                >
+                  Markdown pad
+                </option>
+                <option
+                  className="black"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                  value="richtext"
+                >
+                  Rich text pad
+                </option>
+              </select>
+              <button
+                className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 dim tracked--1"
+                onClick={[Function]}
+                type="button"
               >
-                Rich text pad
-              </option>
-            </select>
-            <button
-              className="input-reset bg-caribbean-green ba b--caribbean-green white ph3 pv2  dim"
-              onClick={[Function]}
-              type="button"
-            >
-              Go
-            </button>
-          </div>
-        </form>
-      </CreateDocument>
+                GO
+              </button>
+            </div>
+          </form>
+        </CreateDocument>
+      </div>
     </section>
     <section
-      className="pa3 mw8 center"
+      className="pa3 mv5 mw8 center"
       id="about"
     >
       <h2
@@ -246,22 +245,220 @@ exports[`can create document via button 1`] = `
       </p>
     </section>
     <section
-      className="pa3"
+      className="pa3 mv5"
       id="features"
     >
-      <h2
-        className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
+      <div
+        className="mw8 center"
+      >
+        <h2
+          className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
+          style={
+            Object {
+              "fontSize": "40px",
+            }
+          }
+        >
+          Features
+        </h2>
+        <p
+          className="fw1 lh-copy tracked--1"
+          style={
+            Object {
+              "fontSize": "22px",
+              "lineHeight": "42px",
+            }
+          }
+        >
+          Peerpad does not rely on a second or third-party. 
+          <br />
+          All nodes talk to each other directly, without intermediation.
+        </p>
+      </div>
+      <div
+        className="dt-ns center tc"
         style={
           Object {
-            "fontSize": "40px",
+            "maxWidth": "1366px",
           }
         }
       >
-        Features
-      </h2>
+        <div
+          className="dtc-ns mw5-ns pa4"
+        >
+          <Hexicon
+            name="Private"
+          >
+            <div
+              className="dt caribbean-green center"
+              style={
+                Object {
+                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "height": 124,
+                  "width": 108,
+                }
+              }
+            >
+              <div
+                className="dtc v-mid tc"
+              >
+                <img
+                  alt="Private"
+                  className="center v-mid"
+                  src="/images/private.svg"
+                  style={
+                    Object {
+                      "maxWidth": 60,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </Hexicon>
+          <h3
+            className="f4 fw1 white tracked--1"
+          >
+            Private
+          </h3>
+          <p
+            className="f6 fw2 lh-copy"
+          >
+            Communication between parties is encrypted.
+          </p>
+        </div>
+        <div
+          className="dtc-ns mw5-ns"
+        >
+          <Hexicon
+            name="Encrypted"
+          >
+            <div
+              className="dt caribbean-green center"
+              style={
+                Object {
+                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "height": 124,
+                  "width": 108,
+                }
+              }
+            >
+              <div
+                className="dtc v-mid tc"
+              >
+                <img
+                  alt="Encrypted"
+                  className="center v-mid"
+                  src="/images/encrypted.svg"
+                  style={
+                    Object {
+                      "maxWidth": 60,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </Hexicon>
+          <h3
+            className="f4 fw1 white tracked--1"
+          >
+            Encrypted
+          </h3>
+          <p
+            className="f6 fw2 lh-copy"
+          >
+            Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+          </p>
+        </div>
+        <div
+          className="dtc-ns mw5-ns pa4"
+        >
+          <Hexicon
+            name="Collaborative"
+          >
+            <div
+              className="dt caribbean-green center"
+              style={
+                Object {
+                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "height": 124,
+                  "width": 108,
+                }
+              }
+            >
+              <div
+                className="dtc v-mid tc"
+              >
+                <img
+                  alt="Collaborative"
+                  className="center v-mid"
+                  src="/images/collaborative.svg"
+                  style={
+                    Object {
+                      "maxWidth": 60,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </Hexicon>
+          <h3
+            className="f4 fw1 white tracked--1"
+          >
+            Collaborative
+          </h3>
+          <p
+            className="f6 fw2 lh-copy"
+          >
+            Thanks to CRDTs and Y.js, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+          </p>
+        </div>
+        <div
+          className="dtc-ns mw5-ns"
+        >
+          <Hexicon
+            name="Realtime"
+          >
+            <div
+              className="dt caribbean-green center"
+              style={
+                Object {
+                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "height": 124,
+                  "width": 108,
+                }
+              }
+            >
+              <div
+                className="dtc v-mid tc"
+              >
+                <img
+                  alt="Realtime"
+                  className="center v-mid"
+                  src="/images/realtime.svg"
+                  style={
+                    Object {
+                      "maxWidth": 60,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </Hexicon>
+          <h3
+            className="f4 fw1 white tracked--1"
+          >
+            Realtime
+          </h3>
+          <p
+            className="f6 fw2 lh-copy"
+          >
+            When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+          </p>
+        </div>
+      </div>
     </section>
     <section
-      className="pa3"
+      className="pa3 mv5 mw8 center"
       id="how-it-works"
     >
       <h2
@@ -274,23 +471,311 @@ exports[`can create document via button 1`] = `
       >
         How it works
       </h2>
-    </section>
-    <section
-      className="pa3"
-      id="benefits"
-    >
-      <h2
-        className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
+      <p
+        className="fw1 lh-copy tracked--1"
         style={
           Object {
-            "fontSize": "40px",
+            "fontSize": "22px",
+            "lineHeight": "42px",
           }
         }
       >
-        Benefits
-      </h2>
+        A Conflict-free Replicated Data Type (CRDT) offers 'Strong Eventual Consistency': a flavour of eventual consistency that ensures conflicts can be merged automatically to produce a value that is guaranteed to be correct/consistent.
+      </p>
+      <p
+        className="fw1 lh-copy tracked--1"
+        style={
+          Object {
+            "fontSize": "22px",
+            "lineHeight": "42px",
+          }
+        }
+      >
+        Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
+      </p>
+      <img
+        alt="A graph showing peers independently updating state over time; The most recent state is the union of each peers updates."
+        className="mt5"
+        src="/images/how-it-works.png"
+      />
     </section>
-    <footer>
+    <section
+      className="pa3 mv5"
+      id="benefits"
+    >
+      <div
+        className="mw8 center mb6"
+      >
+        <h2
+          className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
+          style={
+            Object {
+              "fontSize": "40px",
+            }
+          }
+        >
+          What you can do with PeerPad
+        </h2>
+        <p
+          className="fw1 lh-copy tracked--1"
+          style={
+            Object {
+              "fontSize": "22px",
+              "lineHeight": "42px",
+            }
+          }
+        >
+          Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
+        </p>
+      </div>
+      <div
+        className="center tl mw8"
+      >
+        <div
+          className="dib-l w-50-l v-top pb4 mw6 center"
+        >
+          <div
+            className="dt w-100"
+          >
+            <div
+              className="dtc v-top"
+              style={
+                Object {
+                  "width": 108,
+                }
+              }
+            >
+              <Hexicon
+                name="Take notes"
+              >
+                <div
+                  className="dt caribbean-green center"
+                  style={
+                    Object {
+                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "height": 124,
+                      "width": 108,
+                    }
+                  }
+                >
+                  <div
+                    className="dtc v-mid tc"
+                  >
+                    <img
+                      alt="Take notes"
+                      className="center v-mid"
+                      src="/images/take-notes.svg"
+                      style={
+                        Object {
+                          "maxWidth": 60,
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </Hexicon>
+            </div>
+            <div
+              className="dtc v-top pl3 pr4-l"
+            >
+              <h3
+                className="f6 fw4 white tracked--1"
+              >
+                Take meeting notes
+              </h3>
+              <p
+                className="f6 fw2 lh-copy"
+              >
+                Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="dib-l w-50-l v-top pb4 mw6 center"
+        >
+          <div
+            className="dt w-100"
+          >
+            <div
+              className="dtc v-top"
+              style={
+                Object {
+                  "width": 108,
+                }
+              }
+            >
+              <Hexicon
+                name="Collaborate"
+              >
+                <div
+                  className="dt caribbean-green center"
+                  style={
+                    Object {
+                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "height": 124,
+                      "width": 108,
+                    }
+                  }
+                >
+                  <div
+                    className="dtc v-mid tc"
+                  >
+                    <img
+                      alt="Collaborate"
+                      className="center v-mid"
+                      src="/images/collaborate.svg"
+                      style={
+                        Object {
+                          "maxWidth": 60,
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </Hexicon>
+            </div>
+            <div
+              className="dtc v-top pl3 pr4-l"
+            >
+              <h3
+                className="f6 fw4 white tracked--1"
+              >
+                Collaborate or share snippets of code
+              </h3>
+              <p
+                className="f6 fw2 lh-copy"
+              >
+                Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="dib-l w-50-l v-top pb4 mw6 center"
+        >
+          <div
+            className="dt w-100"
+          >
+            <div
+              className="dtc v-top"
+              style={
+                Object {
+                  "width": 108,
+                }
+              }
+            >
+              <Hexicon
+                name="Write articles"
+              >
+                <div
+                  className="dt caribbean-green center"
+                  style={
+                    Object {
+                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "height": 124,
+                      "width": 108,
+                    }
+                  }
+                >
+                  <div
+                    className="dtc v-mid tc"
+                  >
+                    <img
+                      alt="Write articles"
+                      className="center v-mid"
+                      src="/images/write-articles.svg"
+                      style={
+                        Object {
+                          "maxWidth": 60,
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </Hexicon>
+            </div>
+            <div
+              className="dtc v-top pl3 pr4-l"
+            >
+              <h3
+                className="f6 fw4 white tracked--1"
+              >
+                Write articles and share them
+              </h3>
+              <p
+                className="f6 fw2 lh-copy"
+              >
+                You can publish a snapshot of a pad to IPFS, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="dib-l w-50-l v-top pb4 mw6 center"
+        >
+          <div
+            className="dt w-100"
+          >
+            <div
+              className="dtc v-top"
+              style={
+                Object {
+                  "width": 108,
+                }
+              }
+            >
+              <Hexicon
+                name="Work with multiple users"
+              >
+                <div
+                  className="dt caribbean-green center"
+                  style={
+                    Object {
+                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "height": 124,
+                      "width": 108,
+                    }
+                  }
+                >
+                  <div
+                    className="dtc v-mid tc"
+                  >
+                    <img
+                      alt="Work with multiple users"
+                      className="center v-mid"
+                      src="/images/work-with-multiple-users.svg"
+                      style={
+                        Object {
+                          "maxWidth": 60,
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </Hexicon>
+            </div>
+            <div
+              className="dtc v-top pl3 pr4-l"
+            >
+              <h3
+                className="f6 fw4 white tracked--1"
+              >
+                Work with multiple users at the same time
+              </h3>
+              <p
+                className="f6 fw2 lh-copy"
+              >
+                Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      className="mt6"
+    >
       <div
         className="dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft"
         style={
@@ -302,34 +787,94 @@ exports[`can create document via button 1`] = `
         <nav
           className="db dtc-l v-mid w-100 w-50-l tl-l"
         >
-          <a
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#about"
             title="About"
+            to="#about"
           >
-            What is PeerPad
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="About"
+              to="#about"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#about"
+                onClick={[Function]}
+                title="About"
+              >
+                What is PeerPad
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#features"
             title="Features"
+            to="#features"
           >
-            Features
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="Features"
+              to="#features"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#features"
+                onClick={[Function]}
+                title="Features"
+              >
+                Features
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#how-it-works"
             title="How it works"
+            to="#how-it-works"
           >
-            How it works
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="How it works"
+              to="#how-it-works"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#how-it-works"
+                onClick={[Function]}
+                title="How it works"
+              >
+                How it works
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#benefits"
-            title=""
+            title="What you can do with PeerPad"
+            to="#benefits"
           >
-            Benefits
-          </a>
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="What you can do with PeerPad"
+              to="#benefits"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#benefits"
+                onClick={[Function]}
+                title="What you can do with PeerPad"
+              >
+                Benefits
+              </a>
+            </Link>
+          </HashLink>
         </nav>
         <small
           className="db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy"

@@ -1,0 +1,47 @@
+@import '../colors.css';
+
+.caribbean-green-glow {
+  text-shadow:
+    var(--caribbean-green) 0 0 60px,
+    var(--caribbean-green) 0 0 40px,
+    var(--caribbean-green) 0 0 20px;
+  position: relative;
+  display: inline-block;
+  z-index: 200;
+}
+
+.caribbean-green-glow::after {
+  content: ' ';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 0px;
+  height: 0px;
+  box-shadow: var(--caribbean-green) 0 0 500px 50px;
+  border-radius: 100%;
+  z-index: -100;
+}
+
+.bright-turquoise-glow {
+  text-shadow:
+    var(--bright-turquoise) 0 0 60px,
+    var(--bright-turquoise) 0 0 40px,
+    var(--bright-turquoise) 0 0 20px;
+  position: relative;
+  display: inline-block;
+  z-index: 200;
+}
+
+.bright-turquoise-glow::after {
+  content: ' ';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 0px;
+  height: 0px;
+  box-shadow: var(--bright-turquoise) 0 0 500px 50px;
+  border-radius: 100%;
+  z-index: -100;
+}
