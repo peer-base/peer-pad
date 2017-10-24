@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
 import CreateDocument from './CreateDocument'
 import Warning from './home/Warning'
+import Hexicon from './home/Hexicon'
 import './Home.css'
 
 class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: false,
-      showWarning: true
+      error: false
     }
   }
 
   render () {
     return (
       <div className='Home tc white' style={{backgroundColor: '#090d21'}}>
-        {this.state.showWarning && (
-          <Warning onClose={() => this.setState({showWarning: false})} />
-        )}
+        <Warning />
         <header className='db pt3 pb4'>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
             <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='#home' title='Home'>
@@ -66,41 +64,41 @@ class Home extends Component {
             </p>
           </div>
           <div className='dt-ns center tc' style={{maxWidth: '1366px'}}>
-            <div className='dtr-ns'>
-              <div className='dtc-ns mw5-ns pa4'>
-                <h3 className='f4 fw1 white tracked--1'>
-                  Private
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Communication between parties is encrypted.
-                </p>
-              </div>
-              <div className='dtc-ns mw5-ns'>
-                <h3 className='f4 fw1 white tracked--1'>
-                  Encrypted
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
-                </p>
-              </div>
+            <div className='dtc-ns mw5-ns pa4'>
+              <Hexicon name='Private' />
+              <h3 className='f4 fw1 white tracked--1'>
+                Private
+              </h3>
+              <p className='f6 fw2 lh-copy'>
+                Communication between parties is encrypted.
+              </p>
             </div>
-            <div className='dtr-ns'>
-              <div className='dtc-ns mw5-ns pa4'>
-                <h3 className='f4 fw1 white tracked--1'>
-                  Collaborative
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  Thanks to CRDTs and Y.js, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
-                </p>
-              </div>
-              <div className='dtc-ns mw5-ns'>
-                <h3 className='f4 fw1 white tracked--1'>
-                  Realtime
-                </h3>
-                <p className='f6 fw2 lh-copy'>
-                  When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
-                </p>
-              </div>
+            <div className='dtc-ns mw5-ns'>
+              <Hexicon name='Encrypted' />
+              <h3 className='f4 fw1 white tracked--1'>
+                Encrypted
+              </h3>
+              <p className='f6 fw2 lh-copy'>
+                Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+              </p>
+            </div>
+            <div className='dtc-ns mw5-ns pa4'>
+              <Hexicon name='Collaborative' />
+              <h3 className='f4 fw1 white tracked--1'>
+                Collaborative
+              </h3>
+              <p className='f6 fw2 lh-copy'>
+                Thanks to CRDTs and Y.js, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+              </p>
+            </div>
+            <div className='dtc-ns mw5-ns'>
+              <Hexicon name='Realtime' />
+              <h3 className='f4 fw1 white tracked--1'>
+                Realtime
+              </h3>
+              <p className='f6 fw2 lh-copy'>
+                When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+              </p>
             </div>
           </div>
         </section>
@@ -138,7 +136,7 @@ class Home extends Component {
             <div className='dib-l w-50-l v-top pb4 mw6 center'>
               <div className='dt w-100'>
                 <div className='dtc v-top' style={{width: 108}}>
-                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                  <Hexicon name='Take notes' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
                   <h3 className='f6 fw4 white tracked--1'>
@@ -154,7 +152,7 @@ class Home extends Component {
             <div className='dib-l w-50-l v-top pb4 mw6 center'>
               <div className='dt w-100'>
                 <div className='dtc v-top' style={{width: 108}}>
-                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                  <Hexicon name='Collaborate' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
                   <h3 className='f6 fw4 white tracked--1'>
@@ -170,7 +168,7 @@ class Home extends Component {
             <div className='dib-l w-50-l v-top pb4 mw6 center'>
               <div className='dt w-100'>
                 <div className='dtc v-top' style={{width: 108}}>
-                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                  <Hexicon name='Write articles' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
                   <h3 className='f6 fw4 white tracked--1'>
@@ -186,7 +184,7 @@ class Home extends Component {
             <div className='dib-l w-50-l v-top pb4 mw6 center'>
               <div className='dt w-100'>
                 <div className='dtc v-top' style={{width: 108}}>
-                  <img className='v-100' style={{width: 108, height: 124, background: '#02caad'}} />
+                  <Hexicon name='Work with multiple users' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
                   <h3 className='f6 fw4 white tracked--1'>

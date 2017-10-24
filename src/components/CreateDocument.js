@@ -34,7 +34,7 @@ class CreateDocument extends Component {
           </select>
           <button
             type='button'
-            className='input-reset bg-caribbean-green ba b--caribbean-green white f6 fw5 mv2 ph3 pv2 dim tracked--1'
+            className='input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 dim tracked--1'
             onClick={this.handleClick.bind(this)}>GO</button>
         </div>
       </form>
