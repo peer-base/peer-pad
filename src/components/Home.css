@@ -45,31 +45,3 @@
   border-radius: 100%;
   z-index: -100;
 }
-
-.bg-features {
-  background: transparent url(/images/features.png) center;
-  background-size: cover;
-}
-
-/*.bg-hero {
-  background: transparent url(/images/hero.jpg) center;
-  background-size: cover;
-}*/
-
-/* TODO: Remove glow from background images */
-
-/* 1366×534px  ~53Kb */
-/*.bg-hero {
-  background: transparent url(/images/hero.jpg) center;
-  background-size: cover;
-}*/
-
-/* 2732×1068px ~176Kb */
-/*@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-width: 680px) {
-    .bg-hero {
-      background-image: url(/images/hero@2x.jpg);
-    }
-}*/
