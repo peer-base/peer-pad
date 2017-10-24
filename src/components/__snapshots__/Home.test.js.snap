@@ -19,7 +19,7 @@ exports[`can create document via button 1`] = `
       >
         <a
           className="db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l"
-          href="#home"
+          href="/"
           title="Home"
         >
           <img
@@ -37,34 +37,94 @@ exports[`can create document via button 1`] = `
         <div
           className="db dtc-l v-btm w-100 w-75-l tc tr-l"
         >
-          <a
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
-            href="#about"
             title="About"
+            to="#about"
           >
-            What is PeerPad
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+              onClick={[Function]}
+              replace={false}
+              title="About"
+              to="#about"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+                href="#about"
+                onClick={[Function]}
+                title="About"
+              >
+                What is PeerPad
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#features"
             title="Features"
+            to="#features"
           >
-            Features
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title="Features"
+              to="#features"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#features"
+                onClick={[Function]}
+                title="Features"
+              >
+                Features
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#how-it-works"
             title="How it works"
+            to="#how-it-works"
           >
-            How it works
-          </a>
-          <a
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title="How it works"
+              to="#how-it-works"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#how-it-works"
+                onClick={[Function]}
+                title="How it works"
+              >
+                How it works
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
-            href="#benefits"
             title=""
+            to="#benefits"
           >
-            Benefits
-          </a>
+            <Link
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              onClick={[Function]}
+              replace={false}
+              title=""
+              to="#benefits"
+            >
+              <a
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                href="#benefits"
+                onClick={[Function]}
+                title=""
+              >
+                Benefits
+              </a>
+            </Link>
+          </HashLink>
         </div>
       </nav>
     </header>
@@ -727,34 +787,94 @@ exports[`can create document via button 1`] = `
         <nav
           className="db dtc-l v-mid w-100 w-50-l tl-l"
         >
-          <a
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#about"
             title="About"
+            to="#about"
           >
-            What is PeerPad
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="About"
+              to="#about"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#about"
+                onClick={[Function]}
+                title="About"
+              >
+                What is PeerPad
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#features"
             title="Features"
+            to="#features"
           >
-            Features
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="Features"
+              to="#features"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#features"
+                onClick={[Function]}
+                title="Features"
+              >
+                Features
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#how-it-works"
             title="How it works"
+            to="#how-it-works"
           >
-            How it works
-          </a>
-          <a
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="How it works"
+              to="#how-it-works"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#how-it-works"
+                onClick={[Function]}
+                title="How it works"
+              >
+                How it works
+              </a>
+            </Link>
+          </HashLink>
+          <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
-            href="#benefits"
-            title=""
+            title="What you can do with PeerPad"
+            to="#benefits"
           >
-            Benefits
-          </a>
+            <Link
+              className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+              onClick={[Function]}
+              replace={false}
+              title="What you can do with PeerPad"
+              to="#benefits"
+            >
+              <a
+                className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+                href="#benefits"
+                onClick={[Function]}
+                title="What you can do with PeerPad"
+              >
+                Benefits
+              </a>
+            </Link>
+          </HashLink>
         </nav>
         <small
           className="db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy"

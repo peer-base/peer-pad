@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { HashLink as Link } from 'react-router-hash-link'
 import CreateDocument from './CreateDocument'
 import Warning from './home/Warning'
 import Hexicon from './home/Hexicon'
@@ -18,14 +19,14 @@ class Home extends Component {
         <Warning />
         <header className='db pt3 pb4'>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
-            <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='#home' title='Home'>
+            <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
               <img src='/images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{width: '224px', height: '88px'}} />
             </a>
             <div className='db dtc-l v-btm w-100 w-75-l tc tr-l'>
-              <a className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' href='#about' title='About'>What is PeerPad</a>
-              <a className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' href='#features' title='Features'>Features</a>
-              <a className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' href='#how-it-works' title='How it works'>How it works</a>
-              <a className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' href='#benefits' title=''>Benefits</a>
+              <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
+              <Link to='#features' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3'title='Features'>Features</Link>
+              <Link to='#how-it-works' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title='How it works'>How it works</Link>
+              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title=''>Benefits</Link>
             </div>
           </nav>
         </header>
@@ -202,10 +203,10 @@ class Home extends Component {
         <footer className='mt6'>
           <div className='dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed'}} >
             <nav className='db dtc-l v-mid w-100 w-50-l tl-l'>
-              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#about' title='About'>What is PeerPad</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#features' title='Features'>Features</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#how-it-works' title='How it works'>How it works</a>
-              <a className='link dim white f6 fw3 db dib-ns mr1-ns pa3' href='#benefits' title=''>Benefits</a>
+              <Link to='#about' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='About'>What is PeerPad</Link>
+              <Link to='#features' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Features'>Features</Link>
+              <Link to='#how-it-works' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='How it works'>How it works</Link>
+              <Link to='#benefits' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='What you can do with PeerPad'>Benefits</Link>
             </nav>
             <small className='db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
               <a className='link white db dib-ns mb3 mb0-ns' href='https://protocol.ai/'>© Protocol Labs </a>
