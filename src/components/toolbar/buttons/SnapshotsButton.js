@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
+import SnapshotLink from '../../SnapshotLink'
 import { SnapshotIcon } from '../../icons'
 import { Dropleft, DropleftMenu } from '../../dropdown/Dropleft'
-
-const GATEWAY_PREFIX = 'https://gateway.ipfs.io/ipfs'
 
 export default class SnapshotsButton extends Component {
   constructor (props) {
@@ -41,16 +40,13 @@ export default class SnapshotsButton extends Component {
             {snapshots.length ? (
               <ul className='list ma0 pa0'>
                 {snapshots.map((ss) => {
-                  console.log(ss)
-                  const url = `${GATEWAY_PREFIX}/${ss.hash}/#${ss.key}`
                   return (
-                    <li key={url} className='mb3'>
-                      <small className='db mb1 f7 fw5 pigeon-post'>[timestamp]</small>
-                      <a href={url}
+                    <li key={ss.hash} className='mb3'>
+                      <small className='db mb1 f7 fw5 pigeon-post'>{ss.createdAt}</small>
+                      <SnapshotLink
+                        snapshot={ss}
                         className='f7 big-stone db code'
-                        style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {ss.hash}
-                      </a>
+                        style={{ overflow: 'hidden', textOverflow: 'ellipsis' }} />
                     </li>
                   )
                 })}
