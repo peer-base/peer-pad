@@ -5,9 +5,7 @@ import Header from './header/Header'
 import ViewMode from './header/ViewMode'
 import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
 import Name from './Name'
-import Editor from './Editor'
-import Preview from './Preview'
-import Toolbar from './toolbar/Toolbar'
+import EditorArea from './EditorArea'
 import Status from './Status'
 import DocViewer from './DocViewer'
 
@@ -94,68 +92,6 @@ class Edit extends Component {
       onTakeSnapshot
     } = this
 
-    let editorContainer
-
-    if (type === 'richtext') {
-      editorContainer = (
-        <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-      )
-    } else {
-      editorContainer = (
-        <div>
-          {viewMode === 'both' ? (
-            <div className='flex-ns flex-row' style={{ minHeight: '500px' }}>
-              <div className='ph3 pl0-ns pr3-ns w-50-ns'>
-                <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-              </div>
-              <div className='ph3 pl3 pr0-ns w-50-ns'>
-                <Preview md={md} />
-              </div>
-              <div style={{ flexGrow: 0 }}>
-                <Toolbar
-                  theme='light'
-                  docType={type}
-                  docName={name}
-                  docKeys={rawKeys}
-                  snapshots={snapshots}
-                  onTakeSnapshot={onTakeSnapshot} />
-              </div>
-            </div>
-          ) : (
-            <div>
-              {viewMode === 'source' ? (
-                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
-                  <div className='flex-auto'>
-                    <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-                  </div>
-                  <Toolbar
-                    theme='dark'
-                    docType={type}
-                    docName={name}
-                    docKeys={rawKeys}
-                    snapshots={snapshots}
-                    onTakeSnapshot={onTakeSnapshot} />
-                </div>
-              ) : (
-                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
-                  <div className='flex-auto'>
-                    <Preview md={md} />
-                  </div>
-                  <Toolbar
-                    theme='light'
-                    docType={type}
-                    docName={name}
-                    docKeys={rawKeys}
-                    snapshots={snapshots}
-                    onTakeSnapshot={onTakeSnapshot} />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )
-    }
-
     return (
       <div>
         <Header>
@@ -188,10 +124,16 @@ class Edit extends Component {
                 </div>
               </div>
             </div>
-            <div>
-              {editorContainer}
-            </div>
-
+            <EditorArea
+              docName={name}
+              docType={type}
+              docKeys={rawKeys}
+              viewMode={viewMode}
+              onEditor={onEditor}
+              onEditorValueChange={onEditorValueChange}
+              snapshots={snapshots}
+              onTakeSnapshot={onTakeSnapshot}
+              previewMd={md} />
             <div>
               <Status status={status} />
             </div>
