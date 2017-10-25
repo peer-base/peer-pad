@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { HashLink as Link } from 'react-router-hash-link'
 import CreateDocument from './CreateDocument'
-import Warning from './home/Warning'
-import Hexicon from './home/Hexicon'
+import StartButton from './StartButton'
+import Warning from './Warning'
+import Hexicon from './Hexicon'
 import './Home.css'
 
 class Home extends Component {
@@ -26,7 +27,8 @@ class Home extends Component {
               <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
               <Link to='#features' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3'title='Features'>Features</Link>
               <Link to='#how-it-works' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title='How it works'>How it works</Link>
-              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title=''>Benefits</Link>
+              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr3 pa3' title=''>Benefits</Link>
+              <StartButton />
             </div>
           </nav>
         </header>

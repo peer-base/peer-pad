@@ -4,11 +4,10 @@ import { HashRouter as Router, Route } from 'react-router-dom'
 
 import PeerpadBackend from 'peerpad-core'
 
-import Home from './Home'
+import Home from './home/Home'
 import Edit from './Edit'
 
 class App extends Component {
-
   constructor (props) {
     super(props)
     this._backend = PeerpadBackend()

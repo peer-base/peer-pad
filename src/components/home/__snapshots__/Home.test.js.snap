@@ -104,19 +104,19 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+            className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
             title=""
             to="#benefits"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
               onClick={[Function]}
               replace={false}
               title=""
               to="#benefits"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
                 href="#benefits"
                 onClick={[Function]}
                 title=""
@@ -125,6 +125,26 @@ exports[`can create document via button 1`] = `
               </a>
             </Link>
           </HashLink>
+          <Component>
+            <CreateDocumentContainer>
+              <StartButton
+                onClick={[Function]}
+              >
+                <button
+                  className="dib bg-transparent ba b--bright-turquoise bright-turquoise ph4 pv1 fw1 tracked--1 pointer dim"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "fontSize": "15px",
+                    }
+                  }
+                  type="button"
+                >
+                  START
+                </button>
+              </StartButton>
+            </CreateDocumentContainer>
+          </Component>
         </div>
       </nav>
     </header>
@@ -156,66 +176,85 @@ exports[`can create document via button 1`] = `
       <div
         className="mt5"
       >
-        <CreateDocument>
-          <form>
-            <div
-              className="lh-copy"
+        <Component>
+          <CreateDocumentContainer>
+            <CreateDocument
+              onCreateDocument={[Function]}
+              onTypeChange={[Function]}
+              type="markdown"
             >
-              <label
-                className="db dib-ns fw1 tracked--1 white mv2"
-                style={
-                  Object {
-                    "fontSize": "28px",
-                  }
-                }
-              >
-                Create new:
-              </label>
-              <select
-                className="appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
-                onChange={[Function]}
-                placeholder="select type"
-                style={
-                  Object {
-                    "background": "none",
-                    "borderRadius": 0,
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                <option
-                  className="black"
-                  style={
-                    Object {
-                      "fontSize": "18px",
-                    }
-                  }
-                  value="markdown"
+              <form>
+                <div
+                  className="lh-copy"
                 >
-                  Markdown pad
-                </option>
-                <option
-                  className="black"
-                  style={
-                    Object {
-                      "fontSize": "18px",
+                  <label
+                    className="db dib-ns fw1 tracked--1 white mv2"
+                    style={
+                      Object {
+                        "fontSize": "28px",
+                      }
                     }
-                  }
-                  value="richtext"
-                >
-                  Rich text pad
-                </option>
-              </select>
-              <button
-                className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 dim tracked--1"
-                onClick={[Function]}
-                type="button"
-              >
-                GO
-              </button>
-            </div>
-          </form>
-        </CreateDocument>
+                  >
+                    Create new:
+                  </label>
+                  <select
+                    className="appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
+                    onChange={[Function]}
+                    placeholder="select type"
+                    style={
+                      Object {
+                        "background": "none",
+                        "borderRadius": 0,
+                        "fontSize": "18px",
+                      }
+                    }
+                    value="markdown"
+                  >
+                    <DocTypeOption
+                      text="Markdown pad"
+                      value="markdown"
+                    >
+                      <option
+                        className="black"
+                        style={
+                          Object {
+                            "fontSize": "18px",
+                          }
+                        }
+                        value="markdown"
+                      >
+                        Markdown pad
+                      </option>
+                    </DocTypeOption>
+                    <DocTypeOption
+                      text="Rich text pad"
+                      value="richtext"
+                    >
+                      <option
+                        className="black"
+                        style={
+                          Object {
+                            "fontSize": "18px",
+                          }
+                        }
+                        value="richtext"
+                      >
+                        Rich text pad
+                      </option>
+                    </DocTypeOption>
+                  </select>
+                  <button
+                    className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 pointer dim tracked--1"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    GO
+                  </button>
+                </div>
+              </form>
+            </CreateDocument>
+          </CreateDocumentContainer>
+        </Component>
       </div>
     </section>
     <section
