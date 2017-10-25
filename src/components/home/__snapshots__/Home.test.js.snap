@@ -6,13 +6,13 @@ exports[`can create document via button 1`] = `
     className="Home tc white"
     style={
       Object {
-        "backgroundColor": "#090d21",
+        "backgroundColor": "#041125",
       }
     }
   >
     <WarningContainer />
     <header
-      className="db pt3 pb4"
+      className="db pv3"
     >
       <nav
         className="db dt-l w-100 border-box pa3 ph5-l"
@@ -125,136 +125,159 @@ exports[`can create document via button 1`] = `
               </a>
             </Link>
           </HashLink>
-          <Component>
-            <CreateDocumentContainer>
-              <StartButton
-                onClick={[Function]}
-              >
-                <button
-                  className="dib bg-transparent ba b--bright-turquoise bright-turquoise ph4 pv1 fw1 tracked--1 pointer dim"
+          <div
+            className="db dib-ns pv3 pv0-ns"
+          >
+            <Component>
+              <CreateDocumentContainer>
+                <StartButton
                   onClick={[Function]}
-                  style={
-                    Object {
-                      "fontSize": "15px",
-                    }
-                  }
-                  type="button"
                 >
-                  START
-                </button>
-              </StartButton>
-            </CreateDocumentContainer>
-          </Component>
+                  <button
+                    className="dib bg-transparent ba b--bright-turquoise bright-turquoise ph4 pv1 fw1 tracked--1 pointer dim"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "fontSize": "15px",
+                      }
+                    }
+                    type="button"
+                  >
+                    START
+                  </button>
+                </StartButton>
+              </CreateDocumentContainer>
+            </Component>
+          </div>
         </div>
       </nav>
     </header>
     <section
-      className="db ph2 pb6 mw8 center"
+      className="db pt3 pb6 center bg-hero-wave"
       id="hero"
+      style={
+        Object {
+          "maxWidth": "1440px",
+        }
+      }
     >
-      <h1
-        className="f2 f1-ns fw2 lh-copy tracked bright-turquoise"
-      >
-        HELLO WORLD
-      </h1>
-      <h2
-        className="f3 f2-ns fw2 lh-copy tracked"
-      >
-        PeerPad is a realtime collaborative editing tool, powered by 
-        <span
-          className="fw5 bright-turquoise-glow"
-        >
-          IPFS
-        </span>
-         and 
-        <span
-          className="fw5 caribbean-green-glow"
-        >
-          CRDTs
-        </span>
-      </h2>
       <div
-        className="mt5"
+        className="center ph2"
+        style={
+          Object {
+            "maxWidth": "50rem",
+          }
+        }
       >
-        <Component>
-          <CreateDocumentContainer>
-            <CreateDocument
-              onCreateDocument={[Function]}
-              onTypeChange={[Function]}
-              type="markdown"
-            >
-              <form>
-                <div
-                  className="lh-copy"
-                >
-                  <label
-                    className="db dib-ns fw1 tracked--1 white mv2"
-                    style={
-                      Object {
-                        "fontSize": "28px",
-                      }
-                    }
+        <h1
+          className="f2 f1-ns fw2 lh-copy tracked bright-turquoise"
+        >
+          HELLO WORLD!
+        </h1>
+        <h2
+          className="f3 f2-ns fw2 lh-copy relative"
+          style={
+            Object {
+              "zIndex": "1000",
+            }
+          }
+        >
+          PeerPad is a realtime collaborative editing tool, powered by 
+          <span
+            className="fw4 bright-turquoise-glow"
+          >
+            IPFS
+          </span>
+           and 
+          <span
+            className="fw4 caribbean-green-glow"
+          >
+            CRDTs
+          </span>
+        </h2>
+        <div
+          className="mt5"
+        >
+          <Component>
+            <CreateDocumentContainer>
+              <CreateDocument
+                onCreateDocument={[Function]}
+                onTypeChange={[Function]}
+                type="markdown"
+              >
+                <form>
+                  <div
+                    className="lh-copy"
                   >
-                    Create new:
-                  </label>
-                  <select
-                    className="appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
-                    onChange={[Function]}
-                    placeholder="select type"
-                    style={
-                      Object {
-                        "background": "none",
-                        "borderRadius": 0,
-                        "fontSize": "18px",
+                    <label
+                      className="db dib-ns fw1 tracked--1 white mv2"
+                      style={
+                        Object {
+                          "fontSize": "28px",
+                        }
                       }
-                    }
-                    value="markdown"
-                  >
-                    <DocTypeOption
-                      text="Markdown pad"
+                    >
+                      Create new:
+                    </label>
+                    <select
+                      className="appearance-none fw1 tracked--1 mh3 mv2 ph3 pv2 ba b--dashed b--caribbean-green-soft white tc"
+                      onChange={[Function]}
+                      placeholder="select type"
+                      style={
+                        Object {
+                          "background": "none",
+                          "borderRadius": 0,
+                          "fontSize": "18px",
+                        }
+                      }
                       value="markdown"
                     >
-                      <option
-                        className="black"
-                        style={
-                          Object {
-                            "fontSize": "18px",
-                          }
-                        }
+                      <DocTypeOption
+                        text="Markdown pad"
                         value="markdown"
                       >
-                        Markdown pad
-                      </option>
-                    </DocTypeOption>
-                    <DocTypeOption
-                      text="Rich text pad"
-                      value="richtext"
-                    >
-                      <option
-                        className="black"
-                        style={
-                          Object {
-                            "fontSize": "18px",
+                        <option
+                          className="black"
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
                           }
-                        }
+                          value="markdown"
+                        >
+                          Markdown pad
+                        </option>
+                      </DocTypeOption>
+                      <DocTypeOption
+                        text="Rich text pad"
                         value="richtext"
                       >
-                        Rich text pad
-                      </option>
-                    </DocTypeOption>
-                  </select>
-                  <button
-                    className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 pointer dim tracked--1"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    GO
-                  </button>
-                </div>
-              </form>
-            </CreateDocument>
-          </CreateDocumentContainer>
-        </Component>
+                        <option
+                          className="black"
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                          value="richtext"
+                        >
+                          Rich text pad
+                        </option>
+                      </DocTypeOption>
+                    </select>
+                    <button
+                      className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 pointer dim tracked--1"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      GO
+                    </button>
+                  </div>
+                </form>
+              </CreateDocument>
+            </CreateDocumentContainer>
+          </Component>
+        </div>
       </div>
     </section>
     <section

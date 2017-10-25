@@ -16,9 +16,9 @@ class Home extends Component {
 
   render () {
     return (
-      <div className='Home tc white' style={{backgroundColor: '#090d21'}}>
+      <div className='Home tc white' style={{backgroundColor: '#041125'}}>
         <Warning />
-        <header className='db pt3 pb4'>
+        <header className='db pv3'>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
             <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
               <img src='/images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{width: '224px', height: '88px'}} />
@@ -28,22 +28,25 @@ class Home extends Component {
               <Link to='#features' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3'title='Features'>Features</Link>
               <Link to='#how-it-works' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title='How it works'>How it works</Link>
               <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr3 pa3' title=''>Benefits</Link>
-              <StartButton />
+              <div className='db dib-ns pv3 pv0-ns'>
+                <StartButton />
+              </div>
             </div>
           </nav>
         </header>
 
-        <section id='hero' className='db ph2 pb6 mw8 center'>
-          <h1 className='f2 f1-ns fw2 lh-copy tracked bright-turquoise'>HELLO WORLD</h1>
-          <h2 className='f3 f2-ns fw2 lh-copy tracked'>
-            PeerPad is a realtime collaborative editing tool,
-            powered by <span className='fw5 bright-turquoise-glow'>IPFS</span> and <span className='fw5 caribbean-green-glow'>CRDTs</span>
-          </h2>
-          <div className='mt5'>
-            <CreateDocument />
-            {this.state.error ? (
-              <p className='f4 fw3 lh-copy tracked--1 razzmatazz'>{this.state.error}</p>
-            ) : null}
+        <section id='hero' className='db pt3 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
+          <div className='center ph2' style={{maxWidth: '50rem'}}>
+            <h1 className='f2 f1-ns fw2 lh-copy tracked bright-turquoise'>HELLO WORLD!</h1>
+            <h2 className='f3 f2-ns fw2 lh-copy relative' style={{zIndex: '1000'}}>
+              PeerPad is a realtime collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'>IPFS</span> and <span className='fw4 caribbean-green-glow'>CRDTs</span>
+            </h2>
+            <div className='mt5'>
+              <CreateDocument />
+              {this.state.error ? (
+                <p className='f4 fw3 lh-copy tracked--1 razzmatazz'>{this.state.error}</p>
+              ) : null}
+            </div>
           </div>
         </section>
 
