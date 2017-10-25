@@ -23,13 +23,13 @@ const Toolbar = ({
       <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
     </div>
     <div className='mb3'>
-      <Button theme={theme} icon={DirectoryIcon} title='View directory' onClick={null} />
+      <Button theme={theme} icon={DirectoryIcon} title='Coming soon: View directory' disabled />
     </div>
     <div className='mb3'>
-      <Button theme={theme} icon={SettingsIcon} title='Settings' onClick={null} />
+      <Button theme={theme} icon={SettingsIcon} title='Coming soon: Settings' disabled />
     </div>
     <div className='mb3'>
-      <Button theme={theme} icon={ShortcutsIcon} title='Shortcuts' onClick={null} />
+      <Button theme={theme} icon={ShortcutsIcon} title='Coming soon: Shortcuts' disabled />
     </div>
   </div>
 )
