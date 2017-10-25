@@ -36,16 +36,18 @@ export default class SnapshotsButton extends Component {
     return (
       <Dropleft>
         <Button theme={theme} icon={SnapshotIcon} title='Snapshots' onClick={onDropleftTriggerClick} />
-        <DropleftMenu width={300} height={77} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
-          <div className='pa3'>
+        <DropleftMenu width={400} height={80} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
+          <div className='pa4'>
             {snapshots.length ? (
               <ul className='list ma0 pa0'>
                 {snapshots.map((ss) => {
+                  console.log(ss)
                   const url = `${GATEWAY_PREFIX}/${ss.hash}/#${ss.key}`
                   return (
-                    <li key={url} className='mb2'>
+                    <li key={url} className='mb3'>
+                      <small className='db mb1 f7 fw5 pigeon-post'>[timestamp]</small>
                       <a href={url}
-                        className='f6 big-stone db'
+                        className='f7 big-stone db code'
                         style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {ss.hash}
                       </a>
@@ -56,7 +58,7 @@ export default class SnapshotsButton extends Component {
             ) : (
               <p className='f7 mt0 mb2 tc'>No snapshots taken</p>
             )}
-            <div className='tc'>
+            <div className='tc pt3'>
               <button type='button' className='button-reset f7 white-lilac bg-bright-turquoise hover--white ba b--bright-turquoise ph2 pv1 bw0 ttu pointer br1' onClick={onTakeSnapshot}>Take Snapshot</button>
             </div>
           </div>
