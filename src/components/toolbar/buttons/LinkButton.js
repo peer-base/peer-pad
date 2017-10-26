@@ -56,14 +56,14 @@ export default class LinkButton extends Component {
 
   getReadUrl () {
     const { docType: type, docName: name, docKeys: keys } = this.props
-    const origin = window.location.origin
-    return `${origin}/#/r/${type}/${encodeURIComponent(name)}/${keys.read}`
+    const root = window.location.origin + window.location.pathname
+    return `${root}#/r/${type}/${encodeURIComponent(name)}/${keys.read}`
   }
 
   getWriteUrl () {
     const { docType: type, docName: name, docKeys: keys } = this.props
-    const origin = window.location.origin
-    return `${origin}/#/w/${type}/${encodeURIComponent(name)}/${keys.read}/${keys.write}`
+    const root = window.location.origin + window.location.pathname
+    return `${root}#/w/${type}/${encodeURIComponent(name)}/${keys.read}/${keys.write}`
   }
 
   render () {
