@@ -10,6 +10,7 @@ import Preview from './Preview'
 import Toolbar from './toolbar/Toolbar'
 import Status from './Status'
 import DocViewer from './DocViewer'
+import { toSnapshotUrl } from './SnapshotLink'
 
 class Edit extends Component {
   constructor (props) {
@@ -21,6 +22,7 @@ class Edit extends Component {
 
     this.state = {
       name: decodeURIComponent(name),
+      title: decodeURIComponent(name),
       type: type,
       md: '',
       status: 'offline',
@@ -34,16 +36,16 @@ class Edit extends Component {
       snapshots: []
     }
 
-    this.onNameChange = this.onNameChange.bind(this)
+    this.onTitleChange = this.onTitleChange.bind(this)
     this.onViewModeChange = this.onViewModeChange.bind(this)
     this.onEditor = this.onEditor.bind(this)
     this.onEditorValueChange = this.onEditorValueChange.bind(this)
     this.onTakeSnapshot = this.onTakeSnapshot.bind(this)
   }
 
-  onNameChange (name) {
-    // TODO: persist document name
-    this.setState({ name })
+  onTitleChange (title) {
+    // TODO: persist document title
+    this.setState({ title })
   }
 
   onViewModeChange (viewMode) {
@@ -70,12 +72,49 @@ class Edit extends Component {
 
   async onTakeSnapshot () {
     const snapshot = await this._document.snapshots.take()
-    console.log({ snapshot })
+    snapshot.createdAt = new Date().toISOString()
     this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
+    this.prefetchSnapshot(snapshot)
+    this.storeSnapshot(snapshot)
+  }
+
+  loadSnapshots () {
+    const key = `${this.state.name}-snapshots`
+    const val = window.localStorage.getItem(key)
+    if (!val) return []
+    try {
+      return JSON.parse(val)
+    } catch (err) {
+      console.log('Failed to load snapshots for pad', key, err)
+      // bad data. clear out for a better future.
+      window.localStorage.removeItem(key)
+      return []
+    }
+  }
+
+  storeSnapshot (snapshot) {
+    const snapshots = this.loadSnapshots()
+    const key = `${this.state.name}-snapshots`
+    const val = JSON.stringify([snapshot, ...snapshots])
+    window.localStorage.setItem(key, val)
+  }
+
+  // Prefetch snapshot from gateway to makes it load faster when user clicks a snap shot link
+  async prefetchSnapshot (snapshot) {
+    const url = toSnapshotUrl(snapshot)
+    return window.fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Gateway response was not ok')
+        }
+      }).catch((err) => {
+        console.log('Failed to pre-fetch snapshot', url, err)
+      })
   }
 
   render () {
     const {
+      title,
       name,
       type,
       md,
@@ -90,7 +129,7 @@ class Edit extends Component {
       onEditor,
       onEditorValueChange,
       onViewModeChange,
-      onNameChange,
+      onTitleChange,
       onTakeSnapshot
     } = this
 
@@ -181,7 +220,7 @@ class Edit extends Component {
             <div className='mb4 pb3 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>
-                  <Name value={name} onChange={onNameChange} editable={canEdit} />
+                  <Name value={title} onChange={onTitleChange} editable={canEdit} />
                 </div>
                 <div className='f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
@@ -221,6 +260,10 @@ class Edit extends Component {
 
     // Bind the editor if we got an instance while the doc was starting
     if (this._editor) doc.bindEditor(this._editor)
+
+    // pull snapshot records out of localStorage
+    const snapshots = this.loadSnapshots()
+    this.setState({snapshots})
   }
 
   componentWillUnmount () {
