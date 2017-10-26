@@ -242,6 +242,12 @@ class Edit extends Component {
   async componentDidMount () {
     const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
 
+    if (!this._backend) {
+      const PeerpadBackend = await import('peerpad-core')
+      this._backend = new PeerpadBackend()
+      this.props.onBackend(this._backend)
+    }
+
     const doc = this._backend.createDocument({
       type: this.state.type, // TODO: make this variable
       name: this.state.name,
@@ -272,7 +278,8 @@ class Edit extends Component {
 }
 
 Edit.propTypes = {
-  backend: PropTypes.object.isRequired
+  backend: PropTypes.object,
+  onBackend: PropTypes.func.isRequired
 }
 
 export default Edit

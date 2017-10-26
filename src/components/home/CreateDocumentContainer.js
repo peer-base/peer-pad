@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { generateRandomKeys, generateRandomName } from 'peerpad-core'
+import generateRandomKeys from 'peerpad-core/src/backend/keys/generate'
+import generateRandomName from 'peerpad-core/src/backend/keys/generate-random-name'
 
 /*
  * "Children as fn" style container, to create and redirect to a new docuement.
