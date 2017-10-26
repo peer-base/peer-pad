@@ -21,7 +21,7 @@ class Home extends Component {
         <header className='db pv3'>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
             <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
-              <img src='/images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{width: '224px', height: '88px'}} />
+              <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{width: '224px', height: '88px'}} />
             </a>
             <div className='db dtc-l v-btm w-100 w-75-l tc tr-l'>
               <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
@@ -36,6 +36,7 @@ class Home extends Component {
         </header>
 
         <section id='hero' className='db pt3 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
+          <div className='bg-hero-wave-inner' style={{backgroundImage: 'url(images/hero-wave.png)'}} />
           <div className='center ph2' style={{maxWidth: '50rem'}}>
             <h1 className='f2 f1-ns fw2 lh-copy tracked bright-turquoise'>HELLO WORLD!</h1>
             <h2 className='f3 f2-ns fw2 lh-copy relative' style={{zIndex: '1000'}}>
@@ -123,7 +124,7 @@ class Home extends Component {
           </p>
           <img
             className='mt5'
-            src='/images/how-it-works.png'
+            src='images/how-it-works.png'
             alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
         </section>
 
