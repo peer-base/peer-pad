@@ -251,7 +251,11 @@ class Edit extends Component {
       docScript
     })
 
-    this._backend.network.once('started', () => this.setState({ status: 'started' }))
+    if (this._backend.network.hasStarted()) {
+      this.setState({ status: 'online' })
+    } else {
+      this._backend.network.once('started', () => this.setState({ status: 'online' }))
+    }
 
     await doc.start()
 
