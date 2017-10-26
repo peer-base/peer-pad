@@ -61,7 +61,7 @@ exports[`can create document via button 1`] = `
           <img
             alt="PeerPad"
             className="dib"
-            src="/images/logo-peerpad-lg.svg"
+            src="images/logo-peerpad-lg.svg"
             style={
               Object {
                 "height": "88px",
@@ -391,7 +391,7 @@ exports[`can create document via button 1`] = `
               className="dt caribbean-green center"
               style={
                 Object {
-                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "background": "transparent url(images/hex.svg) center no-repeat",
                   "height": 124,
                   "width": 108,
                 }
@@ -403,7 +403,7 @@ exports[`can create document via button 1`] = `
                 <img
                   alt="Private"
                   className="center v-mid"
-                  src="/images/private.svg"
+                  src="images/private.svg"
                   style={
                     Object {
                       "maxWidth": 60,
@@ -434,7 +434,7 @@ exports[`can create document via button 1`] = `
               className="dt caribbean-green center"
               style={
                 Object {
-                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "background": "transparent url(images/hex.svg) center no-repeat",
                   "height": 124,
                   "width": 108,
                 }
@@ -446,7 +446,7 @@ exports[`can create document via button 1`] = `
                 <img
                   alt="Encrypted"
                   className="center v-mid"
-                  src="/images/encrypted.svg"
+                  src="images/encrypted.svg"
                   style={
                     Object {
                       "maxWidth": 60,
@@ -477,7 +477,7 @@ exports[`can create document via button 1`] = `
               className="dt caribbean-green center"
               style={
                 Object {
-                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "background": "transparent url(images/hex.svg) center no-repeat",
                   "height": 124,
                   "width": 108,
                 }
@@ -489,7 +489,7 @@ exports[`can create document via button 1`] = `
                 <img
                   alt="Collaborative"
                   className="center v-mid"
-                  src="/images/collaborative.svg"
+                  src="images/collaborative.svg"
                   style={
                     Object {
                       "maxWidth": 60,
@@ -520,7 +520,7 @@ exports[`can create document via button 1`] = `
               className="dt caribbean-green center"
               style={
                 Object {
-                  "background": "transparent url(/images/hex.svg) center no-repeat",
+                  "background": "transparent url(images/hex.svg) center no-repeat",
                   "height": 124,
                   "width": 108,
                 }
@@ -532,7 +532,7 @@ exports[`can create document via button 1`] = `
                 <img
                   alt="Realtime"
                   className="center v-mid"
-                  src="/images/realtime.svg"
+                  src="images/realtime.svg"
                   style={
                     Object {
                       "maxWidth": 60,
@@ -594,7 +594,7 @@ exports[`can create document via button 1`] = `
       <img
         alt="A graph showing peers independently updating state over time; The most recent state is the union of each peers updates."
         className="mt5"
-        src="/images/how-it-works.png"
+        src="images/how-it-works.png"
       />
     </section>
     <section
@@ -650,7 +650,7 @@ exports[`can create document via button 1`] = `
                   className="dt caribbean-green center"
                   style={
                     Object {
-                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "background": "transparent url(images/hex.svg) center no-repeat",
                       "height": 124,
                       "width": 108,
                     }
@@ -662,7 +662,7 @@ exports[`can create document via button 1`] = `
                     <img
                       alt="Take notes"
                       className="center v-mid"
-                      src="/images/take-notes.svg"
+                      src="images/take-notes.svg"
                       style={
                         Object {
                           "maxWidth": 60,
@@ -710,7 +710,7 @@ exports[`can create document via button 1`] = `
                   className="dt caribbean-green center"
                   style={
                     Object {
-                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "background": "transparent url(images/hex.svg) center no-repeat",
                       "height": 124,
                       "width": 108,
                     }
@@ -722,7 +722,7 @@ exports[`can create document via button 1`] = `
                     <img
                       alt="Collaborate"
                       className="center v-mid"
-                      src="/images/collaborate.svg"
+                      src="images/collaborate.svg"
                       style={
                         Object {
                           "maxWidth": 60,
@@ -770,7 +770,7 @@ exports[`can create document via button 1`] = `
                   className="dt caribbean-green center"
                   style={
                     Object {
-                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "background": "transparent url(images/hex.svg) center no-repeat",
                       "height": 124,
                       "width": 108,
                     }
@@ -782,7 +782,7 @@ exports[`can create document via button 1`] = `
                     <img
                       alt="Write articles"
                       className="center v-mid"
-                      src="/images/write-articles.svg"
+                      src="images/write-articles.svg"
                       style={
                         Object {
                           "maxWidth": 60,
@@ -830,7 +830,7 @@ exports[`can create document via button 1`] = `
                   className="dt caribbean-green center"
                   style={
                     Object {
-                      "background": "transparent url(/images/hex.svg) center no-repeat",
+                      "background": "transparent url(images/hex.svg) center no-repeat",
                       "height": 124,
                       "width": 108,
                     }
@@ -842,7 +842,7 @@ exports[`can create document via button 1`] = `
                     <img
                       alt="Work with multiple users"
                       className="center v-mid"
-                      src="/images/work-with-multiple-users.svg"
+                      src="images/work-with-multiple-users.svg"
                       style={
                         Object {
                           "maxWidth": 60,
