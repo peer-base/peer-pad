@@ -3,8 +3,13 @@
 .CodeMirror {
   color: var(--white-lilac);
   background-color: var(--big-stone);
-  height: calc(100vh - 220px);
+  height: auto;
+  min-height: calc(100vh - 220px);
 }
+.CodeMirror-scroll {
+  min-height: calc(100vh - 220px);
+}
+
 .CodeMirror pre {
   padding-left: 30px;
 }

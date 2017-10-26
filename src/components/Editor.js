@@ -27,7 +27,10 @@ export default class Editor extends Component {
           editor.disable()
         }
       } else {
+        // See: http://codemirror.net/doc/manual.html#config
         editor = CodeMirror(ref, {
+          autofocus: true,
+          inputStyle: 'contenteditable',
           lineNumbers: true,
           value: '',
           viewportMargin: Infinity,
