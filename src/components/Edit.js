@@ -143,7 +143,7 @@ class Edit extends Component {
       editorContainer = (
         <div>
           {viewMode === 'both' ? (
-            <div className='flex-ns flex-row' style={{ minHeight: '500px' }}>
+            <div className='flex-ns flex-row'>
               <div className='ph3 pl0-ns pr3-ns w-50-ns'>
                 <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
               </div>
@@ -203,15 +203,18 @@ class Edit extends Component {
               <ViewMode mode={viewMode} onChange={onViewModeChange} />
             )}
           </div>
+          <div className='mr2'>
+            <Status status={status} />
+          </div>
           <div>
             <span className='mr2'>
-              <NewButton onClick={() => console.log('TODO')} />
+              <NewButton />
             </span>
-            <span className='mr2'>
+            <span className='mr0'>
               <PeersButton peerGroup={this._document && this._document.peers} />
             </span>
             <span>
-              <NotificationsButton onClick={() => console.log('TODO')} count={2} />
+              <NotificationsButton />
             </span>
           </div>
         </Header>
@@ -229,10 +232,6 @@ class Edit extends Component {
             </div>
             <div>
               {editorContainer}
-            </div>
-
-            <div>
-              <Status status={status} />
             </div>
           </div>
         </div>

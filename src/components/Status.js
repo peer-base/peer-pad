@@ -4,13 +4,9 @@ import PropTypes from 'prop-types'
 class Status extends Component {
   render () {
     return (
-      <div className='panel panel-default'>
-        <div className='panel-heading'>
-          <h3 className='panel-title'>Status</h3>
-        </div>
-        <div className='panel-body'>
-          {this.props.status}
-        </div>
+      <div className='dib white' title='Your IPFS network connection status'>
+        <span className='f6 fw1'>Status: </span>
+        <span className='f6 fw4'>{this.props.status}</span>
       </div>
     )
   }
