@@ -19,7 +19,7 @@ class Edit extends Component {
     this.state = {
       name: decodeURIComponent(name),
       type: type,
-      md: '',
+      documentText: '',
       status: 'offline',
       room: {},
       canEdit: !!writeKey,
@@ -55,8 +55,8 @@ class Edit extends Component {
     if (doc && nextEditor) doc.bindEditor(nextEditor)
   }
 
-  onEditorValueChange (md) {
-    this.setState({ md })
+  onEditorValueChange (documentText) {
+    this.setState({ documentText })
   }
 
   async onTakeSnapshot () {
@@ -105,7 +105,9 @@ class Edit extends Component {
     const {
       name,
       type,
-      md,
+      // The editor contents is updated directly by peerpad-core.
+      // `documentText` is a cache of the last value we received.
+      documentText,
       rawKeys,
       status,
       canEdit,
@@ -153,7 +155,7 @@ class Edit extends Component {
                     type='text'
                     className='input-reset sans-serif bw0 f4 blue-bayox w-100 pa0'
                     placeholder='Document Title'
-                    readOnly={canEdit} />
+                    readOnly={!canEdit} />
                 </div>
                 <div className='f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
@@ -169,7 +171,7 @@ class Edit extends Component {
               onEditorValueChange={onEditorValueChange}
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
-              previewMd={md} />
+              docText={documentText} />
             <div>
               <Status status={status} />
             </div>
