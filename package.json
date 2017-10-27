@@ -29,7 +29,6 @@
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
-    "normalize.css": "^7.0.0",
     "object-assign": "4.1.1",
     "peerpad-core": "^0.6.0",
     "postcss-css-variables": "^0.8.0",

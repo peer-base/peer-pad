@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import 'normalize.css'
 
 window.ReactDOM = ReactDOM
 
@@ -22,6 +21,8 @@ class DocViewer extends Component {
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
           <title>Peerpad doc</title>
+          {/* normalize.css@7.0.0 */}
+          <link rel='stylesheet' type='text/css' href='https://ipfs.io/ipfs/QmZuSAW5kpxzaidmrpqoWmk8q5Yk7qqpGyxX3zRnRjnRVE' />
         </head>
         <body style={bodyStyle}>
           <noscript>
