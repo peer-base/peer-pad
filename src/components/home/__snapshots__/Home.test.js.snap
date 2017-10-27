@@ -15,7 +15,7 @@ exports[`can create document via button 1`] = `
         className="bg-razzmatazz white"
         style={
           Object {
-            "padding": "15px",
+            "padding": "20px",
           }
         }
       >
@@ -48,7 +48,12 @@ exports[`can create document via button 1`] = `
       </div>
     </Component>
     <header
-      className="db pv3"
+      className="db pv3 center"
+      style={
+        Object {
+          "maxWidth": "1260px",
+        }
+      }
     >
       <nav
         className="db dt-l w-100 border-box pa3 ph5-l"
@@ -64,8 +69,7 @@ exports[`can create document via button 1`] = `
             src="images/logo-peerpad-lg.svg"
             style={
               Object {
-                "height": "88px",
-                "width": "224px",
+                "height": "100px",
               }
             }
           />
@@ -170,11 +174,12 @@ exports[`can create document via button 1`] = `
                   onClick={[Function]}
                 >
                   <button
-                    className="dib bg-transparent ba b--bright-turquoise bright-turquoise ph4 pv1 fw1 tracked--1 pointer dim"
+                    className="dib bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim"
                     onClick={[Function]}
                     style={
                       Object {
                         "fontSize": "15px",
+                        "padding": "5px 28px",
                       }
                     }
                     type="button"
@@ -189,7 +194,7 @@ exports[`can create document via button 1`] = `
       </nav>
     </header>
     <section
-      className="db pt3 pb6 center bg-hero-wave"
+      className="db pt4 pb6 center bg-hero-wave"
       id="hero"
       style={
         Object {
@@ -209,24 +214,24 @@ exports[`can create document via button 1`] = `
         className="center ph2"
         style={
           Object {
-            "maxWidth": "50rem",
+            "maxWidth": "60rem",
           }
         }
       >
         <h1
-          className="f2 f1-ns fw2 lh-copy tracked bright-turquoise"
+          className="f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
         >
           HELLO WORLD!
         </h1>
         <h2
-          className="f3 f2-ns fw2 lh-copy relative"
+          className="f3 f2-ns fw2 lh-copy tracked--2 relative"
           style={
             Object {
               "zIndex": "1000",
             }
           }
         >
-          PeerPad is a realtime collaborative editing tool, powered by 
+          PeerPad is a realtime P2P collaborative editing tool, powered by 
           <span
             className="fw4 bright-turquoise-glow"
           >
@@ -240,7 +245,7 @@ exports[`can create document via button 1`] = `
           </span>
         </h2>
         <div
-          className="mt5"
+          className="mt6"
         >
           <Component>
             <CreateDocumentContainer>
@@ -254,7 +259,7 @@ exports[`can create document via button 1`] = `
                     className="lh-copy"
                   >
                     <label
-                      className="db dib-ns fw1 tracked--1 white mv2"
+                      className="db dib-ns fw2 tracked white mv2"
                       style={
                         Object {
                           "fontSize": "28px",
@@ -881,13 +886,19 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <footer
-      className="mt6"
+      style={
+        Object {
+          "background": "transparent url(images/footer.png) center bottom no-repeat",
+          "padding": "120px 0",
+        }
+      }
     >
       <div
-        className="dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft"
+        className="dt w-100 center pv3 bt bw1 b--caribbean-green-soft"
         style={
           Object {
             "borderTopStyle": "dashed",
+            "maxWidth": "1140px",
           }
         }
       >
@@ -912,7 +923,7 @@ exports[`can create document via button 1`] = `
                 onClick={[Function]}
                 title="About"
               >
-                What is PeerPad
+                About
               </a>
             </Link>
           </HashLink>

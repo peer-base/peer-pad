@@ -65,7 +65,7 @@
     height: 100%;
     background: transparent center no-repeat;
     background-size: 100% auto;
-    opacity: 0.33;
+    opacity: 0.2;
     mix-blend-mode: soft-light;
   }
 }
@@ -76,10 +76,10 @@
    */
  .bright-turquoise-glow::after {
    width: 400px;
-   box-shadow: var(--bright-turquoise) -350px -20px 1000px 35px;
+   box-shadow: var(--bright-turquoise) -350px -20px 1000px 22px;
  }
  .caribbean-green-glow::after {
    width: 400px;
-   box-shadow: var(--caribbean-green) -250px -20px 1000px 35px;
+   box-shadow: var(--caribbean-green) -250px -20px 1000px 22px;
  }
 }
