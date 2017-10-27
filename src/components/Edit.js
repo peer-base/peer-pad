@@ -172,9 +172,6 @@ class Edit extends Component {
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
               docText={documentText} />
-            <div>
-              <Status status={status} />
-            </div>
           </div>
         </div>
       </div>
