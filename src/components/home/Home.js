@@ -71,7 +71,7 @@ class Home extends Component {
             </p>
           </div>
           <div className='dt-ns center tc' style={{maxWidth: '1366px'}}>
-            <div className='dtc-ns mw5-ns pa4'>
+            <div className='dtc-ns mw5-ns pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' />
               <h3 className='f4 fw1 white tracked--1'>
                 Private

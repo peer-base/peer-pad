@@ -390,7 +390,8 @@ exports[`can create document via button 1`] = `
         }
       >
         <div
-          className="dtc-ns mw5-ns pa4"
+          className="dtc-ns mw5-ns pa4 o-20"
+          title="Peerpad is in Alpha and has not been audited by security experts yet."
         >
           <Hexicon
             name="Private"
