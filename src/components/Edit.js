@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
 import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
-import Editor from './Editor'
-import Preview from './Preview'
-import Toolbar from './toolbar/Toolbar'
+import EditorArea from './EditorArea'
 import Status from './Status'
 import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
@@ -21,7 +19,7 @@ class Edit extends Component {
     this.state = {
       name: decodeURIComponent(name),
       type: type,
-      md: '',
+      documentText: '',
       status: 'offline',
       room: {},
       canEdit: !!writeKey,
@@ -57,8 +55,8 @@ class Edit extends Component {
     if (doc && nextEditor) doc.bindEditor(nextEditor)
   }
 
-  onEditorValueChange (md) {
-    this.setState({ md })
+  onEditorValueChange (documentText) {
+    this.setState({ documentText })
   }
 
   async onTakeSnapshot () {
@@ -107,7 +105,9 @@ class Edit extends Component {
     const {
       name,
       type,
-      md,
+      // The editor contents is updated directly by peerpad-core.
+      // `documentText` is a cache of the last value we received.
+      documentText,
       rawKeys,
       status,
       canEdit,
@@ -121,68 +121,6 @@ class Edit extends Component {
       onViewModeChange,
       onTakeSnapshot
     } = this
-
-    let editorContainer
-
-    if (type === 'richtext') {
-      editorContainer = (
-        <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-      )
-    } else {
-      editorContainer = (
-        <div>
-          {viewMode === 'both' ? (
-            <div className='flex-ns flex-row'>
-              <div className='ph3 pl0-ns pr3-ns w-50-ns'>
-                <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-              </div>
-              <div className='ph3 pl3 pr0-ns w-50-ns'>
-                <Preview md={md} />
-              </div>
-              <div style={{ flexGrow: 0 }}>
-                <Toolbar
-                  theme='light'
-                  docType={type}
-                  docName={name}
-                  docKeys={rawKeys}
-                  snapshots={snapshots}
-                  onTakeSnapshot={onTakeSnapshot} />
-              </div>
-            </div>
-          ) : (
-            <div>
-              {viewMode === 'source' ? (
-                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
-                  <div className='flex-auto'>
-                    <Editor type={type} onEditor={onEditor} onChange={onEditorValueChange} />
-                  </div>
-                  <Toolbar
-                    theme='dark'
-                    docType={type}
-                    docName={name}
-                    docKeys={rawKeys}
-                    snapshots={snapshots}
-                    onTakeSnapshot={onTakeSnapshot} />
-                </div>
-              ) : (
-                <div className='flex-ns flex-row' style={{ minHeight: '300px' }}>
-                  <div className='flex-auto'>
-                    <Preview md={md} />
-                  </div>
-                  <Toolbar
-                    theme='light'
-                    docType={type}
-                    docName={name}
-                    docKeys={rawKeys}
-                    snapshots={snapshots}
-                    onTakeSnapshot={onTakeSnapshot} />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )
-    }
 
     return (
       <div>
@@ -217,16 +155,23 @@ class Edit extends Component {
                     type='text'
                     className='input-reset sans-serif bw0 f4 blue-bayox w-100 pa0'
                     placeholder='Document Title'
-                    readonly={canEdit} />
+                    readOnly={!canEdit} />
                 </div>
-                <div className='f7 pigeon-post'>
+                <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
                 </div>
               </div>
             </div>
-            <div>
-              {editorContainer}
-            </div>
+            <EditorArea
+              docName={name}
+              docType={type}
+              docKeys={rawKeys}
+              viewMode={viewMode}
+              onEditor={onEditor}
+              onEditorValueChange={onEditorValueChange}
+              snapshots={snapshots}
+              onTakeSnapshot={onTakeSnapshot}
+              docText={documentText} />
           </div>
         </div>
       </div>
