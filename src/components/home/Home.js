@@ -122,10 +122,12 @@ class Home extends Component {
             Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies
             a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
           </p>
-          <img
-            className='mt5'
-            src='images/how-it-works.png'
-            alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
+          <div style={{overflow: 'hidden'}}>
+            <img
+              className='bigger-when-small'
+              src='images/how-it-works.png'
+              alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
+          </div>
         </section>
 
         <section id='benefits' className='pa3 mv5'>

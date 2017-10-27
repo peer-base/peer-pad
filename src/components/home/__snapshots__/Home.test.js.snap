@@ -605,11 +605,19 @@ exports[`can create document via button 1`] = `
       >
         Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
       </p>
-      <img
-        alt="A graph showing peers independently updating state over time; The most recent state is the union of each peers updates."
-        className="mt5"
-        src="images/how-it-works.png"
-      />
+      <div
+        style={
+          Object {
+            "overflow": "hidden",
+          }
+        }
+      >
+        <img
+          alt="A graph showing peers independently updating state over time; The most recent state is the union of each peers updates."
+          className="bigger-when-small"
+          src="images/how-it-works.png"
+        />
+      </div>
     </section>
     <section
       className="pa3 mv5"

@@ -46,6 +46,14 @@
   z-index: -900;
 }
 
+.bigger-when-small {
+  width: 200%;
+  margin: 0 auto;
+  position: relative;
+  left: -50%;
+  max-width: initial;
+}
+
 @media screen and (min-width: 680px) {
   /* The big wave backgrounds are heavy and complex, so skip them on mobile devices. */
   .bg-hero-wave {
@@ -68,18 +76,26 @@
     opacity: 0.2;
     mix-blend-mode: soft-light;
   }
+
+ .bigger-when-small {
+    width: 100%;
+    margin: 0 auto;
+    position: static;
+    left: 0%;
+    max-width: 100%;
+ }
 }
 
 @media screen and (min-width: 1024px) {
   /* The spot lights make the text hard to read on small screens so we dial them
    * down by default and dial them up on larger screens.
-   */
- .bright-turquoise-glow::after {
-   width: 400px;
-   box-shadow: var(--bright-turquoise) -350px -20px 1000px 22px;
- }
+  */
+  .bright-turquoise-glow::after {
+    width: 400px;
+    box-shadow: var(--bright-turquoise) -350px -20px 1000px 22px;
+  }
  .caribbean-green-glow::after {
-   width: 400px;
-   box-shadow: var(--caribbean-green) -250px -20px 1000px 22px;
- }
+    width: 400px;
+    box-shadow: var(--caribbean-green) -250px -20px 1000px 22px;
+  }
 }
