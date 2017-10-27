@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { generateRandomKeys, generateRandomName } from 'peerpad-core'
 
 /*
  * "Children as fn" style container, to create and redirect to a new docuement.
@@ -42,6 +41,8 @@ export default class CreateDocumentContainer extends Component {
   }
 
   async onCreateDocument () {
+    const generateRandomKeys = await import('peerpad-core/src/backend/keys/generate')
+    const generateRandomName = await import('peerpad-core/src/backend/keys/generate-random-name')
     const type = encodeURIComponent(this.state.type || 'markdown')
     const name = encodeURIComponent(this.state.name || generateRandomName())
     const keys = await generateRandomKeys()
