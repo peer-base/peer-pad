@@ -157,7 +157,7 @@ class Edit extends Component {
                     placeholder='Document Title'
                     readOnly={!canEdit} />
                 </div>
-                <div className='f7 pigeon-post'>
+                <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
                 </div>
               </div>
