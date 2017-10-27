@@ -3,14 +3,6 @@
 .Preview {
   padding-left: 35px;
 }
-.Preview h1,
-.Preview h2,
-.Preview h3,
-.Preview h4,
-.Preview h5,
-.Preview h6 {
-  font-weight: normal;
-}
 .Preview h1::before,
 .Preview h2::before,
 .Preview h3::before,
@@ -43,4 +35,8 @@
 }
 .Preview h6::before {
   content: 'H6';
+}
+
+.Preview > :first-child {
+  margin-top: 0 !important;
 }

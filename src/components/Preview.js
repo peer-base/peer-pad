@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Remark from 'remark'
 import RemarkHtml from 'remark-html'
+import Doc from './Doc'
 import './Preview.css'
 
 const markdown = Remark().use(RemarkHtml)
@@ -31,7 +32,7 @@ export default class Preview extends Component {
   }
 
   render () {
-    return <div className='Preview' dangerouslySetInnerHTML={{__html: this.state.html}} />
+    return <Doc className='Doc Preview' html={this.state.html} />
   }
 }
 
