@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
 import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
-import Name from './Name'
 import Editor from './Editor'
 import Preview from './Preview'
 import Toolbar from './toolbar/Toolbar'
@@ -16,13 +15,11 @@ class Edit extends Component {
   constructor (props) {
     super(props)
 
-    console.log('props:', props)
     this._backend = props.backend
     const { type, name, readKey, writeKey } = props.match.params
 
     this.state = {
       name: decodeURIComponent(name),
-      title: decodeURIComponent(name),
       type: type,
       md: '',
       status: 'offline',
@@ -36,16 +33,10 @@ class Edit extends Component {
       snapshots: []
     }
 
-    this.onTitleChange = this.onTitleChange.bind(this)
     this.onViewModeChange = this.onViewModeChange.bind(this)
     this.onEditor = this.onEditor.bind(this)
     this.onEditorValueChange = this.onEditorValueChange.bind(this)
     this.onTakeSnapshot = this.onTakeSnapshot.bind(this)
-  }
-
-  onTitleChange (title) {
-    // TODO: persist document title
-    this.setState({ title })
   }
 
   onViewModeChange (viewMode) {
@@ -114,7 +105,6 @@ class Edit extends Component {
 
   render () {
     const {
-      title,
       name,
       type,
       md,
@@ -129,7 +119,6 @@ class Edit extends Component {
       onEditor,
       onEditorValueChange,
       onViewModeChange,
-      onTitleChange,
       onTakeSnapshot
     } = this
 
@@ -223,7 +212,12 @@ class Edit extends Component {
             <div className='mb4 pb3 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>
-                  <Name value={title} onChange={onTitleChange} editable={canEdit} />
+                  <input
+                    ref={(ref) => { this._titleRef = ref }}
+                    type='text'
+                    className='input-reset sans-serif bw0 f4 blue-bayox w-100 pa0'
+                    placeholder='Document Title'
+                    readonly={canEdit} />
                 </div>
                 <div className='f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
@@ -251,6 +245,7 @@ class Edit extends Component {
       docScript
     })
 
+    // Watch for out local ipfs node to come online.
     if (this._backend.network.hasStarted()) {
       this.setState({ status: 'online' })
     } else {
@@ -264,7 +259,13 @@ class Edit extends Component {
     // Bind the editor if we got an instance while the doc was starting
     if (this._editor) doc.bindEditor(this._editor)
 
-    // pull snapshot records out of localStorage
+    // Turn the doc title into a peer editable input.
+    doc.bindTitle(this._titleRef)
+
+    // ooh la la, show the live value in the tab title too.
+    doc.bindTitle(window.document.getElementsByTagName('title')[0])
+
+    // Pull snapshots array out of localStorage into state.
     const snapshots = this.loadSnapshots()
     this.setState({snapshots})
   }
