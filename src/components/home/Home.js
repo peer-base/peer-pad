@@ -18,10 +18,10 @@ class Home extends Component {
     return (
       <div className='Home tc white' style={{backgroundColor: '#041125'}}>
         <Warning />
-        <header className='db pv3'>
+        <header className='db pv3 center' style={{maxWidth: '1260px'}}>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
             <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
-              <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{width: '224px', height: '88px'}} />
+              <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{height: '100px'}} />
             </a>
             <div className='db dtc-l v-btm w-100 w-75-l tc tr-l'>
               <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
@@ -35,14 +35,14 @@ class Home extends Component {
           </nav>
         </header>
 
-        <section id='hero' className='db pt3 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
+        <section id='hero' className='db pt4 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
           <div className='bg-hero-wave-inner' style={{backgroundImage: 'url(images/hero-wave.png)'}} />
-          <div className='center ph2' style={{maxWidth: '50rem'}}>
-            <h1 className='f2 f1-ns fw2 lh-copy tracked bright-turquoise'>HELLO WORLD!</h1>
-            <h2 className='f3 f2-ns fw2 lh-copy relative' style={{zIndex: '1000'}}>
-              PeerPad is a realtime collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'>IPFS</span> and <span className='fw4 caribbean-green-glow'>CRDTs</span>
+          <div className='center ph2' style={{maxWidth: '60rem'}}>
+            <h1 className='f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise'>HELLO WORLD!</h1>
+            <h2 className='f3 f2-ns fw2 lh-copy tracked--2 relative' style={{zIndex: '1000'}}>
+              PeerPad is a realtime P2P collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'>IPFS</span> and <span className='fw4 caribbean-green-glow'>CRDTs</span>
             </h2>
-            <div className='mt5'>
+            <div className='mt6'>
               <CreateDocument />
               {this.state.error ? (
                 <p className='f4 fw3 lh-copy tracked--1 razzmatazz'>{this.state.error}</p>
@@ -122,10 +122,12 @@ class Home extends Component {
             Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies
             a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
           </p>
-          <img
-            className='mt5'
-            src='images/how-it-works.png'
-            alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
+          <div style={{overflow: 'hidden'}}>
+            <img
+              className='bigger-when-small'
+              src='images/how-it-works.png'
+              alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
+          </div>
         </section>
 
         <section id='benefits' className='pa3 mv5'>
@@ -206,10 +208,10 @@ class Home extends Component {
           </div>
         </section>
 
-        <footer className='mt6'>
-          <div className='dt w-100 mw8 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed'}} >
+        <footer style={{padding: '120px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
+          <div className='dt w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
             <nav className='db dtc-l v-mid w-100 w-50-l tl-l'>
-              <Link to='#about' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='About'>What is PeerPad</Link>
+              <Link to='#about' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='About'>About</Link>
               <Link to='#features' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Features'>Features</Link>
               <Link to='#how-it-works' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='How it works'>How it works</Link>
               <Link to='#benefits' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='What you can do with PeerPad'>Benefits</Link>

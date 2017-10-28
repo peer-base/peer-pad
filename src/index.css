@@ -92,6 +92,9 @@ button:focus {
 .tracked--1 {
   letter-spacing: 1px;
 }
+.tracked--2 {
+  letter-spacing: 2px;
+}
 
 .fancy-underline::after {
   content: '';
