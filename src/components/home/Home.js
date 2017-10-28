@@ -56,7 +56,7 @@ class Home extends Component {
             About us
           </h2>
           <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
-            Peerpad is collaborative real-time editor that works on the decentralised web, built on top of IPFS and Y.js. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is open-source and built by Protocol Labs and the IPFS community.
+            Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of IPFS and Y.js. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is open-source and built by Protocol Labs and the IPFS community.
           </p>
         </section>
 
