@@ -4,7 +4,7 @@ import CreateDocumentContainer from './CreateDocumentContainer'
 const CreateDocument = ({type, onTypeChange, onCreateDocument}) => (
   <form>
     <div className='lh-copy'>
-      <label className='db dib-ns fw1 tracked--1 white mv2' style={{fontSize: '28px'}}>
+      <label className='db dib-ns fw2 tracked white mv2' style={{fontSize: '28px'}}>
         Create new:
       </label>
       <select

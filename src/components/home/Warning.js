@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { CloseIcon, AlphaIcon } from '../icons'
 
 export const Warning = ({onClose}) => (
-  <div className='bg-razzmatazz white' style={{padding: '15px'}}>
+  <div className='bg-razzmatazz white' style={{padding: '20px'}}>
     <AlphaIcon className='dib fill--current-color v-mid mr3' />
     <span className='dib-ns v-mid f6 fw6 '>Peerpad is in Alpha. </span>
     <span className='db dib-ns pt3 pt0-l v-mid f6 fw3'>
