@@ -56,7 +56,7 @@ class Home extends Component {
             About us
           </h2>
           <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
-            Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of IPFS and Y.js. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
+            Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
           </p>
         </section>
 
@@ -95,7 +95,7 @@ class Home extends Component {
                 Collaborative
               </h3>
               <p className='f6 fw2 lh-copy'>
-                Thanks to CRDTs and Y.js, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
               </p>
             </div>
             <div className='dtc-ns mw5-ns'>
@@ -184,7 +184,7 @@ class Home extends Component {
                     Write articles and share them
                   </h3>
                   <p className='f6 fw2 lh-copy'>
-                    You can publish a snapshot of a pad to IPFS, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
+                    You can publish a snapshot of a pad to <a href="//ipfs.io">IPFS</a>, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
                   </p>
                 </div>
               </div>
@@ -210,13 +210,15 @@ class Home extends Component {
 
         <footer style={{padding: '120px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
           <div className='dt w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
-            <nav className='db dtc-l v-mid w-100 w-50-l tl-l'>
+            <nav className='db dtc-l v-mid w-100 w-60-l tl-l'>
               <Link to='#about' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='About'>About</Link>
               <Link to='#features' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Features'>Features</Link>
               <Link to='#how-it-works' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='How it works'>How it works</Link>
               <Link to='#benefits' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='What you can do with PeerPad'>Benefits</Link>
+              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Architecture'>Architecture</a>
+              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Security'>Security</a>
             </nav>
-            <small className='db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
+            <small className='db dtc-l v-mid w-100 w-40-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
               <a className='link white db dib-ns mb3 mb0-ns' href='https://protocol.ai/'>© Protocol Labs </a>
               <span className='dn dib-ns mh1'> | </span>
               Except as <a className='link bright-turquoise' href='https://protocol.ai/legal/'>noted</a>,

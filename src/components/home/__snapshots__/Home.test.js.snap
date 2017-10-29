@@ -352,7 +352,19 @@ exports[`can create document via button 1`] = `
           }
         }
       >
-        Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of IPFS and Y.js. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is 
+        Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of 
+        <a
+          href="//ipfs.io"
+        >
+          IPFS
+        </a>
+         and 
+        <a
+          href="http://y-js.org/"
+        >
+          Y.js
+        </a>
+        . It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is 
         <a
           href="//github.com/ipfs-shipyard/peerpad"
         >
@@ -539,7 +551,19 @@ exports[`can create document via button 1`] = `
           <p
             className="f6 fw2 lh-copy"
           >
-            Thanks to CRDTs and Y.js, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+            Thanks to 
+            <a
+              href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type"
+            >
+              CRDTs
+            </a>
+             and 
+            <a
+              href="http://y-js.org/"
+            >
+              Y.js
+            </a>
+            , several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
           </p>
         </div>
         <div
@@ -844,7 +868,13 @@ exports[`can create document via button 1`] = `
               <p
                 className="f6 fw2 lh-copy"
               >
-                You can publish a snapshot of a pad to IPFS, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
+                You can publish a snapshot of a pad to 
+                <a
+                  href="//ipfs.io"
+                >
+                  IPFS
+                </a>
+                , making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
               </p>
             </div>
           </div>
@@ -929,7 +959,7 @@ exports[`can create document via button 1`] = `
         }
       >
         <nav
-          className="db dtc-l v-mid w-100 w-50-l tl-l"
+          className="db dtc-l v-mid w-100 w-60-l tl-l"
         >
           <HashLink
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
@@ -1019,9 +1049,23 @@ exports[`can create document via button 1`] = `
               </a>
             </Link>
           </HashLink>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+            href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md"
+            title="Architecture"
+          >
+            Architecture
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+            href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md"
+            title="Security"
+          >
+            Security
+          </a>
         </nav>
         <small
-          className="db dtc-l v-mid w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy"
+          className="db dtc-l v-mid w-100 w-40-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy"
         >
           <a
             className="link white db dib-ns mb3 mb0-ns"
