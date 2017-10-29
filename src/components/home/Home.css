@@ -54,6 +54,16 @@
   max-width: initial;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(2, 202, 173, 0.2)
+}
+
+a:hover {
+  border-bottom: 1px solid var(--caribbean-green)
+}
+
 @media screen and (min-width: 680px) {
   /* The big wave backgrounds are heavy and complex, so skip them on mobile devices. */
   .bg-hero-wave {
