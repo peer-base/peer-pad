@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const GATEWAY_PREFIX = 'https://gateway.ipfs.io/ipfs'
+export const GATEWAY_PREFIX = 'https://ipfs.io/ipfs'
 
 export const toSnapshotUrl = ({hash, key, gateway = GATEWAY_PREFIX}) => `${gateway}/${hash}/#${key}`
 
