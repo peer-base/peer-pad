@@ -41,12 +41,20 @@ export default class CreateDocumentContainer extends Component {
   }
 
   async onCreateDocument () {
-    const generateRandomKeys = await import('peerpad-core/src/backend/keys/generate')
-    const generateRandomName = await import('peerpad-core/src/backend/keys/generate-random-name')
-    const type = encodeURIComponent(this.state.type || 'markdown')
-    const name = encodeURIComponent(this.state.name || generateRandomName())
-    const keys = await generateRandomKeys()
-    const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
-    this.setState({redirect: url})
+    try {
+      const generateRandomKeys = await import('peerpad-core/src/backend/keys/generate')
+      const generateRandomName = await import('peerpad-core/src/backend/keys/generate-random-name')
+      const type = encodeURIComponent(this.state.type || 'markdown')
+      const name = encodeURIComponent(this.state.name || generateRandomName())
+      const keys = await generateRandomKeys()
+      const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
+      this.setState({redirect: url})
+    } catch (err) {
+        alert(
+          'An error occurred while trying to create pad for you.\n' +
+          'This may be because you may be using a non-compatible browser.\n' +
+          'If this is the case, please try, if you can, with latest Firefox or Chrome.')
+        throw err
+    }
   }
 }
