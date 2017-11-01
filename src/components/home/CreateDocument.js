@@ -15,6 +15,7 @@ const CreateDocument = ({type, onTypeChange, onCreateDocument}) => (
         onChange={(e) => onTypeChange(e.target.value)}>
         <DocTypeOption text='Markdown pad' value='markdown' />
         <DocTypeOption text='Rich text pad' value='richtext' />
+        <DocTypeOption text='Math pad' value='math' />
       </select>
       <button
         type='button'

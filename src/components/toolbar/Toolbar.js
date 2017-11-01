@@ -36,7 +36,7 @@ const Toolbar = ({
 
 Toolbar.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),
-  docType: PropTypes.oneOf(['markdown', 'richtext']).isRequired,
+  docType: PropTypes.oneOf(['markdown', 'richtext', 'math']).isRequired,
   docName: PropTypes.string.isRequired,
   docKeys: PropTypes.shape({
     read: PropTypes.string.isRequired,
