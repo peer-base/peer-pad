@@ -47,6 +47,8 @@
     "react-router-hash-link": "^1.1.1",
     "remark": "^8.0.0",
     "remark-html": "^6.0.1",
+    "remark-html-katex": "^1.0.2",
+    "remark-math": "^1.0.1",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "tachyons": "^4.8.1",

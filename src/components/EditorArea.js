@@ -53,7 +53,7 @@ const EditorArea = ({
     )
   }
 
-  const preview = <Preview md={docText} />
+  const preview = <Preview md={docText} type={docType} />
 
   if (viewMode === 'both') {
     return (

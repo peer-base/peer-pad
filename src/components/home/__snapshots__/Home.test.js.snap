@@ -313,6 +313,22 @@ exports[`can create document via button 1`] = `
                           Rich text pad
                         </option>
                       </DocTypeOption>
+                      <DocTypeOption
+                        text="Math pad"
+                        value="math"
+                      >
+                        <option
+                          className="black"
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                          value="math"
+                        >
+                          Math pad
+                        </option>
+                      </DocTypeOption>
                     </select>
                     <button
                       className="input-reset bg-caribbean-green ba bw2 b--caribbean-green white f6 fw5 mv2 ph3 pv2 pointer dim tracked--1"

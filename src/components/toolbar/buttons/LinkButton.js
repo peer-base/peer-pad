@@ -114,7 +114,7 @@ export default class LinkButton extends Component {
 
 LinkButton.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),
-  docType: PropTypes.oneOf(['markdown', 'richtext']).isRequired,
+  docType: PropTypes.oneOf(['markdown', 'richtext', 'math']).isRequired,
   docName: PropTypes.string.isRequired,
   docKeys: PropTypes.shape({
     read: PropTypes.string.isRequired,

@@ -53,7 +53,7 @@ export default class Editor extends Component {
 }
 
 Editor.propTypes = {
-  type: PropTypes.oneOf(['richtext', 'markdown']),
+  type: PropTypes.oneOf(['richtext', 'markdown', 'math']),
   editable: PropTypes.bool,
   onEditor: PropTypes.func,
   onChange: PropTypes.func
