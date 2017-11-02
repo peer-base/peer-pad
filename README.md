@@ -37,6 +37,14 @@ To build into the `build` dir, run:
 $ npm run build
 ```
 
+## Deploy
+
+You can self-host your own Peerpad. For that, deploy the `build` directory (after you have run the `npm run build` command).
+
+### HTTPS
+
+Some dependencies (like webcrypto) require that you're serving under HTTPS — unless it's `localhost`...
+
 ## Docs
 
 * [Architecture](docs/ARCHITECTURE.md).
