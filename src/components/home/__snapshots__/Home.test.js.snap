@@ -144,19 +144,19 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
+            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
             title=""
             to="#benefits"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
+              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
               onClick={[Function]}
               replace={false}
               title=""
               to="#benefits"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr3 pa3"
+                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
                 href="#benefits"
                 onClick={[Function]}
                 title=""
@@ -165,6 +165,13 @@ exports[`can create document via button 1`] = `
               </a>
             </Link>
           </HashLink>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr3 pa3"
+            href="https://github.com/ipfs-shipyard/peerpad"
+            title="Github repo"
+          >
+            Github repo
+          </a>
           <div
             className="db dib-ns pv3 pv0-ns"
           >
@@ -235,13 +242,33 @@ exports[`can create document via button 1`] = `
           <span
             className="fw4 bright-turquoise-glow"
           >
-            IPFS
+            <a
+              href="//ipfs.io"
+              style={
+                Object {
+                  "borderBottomColor": 0,
+                  "textDecoration": "none",
+                }
+              }
+            >
+              IPFS
+            </a>
           </span>
            and 
           <span
             className="fw4 caribbean-green-glow"
           >
-            CRDTs
+            <a
+              href="http://y-js.org/"
+              style={
+                Object {
+                  "borderBottom": 0,
+                  "textDecoration": "none",
+                }
+              }
+            >
+              CRDTs
+            </a>
           </span>
         </h2>
         <div
@@ -1078,6 +1105,20 @@ exports[`can create document via button 1`] = `
             title="Security"
           >
             Security
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+            href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md"
+            title="Architecture"
+          >
+            Architecture
+          </a>
+          <a
+            className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
+            href="https://github.com/ipfs-shipyard/peerpad"
+            title="Github repo"
+          >
+            Github repo
           </a>
         </nav>
         <small

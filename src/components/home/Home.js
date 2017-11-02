@@ -27,7 +27,8 @@ class Home extends Component {
               <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
               <Link to='#features' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3'title='Features'>Features</Link>
               <Link to='#how-it-works' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title='How it works'>How it works</Link>
-              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr3 pa3' title=''>Benefits</Link>
+              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title=''>Benefits</Link>
+              <a href='https://github.com/ipfs-shipyard/peerpad' className='link dim white f6 fw3 db dib-ns mr3 pa3' title='Github repo'>Github repo</a>
               <div className='db dib-ns pv3 pv0-ns'>
                 <StartButton />
               </div>
@@ -40,7 +41,7 @@ class Home extends Component {
           <div className='center ph2' style={{maxWidth: '60rem'}}>
             <h1 className='f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise'>HELLO WORLD!</h1>
             <h2 className='f3 f2-ns fw2 lh-copy tracked--2 relative' style={{zIndex: '1000'}}>
-              PeerPad is a realtime P2P collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'>IPFS</span> and <span className='fw4 caribbean-green-glow'>CRDTs</span>
+              PeerPad is a realtime P2P collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'><a href="//ipfs.io" style={{textDecoration: 'none', borderBottomColor: 0}}>IPFS</a></span> and <span className='fw4 caribbean-green-glow'><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
             </h2>
             <div className='mt6'>
               <CreateDocument />
@@ -217,6 +218,8 @@ class Home extends Component {
               <Link to='#benefits' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='What you can do with PeerPad'>Benefits</Link>
               <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Architecture'>Architecture</a>
               <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Security'>Security</a>
+              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Architecture'>Architecture</a>
+              <a href='https://github.com/ipfs-shipyard/peerpad' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Github repo'>Github repo</a>
             </nav>
             <small className='db dtc-l v-mid w-100 w-40-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
               <a className='link white db dib-ns mb3 mb0-ns' href='https://protocol.ai/'>© Protocol Labs </a>
