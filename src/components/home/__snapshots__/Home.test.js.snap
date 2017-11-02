@@ -246,7 +246,7 @@ exports[`can create document via button 1`] = `
               href="//ipfs.io"
               style={
                 Object {
-                  "borderBottomColor": 0,
+                  "borderBottom": 0,
                   "textDecoration": "none",
                 }
               }
