@@ -9,10 +9,10 @@ import './Preview.css'
 import 'katex/dist/katex.css'
 
 const markdown = Remark()
-  .use(RemarkHtml)
+  .use(RemarkHtml, { sanitize: true })
 
 const markdownMath = Remark()
-  .use(RemarkMath)
+  .use(RemarkMath, { sanitize: true })
   .use(RemarkHtmlKatex)
   .use(RemarkHtml)
 
