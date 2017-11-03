@@ -50,6 +50,10 @@ Some dependencies (like webcrypto) require that you're serving under HTTPS — u
 * [Architecture](docs/ARCHITECTURE.md).
 * [Security](docs/SECURITY.md).
 
+## Core API
+
+See [peerpad-core](https://github.com/ipfs-shipyard/peerpad-core).
+
 ### Want to hack on PeerPad?
 
 [![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/contributing.md)
