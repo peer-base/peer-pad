@@ -168,9 +168,9 @@ exports[`can create document via button 1`] = `
           <a
             className="link dim white f6 fw3 db dib-ns mr3 pa3"
             href="https://github.com/ipfs-shipyard/peerpad"
-            title="Github repo"
+            title="Open Source"
           >
-            Github repo
+            Open Source
           </a>
           <div
             className="db dib-ns pv3 pv0-ns"
@@ -1116,9 +1116,9 @@ exports[`can create document via button 1`] = `
           <a
             className="link dim white f6 fw3 db dib-ns mr1-ns pa3"
             href="https://github.com/ipfs-shipyard/peerpad"
-            title="Github repo"
+            title="Open Source"
           >
-            Github repo
+            Open Source
           </a>
         </nav>
         <small
