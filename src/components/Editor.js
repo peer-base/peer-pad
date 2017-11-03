@@ -14,7 +14,7 @@ export default class Editor extends Component {
   }
 
   onRef (ref) {
-    const { type, editable, onEditor, onChange } = this.props
+    const { type, onEditor, onChange } = this.props
     let editor = null
 
     if (ref) {
@@ -23,9 +23,7 @@ export default class Editor extends Component {
           theme: 'snow'
         })
 
-        if (!editable) {
-          editor.disable()
-        }
+        editor.disable()
       } else {
         // See: http://codemirror.net/doc/manual.html#config
         editor = CodeMirror(ref, {
@@ -35,7 +33,8 @@ export default class Editor extends Component {
           value: '',
           viewportMargin: Infinity,
           lineWrapping: true,
-          mode: 'markdown'
+          mode: 'markdown',
+          readOnly: 'nocursor'
         })
 
         editor.on('change', () => {

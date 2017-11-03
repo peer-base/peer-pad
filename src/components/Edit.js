@@ -205,6 +205,8 @@ class Edit extends Component {
 
     await doc.start()
 
+    this.maybeActivateEditor()
+
     this._document = doc
 
     // Bind the editor if we got an instance while the doc was starting
@@ -224,6 +226,18 @@ class Edit extends Component {
   componentWillUnmount () {
     this._document.stop()
     this._editor = null
+  }
+
+  maybeActivateEditor () {
+    if (this._editor && this.state.canEdit) {
+      switch(this.state.type) {
+        case 'richtext':
+          this._editor.enable()
+          break
+        default:
+          this._editor.setOption('readOnly', false)
+      }
+    }
   }
 }
 
