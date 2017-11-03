@@ -171,7 +171,8 @@ class Edit extends Component {
               onEditorValueChange={onEditorValueChange}
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
-              docText={documentText} />
+              docText={documentText}
+              convertMarkdown={this._document && this._document.convertMarkdown.bind(this._document)} />
           </div>
         </div>
       </div>

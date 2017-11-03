@@ -13,7 +13,8 @@ const EditorArea = ({
   onEditorValueChange,
   snapshots,
   onTakeSnapshot,
-  lastEditorValue
+  lastEditorValue,
+  convertMarkdown
 }) => {
   const editor = (
     <Editor type={docType} onEditor={onEditor} onChange={onEditorValueChange} />
@@ -53,7 +54,7 @@ const EditorArea = ({
     )
   }
 
-  const preview = <Preview md={docText} type={docType} />
+  const preview = <Preview md={docText} type={docType} convertMarkdown={convertMarkdown} />
 
   if (viewMode === 'both') {
     return (

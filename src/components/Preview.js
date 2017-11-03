@@ -1,20 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Remark from 'remark'
-import RemarkMath from 'remark-math'
-import RemarkHtmlKatex from 'remark-html-katex'
-import RemarkHtml from 'remark-html'
 import Doc from './Doc'
 import './Preview.css'
 import 'katex/dist/katex.css'
-
-const markdown = Remark()
-  .use(RemarkHtml, { sanitize: true })
-
-const markdownMath = Remark()
-  .use(RemarkMath, { sanitize: true })
-  .use(RemarkHtmlKatex)
-  .use(RemarkHtml)
 
 export default class Preview extends Component {
   constructor (props) {
@@ -33,17 +21,12 @@ export default class Preview extends Component {
   }
 
   // TODO: debounce?
-  convert (md) {
-    let processor
-    if (this.props.type === 'math') {
-      processor = markdownMath
-    } else {
-      processor = markdown
+  async convert (md) {
+    if (!this.props.convertMarkdown) {
+      return
     }
-    processor.process(md, (err, html) => {
-      if (err) return console.error('Failed to convert markdown to HTML', err)
-      this.setState({ html })
-    })
+    const html = await this.props.convertMarkdown(md, this.props.type)
+    this.setState({ html })
   }
 
   render () {
@@ -52,5 +35,6 @@ export default class Preview extends Component {
 }
 
 Preview.propTypes = {
-  md: PropTypes.string.isRequired
+  md: PropTypes.string,
+  convertMarkdown: PropTypes.func
 }
