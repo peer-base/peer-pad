@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Quill from 'quill'
-import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/markdown/markdown'
 import 'codemirror/lib/codemirror.css'
@@ -20,7 +20,7 @@ export default class Editor extends Component {
     if (ref) {
       if (type === 'richtext') {
         editor = new Quill(ref, {
-          theme: 'snow'
+          theme: 'bubble'
         })
 
         editor.disable()

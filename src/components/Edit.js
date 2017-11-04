@@ -234,6 +234,7 @@ class Edit extends Component {
       switch(this.state.type) {
         case 'richtext':
           this._editor.enable()
+          this._editor.focus()
           break
         default:
           this._editor.setOption('readOnly', false)

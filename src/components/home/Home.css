@@ -54,13 +54,13 @@
   max-width: initial;
 }
 
-a {
+.Home a {
   color: #fff;
   text-decoration: none;
   border-bottom: 1px solid rgba(2, 202, 173, 0.2)
 }
 
-a:hover {
+.Home a:hover {
   border-bottom: 1px solid var(--caribbean-green)
 }
 
