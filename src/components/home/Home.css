@@ -64,6 +64,14 @@
   border-bottom: 1px solid var(--caribbean-green)
 }
 
+.Home header a {
+  border-bottom-color: transparent
+}
+
+.Home footer a {
+  border-bottom-color: transparent
+}
+
 @media screen and (min-width: 680px) {
   /* The big wave backgrounds are heavy and complex, so skip them on mobile devices. */
   .bg-hero-wave {
