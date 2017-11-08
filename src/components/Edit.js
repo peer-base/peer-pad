@@ -29,13 +29,15 @@ class Edit extends Component {
         write: writeKey
       },
       viewMode: 'both',
-      snapshots: []
+      snapshots: [],
+      alias: window.localStorage.getItem('alias')
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
     this.onEditor = this.onEditor.bind(this)
     this.onEditorValueChange = this.onEditorValueChange.bind(this)
     this.onTakeSnapshot = this.onTakeSnapshot.bind(this)
+    this.onAliasChange = this.onAliasChange.bind(this)
   }
 
   onViewModeChange (viewMode) {
@@ -102,6 +104,13 @@ class Edit extends Component {
       })
   }
 
+  onAliasChange (alias) {
+    this.setState({ alias })
+    this._document.peers.setPeerAlias(alias)
+    // cache globally for other pads to be able to use
+    window.localStorage.setItem('alias', alias)
+  }
+
   render () {
     const {
       name,
@@ -113,7 +122,8 @@ class Edit extends Component {
       status,
       canEdit,
       viewMode,
-      snapshots
+      snapshots,
+      alias
     } = this.state
 
     const {
@@ -140,7 +150,7 @@ class Edit extends Component {
               <NewButton />
             </span>
             <span className='mr0'>
-              <PeersButton peerGroup={this._document && this._document.peers} />
+              <PeersButton peerGroup={this._document && this._document.peers} alias={alias} onAliasChange={this.onAliasChange} />
             </span>
             <span>
               <NotificationsButton />
@@ -196,7 +206,8 @@ class Edit extends Component {
       readKey: this.state.rawKeys.read,
       writeKey: this.state.rawKeys.write,
       docViewer: DocViewer,
-      docScript
+      docScript,
+      alias: this.state.alias
     })
 
     // Watch for out local ipfs node to come online.
@@ -247,7 +258,7 @@ class Edit extends Component {
 
 Edit.propTypes = {
   backend: PropTypes.object,
-  onBackend: PropTypes.func.isRequired
+  onBackend: PropTypes.func
 }
 
 export default Edit
