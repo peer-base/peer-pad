@@ -15,7 +15,7 @@ const NotificationsButton = ({ onClick, count }) => {
 }
 
 NotificationsButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   count: PropTypes.number
 }
 

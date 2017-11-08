@@ -12,7 +12,7 @@ const NewButton = ({ onClick }) => {
 }
 
 NewButton.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 }
 
 export default NewButton
