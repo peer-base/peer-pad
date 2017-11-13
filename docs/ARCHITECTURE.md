@@ -1,6 +1,8 @@
 # Peerpad Architecture
 
-Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
+Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to make available via IPFS a self-contained snapshot of the document.
+
+**Note:** Peerpad doesn't yet give any guarantees regarding document persistence. In addition to participating Peerpad instances, documents may be cached on the HTTP-to-IPFS gateway at https://ipfs.io, but may be evicted at any point. Follow [#90](https://github.com/ipfs-shipyard/peerpad/issues/90) for updates on this topic.
 
 ## Environment
 
@@ -28,7 +30,7 @@ Peerpad nodes are self-contained, they live in a browser and don't need any othe
 
 A peerpad node runs solely on a modern browser. It uses some of the available transports and abstractions provided by IPFS to connect the participating nodes, allowing nodes to watch or even collaborate between them by exchanging messages.
 
-Peerpad also leverages IPFS file storage to be able to publish snapshots of a document.
+Peerpad also leverages IPFS file storage to be able to make snapshots of a document available.
 
 
                              ┌────────────────────────────────────────────────────────────────────┐
@@ -106,7 +108,7 @@ These keys can be provided either through the URL or be prompted to the user.
 
 ### IPFS node
 
-A Peerpad instance contains a [js-ipfs](https://github.com/ipfs/js-ipfs#readme) node with the Pubsub feature enabled. This is crucial for the CRDT (see below) to work, as well as publishing snapshots
+A Peerpad instance contains a [js-ipfs](https://github.com/ipfs/js-ipfs#readme) node with the Pubsub feature enabled. This is crucial for the CRDT (see below) to work, as well as making snapshots available.
 
 ### CRDT
 
@@ -144,7 +146,7 @@ Snapshots will be a way of sharing an immutable version of the document without 
 
 * A new symmetric key will be generated
 * The document (view) will be encrypted using this new key
-* A self-contained version of the viewer and the encrypted document will be bundled and saved onto IPFS
+* A self-contained version of the viewer and the encrypted document will be bundled and made available via IPFS
 * A URL will be made constructed, containing the key
 * This URL will be made available for the user to share
 
