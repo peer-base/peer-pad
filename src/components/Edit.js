@@ -8,6 +8,7 @@ import EditorArea from './EditorArea'
 import Status from './Status'
 import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
+import Warning from './Warning'
 
 class Edit extends Component {
   constructor (props) {
@@ -124,6 +125,7 @@ class Edit extends Component {
 
     return (
       <div>
+        <Warning />
         <Header>
           <div className='flex-auto'>
             {type === 'richtext' ? null : (

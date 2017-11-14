@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CloseIcon, AlphaIcon } from '../icons'
+import { CloseIcon, AlphaIcon } from './icons'
 
 export const Warning = ({onClose}) => (
   <div className='bg-razzmatazz white' style={{padding: '20px'}}>

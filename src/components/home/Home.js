@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { HashLink as Link } from 'react-router-hash-link'
 import CreateDocument from './CreateDocument'
 import StartButton from './StartButton'
-import Warning from './Warning'
+import Warning from '../Warning'
 import Hexicon from './Hexicon'
 import './Home.css'
 
