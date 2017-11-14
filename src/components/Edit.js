@@ -30,7 +30,8 @@ class Edit extends Component {
       },
       viewMode: 'both',
       snapshots: [],
-      alias: window.localStorage.getItem('alias')
+      alias: window.localStorage.getItem('alias'),
+      doc: null
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
@@ -45,7 +46,8 @@ class Edit extends Component {
   }
 
   onEditor (nextEditor) {
-    const { _document: doc, _editor: editor } = this
+    const { _editor: editor } = this
+    const { doc } = this.state
 
     // Unbind current editor if we have a current editor and a document
     if (doc && editor) doc.unbindEditor(editor)
@@ -63,7 +65,7 @@ class Edit extends Component {
   }
 
   async onTakeSnapshot () {
-    const snapshot = await this._document.snapshots.take()
+    const snapshot = await this.state.doc.snapshots.take()
     snapshot.createdAt = new Date().toISOString()
     this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
     this.prefetchSnapshot(snapshot)
@@ -106,7 +108,7 @@ class Edit extends Component {
 
   onAliasChange (alias) {
     this.setState({ alias })
-    this._document.peers.setPeerAlias(alias)
+    this.state.doc.peers.setPeerAlias(alias)
     // cache globally for other pads to be able to use
     window.localStorage.setItem('alias', alias)
   }
@@ -150,7 +152,7 @@ class Edit extends Component {
               <NewButton />
             </span>
             <span className='mr0'>
-              <PeersButton peerGroup={this._document && this._document.peers} alias={alias} onAliasChange={this.onAliasChange} />
+              <PeersButton peerGroup={this.state.doc && this.state.doc.peers} alias={alias} onAliasChange={this.onAliasChange} />
             </span>
             <span>
               <NotificationsButton />
@@ -184,7 +186,7 @@ class Edit extends Component {
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
               docText={documentText}
-              convertMarkdown={this._document && this._document.convertMarkdown.bind(this._document)} />
+              convertMarkdown={this.state.doc && this.state.doc.convertMarkdown.bind(this.state.doc)} />
           </div>
         </div>
       </div>
@@ -221,7 +223,7 @@ class Edit extends Component {
 
     this.maybeActivateEditor()
 
-    this._document = doc
+    this.setState({ doc })
 
     // Bind the editor if we got an instance while the doc was starting
     if (this._editor) doc.bindEditor(this._editor)
@@ -238,7 +240,7 @@ class Edit extends Component {
   }
 
   componentWillUnmount () {
-    this._document.stop()
+    this.state.doc.stop()
     this._editor = null
   }
 

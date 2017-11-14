@@ -44,9 +44,9 @@ Toolbar.propTypes = {
   }).isRequired,
   onTakeSnapshot: PropTypes.func.isRequired,
   snapshots: PropTypes.array.isRequired,
-  onDirectoryClick: PropTypes.func.isRequired,
-  onSettingsClick: PropTypes.func.isRequired,
-  onShortcutsClick: PropTypes.func.isRequired
+  onDirectoryClick: PropTypes.func,
+  onSettingsClick: PropTypes.func,
+  onShortcutsClick: PropTypes.func
 }
 
 export default Toolbar
