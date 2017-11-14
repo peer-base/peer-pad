@@ -8,7 +8,7 @@ export default class PeersButton extends Component {
     super(props)
 
     const initialState = {
-      peers: {},
+      peers: (props.peerGroup && props.peerGroup.all()) || {},
       dropdownOpen: false,
       alias: props.alias || ''
     }
@@ -22,7 +22,6 @@ export default class PeersButton extends Component {
     this.onSaveAlias = this.onSaveAlias.bind(this)
 
     if (props.peerGroup) {
-      initialState.peers = props.peerGroup.all()
       props.peerGroup.on('change', this.onPeersChange)
     }
   }
