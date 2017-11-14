@@ -43,11 +43,7 @@ export default class PeersButton extends Component {
   }
 
   onPeersChange () {
-    if (this.props.peerGroup) {
-      this.setState({ peers: this.props.peerGroup.all() })
-    } else {
-      setTimeout(this.onPeersChange.bind(this), 1000)
-    }
+    this.setState({ peers: this.props.peerGroup.all() })
   }
 
   onDropdownClick () {
