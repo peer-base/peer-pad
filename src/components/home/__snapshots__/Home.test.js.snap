@@ -384,7 +384,7 @@ exports[`can create document via button 1`] = `
           }
         }
       >
-        About us
+        What is PeerPad?
       </h2>
       <p
         className="fw1 lh-copy tracked--1"
@@ -395,7 +395,7 @@ exports[`can create document via button 1`] = `
           }
         }
       >
-        Peerpad is a collaborative real-time editor that works on the decentralised web, built on top of 
+        PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of 
         <a
           href="//ipfs.io"
         >
@@ -454,7 +454,7 @@ exports[`can create document via button 1`] = `
             }
           }
         >
-          Peerpad does not rely on a second or third-party. 
+          PeerPad does not rely on a second or third-party. 
           <br />
           All nodes talk to each other directly, without intermediation.
         </p>
