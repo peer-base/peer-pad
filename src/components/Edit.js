@@ -31,7 +31,8 @@ class Edit extends Component {
       viewMode: 'both',
       snapshots: [],
       alias: window.localStorage.getItem('alias'),
-      doc: null
+      doc: null,
+      isDebuggingEnabled: false
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
@@ -39,6 +40,8 @@ class Edit extends Component {
     this.onEditorValueChange = this.onEditorValueChange.bind(this)
     this.onTakeSnapshot = this.onTakeSnapshot.bind(this)
     this.onAliasChange = this.onAliasChange.bind(this)
+    this.onDebuggingStart = this.onDebuggingStart.bind(this)
+    this.onDebuggingStop = this.onDebuggingStop.bind(this)
   }
 
   onViewModeChange (viewMode) {
@@ -113,6 +116,43 @@ class Edit extends Component {
     window.localStorage.setItem('alias', alias)
   }
 
+  onDebuggingStart () {
+    if (!this.state.doc) {
+      console.log('not started yet, try activating debugging after IPFS starts')
+      return // early
+    }
+    if (!this._networkObserver) {
+      this._networkObserver = this.state.doc.network.observe()
+      this._networkObserver.on('received message', (fromPeer, message) => {
+        console.log('received', {
+          from: fromPeer,
+          message
+        })
+      })
+      this._networkObserver.on('sent message', (toPeer, message) => {
+        console.log('sent', {
+          to: toPeer,
+          message
+        })
+      })
+      this._networkObserver.on('peer joined', (peer) => {
+        console.log('' + peer + ' joined')
+      })
+      this._networkObserver.on('peer letd', (peer) => {
+        console.log('' + peer + ' left')
+      })
+    } else {
+      this._networkObserver.start()
+    }
+    console.log('debugging started')
+    this.setState({isDebuggingEnabled: true})
+  }
+
+  onDebuggingStop () {
+    console.log('debugging stopped')
+    this.setState({isDebuggingEnabled: false})
+  }
+
   render () {
     const {
       name,
@@ -125,14 +165,17 @@ class Edit extends Component {
       canEdit,
       viewMode,
       snapshots,
-      alias
+      alias,
+      isDebuggingEnabled
     } = this.state
 
     const {
       onEditor,
       onEditorValueChange,
       onViewModeChange,
-      onTakeSnapshot
+      onTakeSnapshot,
+      onDebuggingStart,
+      onDebuggingStop
     } = this
 
     return (
@@ -186,7 +229,11 @@ class Edit extends Component {
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
               docText={documentText}
-              convertMarkdown={this.state.doc && this.state.doc.convertMarkdown.bind(this.state.doc)} />
+              convertMarkdown={this.state.doc && this.state.doc.convertMarkdown.bind(this.state.doc)}
+              onDebuggingStart={onDebuggingStart}
+              onDebuggingStop={onDebuggingStop}
+              isDebuggingEnabled={isDebuggingEnabled}
+              />
           </div>
         </div>
       </div>
@@ -210,6 +257,11 @@ class Edit extends Component {
       docViewer: DocViewer,
       docScript,
       alias: this.state.alias
+    })
+
+    doc.on('error', (err) => {
+      console.log(err)
+      alert(err.message)
     })
 
     // Watch for out local ipfs node to come online.

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import {
   DirectoryIcon,
   SettingsIcon,
-  ShortcutsIcon
+  ShortcutsIcon,
+  DebugIcon
 } from '../icons'
-import { Button, LinkButton, SnapshotsButton } from './buttons'
+import { Button, LinkButton, SnapshotsButton, ToggleButton } from './buttons'
 
 const Toolbar = ({
   theme = 'light',
@@ -13,6 +14,9 @@ const Toolbar = ({
   docName,
   docKeys,
   onTakeSnapshot,
+  onDebuggingStart,
+  onDebuggingStop,
+  isDebuggingEnabled,
   snapshots
 }) => (
   <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
@@ -21,6 +25,9 @@ const Toolbar = ({
     </div>
     <div className='mb3'>
       <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
+    </div>
+    <div className='mb3'>
+      <ToggleButton theme={theme} icon={DebugIcon} title='Enable / disable debugging' onClick={isDebuggingEnabled ? onDebuggingStop : onDebuggingStart} disabled={!isDebuggingEnabled} />
     </div>
     <div className='mb3'>
       <Button theme={theme} icon={DirectoryIcon} title='Coming soon: View directory' disabled />
@@ -46,7 +53,10 @@ Toolbar.propTypes = {
   snapshots: PropTypes.array.isRequired,
   onDirectoryClick: PropTypes.func,
   onSettingsClick: PropTypes.func,
-  onShortcutsClick: PropTypes.func
+  onShortcutsClick: PropTypes.func,
+  onDebuggingStart: PropTypes.func.isRequired,
+  onDebuggingStop: PropTypes.func.isRequired,
+  isDebuggingEnabled: PropTypes.bool.isRequired
 }
 
 export default Toolbar

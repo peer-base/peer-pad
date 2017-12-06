@@ -79,7 +79,9 @@ button:focus {
   border-color: rgba(0, 222, 219, 0.4);
 }
 
-.fill--current-color path {
+.fill--current-color path,
+.fill--current-color line,
+.fill--current-color rect {
   fill: currentColor;
 }
 

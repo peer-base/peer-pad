@@ -14,7 +14,10 @@ const EditorArea = ({
   snapshots,
   onTakeSnapshot,
   lastEditorValue,
-  convertMarkdown
+  convertMarkdown,
+  onDebuggingStart,
+  onDebuggingStop,
+  isDebuggingEnabled
 }) => {
   const editor = (
     <Editor type={docType} onEditor={onEditor} onChange={onEditorValueChange} />
@@ -27,7 +30,11 @@ const EditorArea = ({
       docName={docName}
       docKeys={docKeys}
       snapshots={snapshots}
-      onTakeSnapshot={onTakeSnapshot} />
+      onTakeSnapshot={onTakeSnapshot}
+      onDebuggingStart={onDebuggingStart}
+      onDebuggingStop={onDebuggingStop}
+      isDebuggingEnabled={isDebuggingEnabled}
+      />
   )
 
   // No preview for richtext, source and preview are the same thing
