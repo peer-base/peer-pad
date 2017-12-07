@@ -138,7 +138,7 @@ class Edit extends Component {
       this._networkObserver.on('peer joined', (peer) => {
         console.log('' + peer + ' joined')
       })
-      this._networkObserver.on('peer letd', (peer) => {
+      this._networkObserver.on('peer left', (peer) => {
         console.log('' + peer + ' left')
       })
     } else {
@@ -150,6 +150,7 @@ class Edit extends Component {
 
   onDebuggingStop () {
     console.log('debugging stopped')
+    this._networkObserver.stop()
     this.setState({isDebuggingEnabled: false})
   }
 
@@ -259,6 +260,8 @@ class Edit extends Component {
       alias: this.state.alias
     })
 
+    this.setState({ doc })
+
     doc.on('error', (err) => {
       console.log(err)
       alert(err.message)
@@ -268,14 +271,15 @@ class Edit extends Component {
     if (this._backend.network.hasStarted()) {
       this.setState({ status: 'online' })
     } else {
-      this._backend.network.once('started', () => this.setState({ status: 'online' }))
+      this._backend.network.once('started', () => {
+        this.onDebuggingStart() // activate debugging
+        this.setState({ status: 'online' })
+      })
     }
 
     await doc.start()
 
     this.maybeActivateEditor()
-
-    this.setState({ doc })
 
     // Bind the editor if we got an instance while the doc was starting
     if (this._editor) doc.bindEditor(this._editor)
