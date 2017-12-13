@@ -1,5 +1,5 @@
 <h1 align="center" title="PeerPad">
-  <img width="555" alt="PeerPad logo" src="https://user-images.githubusercontent.com/152863/31819860-8a3d5080-b596-11e7-8e69-55c27f95d95d.png">
+  <a href="https://peerpad.net/"><img width="555" alt="PeerPad logo" src="https://user-images.githubusercontent.com/152863/31819860-8a3d5080-b596-11e7-8e69-55c27f95d95d.png"></a>
 </h1>
 
 <p align="center">
@@ -9,7 +9,9 @@
   <a href="https://travis-ci.org/ipfs-shipyard/peerpad"><img src="https://img.shields.io/travis/ipfs-shipyard/peerpad/master.svg?style=flat-square" /></a>
 </p>
 
-PeerPad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
+[PeerPad](https://peerpad.net/) is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
+
+**Test it live at https://peerpad.net**
 
 # 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
