@@ -11,7 +11,9 @@
 
 [PeerPad](https://peerpad.net/) is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
 
-**Test it live at https://peerpad.net**
+**Test it live at https://peerpad.net or https://ipfs.io/ipns/peerpad.net**
+
+Docs: [Architecture](docs/ARCHITECTURE.md), [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
 
 # 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
@@ -46,11 +48,6 @@ You can self-host your own Peerpad. For that, deploy the `build` directory (afte
 ### HTTPS
 
 Some dependencies (like webcrypto) require that you're serving under HTTPS — unless it's `localhost`...
-
-## Docs
-
-* [Architecture](docs/ARCHITECTURE.md).
-* [Security](docs/SECURITY.md).
 
 ## Core API
 
