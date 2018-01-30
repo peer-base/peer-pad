@@ -122,8 +122,6 @@ The CRDT connects to other peers using a connector, which in our case is given t
 
 The CRDT is then saved onto a local store. This store is encrypted using a symmetric key derived from the "read key".
 
-ATTENTION: THIS IS NOT IMPLEMENTED YET! CRDT records are stored locally in the clear, so anyone with access to the local store can extract the CRDT. [Track this issue here](https://github.com/ipfs-shipyard/peerpad/issues/4).
-
 ## Model
 
 ### Document
