@@ -210,19 +210,24 @@ class Home extends Component {
         </section>
 
         <footer style={{padding: '120px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
-          <div className='dt w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
-            <nav className='db dtc-l v-mid w-100 w-60-l tl-l'>
-              <Link to='#about' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='About'>About</Link>
-              <Link to='#features' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Features'>Features</Link>
-              <Link to='#how-it-works' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='How it works'>How it works</Link>
-              <Link to='#benefits' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='What you can do with PeerPad'>Benefits</Link>
-              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Architecture'>Architecture</a>
-              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Security'>Security</a>
-              <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Architecture'>Architecture</a>
-              <a href='https://github.com/ipfs-shipyard/peerpad' className='link dim white f6 fw3 db dib-ns mr1-ns pa3' title='Open Source'>Open Source</a>
+          <div className='cf w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
+            <nav className='db fl w-100 w-50-l tl-l'>
+              <div>
+                <Link to='#about' className='hover--underline-thick white f6 fw3 dib mr4 m3t pb2' title='About'>About</Link>
+                <Link to='#features' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Features'>Features</Link>
+                <Link to='#how-it-works' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='How it works'>How it works</Link>
+                <Link to='#benefits' className='hover--underline-thick white f6 fw3 dib mt3 pb2' title='What you can do with PeerPad'>Benefits</Link>
+              </div>
+              <div>
+                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Architecture'>Architecture</a>
+                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Security'>Security</a>
+                <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 dib mt3 pb2' title='Open Source'>Open Source</a>
+              </div>
             </nav>
-            <small className='db dtc-l v-mid w-100 w-40-l tr-l f7 f6-ns pv4 pv0-l pr3-l lh-copy'>
-              <a className='link white db dib-ns mb3 mb0-ns' href='https://protocol.ai/'>© Protocol Labs </a>
+            <small className='fl db w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l lh-copy mt3'>
+              <span className='db dib-ns mb3 mb0-ns center'>
+                <a className='link white' href='https://protocol.ai/'>© Protocol Labs </a>
+              </span>
               <span className='dn dib-ns mh1'> | </span>
               Except as <a className='link bright-turquoise' href='https://protocol.ai/legal/'>noted</a>,
               content licensed <a className='link bright-turquoise' href='https://creativecommons.org/licenses/by/3.0/'>CC-BY 3.0</a>

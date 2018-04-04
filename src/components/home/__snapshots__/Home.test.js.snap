@@ -58,7 +58,7 @@ exports[`can create document via button 1`] = `
         className="db dt-l w-100 border-box pa3 ph5-l"
       >
         <a
-          className="db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l"
+          className="dim db dtc-l v-btm mid-gray link w-100 w-25-l tc tl-l mb2 mb0-l"
           href="/"
           title="Home"
         >
@@ -77,19 +77,19 @@ exports[`can create document via button 1`] = `
           className="db dtc-l v-btm w-100 w-75-l tc tr-l"
         >
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+            className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
             title="About"
             to="#about"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+              className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
               onClick={[Function]}
               replace={false}
               title="About"
               to="#about"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3 "
+                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
                 href="#about"
                 onClick={[Function]}
                 title="About"
@@ -99,19 +99,19 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+            className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
             title="Features"
             to="#features"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
               onClick={[Function]}
               replace={false}
               title="Features"
               to="#features"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
                 href="#features"
                 onClick={[Function]}
                 title="Features"
@@ -121,19 +121,19 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+            className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
             title="How it works"
             to="#how-it-works"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
               onClick={[Function]}
               replace={false}
               title="How it works"
               to="#how-it-works"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
                 href="#how-it-works"
                 onClick={[Function]}
                 title="How it works"
@@ -143,19 +143,19 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <HashLink
-            className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+            className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
             title=""
             to="#benefits"
           >
             <Link
-              className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+              className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
               onClick={[Function]}
               replace={false}
               title=""
               to="#benefits"
             >
               <a
-                className="link dim white f6 f5-l fw3 db dib-ns mr1 pa3"
+                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3"
                 href="#benefits"
                 onClick={[Function]}
                 title=""
@@ -165,7 +165,7 @@ exports[`can create document via button 1`] = `
             </Link>
           </HashLink>
           <a
-            className="link dim white f6 fw3 db dib-ns mr3 pa3"
+            className="hover--underline-thick white f6 fw3 db dib-ns mr4 pt3 pb3"
             href="https://github.com/ipfs-shipyard/peerpad"
             title="Open Source"
           >
