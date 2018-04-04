@@ -20,15 +20,15 @@ class Home extends Component {
         <Warning />
         <header className='db pv3 center' style={{maxWidth: '1260px'}}>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
-            <a className='db dtc-l v-btm mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
+            <a className='dim db dtc-l v-btm mid-gray link w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
               <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{height: '100px'}} />
             </a>
             <div className='db dtc-l v-btm w-100 w-75-l tc tr-l'>
-              <Link to='#about' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3 ' title='About'>What is PeerPad</Link>
-              <Link to='#features' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3'title='Features'>Features</Link>
-              <Link to='#how-it-works' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title='How it works'>How it works</Link>
-              <Link to='#benefits' className='link dim white f6 f5-l fw3 db dib-ns mr1 pa3' title=''>Benefits</Link>
-              <a href='https://github.com/ipfs-shipyard/peerpad' className='link dim white f6 fw3 db dib-ns mr3 pa3' title='Open Source'>Open Source</a>
+              <Link to='#about' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3' title='About'>What is PeerPad</Link>
+              <Link to='#features' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3'title='Features'>Features</Link>
+              <Link to='#how-it-works' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3' title='How it works'>How it works</Link>
+              <Link to='#benefits' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4 pt3 pb3' title=''>Benefits</Link>
+              <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 db dib-ns mr4 pt3 pb3' title='Open Source'>Open Source</a>
               <div className='db dib-ns pv3 pv0-ns'>
                 <StartButton />
               </div>
