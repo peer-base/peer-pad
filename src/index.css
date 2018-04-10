@@ -41,6 +41,10 @@ button:focus {
   color: var(--blue-bayox);
 }
 
+.dim {
+  opacity: 1;
+}
+
 .bg-big-stone {
   background-color: var(--big-stone);
 }

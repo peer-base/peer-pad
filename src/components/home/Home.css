@@ -54,6 +54,28 @@
   max-width: initial;
 }
 
+.hover--underline-thick {
+  position: relative;
+}
+
+.hover--underline-thick:after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  background-color: var(--caribbean-green);
+  transition: opacity .15s, transform .15s;
+  transform: translateY(8px);
+}
+
+.hover--underline-thick:hover:after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .Home a {
   color: #fff;
   text-decoration: none;
@@ -64,11 +86,12 @@
   border-bottom: 1px solid var(--caribbean-green)
 }
 
-.Home header a {
-  border-bottom-color: transparent
+.Home header a,
+.Home header a:hover {
+  border-bottom: none
 }
 
-.Home footer a {
+.Home footer nav a {
   border-bottom-color: transparent
 }
 
