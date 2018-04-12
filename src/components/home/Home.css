@@ -152,11 +152,41 @@
 
 }
 
-
 @media screen and (min-width: 60em) {
   .Home #features-list {
     background-size: 1000px auto;
     background-position: center center;
     padding-top: 0;
+  }
+
+  .Home #features-list .hexicon:before {
+    content: '';
+    width: 137px;
+    height: 179px;
+    position: absolute;
+    opacity: .5;
+    background: no-repeat center center;
+    background-size: contain;
+  }
+
+  .Home #features-list :nth-child(1) .hexicon:before {
+    right: -137px;
+    top: 50%;
+    background-image: url('/images/line-top-left.svg');
+  }
+  .Home #features-list :nth-child(2) .hexicon:before {
+    left: -137px;
+    top: 50%;
+    background-image: url('/images/line-top-right.svg');
+  }
+  .Home #features-list :nth-child(3) .hexicon:before {
+    right: -137px;
+    bottom: 50%;
+    background-image: url('/images/line-bottom-left.svg');
+  }
+  .Home #features-list :nth-child(4) .hexicon:before {
+    left: -137px;
+    bottom: 50%;
+    background-image: url('/images/line-bottom-right.svg');
   }
 }

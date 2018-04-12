@@ -73,42 +73,42 @@ class Home extends Component {
           </div>
           <div id="features-list" className='cf center tc' style={{maxWidth: '1200px'}}>
 
-            <div className='fl-ns w-50-m w-25-l pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
+            <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' />
               <h3 className='f4 fw1 white tracked--1'>
                 Private
               </h3>
-              <p className='f6 fw2 lh-copy'>
+              <p className='f6 fw2 lh-copy ph2'>
                 Communication between parties is encrypted.
               </p>
             </div>
 
-            <div className='fr-ns w-50-m w-25-l pa4'>
+            <div className='feature-item fr-ns w-50-m w-25-l pa4'>
               <Hexicon name='Encrypted' />
               <h3 className='f4 fw1 white tracked--1'>
                 Encrypted
               </h3>
-              <p className='f6 fw2 lh-copy o-70'>
-                Access to content depends on a secret key. A node needs access to a “read” key to read a document and it can only change content with access to a “write” key.
+              <p className='f6 fw2 lh-copy o-70 ph2'>
+                Access to content depends on a secret key. A node needs access to a “read” key to read a doc and it can only change content with access to a “write” key.
               </p>
             </div>
 
-            <div className='fl-ns w-50-m w-25-l pa4 o-70' style={{clear: 'both'}}>
+            <div className='feature-item fl-ns w-50-m w-25-l pa4' style={{clear: 'both'}}>
               <Hexicon name='Collaborative' />
               <h3 className='f4 fw1 white tracked--1'>
                 Collaborative
               </h3>
-              <p className='f6 fw2 lh-copy'>
+              <p className='f6 fw2 lh-copy o-70 ph2'>
                 Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
               </p>
             </div>
 
-            <div className='fr-ns w-50-m w-25-l pa4 o-70'>
+            <div className='feature-item fr-ns w-50-m w-25-l pa4'>
               <Hexicon name='Realtime' />
               <h3 className='f4 fw1 white tracked--1'>
                 Realtime
               </h3>
-              <p className='f6 fw2 lh-copy'>
+              <p className='f6 fw2 lh-copy o-70 ph2'>
                 When multiple people edit a document while connected to each other, everyone’s changes are reflected in the document in real-time.
               </p>
             </div>
