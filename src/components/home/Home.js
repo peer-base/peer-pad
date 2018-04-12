@@ -71,8 +71,9 @@ class Home extends Component {
               All nodes talk to each other directly, without intermediation.
             </p>
           </div>
-          <div className='dt-ns center tc' style={{maxWidth: '1366px'}}>
-            <div className='dtc-ns mw5-ns pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
+          <div id="features-list" className='cf center tc' style={{maxWidth: '1200px'}}>
+
+            <div className='fl-ns w-50-m w-25-l pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' />
               <h3 className='f4 fw1 white tracked--1'>
                 Private
@@ -81,16 +82,18 @@ class Home extends Component {
                 Communication between parties is encrypted.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns'>
+
+            <div className='fr-ns w-50-m w-25-l pa4'>
               <Hexicon name='Encrypted' />
               <h3 className='f4 fw1 white tracked--1'>
                 Encrypted
               </h3>
-              <p className='f6 fw2 lh-copy'>
+              <p className='f6 fw2 lh-copy o-70'>
                 Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns pa4'>
+
+            <div className='fl-ns w-50-m w-25-l pa4 o-70' style={{clear: 'both'}}>
               <Hexicon name='Collaborative' />
               <h3 className='f4 fw1 white tracked--1'>
                 Collaborative
@@ -99,7 +102,8 @@ class Home extends Component {
                 Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns'>
+
+            <div className='fr-ns w-50-m w-25-l pa4 o-70'>
               <Hexicon name='Realtime' />
               <h3 className='f4 fw1 white tracked--1'>
                 Realtime
