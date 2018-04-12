@@ -89,7 +89,7 @@ class Home extends Component {
                 Encrypted
               </h3>
               <p className='f6 fw2 lh-copy o-70'>
-                Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+                Access to content depends on a secret key. A node needs access to a “read” key to read a document and it can only change content with access to a “write” key.
               </p>
             </div>
 
@@ -99,7 +99,7 @@ class Home extends Component {
                 Collaborative
               </h3>
               <p className='f6 fw2 lh-copy'>
-                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
               </p>
             </div>
 
@@ -109,7 +109,7 @@ class Home extends Component {
                 Realtime
               </h3>
               <p className='f6 fw2 lh-copy'>
-                When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+                When multiple people edit a document while connected to each other, everyone’s changes are reflected in the document in real-time.
               </p>
             </div>
           </div>

@@ -459,15 +459,16 @@ exports[`can create document via button 1`] = `
         </p>
       </div>
       <div
-        className="dt-ns center tc"
+        className="cf center tc"
+        id="features-list"
         style={
           Object {
-            "maxWidth": "1366px",
+            "maxWidth": "1200px",
           }
         }
       >
         <div
-          className="dtc-ns mw5-ns pa4 o-20"
+          className="fl-ns w-50-m w-25-l pa4 o-20"
           title="Peerpad is in Alpha and has not been audited by security experts yet."
         >
           <Hexicon
@@ -511,7 +512,7 @@ exports[`can create document via button 1`] = `
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns"
+          className="fr-ns w-50-m w-25-l pa4"
         >
           <Hexicon
             name="Encrypted"
@@ -548,13 +549,18 @@ exports[`can create document via button 1`] = `
             Encrypted
           </h3>
           <p
-            className="f6 fw2 lh-copy"
+            className="f6 fw2 lh-copy o-70"
           >
-            Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+            Access to content depends on a secret key. A node needs access to a “read” key to read a document and it can only change content with access to a “write” key.
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns pa4"
+          className="fl-ns w-50-m w-25-l pa4 o-70"
+          style={
+            Object {
+              "clear": "both",
+            }
+          }
         >
           <Hexicon
             name="Collaborative"
@@ -605,11 +611,11 @@ exports[`can create document via button 1`] = `
             >
               Y.js
             </a>
-            , several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+            , several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns"
+          className="fr-ns w-50-m w-25-l pa4 o-70"
         >
           <Hexicon
             name="Realtime"
@@ -648,7 +654,7 @@ exports[`can create document via button 1`] = `
           <p
             className="f6 fw2 lh-copy"
           >
-            When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+            When multiple people edit a document while connected to each other, everyone’s changes are reflected in the document in real-time.
           </p>
         </div>
       </div>
