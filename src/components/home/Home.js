@@ -215,7 +215,7 @@ class Home extends Component {
           </div>
         </section>
 
-        <footer style={{padding: '100px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
+        <footer className='ph4 pv4 pv6-l' style={{background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
           <div className='cf w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
             <nav className='db fl w-100 w-50-l tl-l'>
               <div>

@@ -963,10 +963,10 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <footer
+      className="ph4 pv4 pv6-l"
       style={
         Object {
           "background": "transparent url(images/footer.png) center bottom no-repeat",
-          "padding": "100px 0",
         }
       }
     >
