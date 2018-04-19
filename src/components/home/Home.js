@@ -52,22 +52,24 @@ class Home extends Component {
           </div>
         </section>
 
-        <section id='about' className='pa3 mv5 mw8 center'>
+        <section id='about' className='pa3 mv4 mv5-ns mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             What is PeerPad?
           </h2>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
           </p>
         </section>
 
-        <section id='features' className='pa3 mv5'>
+        <section id='features' className='pa3 mv4 mv5-ns'>
           <div className='mw8 center'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               Features
             </h2>
-            <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
-              PeerPad does not rely on a second or third-party. <br />
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
+              PeerPad does not rely on a second or third-party.
+            </p>
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
               All nodes talk to each other directly, without intermediation.
             </p>
           </div>
@@ -115,15 +117,15 @@ class Home extends Component {
           </div>
         </section>
 
-        <section id='how-it-works' className='pa3 mv5 mw8 center'>
+        <section id='how-it-works' className='pa3 mv4 mv5-ns mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             How it works
           </h2>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             A Conflict-free Replicated Data Type (CRDT) offers 'Strong Eventual Consistency': a flavour of eventual consistency
             that ensures conflicts can be merged automatically to produce a value that is guaranteed to be correct/consistent.
           </p>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies
             a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
           </p>
@@ -135,12 +137,12 @@ class Home extends Component {
           </div>
         </section>
 
-        <section id='benefits' className='pa3 mv5'>
-          <div className='mw8 center mb6'>
+        <section id='benefits' className='pa3 mv4 mv5-ns'>
+          <div className='mw8 center mb5 mb6-ns'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               What you can do with PeerPad
             </h2>
-            <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
               Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
             </p>
           </div>
@@ -213,7 +215,7 @@ class Home extends Component {
           </div>
         </section>
 
-        <footer style={{padding: '120px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
+        <footer style={{padding: '100px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
           <div className='cf w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
             <nav className='db fl w-100 w-50-l tl-l'>
               <div>

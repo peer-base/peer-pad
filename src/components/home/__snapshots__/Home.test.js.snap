@@ -372,7 +372,7 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <section
-      className="pa3 mv5 mw8 center"
+      className="pa3 mv4 mv5-ns mw8 center"
       id="about"
     >
       <h2
@@ -386,13 +386,7 @@ exports[`can create document via button 1`] = `
         What is PeerPad?
       </h2>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of 
         <a
@@ -428,7 +422,7 @@ exports[`can create document via button 1`] = `
       </p>
     </section>
     <section
-      className="pa3 mv5"
+      className="pa3 mv4 mv5-ns"
       id="features"
     >
       <div
@@ -445,16 +439,13 @@ exports[`can create document via button 1`] = `
           Features
         </h2>
         <p
-          className="fw1 lh-copy tracked--1"
-          style={
-            Object {
-              "fontSize": "22px",
-              "lineHeight": "42px",
-            }
-          }
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
         >
-          PeerPad does not rely on a second or third-party. 
-          <br />
+          PeerPad does not rely on a second or third-party.
+        </p>
+        <p
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
+        >
           All nodes talk to each other directly, without intermediation.
         </p>
       </div>
@@ -660,7 +651,7 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <section
-      className="pa3 mv5 mw8 center"
+      className="pa3 mv4 mv5-ns mw8 center"
       id="how-it-works"
     >
       <h2
@@ -674,24 +665,12 @@ exports[`can create document via button 1`] = `
         How it works
       </h2>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         A Conflict-free Replicated Data Type (CRDT) offers 'Strong Eventual Consistency': a flavour of eventual consistency that ensures conflicts can be merged automatically to produce a value that is guaranteed to be correct/consistent.
       </p>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
       </p>
@@ -710,11 +689,11 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <section
-      className="pa3 mv5"
+      className="pa3 mv4 mv5-ns"
       id="benefits"
     >
       <div
-        className="mw8 center mb6"
+        className="mw8 center mb5 mb6-ns"
       >
         <h2
           className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
@@ -727,13 +706,7 @@ exports[`can create document via button 1`] = `
           What you can do with PeerPad
         </h2>
         <p
-          className="fw1 lh-copy tracked--1"
-          style={
-            Object {
-              "fontSize": "22px",
-              "lineHeight": "42px",
-            }
-          }
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
         >
           Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
         </p>
@@ -993,7 +966,7 @@ exports[`can create document via button 1`] = `
       style={
         Object {
           "background": "transparent url(images/footer.png) center bottom no-repeat",
-          "padding": "120px 0",
+          "padding": "100px 0",
         }
       }
     >
