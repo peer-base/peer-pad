@@ -153,10 +153,10 @@ class Home extends Component {
                   <Hexicon name='Take notes' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
+                  <h3 className='f4 fw1 white tracked--1'>
                     Take meeting notes
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
                   </p>
                 </div>
@@ -169,10 +169,10 @@ class Home extends Component {
                   <Hexicon name='Collaborate' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
-                    Collaborate or share snippets of code
+                  <h3 className='f4 fw1 white tracked--1'>
+                    Collaborate or share code snippets
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
                   </p>
                 </div>
@@ -185,10 +185,10 @@ class Home extends Component {
                   <Hexicon name='Write articles' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
+                  <h3 className='f4 fw1 white tracked--1'>
                     Write articles and share them
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     You can publish a snapshot of a pad to <a href="//ipfs.io">IPFS</a>, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
                   </p>
                 </div>
@@ -201,11 +201,11 @@ class Home extends Component {
                   <Hexicon name='Work with multiple users' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
-                    Work with multiple users at the same time
+                  <h3 className='f4 fw1 white tracked--1'>
+                    Work with multiple users
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
-                    Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+                  <p className='f6 fw2 lh-copy o-70'>
+                    Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
                   </p>
                 </div>
               </div>

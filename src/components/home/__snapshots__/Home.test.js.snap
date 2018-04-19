@@ -789,12 +789,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
                 Take meeting notes
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
               </p>
@@ -849,12 +849,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
-                Collaborate or share snippets of code
+                Collaborate or share code snippets
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
               </p>
@@ -909,12 +909,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
                 Write articles and share them
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 You can publish a snapshot of a pad to 
                 <a
@@ -975,14 +975,14 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
-                Work with multiple users at the same time
+                Work with multiple users
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
-                Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+                Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
               </p>
             </div>
           </div>
