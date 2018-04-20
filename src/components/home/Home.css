@@ -95,6 +95,13 @@
   border-bottom-color: transparent
 }
 
+.Home #features-list {
+  background: url('/images/globe.png') no-repeat;
+  background-position: center top;
+  background-size: 600px auto;
+  padding-top: 300px;
+}
+
 @media screen and (min-width: 680px) {
   /* The big wave backgrounds are heavy and complex, so skip them on mobile devices. */
   .bg-hero-wave {
@@ -138,5 +145,48 @@
  .caribbean-green-glow::after {
     width: 400px;
     box-shadow: var(--caribbean-green) -250px -20px 1000px 22px;
+  }
+}
+
+@media screen and (max-width: 60em) and (min-width: 30em) {
+
+}
+
+@media screen and (min-width: 60em) {
+  .Home #features-list {
+    background-size: 1000px auto;
+    background-position: center center;
+    padding-top: 0;
+  }
+
+  .Home #features-list .hexicon:before {
+    content: '';
+    width: 137px;
+    height: 179px;
+    position: absolute;
+    opacity: .5;
+    background: no-repeat center center;
+    background-size: contain;
+  }
+
+  .Home #features-list :nth-child(1) .hexicon:before {
+    right: -137px;
+    top: 50%;
+    background-image: url('/images/line-top-left.svg');
+  }
+  .Home #features-list :nth-child(2) .hexicon:before {
+    left: -137px;
+    top: 50%;
+    background-image: url('/images/line-top-right.svg');
+  }
+  .Home #features-list :nth-child(3) .hexicon:before {
+    right: -137px;
+    bottom: 50%;
+    background-image: url('/images/line-bottom-left.svg');
+  }
+  .Home #features-list :nth-child(4) .hexicon:before {
+    left: -137px;
+    bottom: 50%;
+    background-image: url('/images/line-bottom-right.svg');
   }
 }

@@ -52,74 +52,80 @@ class Home extends Component {
           </div>
         </section>
 
-        <section id='about' className='pa3 mv5 mw8 center'>
+        <section id='about' className='pa3 mv4 mv5-ns mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             What is PeerPad?
           </h2>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
           </p>
         </section>
 
-        <section id='features' className='pa3 mv5'>
+        <section id='features' className='pa3 mv4 mv5-ns'>
           <div className='mw8 center'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               Features
             </h2>
-            <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
-              PeerPad does not rely on a second or third-party. <br />
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
+              PeerPad does not rely on a second or third-party.
+            </p>
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
               All nodes talk to each other directly, without intermediation.
             </p>
           </div>
-          <div className='dt-ns center tc' style={{maxWidth: '1366px'}}>
-            <div className='dtc-ns mw5-ns pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
+          <div id="features-list" className='cf center tc' style={{maxWidth: '1200px'}}>
+
+            <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' />
               <h3 className='f4 fw1 white tracked--1'>
                 Private
               </h3>
-              <p className='f6 fw2 lh-copy'>
+              <p className='f6 fw2 lh-copy ph2'>
                 Communication between parties is encrypted.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns'>
+
+            <div className='feature-item fr-ns w-50-m w-25-l pa4'>
               <Hexicon name='Encrypted' />
               <h3 className='f4 fw1 white tracked--1'>
                 Encrypted
               </h3>
-              <p className='f6 fw2 lh-copy'>
-                Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+              <p className='f6 fw2 lh-copy o-70 ph2'>
+                Access to content depends on a secret key. A node needs access to a “read” key to read a doc and it can only change content with access to a “write” key.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns pa4'>
+
+            <div className='feature-item fl-ns w-50-m w-25-l pa4' style={{clear: 'both'}}>
               <Hexicon name='Collaborative' />
               <h3 className='f4 fw1 white tracked--1'>
                 Collaborative
               </h3>
-              <p className='f6 fw2 lh-copy'>
-                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+              <p className='f6 fw2 lh-copy o-70 ph2'>
+                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
               </p>
             </div>
-            <div className='dtc-ns mw5-ns'>
+
+            <div className='feature-item fr-ns w-50-m w-25-l pa4'>
               <Hexicon name='Realtime' />
               <h3 className='f4 fw1 white tracked--1'>
                 Realtime
               </h3>
-              <p className='f6 fw2 lh-copy'>
-                When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+              <p className='f6 fw2 lh-copy o-70 ph2'>
+                When multiple people edit a document while connected to each other, everyone’s changes are reflected in the document in real-time.
               </p>
             </div>
           </div>
         </section>
 
-        <section id='how-it-works' className='pa3 mv5 mw8 center'>
+        <section id='how-it-works' className='pa3 mv4 mv5-ns mw8 center'>
           <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
             How it works
           </h2>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             A Conflict-free Replicated Data Type (CRDT) offers 'Strong Eventual Consistency': a flavour of eventual consistency
             that ensures conflicts can be merged automatically to produce a value that is guaranteed to be correct/consistent.
           </p>
-          <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+          <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
             Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies
             a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
           </p>
@@ -131,12 +137,12 @@ class Home extends Component {
           </div>
         </section>
 
-        <section id='benefits' className='pa3 mv5'>
-          <div className='mw8 center mb6'>
+        <section id='benefits' className='pa3 mv4 mv5-ns'>
+          <div className='mw8 center mb5 mb6-ns'>
             <h2 className='f1-ns fw2 lh-copy tracked--1 fancy-underline' style={{fontSize: '40px'}}>
               What you can do with PeerPad
             </h2>
-            <p className='fw1 lh-copy tracked--1' style={{fontSize: '22px', lineHeight: '42px'}}>
+            <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
               Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
             </p>
           </div>
@@ -149,10 +155,10 @@ class Home extends Component {
                   <Hexicon name='Take notes' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
+                  <h3 className='f4 fw1 white tracked--1'>
                     Take meeting notes
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
                   </p>
                 </div>
@@ -165,10 +171,10 @@ class Home extends Component {
                   <Hexicon name='Collaborate' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
-                    Collaborate or share snippets of code
+                  <h3 className='f4 fw1 white tracked--1'>
+                    Collaborate or share code snippets
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
                   </p>
                 </div>
@@ -181,10 +187,10 @@ class Home extends Component {
                   <Hexicon name='Write articles' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
+                  <h3 className='f4 fw1 white tracked--1'>
                     Write articles and share them
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
+                  <p className='f6 fw2 lh-copy o-70'>
                     You can publish a snapshot of a pad to <a href="//ipfs.io">IPFS</a>, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
                   </p>
                 </div>
@@ -197,11 +203,11 @@ class Home extends Component {
                   <Hexicon name='Work with multiple users' />
                 </div>
                 <div className='dtc v-top pl3 pr4-l'>
-                  <h3 className='f6 fw4 white tracked--1'>
-                    Work with multiple users at the same time
+                  <h3 className='f4 fw1 white tracked--1'>
+                    Work with multiple users
                   </h3>
-                  <p className='f6 fw2 lh-copy'>
-                    Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+                  <p className='f6 fw2 lh-copy o-70'>
+                    Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
                   </p>
                 </div>
               </div>
@@ -209,7 +215,7 @@ class Home extends Component {
           </div>
         </section>
 
-        <footer style={{padding: '120px 0', background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
+        <footer className='ph4 pv4 pv6-l' style={{background: 'transparent url(images/footer.png) center bottom no-repeat'}}>
           <div className='cf w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
             <nav className='db fl w-100 w-50-l tl-l'>
               <div>

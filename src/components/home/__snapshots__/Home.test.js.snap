@@ -372,7 +372,7 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <section
-      className="pa3 mv5 mw8 center"
+      className="pa3 mv4 mv5-ns mw8 center"
       id="about"
     >
       <h2
@@ -386,13 +386,7 @@ exports[`can create document via button 1`] = `
         What is PeerPad?
       </h2>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of 
         <a
@@ -428,7 +422,7 @@ exports[`can create document via button 1`] = `
       </p>
     </section>
     <section
-      className="pa3 mv5"
+      className="pa3 mv4 mv5-ns"
       id="features"
     >
       <div
@@ -445,36 +439,34 @@ exports[`can create document via button 1`] = `
           Features
         </h2>
         <p
-          className="fw1 lh-copy tracked--1"
-          style={
-            Object {
-              "fontSize": "22px",
-              "lineHeight": "42px",
-            }
-          }
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
         >
-          PeerPad does not rely on a second or third-party. 
-          <br />
+          PeerPad does not rely on a second or third-party.
+        </p>
+        <p
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
+        >
           All nodes talk to each other directly, without intermediation.
         </p>
       </div>
       <div
-        className="dt-ns center tc"
+        className="cf center tc"
+        id="features-list"
         style={
           Object {
-            "maxWidth": "1366px",
+            "maxWidth": "1200px",
           }
         }
       >
         <div
-          className="dtc-ns mw5-ns pa4 o-20"
+          className="feature-item fl-ns w-50-m w-25-l pa4 o-20"
           title="Peerpad is in Alpha and has not been audited by security experts yet."
         >
           <Hexicon
             name="Private"
           >
             <div
-              className="dt caribbean-green center"
+              className="hexicon dt caribbean-green center relative"
               style={
                 Object {
                   "background": "transparent url(images/hex.svg) center no-repeat",
@@ -484,7 +476,7 @@ exports[`can create document via button 1`] = `
               }
             >
               <div
-                className="dtc v-mid tc"
+                className="dtc v-mid tc w-100"
               >
                 <img
                   alt="Private"
@@ -505,19 +497,19 @@ exports[`can create document via button 1`] = `
             Private
           </h3>
           <p
-            className="f6 fw2 lh-copy"
+            className="f6 fw2 lh-copy ph2"
           >
             Communication between parties is encrypted.
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns"
+          className="feature-item fr-ns w-50-m w-25-l pa4"
         >
           <Hexicon
             name="Encrypted"
           >
             <div
-              className="dt caribbean-green center"
+              className="hexicon dt caribbean-green center relative"
               style={
                 Object {
                   "background": "transparent url(images/hex.svg) center no-repeat",
@@ -527,7 +519,7 @@ exports[`can create document via button 1`] = `
               }
             >
               <div
-                className="dtc v-mid tc"
+                className="dtc v-mid tc w-100"
               >
                 <img
                   alt="Encrypted"
@@ -548,19 +540,24 @@ exports[`can create document via button 1`] = `
             Encrypted
           </h3>
           <p
-            className="f6 fw2 lh-copy"
+            className="f6 fw2 lh-copy o-70 ph2"
           >
-            Access to content depends on a secret "read" key. A node needs to have access to this key in order to read the document and follow the changes to it. A node can only change the content if they have access to a "write" key.
+            Access to content depends on a secret key. A node needs access to a “read” key to read a doc and it can only change content with access to a “write” key.
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns pa4"
+          className="feature-item fl-ns w-50-m w-25-l pa4"
+          style={
+            Object {
+              "clear": "both",
+            }
+          }
         >
           <Hexicon
             name="Collaborative"
           >
             <div
-              className="dt caribbean-green center"
+              className="hexicon dt caribbean-green center relative"
               style={
                 Object {
                   "background": "transparent url(images/hex.svg) center no-repeat",
@@ -570,7 +567,7 @@ exports[`can create document via button 1`] = `
               }
             >
               <div
-                className="dtc v-mid tc"
+                className="dtc v-mid tc w-100"
               >
                 <img
                   alt="Collaborative"
@@ -591,7 +588,7 @@ exports[`can create document via button 1`] = `
             Collaborative
           </h3>
           <p
-            className="f6 fw2 lh-copy"
+            className="f6 fw2 lh-copy o-70 ph2"
           >
             Thanks to 
             <a
@@ -605,17 +602,17 @@ exports[`can create document via button 1`] = `
             >
               Y.js
             </a>
-            , several authors can collaborate in editing the document without originating conflicts, even when they aren't connected to each other all the time.
+            , several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
           </p>
         </div>
         <div
-          className="dtc-ns mw5-ns"
+          className="feature-item fr-ns w-50-m w-25-l pa4"
         >
           <Hexicon
             name="Realtime"
           >
             <div
-              className="dt caribbean-green center"
+              className="hexicon dt caribbean-green center relative"
               style={
                 Object {
                   "background": "transparent url(images/hex.svg) center no-repeat",
@@ -625,7 +622,7 @@ exports[`can create document via button 1`] = `
               }
             >
               <div
-                className="dtc v-mid tc"
+                className="dtc v-mid tc w-100"
               >
                 <img
                   alt="Realtime"
@@ -646,15 +643,15 @@ exports[`can create document via button 1`] = `
             Realtime
           </h3>
           <p
-            className="f6 fw2 lh-copy"
+            className="f6 fw2 lh-copy o-70 ph2"
           >
-            When multiple people are editing a document are connected to each other, they see everyone's changes reflected in the document in real-time.
+            When multiple people edit a document while connected to each other, everyone’s changes are reflected in the document in real-time.
           </p>
         </div>
       </div>
     </section>
     <section
-      className="pa3 mv5 mw8 center"
+      className="pa3 mv4 mv5-ns mw8 center"
       id="how-it-works"
     >
       <h2
@@ -668,24 +665,12 @@ exports[`can create document via button 1`] = `
         How it works
       </h2>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         A Conflict-free Replicated Data Type (CRDT) offers 'Strong Eventual Consistency': a flavour of eventual consistency that ensures conflicts can be merged automatically to produce a value that is guaranteed to be correct/consistent.
       </p>
       <p
-        className="fw1 lh-copy tracked--1"
-        style={
-          Object {
-            "fontSize": "22px",
-            "lineHeight": "42px",
-          }
-        }
+        className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
         Two objects can be either equal, have hierarchy (one descends the other) or are pairs; the latter signifies a branch/divergence/conflict. From the intrinsic state of the two pairs, we can determine a new descendant object which is the result of the merge.
       </p>
@@ -704,11 +689,11 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <section
-      className="pa3 mv5"
+      className="pa3 mv4 mv5-ns"
       id="benefits"
     >
       <div
-        className="mw8 center mb6"
+        className="mw8 center mb5 mb6-ns"
       >
         <h2
           className="f1-ns fw2 lh-copy tracked--1 fancy-underline"
@@ -721,13 +706,7 @@ exports[`can create document via button 1`] = `
           What you can do with PeerPad
         </h2>
         <p
-          className="fw1 lh-copy tracked--1"
-          style={
-            Object {
-              "fontSize": "22px",
-              "lineHeight": "42px",
-            }
-          }
+          className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
         >
           Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
         </p>
@@ -753,7 +732,7 @@ exports[`can create document via button 1`] = `
                 name="Take notes"
               >
                 <div
-                  className="dt caribbean-green center"
+                  className="hexicon dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -763,7 +742,7 @@ exports[`can create document via button 1`] = `
                   }
                 >
                   <div
-                    className="dtc v-mid tc"
+                    className="dtc v-mid tc w-100"
                   >
                     <img
                       alt="Take notes"
@@ -783,12 +762,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
                 Take meeting notes
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 Either using plain text, Markdown or Rich-text, you can take meeting notes and share with your colleagues in real time..
               </p>
@@ -813,7 +792,7 @@ exports[`can create document via button 1`] = `
                 name="Collaborate"
               >
                 <div
-                  className="dt caribbean-green center"
+                  className="hexicon dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -823,7 +802,7 @@ exports[`can create document via button 1`] = `
                   }
                 >
                   <div
-                    className="dtc v-mid tc"
+                    className="dtc v-mid tc w-100"
                   >
                     <img
                       alt="Collaborate"
@@ -843,12 +822,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
-                Collaborate or share snippets of code
+                Collaborate or share code snippets
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
               </p>
@@ -873,7 +852,7 @@ exports[`can create document via button 1`] = `
                 name="Write articles"
               >
                 <div
-                  className="dt caribbean-green center"
+                  className="hexicon dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -883,7 +862,7 @@ exports[`can create document via button 1`] = `
                   }
                 >
                   <div
-                    className="dtc v-mid tc"
+                    className="dtc v-mid tc w-100"
                   >
                     <img
                       alt="Write articles"
@@ -903,12 +882,12 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
                 Write articles and share them
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
                 You can publish a snapshot of a pad to 
                 <a
@@ -939,7 +918,7 @@ exports[`can create document via button 1`] = `
                 name="Work with multiple users"
               >
                 <div
-                  className="dt caribbean-green center"
+                  className="hexicon dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -949,7 +928,7 @@ exports[`can create document via button 1`] = `
                   }
                 >
                   <div
-                    className="dtc v-mid tc"
+                    className="dtc v-mid tc w-100"
                   >
                     <img
                       alt="Work with multiple users"
@@ -969,14 +948,14 @@ exports[`can create document via button 1`] = `
               className="dtc v-top pl3 pr4-l"
             >
               <h3
-                className="f6 fw4 white tracked--1"
+                className="f4 fw1 white tracked--1"
               >
-                Work with multiple users at the same time
+                Work with multiple users
               </h3>
               <p
-                className="f6 fw2 lh-copy"
+                className="f6 fw2 lh-copy o-70"
               >
-                Peerpad can work with many users changing the document at the same time, seing each other's changes in real-time.
+                Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
               </p>
             </div>
           </div>
@@ -984,10 +963,10 @@ exports[`can create document via button 1`] = `
       </div>
     </section>
     <footer
+      className="ph4 pv4 pv6-l"
       style={
         Object {
           "background": "transparent url(images/footer.png) center bottom no-repeat",
-          "padding": "120px 0",
         }
       }
     >
