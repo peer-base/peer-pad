@@ -38,10 +38,10 @@ class Home extends Component {
 
         <section id='hero' className='db pt4 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
           <div className='bg-hero-wave-inner' style={{backgroundImage: 'url(images/hero-wave.png)'}} />
-          <div className='center ph2' style={{maxWidth: '60rem'}}>
+          <div className='center ph3' style={{maxWidth: '60rem'}}>
             <h1 className='f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise'>HELLO WORLD!</h1>
             <h2 className='f3 f2-ns fw2 lh-copy tracked--2 relative' style={{zIndex: '1000'}}>
-              PeerPad is a realtime P2P collaborative editing tool, powered by <span className='fw4 bright-turquoise-glow'><a href="//ipfs.io" style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className='fw4 caribbean-green-glow'><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
+              PeerPad is a realtime P2P collaborative <span className='hero-editing'>editing</span> tool, powered by <span className='fw4 bright-turquoise-glow'><a href="//ipfs.io" style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className='fw4 caribbean-green-glow'><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
             </h2>
             <div className='mt6'>
               <CreateDocument />
