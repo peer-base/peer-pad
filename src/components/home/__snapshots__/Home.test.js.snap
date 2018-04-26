@@ -225,7 +225,7 @@ exports[`can create document via button 1`] = `
         }
       >
         <h1
-          className="f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
+          className="hero-cursor f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
         >
           HELLO WORLD!
         </h1>

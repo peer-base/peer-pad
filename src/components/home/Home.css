@@ -95,13 +95,37 @@
   border-bottom-color: transparent
 }
 
+/* Hero cursor blinking */
+.Home .hero-cursor:after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  position: relative;
+  right: -3px;
+  bottom: -7px;
+  display: inline-block;
+  background-color: #fff;
+  animation: cursor 1.5s step-end infinite;
+}
+
+@keyframes cursor {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media screen and (min-width: 480px) {
+  .Home .hero-cursor:after {
+    height: 50px;
+  }
+}
+
 /* Hero headline "editing" animation + tooltip */
 .Home .hero-editing {
   padding-left: 4px;
   position: relative;
   display: inline-block;
   vertical-align: top;
-  /*overflow: hidden;*/
 }
 
 /* text highlight */
@@ -155,13 +179,11 @@
 }
 
 @media screen and (min-width: 900px) {
-
   /* show animation for large screens only */
   .Home .hero-editing:before,
   .Home .hero-editing:after {
     display: block;
   }
-
 }
 
 /* Features list section with globe */
