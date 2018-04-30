@@ -217,7 +217,7 @@ exports[`can create document via button 1`] = `
         }
       />
       <div
-        className="center ph2"
+        className="center ph3"
         style={
           Object {
             "maxWidth": "60rem",
@@ -225,7 +225,7 @@ exports[`can create document via button 1`] = `
         }
       >
         <h1
-          className="f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
+          className="hero-cursor f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
         >
           HELLO WORLD!
         </h1>
@@ -237,7 +237,13 @@ exports[`can create document via button 1`] = `
             }
           }
         >
-          PeerPad is a realtime P2P collaborative editing tool, powered by 
+          PeerPad is a realtime P2P collaborative 
+          <span
+            className="hero-editing"
+          >
+            editing
+          </span>
+           tool, powered by 
           <span
             className="fw4 bright-turquoise-glow"
           >
