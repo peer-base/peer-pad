@@ -6,7 +6,8 @@ const StartButton = ({onClick}) => (
     onClick={onClick}
     type='button'
     className='dib bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim'
-    style={{fontSize: '15px', padding: '5px 28px'}}>
+    style={{fontSize: '15px', padding: '5px 28px'}}
+    data-id='start-button'>
     START
   </button>
 )

@@ -213,7 +213,9 @@ class Edit extends Component {
                     type='text'
                     className='input-reset sans-serif bw0 f4 blue-bayox w-100 pa0'
                     placeholder='Document Title'
-                    readOnly={!canEdit} />
+                    readOnly={!canEdit}
+                    data-id='document-title-input'
+                   />
                 </div>
                 <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM

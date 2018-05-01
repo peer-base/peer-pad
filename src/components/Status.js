@@ -6,7 +6,12 @@ class Status extends Component {
     return (
       <div className='dib white' title='Your IPFS network connection status'>
         <span className='f6 fw1'>Status: </span>
-        <span className='f6 fw4'>{this.props.status}</span>
+        <span
+          className='f6 fw4'
+          data-id='ipfs-status'
+          data-value={this.props.status}>
+          {this.props.status}
+        </span>
       </div>
     )
   }
