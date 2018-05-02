@@ -60,8 +60,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "PUBLIC_URL='./' node scripts/build.js",
-    "test": "run-s start test:jest",
-    "test:jest": "jest --no-cache --env=jsdom",
+    "test": "jest --no-cache --env=jsdom",
+    "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "lint": "standard src",
     "deploy:ipfs": "ipfs add -r build/"
   },
