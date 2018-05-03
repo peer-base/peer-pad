@@ -45,6 +45,8 @@ $ npm run build
 
 You can self-host your own Peerpad. For that, deploy the `build` directory (after you have run the `npm run build` command).
 
+See [docs/DEPLOY.md] more info on how peerpad is deployed to https://peerpad.net 
+
 ### HTTPS
 
 Some dependencies (like webcrypto) require that you're serving under HTTPS — unless it's `localhost`...
