@@ -8,5 +8,7 @@ before_install:
 cache:
   directories:
     - node_modules
+before_script:
+  - npm run build
 script:
   - npm run lint && npm test && npm run test:e2e:ci

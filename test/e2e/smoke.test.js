@@ -44,7 +44,7 @@ it('Create a pad', async (done) => {
     return done.fail(err)
   }
   done()
-}, ms.seconds(30))
+}, ms.minutes(1))
 
 it('synchronises two pads via IPFS', async (done) => {
   try {
@@ -89,11 +89,13 @@ async function createNewPad (page) {
   await page.goto(appUrl)
   await page.waitForSelector('[data-id=start-button]')
   await page.click('[data-id=start-button]')
-  await page.waitForSelector('[data-id=ipfs-status][data-value=online]')
+  // wait up to 1 minute for ifps to boot
+  await page.waitForSelector('[data-id=ipfs-status][data-value=online]', {timeout: ms.minutes(1)})
 }
 
 async function findPeerId (page) {
-  await page.waitForSelector('[data-peer-id]')
+  // wait up to 1 minute for ifps to boot
+  await page.waitForSelector('[data-peer-id]', {timeout: ms.minutes(1)})
   const peersButton = await page.$('[data-peer-id]')
   const peerId = await page.evaluate(el => el.dataset.peerId, peersButton)
   return peerId

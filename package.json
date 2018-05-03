@@ -2,6 +2,16 @@
   "name": "peerpad",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "PUBLIC_URL='./' node scripts/build.js",
+    "lint": "standard src",
+    "test": "jest --no-cache --env=jsdom",
+    "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
+    "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
+    "test:serve": "http-server -s -p 1337 build",
+    "deploy:ipfs": "ipfs add -r build/"
+  },
   "dependencies": {
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
@@ -57,16 +67,6 @@
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "^2.0.3"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "PUBLIC_URL='./' node scripts/build.js",
-    "test": "jest --no-cache --env=jsdom",
-    "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
-    "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
-    "test:serve": "http-server -s -p 1337 build",
-    "lint": "standard src",
-    "deploy:ipfs": "ipfs add -r build/"
   },
   "devDependencies": {
     "enzyme": "^3.0.0",
