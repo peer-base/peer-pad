@@ -1,12 +1,10 @@
+os:
+- linux
 language: node_js
-dist: trusty
-addons:
-  apt:
-    packages:
-      # This is required to run new chrome on old trusty
-      - libnss3
-notifications:
-  email: false
+node_js:
+- '8'
+before_install:
+  - npm i -g npm@6.0.0
 cache:
   directories:
     - node_modules

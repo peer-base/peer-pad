@@ -12,12 +12,14 @@ console.log('Testing', appUrl)
 // see: https://github.com/GoogleChrome/puppeteer/blob/v1.3.0/docs/api.md#puppeteerlaunchoptions
 const headless = !debug
 const slowMo = debug ? 100 : undefined
+const noSandbox = process.env.NO_SANDBOX === 'true'
+const args = noSandbox ? ['--no-sandbox'] : undefined
 
 // track browser instances so we can close them all after the test.
 let browsers = []
 
 async function createBrowser () {
-  const browser = await puppeteer.launch({headless, slowMo})
+  const browser = await puppeteer.launch({headless, slowMo, args})
   browsers.push(browser)
   return browser
 }
