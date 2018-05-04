@@ -28,26 +28,41 @@ afterEach(() => {
   browsers.forEach(b => b.close())
 })
 
-it('Create a pad', async () => {
+it('creates a pad', async () => {
   const user = await createTabForUser('user')
+
+  // Catch any errors
   const errors = []
-  user.on('error', err => errors.push(err))
-  user.on('pageerror', err => errors.push(err))
+  user.on('error', err => errors.push(err.message)) // Emitted when the page crashes.
+  user.on('pageerror', err => errors.push(err.message)) // Emitted when an uncaught exception happens within the page.
+  user.on('requestfailed', req => {
+    errors.push(`${req.failure().errorText} ${req.url()}`)
+  })
+  user.on('response', res => {
+    if (res.status() >= 400) {
+      errors.push(`${res.status()} ${res.url()}`)
+    }
+  })
+
+  // Create a pad and wait for IPFS to init.
   await createNewPad(user)
   const peerId = await findPeerId(user)
   console.log('peerId', peerId)
   expect(peerId).toBeTruthy()
   expect(peerId.length).toBeGreaterThan(10)
+
+  errors.forEach(err => console.log(err))
   expect(errors.length).toBe(0)
 }, ms.minutes(3))
 
 it('synchronises two pads via IPFS', async () => {
+  const docTitleSelector = '[data-id=document-title-input]'
   const alf = await createTabForUser('alf')
   await createNewPad(alf)
   const alfPeerId = await findPeerId(alf)
   expect(alfPeerId).toBeTruthy()
   const alfTitle = 'I R ROBOT'
-  await alf.type('[data-id=document-title-input]', alfTitle)
+  await alf.type(docTitleSelector, alfTitle)
 
   const bob = await createTabForUser('bob')
   console.log('pad url', alf.url())
@@ -58,21 +73,12 @@ it('synchronises two pads via IPFS', async () => {
   console.log('alf peerId', alfPeerId)
   console.log('bob peerId', bobPeerId)
 
-  // wait for IPFS to sync...
-  await pause(ms.seconds(5))
-  const bobTitle = await getDocumentTitle(bob)
-  expect(bobTitle).toEqual(alfTitle)
+  // Wait for bob's doc title to match alf's
+  const bobTitleRef = await bob.$(docTitleSelector)
+  const valueMatches = (input, expected) => input.value === expected
+  // waitFor fn is executed in the browser context, so args have to passed in.
+  await bob.waitFor(valueMatches, {/* opts */}, bobTitleRef, alfTitle)
 }, ms.minutes(6)) // spinning up 2 browsers and syncing pads can take a while.
-
-function pause (ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-async function getDocumentTitle (page) {
-  await page.waitForSelector('[data-id=document-title-input]')
-  const titleEl = await page.$('[data-id=document-title-input]')
-  return page.evaluate(el => el.value, titleEl)
-}
 
 async function createNewPad (page) {
   await page.goto(appUrl)
