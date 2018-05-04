@@ -178,7 +178,7 @@
   100%  { opacity: 0; }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1000px) {
   /* show animation for large screens only */
   .Home .hero-editing:before,
   .Home .hero-editing:after {
