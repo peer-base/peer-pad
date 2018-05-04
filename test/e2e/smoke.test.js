@@ -28,56 +28,45 @@ afterEach(() => {
   browsers.forEach(b => b.close())
 })
 
-it('Create a pad', async (done) => {
-  try {
-    const user = await createTabForUser('user')
-    const errors = []
-    user.on('error', err => errors.push(err))
-    user.on('pageerror', err => errors.push(err))
-    await createNewPad(user)
-    const peerId = await findPeerId(user)
-    console.log('peerId', peerId)
-    expect(peerId).toBeTruthy()
-    expect(peerId.length).toBeGreaterThan(10)
-    expect(errors.length).toBe(0)
-  } catch (err) {
-    return done.fail(err)
-  }
-  done()
-}, ms.minutes(1))
+it('Create a pad', async () => {
+  const user = await createTabForUser('user')
+  const errors = []
+  user.on('error', err => errors.push(err))
+  user.on('pageerror', err => errors.push(err))
+  await createNewPad(user)
+  const peerId = await findPeerId(user)
+  console.log('peerId', peerId)
+  expect(peerId).toBeTruthy()
+  expect(peerId.length).toBeGreaterThan(10)
+  expect(errors.length).toBe(0)
+}, ms.minutes(3))
 
-it('synchronises two pads via IPFS', async (done) => {
-  try {
-    const alf = await createTabForUser('alf')
-    await createNewPad(alf)
-    const alfPeerId = await findPeerId(alf)
-    expect(alfPeerId).toBeTruthy()
-    const alfTitle = 'I R ROBOT'
-    await alf.type('[data-id=document-title-input]', alfTitle)
+it('synchronises two pads via IPFS', async () => {
+  const alf = await createTabForUser('alf')
+  await createNewPad(alf)
+  const alfPeerId = await findPeerId(alf)
+  expect(alfPeerId).toBeTruthy()
+  const alfTitle = 'I R ROBOT'
+  await alf.type('[data-id=document-title-input]', alfTitle)
 
-    const bob = await createTabForUser('bob')
-    console.log('pad url', alf.url())
-    await bob.goto(alf.url())
-    const bobPeerId = await findPeerId(bob)
-    expect(bobPeerId).toBeTruthy()
-    expect(bobPeerId).not.toEqual(alfPeerId)
-    console.log('alf peerId', alfPeerId)
-    console.log('bob peerId', bobPeerId)
-    // wait for IPFS to sync...
-    const waitFor = ms.seconds(5)
-    setTimeout(async () => {
-      try {
-        const bobTitle = await getDocumentTitle(bob)
-        expect(bobTitle).toEqual(alfTitle)
-      } catch (err) {
-        done.fail(err)
-      }
-      done()
-    }, waitFor)
-  } catch (err) {
-    done.fail(err)
-  }
-}, ms.minutes(3)) // spinning up 2 browsers and syncing pads can take a while.
+  const bob = await createTabForUser('bob')
+  console.log('pad url', alf.url())
+  await bob.goto(alf.url())
+  const bobPeerId = await findPeerId(bob)
+  expect(bobPeerId).toBeTruthy()
+  expect(bobPeerId).not.toEqual(alfPeerId)
+  console.log('alf peerId', alfPeerId)
+  console.log('bob peerId', bobPeerId)
+
+  // wait for IPFS to sync...
+  await pause(ms.seconds(5))
+  const bobTitle = await getDocumentTitle(bob)
+  expect(bobTitle).toEqual(alfTitle)
+}, ms.minutes(6)) // spinning up 2 browsers and syncing pads can take a while.
+
+function pause (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
 async function getDocumentTitle (page) {
   await page.waitForSelector('[data-id=document-title-input]')
@@ -89,13 +78,13 @@ async function createNewPad (page) {
   await page.goto(appUrl)
   await page.waitForSelector('[data-id=start-button]')
   await page.click('[data-id=start-button]')
-  // wait up to 1 minute for IPFS to boot
-  await page.waitForSelector('[data-id=ipfs-status][data-value=online]', {timeout: ms.minutes(1)})
+  // wait for IPFS to boot
+  await page.waitForSelector('[data-id=ipfs-status][data-value=online]', {timeout: ms.minutes(2)})
 }
 
 async function findPeerId (page) {
-  // wait up to 1 minute for IPFS to boot
-  await page.waitForSelector('[data-peer-id]', {timeout: ms.minutes(1)})
+  // wait for IPFS to boot
+  await page.waitForSelector('[data-peer-id]', {timeout: ms.minutes(2)})
   const peersButton = await page.$('[data-peer-id]')
   const peerId = await page.evaluate(el => el.dataset.peerId, peersButton)
   return peerId
