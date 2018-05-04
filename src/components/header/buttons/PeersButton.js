@@ -66,11 +66,19 @@ export default class PeersButton extends Component {
   render () {
     const { onDropdownClick, onDropdownDismiss } = this
     const { peers, dropdownOpen, alias } = this.state
-    const count = Object.keys(peers).length - 1
-
+    const peerIds = Object.keys(peers).sort()
+    const count = peerIds.length - 1
+    const myId = peerIds.find(id => peers[id].me)
     return (
       <Dropdown>
-        <button type='button' className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target pointer' onClick={onDropdownClick}>
+        <button
+          type='button'
+          className='button-reset relative ba b--black-stone bg-firefly pa2 br-100 white-lilac hover-target pointer'
+          onClick={onDropdownClick}
+          data-id='peers-button'
+          data-peer-count={count}
+          data-peer-id={myId}
+          >
           <UserIcon className='db stroke--current-color hover--bright-turquoise' />
           {count > 0 ? (
             <span className='absolute top-0 right-0 br-100 bg-bright-turquoise' style={{width: '12px', lineHeight: '12px', fontSize: '9px', right: '-3px'}}>{count}</span>
@@ -80,7 +88,7 @@ export default class PeersButton extends Component {
           <div className='pa3'>
             {count >= 0 ? (
               <ul className='ma0 pa0'>
-                {Object.keys(peers).sort().map((id, i) => (
+                {peerIds.map((id, i) => (
                   <PeerItem
                     key={id}
                     id={peers[id].alias || id}

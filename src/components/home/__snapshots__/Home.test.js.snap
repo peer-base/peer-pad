@@ -182,6 +182,7 @@ exports[`can create document via button 1`] = `
                 >
                   <button
                     className="dib bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim"
+                    data-id="start-button"
                     onClick={[Function]}
                     style={
                       Object {
