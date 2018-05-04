@@ -25,6 +25,7 @@ exports[`can create document via button 1`] = `
           <svg
             className="dib fill--current-color v-mid mr3"
             height="26"
+            style={undefined}
             viewBox="0 0 149 146.7"
             width="26"
             xmlns="http://www.w3.org/2000/svg"
