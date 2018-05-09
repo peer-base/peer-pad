@@ -47,7 +47,7 @@ class Home extends Component {
                   <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 db dib-ns mr3-ns pa3' title='Open Source'>Open Source</a>
                 </li>
                 <li>
-                  <div className='db dib-ns pv3 pv0-ns ml3'>
+                  <div className='db dib-ns pv3 pv0-ns'>
                     <StartButton />
                   </div>
                 </li>
