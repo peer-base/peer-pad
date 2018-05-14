@@ -267,16 +267,16 @@ module.exports = {
     // Minify the code.
     new UglifyJsPlugin({
       // see: https://github.com/webpack-contrib/uglifyjs-webpack-plugin#options
-      parallel: require('os').cpus().length,
-      extractComments: true,
+      cache: true,
+      parallel: true,
+
       // see: https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
       uglifyOptions: {
-        // IPFS only comes in ecma 6 flavour.
-        ecma: 6,
         compress: {
+          // Needed to minify js-ipfs, see: https://github.com/ipfs/aegir/pull/214
+          unused: false,
           // Needed to minify js-ipfs until v0.29 see: https://github.com/ipfs/js-ipfs/issues/1321
           keep_classnames: true,
-          keep_fnames: true,
           // Disabled because of an issue with Uglify breaking seemingly valid code:
           // https://github.com/facebookincubator/create-react-app/issues/2376
           // Pending further investigation:
@@ -288,7 +288,6 @@ module.exports = {
         mangle: {
           // Needed to minify js-ipfs until v0.29 see: https://github.com/ipfs/js-ipfs/issues/1321
           keep_classnames: true,
-          keep_fnames: true,
           safari10: true,
         },
         output: {
