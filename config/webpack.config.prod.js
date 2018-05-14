@@ -10,7 +10,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
@@ -265,23 +265,40 @@ module.exports = {
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     // Disabled because of an issue with Uglify breaking seemingly valid code:
-    //     // https://github.com/facebookincubator/create-react-app/issues/2376
-    //     // Pending further investigation:
-    //     // https://github.com/mishoo/UglifyJS2/issues/2011
-    //     comparisons: false,
-    //   },
-    //   output: {
-    //     comments: false,
-    //     // Turned on because emoji and regex is not minified properly using default
-    //     // https://github.com/facebookincubator/create-react-app/issues/2488
-    //     ascii_only: true,
-    //   },
-    //   sourceMap: shouldUseSourceMap,
-    // }),
+    new UglifyJsPlugin({
+      // see: https://github.com/webpack-contrib/uglifyjs-webpack-plugin#options
+      cache: true,
+      parallel: true,
+
+      // see: https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
+      uglifyOptions: {
+        compress: {
+          // Needed to minify js-ipfs, see: https://github.com/ipfs/aegir/pull/214
+          unused: false,
+          // Needed to minify js-ipfs until v0.29 see: https://github.com/ipfs/js-ipfs/issues/1321
+          keep_classnames: true,
+          // Disabled because of an issue with Uglify breaking seemingly valid code:
+          // https://github.com/facebookincubator/create-react-app/issues/2376
+          // Pending further investigation:
+          // https://github.com/mishoo/UglifyJS2/issues/2011
+          comparisons: false,
+          // don't display warnings when dropping unreachable code
+          warnings: false,
+        },
+        mangle: {
+          // Needed to minify js-ipfs until v0.29 see: https://github.com/ipfs/js-ipfs/issues/1321
+          keep_classnames: true,
+          safari10: true,
+        },
+        output: {
+          comments: false,
+          // Turned on because emoji and regex is not minified properly using default
+          // https://github.com/facebookincubator/create-react-app/issues/2488
+          ascii_only: true,
+        },
+        sourceMap: shouldUseSourceMap,
+      }
+    }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
@@ -327,15 +344,7 @@ module.exports = {
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new UglifyJSPlugin({
-      uglifyOptions: {
-        mangle: false
-      }
-    }),
-    new UglifyJSPlugin({
-      test: /viewer\.bundle\.js/
-    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
