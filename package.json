@@ -71,7 +71,7 @@
   "devDependencies": {
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-15": "^1.0.1",
-    "enzyme-to-json": "^3.1.2",
+    "enzyme-to-json": "^3.3.3",
     "http-server": "^0.11.1",
     "npm-run-all": "^4.1.2",
     "pre-commit": "^1.2.2",
