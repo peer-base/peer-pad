@@ -37,7 +37,7 @@ exports[`can create document via button 1`] = `
         <span
           className="dib-ns v-mid f6 fw6 "
         >
-          Peerpad is in Alpha.
+          Peerpad is in Alpha. 
         </span>
         <span
           className="db dib-ns pt3 pt0-l v-mid f6 fw3"
@@ -179,9 +179,9 @@ exports[`can create document via button 1`] = `
                   title=""
                   to="#benefits"
                 >
-                  <button
-                    className="dib bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim"
-                    data-id="start-button"
+                  <a
+                    className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                    href="#benefits"
                     onClick={[Function]}
                     title=""
                   >
@@ -210,6 +210,7 @@ exports[`can create document via button 1`] = `
                     >
                       <button
                         className="dib bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim ml3"
+                        data-id="start-button"
                         onClick={[Function]}
                         style={
                           Object {
@@ -268,13 +269,13 @@ exports[`can create document via button 1`] = `
             }
           }
         >
-          PeerPad is a realtime P2P collaborative
+          PeerPad is a realtime P2P collaborative 
           <span
             className="hero-editing"
           >
             editing
           </span>
-           tool, powered by
+           tool, powered by 
           <span
             className="fw4 bright-turquoise-glow"
           >
@@ -290,7 +291,7 @@ exports[`can create document via button 1`] = `
               IPFS
             </a>
           </span>
-           and
+           and 
           <span
             className="fw4 caribbean-green-glow"
           >
@@ -425,31 +426,31 @@ exports[`can create document via button 1`] = `
       <p
         className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
       >
-        PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of
+        PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of 
         <a
           href="//ipfs.io"
         >
           IPFS
         </a>
-         and
+         and 
         <a
           href="http://y-js.org/"
         >
           Y.js
         </a>
-        . It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is
+        . It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is 
         <a
           href="//github.com/ipfs-shipyard/peerpad"
         >
           open-source
         </a>
-         and built by
+         and built by 
         <a
           href="//protocol.ai"
         >
           Protocol Labs
         </a>
-         and the
+         and the 
         <a
           href="//ipfs.io"
         >
@@ -627,13 +628,13 @@ exports[`can create document via button 1`] = `
           <p
             className="f6 fw2 lh-copy o-70 ph2"
           >
-            Thanks to
+            Thanks to 
             <a
               href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type"
             >
               CRDTs
             </a>
-             and
+             and 
             <a
               href="http://y-js.org/"
             >
@@ -926,7 +927,7 @@ exports[`can create document via button 1`] = `
               <p
                 className="f6 fw2 lh-copy o-70"
               >
-                You can publish a snapshot of a pad to
+                You can publish a snapshot of a pad to 
                 <a
                   href="//ipfs.io"
                 >
@@ -1143,22 +1144,22 @@ exports[`can create document via button 1`] = `
               className="link white"
               href="https://protocol.ai/"
             >
-              © Protocol Labs
+              © Protocol Labs 
             </a>
           </span>
           <span
             className="dn dib-ns mh1"
           >
-             |
+             | 
           </span>
-          Except as
+          Except as 
           <a
             className="link bright-turquoise"
             href="https://protocol.ai/legal/"
           >
             noted
           </a>
-          , content licensed
+          , content licensed 
           <a
             className="link bright-turquoise"
             href="https://creativecommons.org/licenses/by/3.0/"
