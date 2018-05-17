@@ -2,6 +2,7 @@
   "name": "peerpad",
   "version": "0.1.0",
   "private": true,
+  "leadMaintainer": "Jacob Heun <jacobheun@gmail.com>",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "PUBLIC_URL='./' node scripts/build.js",
