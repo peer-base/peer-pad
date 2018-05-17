@@ -20,20 +20,42 @@ class Home extends Component {
         <Warning />
         <header className='db pv3 center' style={{maxWidth: '1260px'}}>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
+
             <a className='dim db dtc-l v-btm mid-gray link w-100 w-25-l tc tl-l mb2 mb0-l' href='/' title='Home'>
               <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{height: '100px'}} />
             </a>
-            <div className='db dtc-l v-btm w-100 w-75-l tc tr-l'>
-              <Link to='#about' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4-ns pt3 pb3' title='About'>What is PeerPad</Link>
-              <Link to='#features' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4-ns pt3 pb3'title='Features'>Features</Link>
-              <Link to='#how-it-works' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4-ns pt3 pb3' title='How it works'>How it works</Link>
-              <Link to='#benefits' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr4-ns pt3 pb3' title=''>Benefits</Link>
-              <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 db dib-ns mr4-ns pt3 pb3' title='Open Source'>Open Source</a>
-              <div className='db dib-ns pv3 pv0-ns'>
-                <StartButton />
-              </div>
+
+            <div className='db dtc-l v-btm w-100 w-75-l tc tr-l top-nav'>
+
+              <input id="menu-toggle" className="menu-toggle" type="checkbox"/>
+              <label htmlFor="menu-toggle" className='mt4 w-auto bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim' style={{fontSize: '15px', padding: '5px 28px'}}>Menu</label>
+
+              <ul>
+                <li>
+                  <Link to='#about' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title='About'>What is PeerPad</Link>
+                </li>
+                <li>
+                  <Link to='#features' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3'title='Features'>Features</Link>
+                </li>
+                <li>
+                  <Link to='#how-it-works' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title='How it works'>How it works</Link>
+                </li>
+                <li>
+                  <Link to='#benefits' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title=''>Benefits</Link>
+                </li>
+                <li>
+                  <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 db dib-ns mr3-ns pa3' title='Open Source'>Open Source</a>
+                </li>
+                <li>
+                  <div className='db dib-ns pv3 pv0-ns'>
+                    <StartButton />
+                  </div>
+                </li>
+              </ul>
+
             </div>
           </nav>
+
         </header>
 
         <section id='hero' className='db pt4 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
