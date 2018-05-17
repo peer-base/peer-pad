@@ -154,7 +154,7 @@
   header {
     padding-bottom: 0 !important;
   }
-  button[type="button"] {
+  button[data-id="start-button"] {
     margin: 10px;
     background-color: #23e0f7;
     color: rgb(4, 17, 37);
