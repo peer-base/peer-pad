@@ -41,7 +41,7 @@
     "jest": "20.0.4",
     "milliseconds": "^1.0.3",
     "object-assign": "4.1.1",
-    "peerpad-core": "^0.11.0",
+    "peer-pad-core": "^0.11.0",
     "postcss-css-variables": "^0.8.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-import": "^11.0.0",
@@ -71,7 +71,7 @@
   "devDependencies": {
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-15": "^1.0.1",
-    "enzyme-to-json": "^3.3.3",
+    "enzyme-to-json": "^3.3.4",
     "http-server": "^0.11.1",
     "npm-run-all": "^4.1.2",
     "pre-commit": "^1.2.2",
