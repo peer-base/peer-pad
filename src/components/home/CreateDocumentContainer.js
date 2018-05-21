@@ -42,8 +42,8 @@ export default class CreateDocumentContainer extends Component {
 
   async onCreateDocument () {
     try {
-      const generateRandomKeys = await import('peerpad-core/src/backend/keys/generate')
-      const generateRandomName = await import('peerpad-core/src/backend/keys/generate-random-name')
+      const generateRandomKeys = await import('peer-pad-core/src/backend/keys/generate')
+      const generateRandomName = await import('peer-pad-core/src/backend/keys/generate-random-name')
       const type = encodeURIComponent(this.state.type || 'markdown')
       const name = encodeURIComponent(this.state.name || generateRandomName())
       const keys = await generateRandomKeys()

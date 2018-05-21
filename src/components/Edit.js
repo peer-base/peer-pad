@@ -158,7 +158,7 @@ class Edit extends Component {
     const {
       name,
       type,
-      // The editor contents is updated directly by peerpad-core.
+      // The editor contents is updated directly by peer-pad-core.
       // `documentText` is a cache of the last value we received.
       documentText,
       rawKeys,
@@ -247,7 +247,7 @@ class Edit extends Component {
     const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
 
     if (!this._backend) {
-      const PeerpadBackend = await import('peerpad-core')
+      const PeerpadBackend = await import('peer-pad-core')
       this._backend = new PeerpadBackend()
       this.props.onBackend(this._backend)
     }
