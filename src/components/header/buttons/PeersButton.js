@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
-import { UserIcon } from '../../icons'
+import { UserIcon, EthereumIcon } from '../../icons'
 
 export default class PeersButton extends Component {
   constructor (props) {
@@ -126,8 +126,11 @@ const PeerItem = ({ id, capabilities, last, me, ethereumWalletId }) => {
   return (
     <li className={`flex flex-row ${last ? '' : 'mb2'} pointer`}>
       <span className='mr1'>
-        <UserIcon
-          className='db stroke--current-color pigeon-post' />
+        {
+          ethereumWalletId ?
+            (<EthereumIcon />) :
+            (<UserIcon className='db stroke--current-color pigeon-post' />)
+        }
       </span>
       <span
         className='flex-auto f6'
@@ -138,11 +141,6 @@ const PeerItem = ({ id, capabilities, last, me, ethereumWalletId }) => {
       {
         me && (
           <span className='f7'>(me)</span>
-        )
-      }
-      {
-        ethereumWalletId && (
-          <span className='f7'>{ethereumWalletId}</span>
         )
       }
     </li>
