@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
-import { UserIcon, EthereumIcon } from '../../icons'
+import PeerEthereum from './PeerEthereum'
+import { UserIcon } from '../../icons'
 
 export default class PeersButton extends Component {
   constructor (props) {
@@ -94,7 +95,7 @@ export default class PeersButton extends Component {
                     id={peers[id].alias || id}
                     capabilities={peers[id].permissions}
                     last={i === count - 1}
-                    ethereumWalletId={peers[id].ethereumId}
+                    ethereum={peers[id].ethereumInfo}
                     me={peers[id].me} />
                 ))}
               </ul>
@@ -118,7 +119,7 @@ PeersButton.propTypes = {
   onAliasChange: PropTypes.func
 }
 
-const PeerItem = ({ id, capabilities, last, me, ethereumWalletId }) => {
+const PeerItem = ({ id, capabilities, last, me, ethereum }) => {
   const permissions = Object.keys(capabilities)
     .filter((capability) => capabilities[capability])
     .join(', ')
@@ -127,8 +128,8 @@ const PeerItem = ({ id, capabilities, last, me, ethereumWalletId }) => {
     <li className={`flex flex-row ${last ? '' : 'mb2'} pointer`}>
       <span className='mr1'>
         {
-          ethereumWalletId ?
-            (<EthereumIcon />) :
+          ethereum ?
+            (<PeerEthereum  ethereum={ethereum} />) :
             (<UserIcon className='db stroke--current-color pigeon-post' />)
         }
       </span>
