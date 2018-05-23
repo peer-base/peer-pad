@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Dropleft, DropleftMenu } from '../../dropdown/Dropleft'
-import { EthereumIcon } from '../../icons'
+import { EthereumIcon, CheckFailIcon, CheckGreyIcon, CheckYellowIcon, CheckGreenIcon } from '../../icons'
 import Button from './Button'
 
 export default class PeerEthereum extends Component {
@@ -29,15 +29,31 @@ export default class PeerEthereum extends Component {
     } = this
 
     const { dropleftMenuOpen } = this.state
+    const ethereum = this.props.ethereum
+    const proofs = ethereum && ethereum.proofs
 
     return (
       <Dropleft>
-        <Button icon={EthereumIcon} onClick={onDropleftTriggerClick} />
+        { ethereum.verified ? <Button icon={EthereumIcon} onClick={onDropleftTriggerClick} /> : <CheckFailIcon /> }
         <DropleftMenu width={300} height={132} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
           <div className='pa3'>
-            <pre>
-              {JSON.stringify(this.props.ethereum, null, '\t')}
-            </pre>
+            {
+              !this.props.ethereum.verified ? (<div><CheckFailIcon /><span>&nbsp; Failed verification</span></div>) : (
+              <div>
+                {
+                  !Object.keys(proofs).length ? (
+                    <div>
+                      <CheckYellowIcon /><span>&nbsp;Metamask</span>
+                    </div>) :
+                    Object.keys(proofs).map((proofRealm) => (
+                      <div>
+                        <CheckGreenIcon /><span>&nbsp;<a href={proofs[proofRealm]}>{proofRealm}</a></span>
+                      </div>
+                    ))
+                }
+              </div>
+              )
+            }
           </div>
         </DropleftMenu>
       </Dropleft>
