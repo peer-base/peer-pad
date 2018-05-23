@@ -94,6 +94,7 @@ export default class PeersButton extends Component {
                     id={peers[id].alias || id}
                     capabilities={peers[id].permissions}
                     last={i === count - 1}
+                    ethereumWalletId={peers[id].ethereumId}
                     me={peers[id].me} />
                 ))}
               </ul>
@@ -117,7 +118,7 @@ PeersButton.propTypes = {
   onAliasChange: PropTypes.func
 }
 
-const PeerItem = ({ id, capabilities, last, me }) => {
+const PeerItem = ({ id, capabilities, last, me, ethereumWalletId }) => {
   const permissions = Object.keys(capabilities)
     .filter((capability) => capabilities[capability])
     .join(', ')
@@ -137,6 +138,11 @@ const PeerItem = ({ id, capabilities, last, me }) => {
       {
         me && (
           <span className='f7'>(me)</span>
+        )
+      }
+      {
+        ethereumWalletId && (
+          <span className='f7'>{ethereumWalletId}</span>
         )
       }
     </li>
