@@ -74,7 +74,7 @@ exports[`can create document via button 1`] = `
           />
         </a>
         <div
-          className="db dtc-l v-btm w-100 w-75-l tc tr-l top-nav"
+          className="db dtc-l v-btm w-100 w-75-l tc tr-l topNav"
         >
           <input
             className="menu-toggle"

@@ -22,6 +22,52 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+// "postcss" loader applies autoprefixer to our CSS.
+// "css" loader resolves paths in CSS and adds assets as dependencies.
+// "style" loader turns CSS into JS modules that inject <style> tags.
+// In production, we use a plugin to extract that CSS to a file, but
+// in development "style" loader enables hot editing of CSS.
+// This is moved out of rules so that the configuration can be shared across
+// global and module css files.
+const createCssRule = ({ modules = false } = {}) => ({
+  test: /\.css$/,
+  [modules ? 'include' : 'exclude']: (filename) => filename.endsWith('.module.css'),
+  use: [
+    require.resolve('style-loader'),
+    {
+      loader: require.resolve('css-loader'),
+      options: Object.assign({
+        importLoaders: 1,
+      }, modules && {
+        modules: true,
+        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+      }),
+    },
+    {
+      loader: require.resolve('postcss-loader'),
+      options: {
+        // Necessary for external CSS imports to work
+        // https://github.com/facebookincubator/create-react-app/issues/2677
+        ident: 'postcss',
+        plugins: () => [
+          require('postcss-import'),
+          require('postcss-css-variables'),
+          require('postcss-flexbugs-fixes'),
+          autoprefixer({
+            browsers: [
+              '>1%',
+              'last 4 versions',
+              'Firefox ESR',
+              'not ie < 9', // React doesn't support IE8 anyway
+            ],
+            flexbox: 'no-2009',
+          }),
+        ],
+      },
+    },
+  ],
+})
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -156,45 +202,8 @@ module.exports = {
               cacheDirectory: true,
             },
           },
-          // "postcss" loader applies autoprefixer to our CSS.
-          // "css" loader resolves paths in CSS and adds assets as dependencies.
-          // "style" loader turns CSS into JS modules that inject <style> tags.
-          // In production, we use a plugin to extract that CSS to a file, but
-          // in development "style" loader enables hot editing of CSS.
-          {
-            test: /\.css$/,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-import'),
-                    require('postcss-css-variables'),
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-            ],
-          },
+          createCssRule(),
+          createCssRule({ modules: true }),
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.

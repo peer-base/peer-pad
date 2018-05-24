@@ -1,0 +1,54 @@
+@import '../../colors.css';
+
+/* Mobile-friendly top nav */
+
+.topNav .menu-toggle {
+  visibility: hidden;
+  position: absolute;
+  left: -100%;
+}
+
+.topNav label {
+  display: none;
+}
+
+.topNav ul {
+  padding: 0;
+}
+
+.topNav ul li {
+  display: inline-block;
+}
+
+.topNav ul li a {
+  display: inline-block;
+  margin: 0;
+}
+
+@media screen and (max-width: 1160px) {
+  .topNav {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .topNav ul {
+    display: none;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    padding-bottom: 10px;
+  }
+  .topNav label {
+    display: inline-block;
+  }
+  .topNav .menu-toggle:checked ~ ul,
+  .topNav .menu-toggle:checked ~ ul > li {
+    display: block;
+  }
+  .topNav label {
+    padding: 10px;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+}
