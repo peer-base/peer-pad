@@ -2,7 +2,7 @@
 
 /* Mobile-friendly top nav */
 
-.topNav .menu-toggle {
+.topNav .menuToggle {
   visibility: hidden;
   position: absolute;
   left: -100%;
@@ -42,13 +42,18 @@
   .topNav label {
     display: inline-block;
   }
-  .topNav .menu-toggle:checked ~ ul,
-  .topNav .menu-toggle:checked ~ ul > li {
+  .topNav .menuToggle:checked ~ ul,
+  .topNav .menuToggle:checked ~ ul > li {
     display: block;
   }
   .topNav label {
     padding: 10px;
     margin-bottom: 0;
     cursor: pointer;
+  }
+  .topNav button[data-id="start-button"] {
+    margin: 10px;
+    background-color: #23e0f7;
+    color: rgb(4, 17, 37);
   }
 }

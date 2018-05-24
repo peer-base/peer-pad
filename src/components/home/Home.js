@@ -29,7 +29,7 @@ class Home extends Component {
 
             <div className={cx('db dtc-l v-btm w-100 w-75-l tc tr-l', styles.topNav)}>
 
-              <input id="menu-toggle" className="menu-toggle" type="checkbox"/>
+              <input id="menu-toggle" className={styles.menuToggle} type="checkbox"/>
               <label htmlFor="menu-toggle" className='mt4 w-auto bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim' style={{fontSize: '15px', padding: '5px 28px'}}>Menu</label>
 
               <ul>

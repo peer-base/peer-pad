@@ -77,7 +77,7 @@ exports[`can create document via button 1`] = `
           className="db dtc-l v-btm w-100 w-75-l tc tr-l topNav"
         >
           <input
-            className="menu-toggle"
+            className="menuToggle"
             id="menu-toggle"
             type="checkbox"
           />
