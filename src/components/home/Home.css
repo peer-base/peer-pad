@@ -95,69 +95,17 @@
   border-bottom-color: transparent
 }
 
-/* Mobile-friendly top nav */
-
-.top-nav .menu-toggle {
-  visibility: hidden;
-  position: absolute;
-  left: -100%;
-}
-
-.top-nav label {
-  display: none;
-}
-
-.top-nav ul {
-  padding: 0;
-}
-
-.top-nav ul li {
-  display: inline-block;
-}
-
-.top-nav ul li a {
-  display: inline-block;
-  margin: 0;
-}
-
 @media screen and (max-width: 1160px) {
   header a[title="Home"] {
     display: inline-block;
     margin: 0 auto;
     width: auto;
   }
-  .top-nav {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
 }
 
 @media screen and (max-width: 775px) {
-  .top-nav ul {
-    display: none;
-    border-bottom: 1px solid rgba(255,255,255,.3);
-    padding-bottom: 10px;
-  }
-  .top-nav label {
-    display: inline-block;
-  }
-  .top-nav .menu-toggle:checked ~ ul,
-  .top-nav .menu-toggle:checked ~ ul > li {
-    display: block;
-  }
-  .top-nav label {
-    padding: 10px;
-    margin-bottom: 0;
-    cursor: pointer;
-  }
   header {
     padding-bottom: 0 !important;
-  }
-  button[data-id="start-button"] {
-    margin: 10px;
-    background-color: #23e0f7;
-    color: rgb(4, 17, 37);
   }
 }
 
