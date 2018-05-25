@@ -19,6 +19,16 @@ Docs: [Architecture](docs/ARCHITECTURE.md), [Security](docs/SECURITY.md), [Techn
 
 ## 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+- [Build](#build)
+- [Testing](#testing)
+- [Deploy](#deploy)
+- [Contribute](#contribute)
+- [License](#license)
+
 ## Install
 
 With the following installed:
@@ -87,8 +97,6 @@ To run the e2e test against a deployed version, just pass the url as an env var
 URL=https://peerpad.net npm run test:e2e
 ```
 
-
-
 ## Deploy
 
 You can self-host your own Peerpad. For that, run `npm run build` and deploy the `build` directory to a web-server
@@ -104,6 +112,8 @@ The Peerpad is a work in progress. As such, there's a few things you can do righ
 * **[Check out the existing issues](https://github.com/ipfs-shipyard/peer-pad/issues)**!
 * **Perform code reviews**. More eyes will help a) speed the project along b) ensure quality and c) reduce possible future bugs.
 * **Add tests**. There can never be enough tests.
+
+Read the PeerPad [contributing.md](docs/CONTRIBUTING.md) for details on the latest development flow.
 
 ### Want to hack on PeerPad?
 
