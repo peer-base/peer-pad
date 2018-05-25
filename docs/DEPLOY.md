@@ -1,6 +1,6 @@
-# Deploying Peerpad
+# Deploying PeerPad
 
-Peerpad is a single page web app. The `src` directory is built into a static website in the `build` directory and deployed to IPFS infrastructure by the [Jenkins CI job](https://ci.ipfs.team/blue/organizations/jenkins/IPFS%20Shipyard%2Fpeer-pad/activity).
+PeerPad is a single page web app. The `src` directory is built into a static website in the `build` directory and deployed to IPFS infrastructure by the [Jenkins CI job](https://ci.ipfs.team/blue/organizations/jenkins/IPFS%20Shipyard%2Fpeer-pad/activity).
 
 Jenkins watches the [repo](https://github.com/ipfs-shipyard/peer-pad) for changes, and automatically build an IPFS hosted preview site for every commit (e.g. [preview](https://ipfs.io/ipfs/QmUjBkWSiTxdETKv5g3gawzKTG3mfmDaX22QEPE3CkkUf3)).
 

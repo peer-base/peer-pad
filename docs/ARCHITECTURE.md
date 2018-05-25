@@ -1,15 +1,15 @@
-# Peerpad Architecture
+# PeerPad Architecture
 
-Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to make available via IPFS a self-contained snapshot of the document.
+PeerPad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to make available via IPFS a self-contained snapshot of the document.
 
-**Note:** Peerpad doesn't yet give any guarantees regarding document persistence. In addition to participating Peerpad instances, documents may be cached on the HTTP-to-IPFS gateway at https://ipfs.io, but may be evicted at any point. Follow [#90](https://github.com/ipfs-shipyard/peerpad/issues/90) for updates on this topic.
+**Note:** PeerPad doesn't yet give any guarantees regarding document persistence. In addition to participating PeerPad instances, documents may be cached on the HTTP-to-IPFS gateway at https://ipfs.io, but may be evicted at any point. Follow [#90](https://github.com/ipfs-shipyard/peerpad/issues/90) for updates on this topic.
 
 ## Environment
 
 
     ┌─────────┐                 ┌─────────┐
     │         │                 │         │
-    │ Peerpad │                 │ Peerpad │
+    │ PeerPad │                 │ PeerPad │
     │  Node   │◀───────────────▶│  Node   │
     │         │                 │         │
     └─────────┘                 └─────────┘
@@ -20,21 +20,21 @@ Peerpad is a decentralized editor that allows concurrent writing of text. Beside
          │                           │
          │        ┌─────────┐        │
          │        │         │        │
-         │        │ Peerpad │        │
+         │        │ PeerPad │        │
          └───────▶│  Node   │◀───────┘
                   │         │
                   └─────────┘
 
 
-Peerpad nodes are self-contained, they live in a browser and don't need any other type of node to go about their business. They connect to each other without any intermediary, exchanging messages directly in peer-to-peer style.
+PeerPad nodes are self-contained, they live in a browser and don't need any other type of node to go about their business. They connect to each other without any intermediary, exchanging messages directly in peer-to-peer style.
 
 A peerpad node runs solely on a modern browser. It uses some of the available transports and abstractions provided by IPFS to connect the participating nodes, allowing nodes to watch or even collaborate between them by exchanging messages.
 
-Peerpad also leverages IPFS file storage to be able to make snapshots of a document available.
+PeerPad also leverages IPFS file storage to be able to make snapshots of a document available.
 
 
                              ┌────────────────────────────────────────────────────────────────────┐
-                             │Peerpad Document                                                    │
+                             │PeerPad Document                                                    │
                              │  ┌──────────────┐┌──────────┐┌───────────┐┌────────────┐           │
                              │  │document name ││ read key ││write key ?││credential ?│           │
                              │  └──────────────┘└──────────┘└───────────┘└────────────┘           │
@@ -88,15 +88,15 @@ Peerpad also leverages IPFS file storage to be able to make snapshots of a docum
 
 ## Packages
 
-Peerpad consists of 3 main packages:
+PeerPad consists of 3 main packages:
 
 * Back-end: contains the implemementation-specific components, like the IPFS node and the CRDT implementation.
 * Model: exposes a well-defined API that the view can plug in to.
-* View: contains the UI components that use the model API to deliver the Peerpad app to the users.
+* View: contains the UI components that use the model API to deliver the PeerPad app to the users.
 
 ## Document
 
-A document has a name, which uniquely identifies it in the Peerpad space.
+A document has a name, which uniquely identifies it in the PeerPad space.
 
 After instantiated, the user can provide the document with a read key, which allows the user to read the document. Without it, it's not possible for the user to read the document.
 
@@ -108,11 +108,11 @@ These keys can be provided either through the URL or be prompted to the user.
 
 ### IPFS node
 
-A Peerpad instance contains a [js-ipfs](https://github.com/ipfs/js-ipfs#readme) node with the Pubsub feature enabled. This is crucial for the CRDT (see below) to work, as well as making snapshots available.
+A PeerPad instance contains a [js-ipfs](https://github.com/ipfs/js-ipfs#readme) node with the Pubsub feature enabled. This is crucial for the CRDT (see below) to work, as well as making snapshots available.
 
 ### CRDT
 
-Each document is a CRDT of the text type. Underneath, Peerpad uses [the Y.js library](http://y-js.org) to create a shared data structure representing a document. This data structure is conflict free, allowing concurrent edition of the document by multiple nodes. ([Read more about CRDTs here](https://github.com/ipfs/research-CRDT)).
+Each document is a CRDT of the text type. Underneath, PeerPad uses [the Y.js library](http://y-js.org) to create a shared data structure representing a document. This data structure is conflict free, allowing concurrent edition of the document by multiple nodes. ([Read more about CRDTs here](https://github.com/ipfs/research-CRDT)).
 
 ### CRDT Transport
 
@@ -154,7 +154,7 @@ Image attachments will be dropped onto the editor. When that happens, the file i
 
 ### Peers
 
-At any given moment, a Peerpad document will know which peers are connected to it, and whether they have read or write access. This identification is the IPFS node ID in anonymous mode, but can be extended to include the given user name by prompting the user.
+At any given moment, a PeerPad document will know which peers are connected to it, and whether they have read or write access. This identification is the IPFS node ID in anonymous mode, but can be extended to include the given user name by prompting the user.
 
 
 ### History

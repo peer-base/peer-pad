@@ -79,7 +79,7 @@ class Home extends Component {
             What is PeerPad?
           </h2>
           <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
-            PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
+            PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. PeerPad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
           </p>
         </section>
 
@@ -97,7 +97,7 @@ class Home extends Component {
           </div>
           <div id="features-list" className='cf center tc' style={{maxWidth: '1200px'}}>
 
-            <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='Peerpad is in Alpha and has not been audited by security experts yet.'>
+            <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='PeerPad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' />
               <h3 className='f4 fw1 white tracked--1'>
                 Private
@@ -165,7 +165,7 @@ class Home extends Component {
               What you can do with PeerPad
             </h2>
             <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
-              Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
+              PeerPad can be used to edit code, markdown documents or even rich text documents. PeerPad can also be used to save snapshots and publish them to the internet.
             </p>
           </div>
 
@@ -197,7 +197,7 @@ class Home extends Component {
                     Collaborate or share code snippets
                   </h3>
                   <p className='f6 fw2 lh-copy o-70'>
-                    Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
+                    PeerPad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
                   </p>
                 </div>
               </div>
@@ -229,7 +229,7 @@ class Home extends Component {
                     Work with multiple users
                   </h3>
                   <p className='f6 fw2 lh-copy o-70'>
-                    Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
+                    PeerPad can work with many users changing the document at the same time, seing each other’s changes in real-time.
                   </p>
                 </div>
               </div>

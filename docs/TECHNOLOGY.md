@@ -1,4 +1,4 @@
-# Peerpad Technology Stack
+# PeerPad Technology Stack
 
 ## Technologies
 

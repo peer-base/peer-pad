@@ -70,7 +70,7 @@ To run the **unit** tests:
 npm test
 ```
 
-To run the **end-to-end** smoke test that runs Peerpad in multiple, headless Chrome instances run:
+To run the **end-to-end** smoke test that runs PeerPad in multiple, headless Chrome instances run:
 
 ```bash
 npm run build
@@ -99,15 +99,15 @@ URL=https://peerpad.net npm run test:e2e
 
 ## Deploy
 
-You can self-host your own Peerpad. For that, run `npm run build` and deploy the `build` directory to a web-server
+You can self-host your own PeerPad. For that, run `npm run build` and deploy the `build` directory to a web-server
 
-See [docs/DEPLOY.md](docs/DEPLOY.md) more info on how Peerpad is deployed to https://peerpad.net
+See [docs/DEPLOY.md](docs/DEPLOY.md) more info on how PeerPad is deployed to https://peerpad.net
 
 Some dependencies (like webcrypto) require that you're serving under HTTPS — unless it's `localhost`...
 
 ## Contribute
 
-The Peerpad is a work in progress. As such, there's a few things you can do right now to help out:
+The PeerPad is a work in progress. As such, there's a few things you can do right now to help out:
 
 * **[Check out the existing issues](https://github.com/ipfs-shipyard/peer-pad/issues)**!
 * **Perform code reviews**. More eyes will help a) speed the project along b) ensure quality and c) reduce possible future bugs.

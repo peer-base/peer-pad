@@ -1,14 +1,14 @@
-# Peerpad Security
+# PeerPad Security
 
-# 🔓 Peerpad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
+# 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
-Peerpad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
+PeerPad is a decentralized editor that allows concurrent writing of text. Besides making live changes to a given document, it allows read-only nodes to follow the changes in real-time. It also allows you to publish a self-contained snapshot of the document to IPFS.
 
 Below we describe the security model and take the opportunity to describe the underlying architecture in more detail.
 
 ## Security Model
 
-Peerpad aims to be private. All data that is published into the network is encrypted and requires a key to decrypt. To participate in the real-time network of updates to a given document, the node must be in possession of the key. To read a snapshot, the reading node must also be in possession of a read key.
+PeerPad aims to be private. All data that is published into the network is encrypted and requires a key to decrypt. To participate in the real-time network of updates to a given document, the node must be in possession of the key. To read a snapshot, the reading node must also be in possession of a read key.
 
 These keys are to be transmitted in the URL in a way that no server gets them (through the hash portion of the URL).
 
@@ -18,7 +18,7 @@ When creating a document, two keys are created: the read key and the write key. 
 
 ### Security: Real-time collaborative editing
 
-To allow for concurrent real-time collaborative editing of a document, Peerpad uses a CRDT underneath, which, using the IPFS pubsub network, exchanges messages between nodes. These messages contain information about the operations and data being changes on the document.
+To allow for concurrent real-time collaborative editing of a document, PeerPad uses a CRDT underneath, which, using the IPFS pubsub network, exchanges messages between nodes. These messages contain information about the operations and data being changes on the document.
 
 These messages use the IPFS pubsub network, and are by nature ciphered in transit.
 
@@ -64,7 +64,7 @@ Participating nodes can also publish self-contained snapshots of the document. B
 
 ### Security of data at rest
 
-Peerpad uses the local store to store some records. These are the records that make up the CRDT and contain data and operations to the document. In order for this to be safe from people with access to the local store that don't have the key, these records are encrypted using a symmetric key derived from the "read key".
+PeerPad uses the local store to store some records. These are the records that make up the CRDT and contain data and operations to the document. In order for this to be safe from people with access to the local store that don't have the key, these records are encrypted using a symmetric key derived from the "read key".
 
 ### Access control
 
