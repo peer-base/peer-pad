@@ -19,6 +19,10 @@ Docs: [Architecture](docs/ARCHITECTURE.md), [Security](docs/SECURITY.md), [Techn
 
 ## 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
+## Lead Maintainer
+
+[Jacob Heun](https://github.com/jacobheun)
+
 ## Install
 
 With the following installed:
