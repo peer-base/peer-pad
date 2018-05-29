@@ -29,6 +29,10 @@ Docs: [Architecture](docs/ARCHITECTURE.md), [Security](docs/SECURITY.md), [Techn
 - [Contribute](#contribute)
 - [License](#license)
 
+## Lead Maintainer
+
+[Jacob Heun](https://github.com/jacobheun)
+
 ## Install
 
 With the following installed:

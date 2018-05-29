@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { HashLink as Link } from 'react-router-hash-link'
+import cx from 'classnames'
 import CreateDocument from './CreateDocument'
 import StartButton from './StartButton'
 import Warning from '../Warning'
 import Hexicon from './Hexicon'
 import './Home.css'
+import styles from './Home.module.css'
 
 class Home extends Component {
   constructor (props) {
@@ -25,9 +27,9 @@ class Home extends Component {
               <img src='images/logo-peerpad-lg.svg' className='dib' alt='PeerPad' style={{height: '100px'}} />
             </a>
 
-            <div className='db dtc-l v-btm w-100 w-75-l tc tr-l top-nav'>
+            <div className={cx('db dtc-l v-btm w-100 w-75-l tc tr-l', styles.topNav)}>
 
-              <input id="menu-toggle" className="menu-toggle" type="checkbox"/>
+              <input id="menu-toggle" className={styles.menuToggle} type="checkbox"/>
               <label htmlFor="menu-toggle" className='mt4 w-auto bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim' style={{fontSize: '15px', padding: '5px 28px'}}>Menu</label>
 
               <ul>
