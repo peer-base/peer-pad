@@ -37,7 +37,7 @@ exports[`can create document via button 1`] = `
         <span
           className="dib-ns v-mid f6 fw6 "
         >
-          Peerpad is in Alpha. 
+          PeerPad is in Alpha. 
         </span>
         <span
           className="db dib-ns pt3 pt0-l v-mid f6 fw3"
@@ -438,7 +438,7 @@ exports[`can create document via button 1`] = `
         >
           Y.js
         </a>
-        . It uses no second or third-party: all participating nodes talk directly to each other without a central service. Peerpad is 
+        . It uses no second or third-party: all participating nodes talk directly to each other without a central service. PeerPad is 
         <a
           href="//github.com/ipfs-shipyard/peerpad"
         >
@@ -498,7 +498,7 @@ exports[`can create document via button 1`] = `
       >
         <div
           className="feature-item fl-ns w-50-m w-25-l pa4 o-20"
-          title="Peerpad is in Alpha and has not been audited by security experts yet."
+          title="PeerPad is in Alpha and has not been audited by security experts yet."
         >
           <Hexicon
             name="Private"
@@ -746,7 +746,7 @@ exports[`can create document via button 1`] = `
         <p
           className="f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center"
         >
-          Peerpad can be used to edit code, markdown documents or even rich text documents. Peerpad can also be used to save snapshots and publish them to the internet.
+          PeerPad can be used to edit code, markdown documents or even rich text documents. PeerPad can also be used to save snapshots and publish them to the internet.
         </p>
       </div>
       <div
@@ -867,7 +867,7 @@ exports[`can create document via button 1`] = `
               <p
                 className="f6 fw2 lh-copy o-70"
               >
-                Peerpad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
+                PeerPad has a built-in code editor you can use to collaborate with colleagues while editing the same file.
               </p>
             </div>
           </div>
@@ -993,7 +993,7 @@ exports[`can create document via button 1`] = `
               <p
                 className="f6 fw2 lh-copy o-70"
               >
-                Peerpad can work with many users changing the document at the same time, seing each other’s changes in real-time.
+                PeerPad can work with many users changing the document at the same time, seing each other’s changes in real-time.
               </p>
             </div>
           </div>

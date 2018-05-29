@@ -20,7 +20,7 @@ class DocViewer extends Component {
         <head>
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-          <title>Peerpad doc</title>
+          <title>PeerPad doc</title>
           {/* normalize.css@7.0.0 */}
           <link rel='stylesheet' type='text/css' href='https://ipfs.io/ipfs/QmZuSAW5kpxzaidmrpqoWmk8q5Yk7qqpGyxX3zRnRjnRVE' />
           <link rel='stylesheet' type='text/css' href='https://ipfs.io/ipfs/QmXZCNfBdmdxmoVUF8D7D1EJPeabXxX7yBuzKrnF2AP3Nm/katex.min.css' />

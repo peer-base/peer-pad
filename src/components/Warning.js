@@ -4,7 +4,7 @@ import { CloseIcon, AlphaIcon } from './icons'
 export const Warning = ({onClose}) => (
   <div className='bg-razzmatazz white' style={{padding: '20px'}}>
     <AlphaIcon className='dib fill--current-color v-mid mr3' />
-    <span className='dib-ns v-mid f6 fw6 '>Peerpad is in Alpha. </span>
+    <span className='dib-ns v-mid f6 fw6 '>PeerPad is in Alpha. </span>
     <span className='db dib-ns pt3 pt0-l v-mid f6 fw3'>
       The codebase hasn't been audited by Security specialists and it shouldn't be used to store, share or publish sensitive information.
     </span>
