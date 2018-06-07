@@ -1,0 +1,112 @@
+@import 'colors.styl'
+
+input:focus,
+button:focus
+  outline 0
+
+.white-lilac
+  color $white-lilac
+
+.dove-gray
+  color $dove-gray
+
+.bright-turquoise
+  color $bright-turquoise
+
+.pigeon-post
+  color $pigeon-post
+
+.big-stone
+  color $big-stone
+
+.blue-bayox
+  color $blue-bayox
+
+.razzmatazz
+  color $razzmatazz
+
+.hover--white-lilac
+  &:hover
+    color $white-lilac
+
+.hover--white
+  &:hover
+    color white
+
+.hover-target:hover .hover--bright-turquoise,
+.hover--bright-turquoise:hover
+  color $bright-turquoise
+
+.hover--blue-bayox
+  &:hover
+    color $blue-bayox
+
+.dim
+  opacity 1
+
+.bg-big-stone
+  background-color $big-stone
+
+.bg-firefly
+  background-color $firefly
+
+.bg-bright-turquoise
+  background-color $bright-turquoise
+
+.bg-cloud-burst
+  background-color $cloud-burst
+
+.bg-razzmatazz
+  background-color $razzmatazz
+
+.bg-caribbean-green
+  background-color $caribbean-green
+
+.b--black-stone
+  border-color $black-pearl
+
+.b--firefly
+  border-color $firefly
+
+.b--bright-turquoise
+  border-color $bright-turquoise
+
+.b--pigeon-post
+  border-color $pigeon-post
+
+.b--caribbean-green
+  border-color $caribbean-green
+
+.b--caribbean-green-soft
+  border-color rgba(0, 222, 219, 0.4)
+
+.fill--current-color path,
+.fill--current-color line,
+.fill--current-color rect
+  fill currentColor
+
+.stroke--current-color path,
+.stroke--current-color polyline,
+.stroke--current-color circle
+  stroke currentColor
+
+.tracked--1
+  letter-spacing 1px
+
+.tracked--2
+  letter-spacing 2px
+
+.fancy-underline
+  &::after
+    content ''
+    display block
+    background $caribbean-green
+    width 100px
+    height 1px
+    margin 10px auto
+
+.appearance-none
+  appearance none
+
+.disabled, button:disabled
+  opacity 0.2
