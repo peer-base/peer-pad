@@ -10,11 +10,13 @@ const autoprefixer = require('autoprefixer');
 // global/module css files and dev/prod configurations.
 module.exports = ({ modules, test, env, shouldUseSourceMap }) => {
   const PROD = env.raw.NODE_ENV === 'production'
+  if (!PROD) shouldUseSourceMap = true
 
   const otherLoaders = [
     {
       loader: require.resolve('postcss-loader'),
       options: {
+        sourceMap: shouldUseSourceMap,
         // Necessary for external CSS imports to work
         // https://github.com/facebookincubator/create-react-app/issues/2677
         ident: 'postcss',
@@ -37,7 +39,7 @@ module.exports = ({ modules, test, env, shouldUseSourceMap }) => {
     test.source.endsWith('\.styl$') && {
       loader: require.resolve('stylus-loader'),
       options: {
-        plugins: []
+        sourceMap: shouldUseSourceMap
       }
     }
   ].filter(Boolean)
@@ -53,7 +55,7 @@ module.exports = ({ modules, test, env, shouldUseSourceMap }) => {
         options: Object.assign({
           importLoaders: otherLoaders.length,
           minimize: PROD,
-          sourceMap: PROD && shouldUseSourceMap
+          sourceMap: shouldUseSourceMap
         }, modules && {
           modules: true,
           localIdentName: PROD
