@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Doc from './Doc'
-import './Preview.css'
+import styles from './Preview.module.styl'
 import 'katex/dist/katex.css'
 
 export default class Preview extends Component {
@@ -30,7 +30,7 @@ export default class Preview extends Component {
   }
 
   render () {
-    return <Doc className='Doc Preview' html={this.state.html} />
+    return <Doc className={`Doc ${styles.Preview}`} html={this.state.html} />
   }
 }
 

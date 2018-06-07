@@ -12,12 +12,6 @@ module.exports = ({ modules, test, env, shouldUseSourceMap }) => {
   const PROD = env.raw.NODE_ENV === 'production'
 
   const otherLoaders = [
-    test.source.endsWith('\.styl$') && {
-      loader: require.resolve('stylus-loader'),
-      options: {
-        plugins: []
-      }
-    },
     {
       loader: require.resolve('postcss-loader'),
       options: {
@@ -39,6 +33,12 @@ module.exports = ({ modules, test, env, shouldUseSourceMap }) => {
           }),
         ],
       },
+    },
+    test.source.endsWith('\.styl$') && {
+      loader: require.resolve('stylus-loader'),
+      options: {
+        plugins: []
+      }
     }
   ].filter(Boolean)
 

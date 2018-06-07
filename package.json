@@ -104,12 +104,12 @@
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+(?!\\.module\\.)\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^.+(?!\\.module\\.)\\.(css|styl)$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.css$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|styl)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
       "web.js",

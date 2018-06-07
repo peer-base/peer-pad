@@ -1,0 +1,41 @@
+@import '../colors.styl'
+
+.Preview
+  padding-left 35px
+
+  h1::before,
+  h2::before,
+  h3::before,
+  h4::before,
+  h5::before,
+  h6::before
+    font-size 14px
+    font-weight lighter
+    color $pigeon-post
+    display inline-block
+    width 0
+    margin-left -35px
+    margin-right 35px
+    vertical-align baseline
+
+  h1::before
+    content 'H1'
+
+  h2::before
+    content 'H2'
+
+  h3::before
+    content 'H3'
+
+  h4::before
+    content 'H4'
+
+  h5::before
+    content 'H5'
+
+  h6::before
+    content 'H6'
+
+  & > :first-child
+    margin-top 0 !important
+

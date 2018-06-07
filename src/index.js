@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import 'tachyons/css/tachyons.css'
 import 'tachyons-flexbox/css/tachyons-flexbox.css'
 import 'tachyons-forms/css/tachyons-forms.css'
-import './index.css'
+import './index.styl'
 
 import App from './components/App'
 

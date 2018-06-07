@@ -96,19 +96,19 @@ exports[`can create document via button 1`] = `
           <ul>
             <li>
               <HashLink
-                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                 title="About"
                 to="#about"
               >
                 <Link
-                  className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                  className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                   onClick={[Function]}
                   replace={false}
                   title="About"
                   to="#about"
                 >
                   <a
-                    className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                    className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                     href="#about"
                     onClick={[Function]}
                     title="About"
@@ -120,19 +120,19 @@ exports[`can create document via button 1`] = `
             </li>
             <li>
               <HashLink
-                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                 title="Features"
                 to="#features"
               >
                 <Link
-                  className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                  className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                   onClick={[Function]}
                   replace={false}
                   title="Features"
                   to="#features"
                 >
                   <a
-                    className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                    className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                     href="#features"
                     onClick={[Function]}
                     title="Features"
@@ -144,19 +144,19 @@ exports[`can create document via button 1`] = `
             </li>
             <li>
               <HashLink
-                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                 title="How it works"
                 to="#how-it-works"
               >
                 <Link
-                  className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                  className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                   onClick={[Function]}
                   replace={false}
                   title="How it works"
                   to="#how-it-works"
                 >
                   <a
-                    className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                    className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                     href="#how-it-works"
                     onClick={[Function]}
                     title="How it works"
@@ -168,22 +168,22 @@ exports[`can create document via button 1`] = `
             </li>
             <li>
               <HashLink
-                className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
-                title=""
+                className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                title="Benefits"
                 to="#benefits"
               >
                 <Link
-                  className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                  className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                   onClick={[Function]}
                   replace={false}
-                  title=""
+                  title="Benefits"
                   to="#benefits"
                 >
                   <a
-                    className="hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
+                    className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
                     href="#benefits"
                     onClick={[Function]}
-                    title=""
+                    title="Benefits"
                   >
                     Benefits
                   </a>
@@ -192,7 +192,7 @@ exports[`can create document via button 1`] = `
             </li>
             <li>
               <a
-                className="hover--underline-thick white f6 fw3 db dib-ns mr3-ns pa3"
+                className="hoverUnderlineThick white f6 fw3 db dib-ns mr3-ns pa3"
                 href="https://github.com/ipfs-shipyard/peerpad"
                 title="Open Source"
               >
@@ -232,7 +232,7 @@ exports[`can create document via button 1`] = `
       </nav>
     </header>
     <section
-      className="db pt4 pb6 center bg-hero-wave"
+      className="db pt4 pb6 center bgHeroWave"
       id="hero"
       style={
         Object {
@@ -241,7 +241,7 @@ exports[`can create document via button 1`] = `
       }
     >
       <div
-        className="bg-hero-wave-inner"
+        className="bgHeroWaveInner"
         style={
           Object {
             "backgroundImage": "url(images/hero-wave.png)",
@@ -257,7 +257,7 @@ exports[`can create document via button 1`] = `
         }
       >
         <h1
-          className="hero-cursor f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
+          className="heroCursor f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise"
         >
           HELLO WORLD!
         </h1>
@@ -271,13 +271,13 @@ exports[`can create document via button 1`] = `
         >
           PeerPad is a realtime P2P collaborative 
           <span
-            className="hero-editing"
+            className="heroEditing"
           >
             editing
           </span>
            tool, powered by 
           <span
-            className="fw4 bright-turquoise-glow"
+            className="fw4 brightTurquoiseGlow"
           >
             <a
               href="//ipfs.io"
@@ -293,7 +293,7 @@ exports[`can create document via button 1`] = `
           </span>
            and 
           <span
-            className="fw4 caribbean-green-glow"
+            className="fw4 caribbeanGreenGlow"
           >
             <a
               href="http://y-js.org/"
@@ -488,7 +488,7 @@ exports[`can create document via button 1`] = `
         </p>
       </div>
       <div
-        className="cf center tc"
+        className="cf center tc featuresList"
         id="features-list"
         style={
           Object {
@@ -501,6 +501,7 @@ exports[`can create document via button 1`] = `
           title="PeerPad is in Alpha and has not been audited by security experts yet."
         >
           <Hexicon
+            className="hexicon"
             name="Private"
           >
             <div
@@ -544,6 +545,7 @@ exports[`can create document via button 1`] = `
           className="feature-item fr-ns w-50-m w-25-l pa4"
         >
           <Hexicon
+            className="hexicon"
             name="Encrypted"
           >
             <div
@@ -592,6 +594,7 @@ exports[`can create document via button 1`] = `
           }
         >
           <Hexicon
+            className="hexicon"
             name="Collaborative"
           >
             <div
@@ -647,6 +650,7 @@ exports[`can create document via button 1`] = `
           className="feature-item fr-ns w-50-m w-25-l pa4"
         >
           <Hexicon
+            className="hexicon"
             name="Realtime"
           >
             <div
@@ -721,7 +725,7 @@ exports[`can create document via button 1`] = `
       >
         <img
           alt="A graph showing peers independently updating state over time; The most recent state is the union of each peers updates."
-          className="bigger-when-small"
+          className="biggerWhenSmall"
           src="images/how-it-works.png"
         />
       </div>
@@ -770,7 +774,7 @@ exports[`can create document via button 1`] = `
                 name="Take notes"
               >
                 <div
-                  className="hexicon dt caribbean-green center relative"
+                  className="dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -830,7 +834,7 @@ exports[`can create document via button 1`] = `
                 name="Collaborate"
               >
                 <div
-                  className="hexicon dt caribbean-green center relative"
+                  className="dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -890,7 +894,7 @@ exports[`can create document via button 1`] = `
                 name="Write articles"
               >
                 <div
-                  className="hexicon dt caribbean-green center relative"
+                  className="dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -956,7 +960,7 @@ exports[`can create document via button 1`] = `
                 name="Work with multiple users"
               >
                 <div
-                  className="hexicon dt caribbean-green center relative"
+                  className="dt caribbean-green center relative"
                   style={
                     Object {
                       "background": "transparent url(images/hex.svg) center no-repeat",
@@ -1022,19 +1026,19 @@ exports[`can create document via button 1`] = `
         >
           <div>
             <HashLink
-              className="hover--underline-thick white f6 fw3 dib mr4 m3t pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mr4 m3t pb2"
               title="About"
               to="#about"
             >
               <Link
-                className="hover--underline-thick white f6 fw3 dib mr4 m3t pb2"
+                className="hoverUnderlineThick white f6 fw3 dib mr4 m3t pb2"
                 onClick={[Function]}
                 replace={false}
                 title="About"
                 to="#about"
               >
                 <a
-                  className="hover--underline-thick white f6 fw3 dib mr4 m3t pb2"
+                  className="hoverUnderlineThick white f6 fw3 dib mr4 m3t pb2"
                   href="#about"
                   onClick={[Function]}
                   title="About"
@@ -1044,19 +1048,19 @@ exports[`can create document via button 1`] = `
               </Link>
             </HashLink>
             <HashLink
-              className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
               title="Features"
               to="#features"
             >
               <Link
-                className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+                className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
                 onClick={[Function]}
                 replace={false}
                 title="Features"
                 to="#features"
               >
                 <a
-                  className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+                  className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
                   href="#features"
                   onClick={[Function]}
                   title="Features"
@@ -1066,19 +1070,19 @@ exports[`can create document via button 1`] = `
               </Link>
             </HashLink>
             <HashLink
-              className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
               title="How it works"
               to="#how-it-works"
             >
               <Link
-                className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+                className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
                 onClick={[Function]}
                 replace={false}
                 title="How it works"
                 to="#how-it-works"
               >
                 <a
-                  className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+                  className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
                   href="#how-it-works"
                   onClick={[Function]}
                   title="How it works"
@@ -1088,19 +1092,19 @@ exports[`can create document via button 1`] = `
               </Link>
             </HashLink>
             <HashLink
-              className="hover--underline-thick white f6 fw3 dib mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
               title="What you can do with PeerPad"
               to="#benefits"
             >
               <Link
-                className="hover--underline-thick white f6 fw3 dib mt3 pb2"
+                className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
                 onClick={[Function]}
                 replace={false}
                 title="What you can do with PeerPad"
                 to="#benefits"
               >
                 <a
-                  className="hover--underline-thick white f6 fw3 dib mt3 pb2"
+                  className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
                   href="#benefits"
                   onClick={[Function]}
                   title="What you can do with PeerPad"
@@ -1112,21 +1116,21 @@ exports[`can create document via button 1`] = `
           </div>
           <div>
             <a
-              className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
               href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md"
               title="Architecture"
             >
               Architecture
             </a>
             <a
-              className="hover--underline-thick white f6 fw3 dib mr4 mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
               href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md"
               title="Security"
             >
               Security
             </a>
             <a
-              className="hover--underline-thick white f6 fw3 dib mt3 pb2"
+              className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
               href="https://github.com/ipfs-shipyard/peerpad"
               title="Open Source"
             >

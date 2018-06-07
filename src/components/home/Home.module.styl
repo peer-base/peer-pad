@@ -1,0 +1,299 @@
+@import '../../colors.styl'
+
+.Home
+  a
+    color #fff
+    text-decoration none
+    border-bottom 1px solid rgba(2, 202, 173, 0.2)
+    &:hover
+      border-bottom 1px solid $caribbean-green
+
+  header
+    a, a:hover
+      border-bottom none
+      
+    @media screen and (max-width: 775px)
+      padding-bottom 0 !important
+      
+    @media screen and (max-width: 1160px)
+      a[title="Home"]
+        display inline-block
+        margin 0 auto
+        width auto
+
+  footer
+    nav
+      a
+        border-bottom-color transparent
+
+.caribbeanGreenGlow
+  position relative
+  display inline-block
+  text-shadow $caribbean-green 0 0 60px,
+    $caribbean-green 0 0 40px,
+    $caribbean-green 0 0 20px,
+    $caribbean-green 0 0 10px
+
+  &::after
+    content ''
+    position absolute
+    left 50%
+    top 50%
+    display block
+    width 0px
+    height 0px
+    box-shadow $caribbean-green 0 0 500px 30px
+    border-radius 100%
+    z-index -900
+
+  @media screen and (min-width: 1024px)
+    &::after
+      width 400px
+      box-shadow $caribbean-green -250px -20px 1000px 22px
+
+.brightTurquoiseGlow
+  position relative
+  display inline-block
+  text-shadow $bright-turquoise 0 0 60px,
+    $bright-turquoise 0 0 40px,
+    $bright-turquoise 0 0 20px,
+    $bright-turquoise 0 0 10px
+
+  &::after
+    content ''
+    position absolute
+    left 50%
+    top 50%
+    display block
+    width 0px
+    height 0px
+    box-shadow $bright-turquoise 0 0 500px 30px
+    border-radius 100%
+    z-index -900
+
+  @media screen and (min-width: 1024px)
+    &::after
+      width 400px
+      box-shadow $bright-turquoise -350px -20px 1000px 22px
+
+.bgHeroWave
+  @media screen and (min-width: 680px)
+    position relative
+    z-index 200
+    height auto
+
+.bgHeroWaveInner
+  @media screen and (min-width: 680px)
+    content ''
+    display block
+    z-index -100
+    position absolute
+    top 0
+    left 0%
+    width 100%
+    height 100%
+    background transparent center no-repeat
+    background-size 100% auto
+    opacity 0.2
+    mix-blend-mode soft-light
+
+.featuresList
+  background url('/images/globe.png') no-repeat
+  background-position center top
+  background-size 600px auto
+  padding-top 300px
+
+  @media screen and (min-width: 60em)
+    background-size 1000px auto
+    background-position center center
+    padding-top 0
+
+    .hexicon
+      &:before
+        content ''
+        width 137px
+        height 179px
+        position absolute
+        opacity .5
+        background no-repeat center center
+        background-size contain
+    :nth-child(1)
+      .hexicon
+        &:before
+          right -137px
+          top 50%
+          background-image url('/images/line-top-left.svg')
+    :nth-child(2)
+      .hexicon
+        &:before
+          left -137px
+          top 50%
+          background-image url('/images/line-top-right.svg')
+    :nth-child(3)
+      .hexicon
+        &:before
+          right -137px
+          bottom 50%
+          background-image url('/images/line-bottom-left.svg')
+    :nth-child(4)
+      .hexicon
+        &:before
+          left -137px
+          bottom 50%
+          background-image url('/images/line-bottom-right.svg')
+
+@keyframes cursor {
+  0%    { opacity: 0; }
+  50%   { opacity: 1; }
+  100%  { opacity: 0; }
+}
+
+@keyframes highlight {
+  0%   { width: 0; }
+  50%  { width: 20% ;}
+  52%  { width: 40% ;}
+  53%  { width: 47% ;}
+  55%  { width: 56% ;}
+  56%  { width: 63% ;}
+  57%  { width: 81% ;}
+  59%  { width: 100% ;}
+  90%  { width: 0; }
+  100% { width: 0;}
+}
+
+@keyframes tooltip {
+  0%   { opacity: 0; }
+  53%  { opacity: 0; top: -30px; }
+  58%  { top: -40px; }
+  60%  { opacity: 1; }
+  93%  { opacity: 1; }
+  100%  { opacity: 0; }
+}
+
+.heroCursor
+  &:after
+    content ''
+    width 1px
+    height 40px
+    position relative
+    right -3px
+    bottom -7px
+    display inline-block
+    background-color #fff
+    animation cursor 1.5s step-end infinite
+    
+  @media screen and (min-width: 480px)
+    &:after
+      height 50px
+
+.heroEditing
+  padding-left 4px
+  position relative
+  display inline-block
+  vertical-align top
+
+  &:before
+    content ''
+    width 100%
+    height 80%
+    position absolute
+    top 10%
+    left 0
+    display none
+    background $caribbean-green
+    z-index -1
+    animation highlight 7s steps(1) infinite
+
+  &:after
+    content ''
+    width 273px
+    height 38px
+    display none
+    position absolute
+    top -40px
+    left 0
+    background url('/images/hero-tooltip.png') no-repeat center center
+    background-size contain
+    animation tooltip 7s infinite
+
+  @media screen and (min-width: 1000px)
+    // show animation for large screens only
+    &:before, &:after
+      display block
+
+.topNav
+  .menuToggle
+    visibility hidden
+    position absolute
+    left -100%
+
+  label
+    display none
+
+  ul
+    padding 0
+    li
+      display inline-block
+      a
+        display inline-block
+        margin 0
+
+  @media screen and (max-width: 1160px)
+    display block
+    width 100%
+    text-align center
+
+  @media screen and (max-width: 775px)
+    ul
+      display none
+      border-bottom 1px solid rgba(255,255,255,.3)
+      padding-bottom 10px
+
+    .menuToggle:checked ~ ul,
+    .menuToggle:checked ~ ul > li
+      display block
+
+    label
+      display inline-block
+      padding 10px
+      margin-bottom 0
+      cursor pointer
+
+    button[data-id="start-button"]
+      margin 10px
+      background-color #23e0f7
+      color rgb(4, 17, 37)
+
+.hoverUnderlineThick
+  position relative
+
+  &:after
+    content ''
+    width 100%
+    height 3px
+    position absolute
+    left 0
+    bottom 0
+    opacity 0
+    background-color $caribbean-green
+    transition opacity .15s, transform .15s
+    transform translateY(8px)
+
+  &:hover
+    &:after
+      opacity 1
+      transform translateY(0)
+
+.biggerWhenSmall
+  width 200%
+  margin 0 auto
+  position relative
+  left -50%
+  max-width initial
+
+  @media screen and (min-width: 680px)
+    width 100%
+    margin 0 auto
+    position static
+    left 0%
+    max-width 100%

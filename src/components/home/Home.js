@@ -5,8 +5,7 @@ import CreateDocument from './CreateDocument'
 import StartButton from './StartButton'
 import Warning from '../Warning'
 import Hexicon from './Hexicon'
-import './Home.css'
-import styles from './Home.module.css'
+import styles from './Home.module.styl'
 
 class Home extends Component {
   constructor (props) {
@@ -18,7 +17,7 @@ class Home extends Component {
 
   render () {
     return (
-      <div className='Home tc white' style={{backgroundColor: '#041125'}}>
+      <div className={`${styles.Home} tc white`} style={{backgroundColor: '#041125'}}>
         <Warning />
         <header className='db pv3 center' style={{maxWidth: '1260px'}}>
           <nav className='db dt-l w-100 border-box pa3 ph5-l'>
@@ -34,19 +33,19 @@ class Home extends Component {
 
               <ul>
                 <li>
-                  <Link to='#about' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title='About'>What is PeerPad</Link>
+                  <Link to='#about' className={`${styles.hoverUnderlineThick} white f6 f5-l fw3 db dib-ns mr3-ns pa3`} title='About'>What is PeerPad</Link>
                 </li>
                 <li>
-                  <Link to='#features' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3'title='Features'>Features</Link>
+                  <Link to='#features' className={`${styles.hoverUnderlineThick} white f6 f5-l fw3 db dib-ns mr3-ns pa3`} title='Features'>Features</Link>
                 </li>
                 <li>
-                  <Link to='#how-it-works' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title='How it works'>How it works</Link>
+                  <Link to='#how-it-works' className={`${styles.hoverUnderlineThick} white f6 f5-l fw3 db dib-ns mr3-ns pa3`} title='How it works'>How it works</Link>
                 </li>
                 <li>
-                  <Link to='#benefits' className='hover--underline-thick white f6 f5-l fw3 db dib-ns mr3-ns pa3' title=''>Benefits</Link>
+                  <Link to='#benefits' className={`${styles.hoverUnderlineThick} white f6 f5-l fw3 db dib-ns mr3-ns pa3`} title='Benefits'>Benefits</Link>
                 </li>
                 <li>
-                  <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 db dib-ns mr3-ns pa3' title='Open Source'>Open Source</a>
+                  <a href='https://github.com/ipfs-shipyard/peerpad' className={`${styles.hoverUnderlineThick} white f6 fw3 db dib-ns mr3-ns pa3`} title='Open Source'>Open Source</a>
                 </li>
                 <li>
                   <div className='db dib-ns pv3 pv0-ns'>
@@ -60,12 +59,12 @@ class Home extends Component {
 
         </header>
 
-        <section id='hero' className='db pt4 pb6 center bg-hero-wave' style={{maxWidth: '1440px'}}>
-          <div className='bg-hero-wave-inner' style={{backgroundImage: 'url(images/hero-wave.png)'}} />
+        <section id='hero' className={`db pt4 pb6 center ${styles.bgHeroWave}`} style={{maxWidth: '1440px'}}>
+          <div className={styles.bgHeroWaveInner} style={{backgroundImage: 'url(images/hero-wave.png)'}} />
           <div className='center ph3' style={{maxWidth: '60rem'}}>
-            <h1 className='hero-cursor f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise'>HELLO WORLD!</h1>
+            <h1 className={`${styles.heroCursor} f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise`}>HELLO WORLD!</h1>
             <h2 className='f3 f2-ns fw2 lh-copy tracked--2 relative' style={{zIndex: '1000'}}>
-              PeerPad is a realtime P2P collaborative <span className='hero-editing'>editing</span> tool, powered by <span className='fw4 bright-turquoise-glow'><a href="//ipfs.io" style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className='fw4 caribbean-green-glow'><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
+              PeerPad is a realtime P2P collaborative <span className={styles.heroEditing}>editing</span> tool, powered by <span className={`fw4 ${styles.brightTurquoiseGlow}`}><a href="//ipfs.io" style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className={`fw4 ${styles.caribbeanGreenGlow}`}><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
             </h2>
             <div className='mt6'>
               <CreateDocument />
@@ -97,10 +96,10 @@ class Home extends Component {
               All nodes talk to each other directly, without intermediation.
             </p>
           </div>
-          <div id="features-list" className='cf center tc' style={{maxWidth: '1200px'}}>
+          <div id="features-list" className={`cf center tc ${styles.featuresList}`} style={{maxWidth: '1200px'}}>
 
             <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='PeerPad is in Alpha and has not been audited by security experts yet.'>
-              <Hexicon name='Private' />
+              <Hexicon name='Private' className={styles.hexicon} />
               <h3 className='f4 fw1 white tracked--1'>
                 Private
               </h3>
@@ -110,7 +109,7 @@ class Home extends Component {
             </div>
 
             <div className='feature-item fr-ns w-50-m w-25-l pa4'>
-              <Hexicon name='Encrypted' />
+              <Hexicon name='Encrypted' className={styles.hexicon} />
               <h3 className='f4 fw1 white tracked--1'>
                 Encrypted
               </h3>
@@ -120,7 +119,7 @@ class Home extends Component {
             </div>
 
             <div className='feature-item fl-ns w-50-m w-25-l pa4' style={{clear: 'both'}}>
-              <Hexicon name='Collaborative' />
+              <Hexicon name='Collaborative' className={styles.hexicon} />
               <h3 className='f4 fw1 white tracked--1'>
                 Collaborative
               </h3>
@@ -130,7 +129,7 @@ class Home extends Component {
             </div>
 
             <div className='feature-item fr-ns w-50-m w-25-l pa4'>
-              <Hexicon name='Realtime' />
+              <Hexicon name='Realtime' className={styles.hexicon} />
               <h3 className='f4 fw1 white tracked--1'>
                 Realtime
               </h3>
@@ -155,7 +154,7 @@ class Home extends Component {
           </p>
           <div style={{overflow: 'hidden'}}>
             <img
-              className='bigger-when-small'
+              className={styles.biggerWhenSmall}
               src='images/how-it-works.png'
               alt='A graph showing peers independently updating state over time; The most recent state is the union of each peers updates.' />
           </div>
@@ -243,15 +242,15 @@ class Home extends Component {
           <div className='cf w-100 center pv3 bt bw1 b--caribbean-green-soft' style={{borderTopStyle: 'dashed', maxWidth: '1140px'}} >
             <nav className='db fl w-100 w-50-l tl-l'>
               <div>
-                <Link to='#about' className='hover--underline-thick white f6 fw3 dib mr4 m3t pb2' title='About'>About</Link>
-                <Link to='#features' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Features'>Features</Link>
-                <Link to='#how-it-works' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='How it works'>How it works</Link>
-                <Link to='#benefits' className='hover--underline-thick white f6 fw3 dib mt3 pb2' title='What you can do with PeerPad'>Benefits</Link>
+                <Link to='#about' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 m3t pb2`} title='About'>About</Link>
+                <Link to='#features' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='Features'>Features</Link>
+                <Link to='#how-it-works' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='How it works'>How it works</Link>
+                <Link to='#benefits' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mt3 pb2`} title='What you can do with PeerPad'>Benefits</Link>
               </div>
               <div>
-                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Architecture'>Architecture</a>
-                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className='hover--underline-thick white f6 fw3 dib mr4 mt3 pb2' title='Security'>Security</a>
-                <a href='https://github.com/ipfs-shipyard/peerpad' className='hover--underline-thick white f6 fw3 dib mt3 pb2' title='Open Source'>Open Source</a>
+                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='Architecture'>Architecture</a>
+                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='Security'>Security</a>
+                <a href='https://github.com/ipfs-shipyard/peerpad' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mt3 pb2`} title='Open Source'>Open Source</a>
               </div>
             </nav>
             <small className='fl db w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l lh-copy mt3'>

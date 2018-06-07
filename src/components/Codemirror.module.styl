@@ -1,0 +1,44 @@
+@import '../colors.styl'
+
+.CodeMirrorContainer
+  :global
+    .CodeMirror
+      color $white-lilac
+      background-color $big-stone
+      height auto
+      min-height calc(100vh - 220px)
+      pre
+        padding-left 30px
+
+    .CodeMirror-scroll
+      min-height calc(100vh - 220px)
+
+    .CodeMirror-gutters
+      background-color $cloud-burst
+      border-right 0
+
+    .CodeMirror-lines
+      padding 30px 0
+
+    .CodeMirror-linenumber
+      color $blue-bayox
+      padding 0 13px 0 7px
+      font-size 10px
+
+    .CodeMirror-cursor
+      border-color $white-lilac
+
+    .cm-s-default
+      .cm-header
+        font-weight normal
+        color $bright-turquoise
+      .cm-comment
+        color $pigeon-post
+
+    .cm-s-default .cm-variable-2,
+    .cm-s-default .cm-quote
+      color $white-lilac
+
+    .cm-s-default .cm-link,
+    .cm-s-default .cm-url
+      color $bright-turquoise
