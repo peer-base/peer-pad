@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "PUBLIC_URL='./' node scripts/build.js",
-    "lint": "standard src",
+    "lint": "standard 'src/**/*.js' 'test/**/*.js'",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
@@ -16,7 +16,6 @@
   "dependencies": {
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
-    "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
     "babel-preset-react-app": "^3.0.2",
@@ -73,6 +72,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-15": "^1.0.1",
     "enzyme-to-json": "^3.3.4",
@@ -130,6 +130,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "homepage": "./"
 }

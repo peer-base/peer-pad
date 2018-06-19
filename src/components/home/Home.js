@@ -28,8 +28,8 @@ class Home extends Component {
 
             <div className={cx('db dtc-l v-btm w-100 w-75-l tc tr-l', styles.topNav)}>
 
-              <input id="menu-toggle" className={styles.menuToggle} type="checkbox"/>
-              <label htmlFor="menu-toggle" className='mt4 w-auto bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim' style={{fontSize: '15px', padding: '5px 28px'}}>Menu</label>
+              <input id='menu-toggle' className={styles.menuToggle} type='checkbox' />
+              <label htmlFor='menu-toggle' className='mt4 w-auto bg-transparent ba b--bright-turquoise bright-turquoise fw2 tracked--1 pointer dim' style={{fontSize: '15px', padding: '5px 28px'}}>Menu</label>
 
               <ul>
                 <li>
@@ -64,7 +64,7 @@ class Home extends Component {
           <div className='center ph3' style={{maxWidth: '60rem'}}>
             <h1 className={`${styles.heroCursor} f2 f1-ns fw3 lh-copy tracked--1 bright-turquoise`}>HELLO WORLD!</h1>
             <h2 className='f3 f2-ns fw2 lh-copy tracked--2 relative' style={{zIndex: '1000'}}>
-              PeerPad is a realtime P2P collaborative <span className={styles.heroEditing}>editing</span> tool, powered by <span className={`fw4 ${styles.brightTurquoiseGlow}`}><a href="//ipfs.io" style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className={`fw4 ${styles.caribbeanGreenGlow}`}><a href="http://y-js.org/" style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
+              PeerPad is a realtime P2P collaborative <span className={styles.heroEditing}>editing</span> tool, powered by <span className={`fw4 ${styles.brightTurquoiseGlow}`}><a href='//ipfs.io' style={{textDecoration: 'none', borderBottom: 0}}>IPFS</a></span> and <span className={`fw4 ${styles.caribbeanGreenGlow}`}><a href='http://y-js.org/' style={{textDecoration: 'none', borderBottom: 0}}>CRDTs</a></span>
             </h2>
             <div className='mt6'>
               <CreateDocument />
@@ -80,7 +80,7 @@ class Home extends Component {
             What is PeerPad?
           </h2>
           <p className='f4 f3-ns fw1 tl tc-ns lh-copy tracked--1 center'>
-            PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href="//ipfs.io">IPFS</a> and <a href="http://y-js.org/">Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. PeerPad is <a href="//github.com/ipfs-shipyard/peerpad">open-source</a> and built by <a href="//protocol.ai">Protocol Labs</a> and the <a href="//ipfs.io">IPFS community</a>.
+            PeerPad is a collaborative real-time editor that works on the decentralised web, built on top of <a href='//ipfs.io'>IPFS</a> and <a href='http://y-js.org/'>Y.js</a>. It uses no second or third-party: all participating nodes talk directly to each other without a central service. PeerPad is <a href='//github.com/ipfs-shipyard/peerpad'>open-source</a> and built by <a href='//protocol.ai'>Protocol Labs</a> and the <a href='//ipfs.io'>IPFS community</a>.
           </p>
         </section>
 
@@ -96,7 +96,7 @@ class Home extends Component {
               All nodes talk to each other directly, without intermediation.
             </p>
           </div>
-          <div id="features-list" className={`cf center tc ${styles.featuresList}`} style={{maxWidth: '1200px'}}>
+          <div id='features-list' className={`cf center tc ${styles.featuresList}`} style={{maxWidth: '1200px'}}>
 
             <div className='feature-item fl-ns w-50-m w-25-l pa4 o-20' title='PeerPad is in Alpha and has not been audited by security experts yet.'>
               <Hexicon name='Private' className={styles.hexicon} />
@@ -124,7 +124,7 @@ class Home extends Component {
                 Collaborative
               </h3>
               <p className='f6 fw2 lh-copy o-70 ph2'>
-                Thanks to <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a> and <a href="http://y-js.org/">Y.js</a>, several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
+                Thanks to <a href='https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type'>CRDTs</a> and <a href='http://y-js.org/'>Y.js</a>, several authors can collaborate and edit a document without conflicts, even when they aren’t connected at all times.
               </p>
             </div>
 
@@ -214,7 +214,7 @@ class Home extends Component {
                     Write articles and share them
                   </h3>
                   <p className='f6 fw2 lh-copy o-70'>
-                    You can publish a snapshot of a pad to <a href="//ipfs.io">IPFS</a>, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
+                    You can publish a snapshot of a pad to <a href='//ipfs.io'>IPFS</a>, making it available on the internet. Choose who you share them with by sharing a read key that decrypts the content.
                   </p>
                 </div>
               </div>
