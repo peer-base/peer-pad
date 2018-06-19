@@ -50,11 +50,11 @@ export default class CreateDocumentContainer extends Component {
       const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
       this.setState({redirect: url})
     } catch (err) {
-        alert(
+      window.alert(
           'An error occurred while trying to create pad for you.\n' +
           'This may be because you may be using a non-compatible browser.\n' +
           'If this is the case, please try, if you can, with latest Firefox or Chrome.')
-        throw err
+      throw err
     }
   }
 }
