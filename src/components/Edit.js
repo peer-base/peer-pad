@@ -266,7 +266,7 @@ class Edit extends Component {
 
     doc.on('error', (err) => {
       console.log(err)
-      alert(err.message)
+      window.alert(err.message)
     })
 
     // Watch for out local ipfs node to come online.
@@ -304,7 +304,7 @@ class Edit extends Component {
 
   maybeActivateEditor () {
     if (this._editor && this.state.canEdit) {
-      switch(this.state.type) {
+      switch (this.state.type) {
         case 'richtext':
           this._editor.enable()
           this._editor.focus()
