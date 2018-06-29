@@ -7,7 +7,7 @@ import ms from 'milliseconds'
 
 import {createAndPreparePad, leanup} from './utils'
 
-let pages = []
+let pages
 let pageCount = process.env.PARALLEL_PAGES ? parseInt(process.env.PARALLEL_PAGES, 10) : 2
 const wait = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
@@ -16,7 +16,8 @@ async function allPages(fnc) { // this is parallel
 }
 
 describe('load tests', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
+    pages = []
     for (var i = 0; i < pageCount; i++) {
       console.log('creating page %s/%s', i + 1, pageCount)
       pages.push(await createAndPreparePad())
@@ -50,5 +51,32 @@ describe('load tests', () => {
     })
   }, ms.minutes(1))
 
-  afterAll(() => cleanup())
+  it('several people are typing lots of stuff', async () => {
+    const txt = 'hello world whats up'.repeat(10000)
+    const txtReverse = txt.split('').reverse().join('')
+    const selector = '.CodeMirror-code'
+
+    await allPages(async (page) => {
+      page.type(selector, txt)
+    })
+
+    await wait(ms.seconds(40))
+
+    await allPages(async (page) => {
+      page.type(selector, txtReverse)
+    })
+
+    await wait(ms.seconds(40))
+
+    await allPages(async (page) => {
+      const value = await page.evaluate(() => {
+        return $('.CodeMirror-line').text()
+      })
+
+      page.expectNoError()
+      expect(value).toEqual(txt.repeat(pageCount) + txtReverse.repeat(pageCount))
+    })
+  }, ms.minutes(1))
+
+  afterEach(() => cleanup())
 })
