@@ -9,6 +9,7 @@ import {createAndPreparePad, leanup} from './utils'
 
 let pages = []
 let pageCount = process.env.PARALLEL_PAGES ? parseInt(process.env.PARALLEL_PAGES, 10) : 2
+const wait = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
 async function allPages(fnc) { // this is parallel
   await Promise.all(pages.map(fnc))
@@ -23,21 +24,29 @@ describe('load tests', () => {
   }, ms.minutes(pageCount * 2))
 
   it('several people are typing', async () => {
-    const txt = 'abc'
+    const txt = 'hello world lorem ipsum ↑↓‹›«»'
+    const txtReverse = txt.split('').reverse().join('')
     const selector = '.CodeMirror-code'
 
     await allPages(async (page) => {
       page.type(selector, txt)
     })
 
-    await new Promise((resolve) => setTimeout(resolve, ms.seconds(20)))
+    await wait(ms.seconds(20))
+
+    await allPages(async (page) => {
+      page.type(selector, txtReverse)
+    })
+
+    await wait(ms.seconds(20))
 
     await allPages(async (page) => {
       const value = await page.evaluate(() => {
         return $('.CodeMirror-line').text()
       })
 
-      expect(value).toEqual(txt.repeat(pageCount))
+      page.expectNoError()
+      expect(value).toEqual(txt.repeat(pageCount) + txtReverse.repeat(pageCount))
     })
   }, ms.minutes(1))
 
