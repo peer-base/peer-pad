@@ -97,8 +97,7 @@ export function catchPageErrors (page) {
 }
 
 export function cleanup () {
-  afterEach(() => {
-    browsers.forEach(b => b.close())
-    browsers = []
-  })
+  browsers.forEach(b => b.close())
+  browsers = []
+  padUrl = null
 }

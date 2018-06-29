@@ -4,11 +4,9 @@
 /* eslint-env mocha */
 
 import ms from 'milliseconds'
-import {createPage, createNewPad, catchPageErrors, waitForPeerId, cleanup} from './utils'
+import {createPage, createNewPad, waitForPeerId, cleanup} from './utils'
 
-afterEach(() => {
-  cleanup()
-})
+afterEach(() => cleanup())
 
 it('creates a pad', async () => {
   const page = await createPage()

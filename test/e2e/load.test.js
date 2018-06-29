@@ -1,17 +1,17 @@
 'use strict'
 
-/* global expect */
+/* global expect $ */
 /* eslint-env mocha */
 
 import ms from 'milliseconds'
 
-import {createAndPreparePad, leanup} from './utils'
+import {createAndPreparePad, cleanup} from './utils'
 
 let pages
 let pageCount = process.env.PARALLEL_PAGES ? parseInt(process.env.PARALLEL_PAGES, 10) : 2
 const wait = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
-async function allPages(fnc) { // this is parallel
+async function allPages (fnc) { // this is parallel
   await Promise.all(pages.map(fnc))
 }
 
@@ -52,7 +52,7 @@ describe('load tests', () => {
   }, ms.minutes(1))
 
   it('several people are typing lots of stuff', async () => {
-    const txt = 'hello world whats up'.repeat(10000)
+    const txt = 'hello world whats up'.repeat(100)
     const txtReverse = txt.split('').reverse().join('')
     const selector = '.CodeMirror-code'
 
