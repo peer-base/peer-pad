@@ -50,12 +50,28 @@ export async function waitForPeerId (page) {
   return peerId
 }
 
+let padUrl
+
 export async function createAndPreparePad () {
   const page = await createPage()
-  await createNewPad(page)
+
+  if (!padUrl) {
+    await createNewPad(page)
+    padUrl = page.url()
+    console.log('padUrl', padUrl)
+  } else {
+    page.goto(padUrl)
+  }
+
   const peerId = await waitForPeerId(page)
   console.log('peerId', peerId)
   expect(peerId).toBeTruthy()
+
+  await page.evaluate(() => { // inject jquery
+    const s = document.createElement('script')
+    s.src = 'https://code.jquery.com/jquery-3.3.1.min.js'
+    document.body.appendChild(s)
+  })
 
   return page
 }

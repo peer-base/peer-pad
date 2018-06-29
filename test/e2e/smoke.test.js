@@ -43,12 +43,12 @@ it('synchronises two pads via IPFS', async () => {
   expect(bobPeerId).not.toEqual(alfPeerId)
   console.log('bob peerId', bobPeerId)
 
+  bob.expectNoError()
+  alf.expectNoError()
+
   // Wait for bob's doc title to match alf's
   const bobTitleRef = await bob.$(docTitleSelector)
   const valueMatches = (input, expected) => input.value === expected
   // waitFor fn is executed in the browser context, so context has to be passed as arg.
   await bob.waitFor(valueMatches, {/* opts */}, bobTitleRef, alfTitle)
-
-  bob.expectNoError()
-  alf.expectNoError()
 }, ms.minutes(6)) // spinning up 2 browsers and syncing pads can take a while.
