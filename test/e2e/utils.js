@@ -1,6 +1,6 @@
 'use strict'
 
-/* eslint-env mocha */
+/* global expect */
 
 import puppeteer from 'puppeteer'
 import ms from 'milliseconds'
@@ -30,6 +30,7 @@ export async function createPage () {
   const page = await browser.newPage()
   // See: https://github.com/GoogleChrome/puppeteer/issues/1183#issuecomment-383722137
   await page._client.send('Emulation.clearDeviceMetricsOverride')
+  catchPageErrors(page)
   return page
 }
 
@@ -47,6 +48,36 @@ export async function waitForPeerId (page) {
   const peersButton = await page.$('[data-peer-id]')
   const peerId = await page.evaluate(el => el.dataset.peerId, peersButton)
   return peerId
+}
+
+export async function createAndPreparePad () {
+  const page = await createPage()
+  await createNewPad(page)
+  const peerId = await waitForPeerId(page)
+  console.log('peerId', peerId)
+  expect(peerId).toBeTruthy()
+
+  return page
+}
+
+export function catchPageErrors (page) {
+  const errors = []
+  page.on('error', err => errors.push(err.message)) // Emitted when the page crashes.
+  page.on('pageerror', err => errors.push(err.message)) // Emitted when an uncaught exception happens within the page.
+  page.on('requestfailed', req => {
+    errors.push(`${req.failure().errorText} ${req.url()}`)
+  })
+  page.on('response', res => {
+    if (res.status() >= 400) {
+      errors.push(`${res.status()} ${res.url()}`)
+    }
+  })
+
+  page.expectNoError = () => {
+    errors.forEach(err => console.log(err))
+    expect(errors.length).toBe(0)
+  }
+  page.errors = errors
 }
 
 export function cleanup () {
