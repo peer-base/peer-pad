@@ -9,7 +9,7 @@
     "lint": "standard 'src/**/*.js' 'test/**/*.js'",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.test.js",
-    "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
+    "test:e2e:ci": "PARALLEL_PAGES=10 NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
     "test:serve": "http-server -s -p 1337 build",
     "deploy:ipfs": "ipfs add -r build/"
   },
