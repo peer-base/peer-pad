@@ -76,7 +76,7 @@ describe('load tests', () => {
       page.expectNoError()
       expect(value).toEqual(txt.repeat(pageCount) + txtReverse.repeat(pageCount))
     })
-  }, ms.minutes(1))
+  }, ms.minutes(10))
 
   afterEach(() => cleanup())
 })
