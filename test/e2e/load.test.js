@@ -30,13 +30,13 @@ describe('load tests', () => {
     const selector = '.CodeMirror-code'
 
     await allPages(async (page) => {
-      page.type(selector, txt)
+      await page.type(selector, txt)
     })
 
     await wait(ms.seconds(20))
 
     await allPages(async (page) => {
-      page.type(selector, txtReverse)
+      await page.type(selector, txtReverse)
     })
 
     await wait(ms.seconds(20))
@@ -57,13 +57,13 @@ describe('load tests', () => {
     const selector = '.CodeMirror-code'
 
     await allPages(async (page) => {
-      page.type(selector, txt)
+      await page.type(selector, txt)
     })
 
     await wait(ms.seconds(40))
 
     await allPages(async (page) => {
-      page.type(selector, txtReverse)
+      await page.type(selector, txtReverse)
     })
 
     await wait(ms.seconds(40))
