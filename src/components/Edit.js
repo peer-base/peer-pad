@@ -243,6 +243,14 @@ class Edit extends Component {
     )
   }
 
+  componentDidUpdate () {
+    // Force codemirror to update to help avoid render / write order issues
+    if (this._editor && this._editor.refresh) {
+      this._editor.refresh()
+      this._editor.setOption('readOnly', !this.state.canEdit)
+    }
+  }
+
   async componentDidMount () {
     const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
 
@@ -309,8 +317,6 @@ class Edit extends Component {
           this._editor.enable()
           this._editor.focus()
           break
-        default:
-          this._editor.setOption('readOnly', false)
       }
     }
   }
