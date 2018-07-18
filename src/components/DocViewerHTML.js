@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 // Hack to minimize source code size of doc snapshot..
-import parseSymmetricalKey from 'peer-pad-core/src/backend/keys/parse-symm-key'
+// import parseSymmetricalKey from 'peer-pad-core/src/backend/keys/parse-symm-key'
 import Doc from './Doc'
 
 class DocViewerHTML extends Component {
@@ -32,14 +32,15 @@ class DocViewerHTML extends Component {
 
   async componentDidMount () {
     try {
-      const key = await parseSymmetricalKey(window.location.hash.substr(1))
-      key.decrypt(this.props.encryptedDoc, (err, decrypted) => {
-        if (err) {
-          this.setState({error: err.message})
-        } else {
-          this.setState({doc: decrypted.toString('utf8')})
-        }
-      })
+      // TODO: decrypt document
+      // const key = await parseSymmetricalKey(window.location.hash.substr(1))
+      // key.decrypt(this.props.encryptedDoc, (err, decrypted) => {
+      //   if (err) {
+      //     this.setState({error: err.message})
+      //   } else {
+      //     this.setState({doc: decrypted.toString('utf8')})
+      //   }
+      // })
     } catch (err) {
       this.setState({error: err.message})
     }

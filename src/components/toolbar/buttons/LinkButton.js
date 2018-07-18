@@ -55,15 +55,16 @@ export default class LinkButton extends Component {
   }
 
   getReadUrl () {
-    const { docType: type, docName: name, docKeys: keys } = this.props
+    const { docType: type, docName: name, encodedKeys: keys } = this.props
+    const readKey = keys.split('-')[0]
     const root = window.location.origin + window.location.pathname
-    return `${root}#/r/${type}/${encodeURIComponent(name)}/${keys.read}`
+    return `${root}#/r/${type}/${encodeURIComponent(name)}/${readKey}`
   }
 
   getWriteUrl () {
-    const { docType: type, docName: name, docKeys: keys } = this.props
+    const { docType: type, docName: name, encodedKeys: keys } = this.props
     const root = window.location.origin + window.location.pathname
-    return `${root}#/w/${type}/${encodeURIComponent(name)}/${keys.read}/${keys.write}`
+    return `${root}#/w/${type}/${encodeURIComponent(name)}/${keys}`
   }
 
   render () {
@@ -116,8 +117,5 @@ LinkButton.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),
   docType: PropTypes.oneOf(['markdown', 'richtext', 'math']).isRequired,
   docName: PropTypes.string.isRequired,
-  docKeys: PropTypes.shape({
-    read: PropTypes.string.isRequired,
-    write: PropTypes.string
-  }).isRequired
+  encodedKeys: PropTypes.string.isRequired
 }

@@ -8,7 +8,7 @@ export default class PeersButton extends Component {
     super(props)
 
     const initialState = {
-      peers: (props.peerGroup && props.peerGroup.all()) || {},
+      peers: (props.doc && props.doc.peers()) || {},
       dropdownOpen: false,
       alias: props.alias || ''
     }
@@ -21,17 +21,17 @@ export default class PeersButton extends Component {
     this.onAliasChange = this.onAliasChange.bind(this)
     this.onSaveAlias = this.onSaveAlias.bind(this)
 
-    if (props.peerGroup) {
-      props.peerGroup.on('change', this.onPeersChange)
+    if (props.doc) {
+      props.doc.on('membership changed', this.onPeersChange)
     }
   }
 
   componentWillReceiveProps (nextProps) {
     // Remove listener if receiving new peers object
-    if (nextProps.peerGroup && this.props.peerGroup) {
-      this.props.peerGroup.removeListener('change', this.onPeersChange)
-      nextProps.peerGroup.on('change', this.onPeersChange)
-      this.setState({ peers: nextProps.peerGroup.all() })
+    if (nextProps.doc && this.props.doc) {
+      this.props.doc.removeListener('membership changed', this.onPeersChange)
+      nextProps.doc.on('membership changed', this.onPeersChange)
+      this.setState({ peers: nextProps.doc.peers() })
     }
   }
 
@@ -42,7 +42,7 @@ export default class PeersButton extends Component {
   }
 
   onPeersChange () {
-    this.setState({ peers: this.props.peerGroup.all() })
+    this.setState({ peers: this.props.doc.peers() })
   }
 
   onDropdownClick () {
@@ -66,9 +66,8 @@ export default class PeersButton extends Component {
   render () {
     const { onDropdownClick, onDropdownDismiss } = this
     const { peers, dropdownOpen, alias } = this.state
-    const peerIds = Object.keys(peers).sort()
+    const peerIds = Array.from(peers).sort()
     const count = peerIds.length - 1
-    const myId = peerIds.find(id => peers[id].me)
     return (
       <Dropdown>
         <button
@@ -77,7 +76,6 @@ export default class PeersButton extends Component {
           onClick={onDropdownClick}
           data-id='peers-button'
           data-peer-count={count}
-          data-peer-id={myId}
           >
           <UserIcon className='db stroke--current-color hover--bright-turquoise' />
           {count > 0 ? (
@@ -91,10 +89,8 @@ export default class PeersButton extends Component {
                 {peerIds.map((id, i) => (
                   <PeerItem
                     key={id}
-                    id={peers[id].alias || id}
-                    capabilities={peers[id].permissions}
-                    last={i === count - 1}
-                    me={peers[id].me} />
+                    id={id}
+                    last={i === count - 1} />
                 ))}
               </ul>
             ) : (
@@ -112,16 +108,12 @@ export default class PeersButton extends Component {
 }
 
 PeersButton.propTypes = {
-  peerGroup: PropTypes.object,
+  doc: PropTypes.object,
   alias: PropTypes.string,
   onAliasChange: PropTypes.func
 }
 
-const PeerItem = ({ id, capabilities, last, me }) => {
-  const permissions = Object.keys(capabilities)
-    .filter((capability) => capabilities[capability])
-    .join(', ')
-
+const PeerItem = ({ id, last }) => {
   return (
     <li className={`flex flex-row ${last ? '' : 'mb2'} pointer`}>
       <span className='mr1'>
@@ -131,14 +123,9 @@ const PeerItem = ({ id, capabilities, last, me }) => {
       <span
         className='flex-auto f6'
         style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
-        title={`${id} (${permissions})`}>
+        title={id}>
         {id}
       </span>
-      {
-        me && (
-          <span className='f7'>(me)</span>
-        )
-      }
     </li>
   )
 }
