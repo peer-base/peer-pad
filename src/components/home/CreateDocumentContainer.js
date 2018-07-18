@@ -42,12 +42,13 @@ export default class CreateDocumentContainer extends Component {
 
   async onCreateDocument () {
     try {
-      const generateRandomKeys = await import('peer-pad-core/src/backend/keys/generate')
-      const generateRandomName = await import('peer-pad-core/src/backend/keys/generate-random-name')
+      const generateRandomKeys = await import('peer-star-app/src/keys/generate')
+      const generateRandomName = await import('peer-star-app/src/keys/generate-random-name')
+      const uriEncodeKey = await import('peer-star-app/src/keys/uri-encode')
       const type = encodeURIComponent(this.state.type || 'markdown')
       const name = encodeURIComponent(this.state.name || generateRandomName())
       const keys = await generateRandomKeys()
-      const url = '/w/' + type + '/' + name + '/' + keys.read + '/' + keys.write
+      const url = '/w/' + type + '/' + name + '/' + uriEncodeKey(keys)
       this.setState({redirect: url})
     } catch (err) {
       window.alert(

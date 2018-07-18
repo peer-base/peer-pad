@@ -6,7 +6,7 @@ import Toolbar from './toolbar/Toolbar'
 const EditorArea = ({
   docName,
   docType,
-  docKeys,
+  encodedKeys,
   docText,
   viewMode,
   onEditor,
@@ -28,7 +28,7 @@ const EditorArea = ({
       theme={viewMode === 'source' ? 'dark' : 'light'}
       docType={docType}
       docName={docName}
-      docKeys={docKeys}
+      encodedKeys={encodedKeys}
       snapshots={snapshots}
       onTakeSnapshot={onTakeSnapshot}
       onDebuggingStart={onDebuggingStart}

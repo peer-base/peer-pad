@@ -12,7 +12,7 @@ const Toolbar = ({
   theme = 'light',
   docType,
   docName,
-  docKeys,
+  encodedKeys,
   onTakeSnapshot,
   onDebuggingStart,
   onDebuggingStop,
@@ -24,7 +24,7 @@ const Toolbar = ({
       <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} />
     </div>
     <div className='mb3'>
-      <LinkButton theme={theme} docType={docType} docName={docName} docKeys={docKeys} />
+      <LinkButton theme={theme} docType={docType} docName={docName} encodedKeys={encodedKeys} />
     </div>
     <div className='mb3'>
       <ToggleButton theme={theme} icon={DebugIcon} title='Enable / disable debugging' onClick={isDebuggingEnabled ? onDebuggingStop : onDebuggingStart} disabled={!isDebuggingEnabled} />
@@ -45,10 +45,7 @@ Toolbar.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),
   docType: PropTypes.oneOf(['markdown', 'richtext', 'math']).isRequired,
   docName: PropTypes.string.isRequired,
-  docKeys: PropTypes.shape({
-    read: PropTypes.string.isRequired,
-    write: PropTypes.string
-  }).isRequired,
+  encodedKeys: PropTypes.string.isRequired,
   onTakeSnapshot: PropTypes.func.isRequired,
   snapshots: PropTypes.array.isRequired,
   onDirectoryClick: PropTypes.func,

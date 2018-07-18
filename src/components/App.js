@@ -11,8 +11,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path='/' component={Home} />
-          <Route exact path='/w/:type/:name/:readKey/:writeKey' render={this.renderEditor.bind(this)} />
-          <Route path='/r/:type/:name/:readKey' render={this.renderEditor.bind(this)} />
+          <Route exact path='/w/:type/:name/:keys' render={this.renderEditor.bind(this)} />
         </div>
       </Router>
     )

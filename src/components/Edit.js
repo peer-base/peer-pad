@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { convert as convertMarkdown } from '../lib/markdown'
+import bindEditor from '../lib/bind-editor'
+
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
 import { NewButton, PeersButton, NotificationsButton } from './header/buttons'
@@ -15,7 +18,7 @@ class Edit extends Component {
     super(props)
 
     this._backend = props.backend
-    const { type, name, readKey, writeKey } = props.match.params
+    const { type, name, keys } = props.match.params
 
     this.state = {
       name: decodeURIComponent(name),
@@ -23,11 +26,8 @@ class Edit extends Component {
       documentText: '',
       status: 'offline',
       room: {},
-      canEdit: !!writeKey,
-      rawKeys: {
-        read: readKey,
-        write: writeKey
-      },
+      canEdit: true,
+      encodedKeys: keys,
       viewMode: 'both',
       snapshots: [],
       alias: window.localStorage.getItem('alias'),
@@ -49,18 +49,24 @@ class Edit extends Component {
   }
 
   onEditor (nextEditor) {
+    console.log('onEditor')
     const { _editor: editor } = this
     const { doc } = this.state
 
     // Unbind current editor if we have a current editor and a document
-    if (doc && editor) doc.unbindEditor(editor)
+    if (this._editorBinding) {
+      this._editorBinding() // release binding
+      this._editorBinding = null
+    }
 
     // Save the reference to the editor so we can unbind later or so we can
     // bind if there's no doc available yet
     this._editor = nextEditor
 
     // Bind new editor if not null and we have a document
-    if (doc && nextEditor) doc.bindEditor(nextEditor)
+    if (doc && nextEditor) {
+      this._editorBinding = bindEditor(doc, nextEditor, this.state.type)
+    }
   }
 
   onEditorValueChange (documentText) {
@@ -161,7 +167,7 @@ class Edit extends Component {
       // The editor contents is updated directly by peer-pad-core.
       // `documentText` is a cache of the last value we received.
       documentText,
-      rawKeys,
+      encodedKeys,
       status,
       canEdit,
       viewMode,
@@ -196,7 +202,7 @@ class Edit extends Component {
               <NewButton />
             </span>
             <span className='mr0'>
-              <PeersButton peerGroup={this.state.doc && this.state.doc.peers} alias={alias} onAliasChange={this.onAliasChange} />
+              <PeersButton doc={this.state.doc} alias={alias} onAliasChange={this.onAliasChange} />
             </span>
             <span>
               <NotificationsButton />
@@ -225,14 +231,14 @@ class Edit extends Component {
             <EditorArea
               docName={name}
               docType={type}
-              docKeys={rawKeys}
+              encodedKeys={encodedKeys}
               viewMode={viewMode}
               onEditor={onEditor}
               onEditorValueChange={onEditorValueChange}
               snapshots={snapshots}
               onTakeSnapshot={onTakeSnapshot}
               docText={documentText}
-              convertMarkdown={this.state.doc && this.state.doc.convertMarkdown.bind(this.state.doc)}
+              convertMarkdown={(md) => convertMarkdown(md, type)}
               onDebuggingStart={onDebuggingStart}
               onDebuggingStop={onDebuggingStop}
               isDebuggingEnabled={isDebuggingEnabled}
@@ -253,22 +259,20 @@ class Edit extends Component {
 
   async componentDidMount () {
     const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
+    const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
-      const PeerpadBackend = await import('peer-pad-core')
-      this._backend = new PeerpadBackend()
+      this._backend = PeerStar('peer-pad')
+      await this._backend.start()
       this.props.onBackend(this._backend)
     }
 
-    const doc = this._backend.createDocument({
-      type: this.state.type, // TODO: make this variable
-      name: this.state.name,
-      readKey: this.state.rawKeys.read,
-      writeKey: this.state.rawKeys.write,
-      docViewer: DocViewer,
-      docScript,
-      alias: this.state.alias
-    })
+    const keys = await PeerStar.keys.uriDecode(this.state.encodedKeys)
+
+    const doc = await this._backend.collaborate(
+      this.state.name,
+      'rga',
+      { keys })
 
     this.setState({ doc })
 
@@ -278,10 +282,10 @@ class Edit extends Component {
     })
 
     // Watch for out local ipfs node to come online.
-    if (this._backend.network.hasStarted()) {
+    if (this._backend.ipfs.isOnline()) {
       this.setState({ status: 'online' })
     } else {
-      this._backend.network.once('started', () => {
+      this._backend.ipfs.once('started', () => {
         this.onDebuggingStart() // activate debugging
         this.setState({ status: 'online' })
       })
@@ -292,13 +296,11 @@ class Edit extends Component {
     this.maybeActivateEditor()
 
     // Bind the editor if we got an instance while the doc was starting
-    if (this._editor) doc.bindEditor(this._editor)
+
+    // TODO: bind the editor to the document
+    // if (this._editor) doc.bindEditor(this._editor)
 
     // Turn the doc title into a peer editable input.
-    doc.bindTitle(this._titleRef)
-
-    // ooh la la, show the live value in the tab title too.
-    doc.bindTitle(window.document.getElementsByTagName('title')[0])
 
     // Pull snapshots array out of localStorage into state.
     const snapshots = this.loadSnapshots()
@@ -311,14 +313,18 @@ class Edit extends Component {
   }
 
   maybeActivateEditor () {
-    if (this._editor && this.state.canEdit) {
-      switch (this.state.type) {
-        case 'richtext':
-          this._editor.enable()
-          this._editor.focus()
-          break
-      }
+    if (!this._editorBinding && this._editor) {
+      this._editorBinding = bindEditor(this.state.doc, this._editor, this.state.type)
     }
+
+    // if (this._editor && this.state.canEdit) {
+    //   switch (this.state.type) {
+    //     case 'richtext':
+    //       this._editor.enable()
+    //       this._editor.focus()
+    //       break
+    //   }
+    // }
   }
 }
 
