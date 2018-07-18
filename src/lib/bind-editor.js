@@ -50,9 +50,42 @@ const bindCodeMirror = (doc, editor) => {
     const oldText = editor.getValue()
     const newText = doc.shared.value().join('')
 
-    if (oldText !== newText) {
-      editor.setValue(newText)
+    if (oldText === newText) {
+      return
     }
+    const cursor = editor.getCursor()
+    let cursorPos = editor.indexFromPos(cursor)
+
+    const diffs = Diff(oldText, newText)
+    let pos = 0
+    diffs.forEach((d) => {
+      const text = d[1]
+      if (d[0] === 0) { // EQUAL
+        pos += d[1].length
+      } else if (d[0] === -1) { // DELETE
+        if (text.length) {
+          const fromPos = editor.posFromIndex(pos)
+          const toPos = editor.posFromIndex(pos + text.length)
+          editor.replaceRange('', fromPos, toPos)
+
+          if (pos < cursorPos) {
+            cursorPos -= d[1].length
+          }
+        }
+      } else { // INSERT
+        if (text.length) {
+          const fromPos = editor.posFromIndex(pos)
+          editor.replaceRange(d[1], fromPos)
+
+          if (pos < cursorPos) {
+            cursorPos += d[1].length
+          }
+
+          pos += d[1].length
+        }
+      }
+    })
+    editor.setCursor(editor.posFromIndex(cursorPos))
   }
 
   doc.on('state changed', onStateChanged)
