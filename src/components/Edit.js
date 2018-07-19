@@ -65,7 +65,7 @@ class Edit extends Component {
 
     // Bind new editor if not null and we have a document
     if (doc && nextEditor) {
-      this._editorBinding = bindEditor(doc, nextEditor, this.state.type)
+      this._editorBinding = bindEditor(doc, this._titleRef, nextEditor, this.state.type)
     }
   }
 
@@ -262,7 +262,11 @@ class Edit extends Component {
     const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
-      this._backend = PeerStar('peer-pad')
+      this._backend = PeerStar('peer-pad', {
+        ipfs: {
+          swarm: [ '/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star' ]
+        }
+      })
       await this._backend.start()
       this.props.onBackend(this._backend)
     }
@@ -272,7 +276,10 @@ class Edit extends Component {
     const doc = await this._backend.collaborate(
       this.state.name,
       'rga',
-      { keys })
+      {
+        keys,
+        maxDeltaRetention: 0
+      })
 
     this.setState({ doc })
 
@@ -314,7 +321,7 @@ class Edit extends Component {
 
   maybeActivateEditor () {
     if (!this._editorBinding && this._editor) {
-      this._editorBinding = bindEditor(this.state.doc, this._editor, this.state.type)
+      this._editorBinding = bindEditor(this.state.doc, this._titleRef, this._editor, this.state.type)
     }
 
     // if (this._editor && this.state.canEdit) {
