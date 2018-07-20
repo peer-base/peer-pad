@@ -22,6 +22,7 @@ export default class PeersButton extends Component {
     this.onDropdownDismiss = this.onDropdownDismiss.bind(this)
     this.onAliasChange = this.onAliasChange.bind(this)
     this.onSaveAlias = this.onSaveAlias.bind(this)
+    this.onAliasesStateChanged = this.onAliasesStateChanged.bind(this)
 
     if (props.doc) {
       props.doc.on('membership changed', this.onPeersChange)
@@ -29,13 +30,14 @@ export default class PeersButton extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  async componentWillReceiveProps (nextProps) {
     // Remove listener if receiving new peers object
     if (nextProps.doc && this.props.doc) {
       this.props.doc.removeListener('membership changed', this.onPeersChange)
+      await this.unbindAliases()
       nextProps.doc.on('membership changed', this.onPeersChange)
       this.setState({ peers: nextProps.doc.peers() })
-      this.bindAliases()
+      this.bindAliases(nextProps.doc)
     }
   }
 
@@ -57,15 +59,30 @@ export default class PeersButton extends Component {
     this.setState({ dropdownOpen: false })
   }
 
-  bindAliases () {
+  onAliasesStateChanged () {
     this.props.doc.sub('aliases', 'mvreg')
       .then((aliasesCollab) => {
         const aliases = mergeAliases(aliasesCollab.shared.value())
         this.setState({ aliases })
-        aliasesCollab.on('state changed', () => {
-          const aliases = mergeAliases(aliasesCollab.shared.value())
-          this.setState({ aliases })
-        })
+      })
+  }
+
+  unbindAliases () {
+    return this.props.doc.sub('aliases', 'mvreg')
+      .then((aliasesCollab) => {
+        aliasesCollab.removeListener('state changed', this.onAliasesStateChanged)
+      })
+  }
+
+  bindAliases (doc) {
+    if (!doc) {
+      doc = this.props.doc
+    }
+    doc.sub('aliases', 'mvreg')
+      .then((aliasesCollab) => {
+        const aliases = mergeAliases(aliasesCollab.shared.value())
+        this.setState({ aliases })
+        aliasesCollab.on('state changed', this.onAliasesStateChanged)
       })
       .catch((err) => {
         console.error('error in aliases collaboration:', err)

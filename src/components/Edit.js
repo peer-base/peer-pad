@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { convert as convertMarkdown } from '../lib/markdown'
 import bindEditor from '../lib/bind-editor'
 import mergeAliases from '../lib/merge-aliases'
+import takeSnapshot from '../lib/take-snapshot'
 
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
@@ -51,7 +52,6 @@ class Edit extends Component {
 
   onEditor (nextEditor) {
     console.log('onEditor')
-    const { _editor: editor } = this
     const { doc } = this.state
 
     // Unbind current editor if we have a current editor and a document
@@ -75,11 +75,23 @@ class Edit extends Component {
   }
 
   async onTakeSnapshot () {
-    const snapshot = await this.state.doc.snapshots.take()
-    snapshot.createdAt = new Date().toISOString()
-    this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
-    this.prefetchSnapshot(snapshot)
-    this.storeSnapshot(snapshot)
+    try {
+      const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
+      const options = {
+        type: this.state.type,
+        docScript,
+        DocViewer
+      }
+      const keys = (await import('peer-star-app')).keys
+      const snapshot = await takeSnapshot(keys, this.state.doc, options)
+      snapshot.createdAt = new Date().toISOString()
+      this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
+      this.prefetchSnapshot(snapshot)
+      this.storeSnapshot(snapshot)
+    } catch (err) {
+      console.error(err)
+      alert('Error taking snapshot: ' +  err.message)
+    }
   }
 
   loadSnapshots () {
@@ -264,7 +276,6 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-    const docScript = await (await window.fetch('static/js/viewer.bundle.js')).text()
     const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
