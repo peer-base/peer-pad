@@ -1,18 +1,21 @@
 import Diff from 'fast-diff'
+import debounce from 'lodash.debounce'
+import peerColor from './peer-color'
+
+const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
 const bindCodeMirror = (doc, titleEditor, editor) => {
-  let initialised = false
+  const thisPeerId = doc.app.ipfs._peerInfo.id.toB58String()
+  let cursorGossip
   let titleCollab
+  let initialised = false
   let editorLocked = false
+  let markers = new Map()
 
   console.log('titleEditor:', titleEditor.addListener)
 
   const onCodeMirrorChange = (editor, change) => {
-    if (!initialised) {
-      return
-    }
-
-    if (editorLocked) {
+    if (!initialised || editorLocked) {
       return
     }
 
@@ -61,41 +64,39 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     editorLocked = true
 
     const cursor = editor.getCursor()
-    const originalCursorPos = editor.indexFromPos(cursor)
-    let cursorPos = originalCursorPos
+    let cursorPos = editor.indexFromPos(cursor)
 
     const diffs = Diff(oldText, newText)
     let pos = 0
     diffs.forEach((d) => {
-      const text = d[1]
-      if (d[0] === 0) { // EQUAL
-        pos += d[1].length
-      } else if (d[0] === -1) { // DELETE
+      const [op, text] = d
+      if (op === 0) { // EQUAL
+        pos += text.length
+      } else if (op === -1) { // DELETE
         if (text.length) {
           const fromPos = editor.posFromIndex(pos)
+          fromPos.external = true
           const toPos = editor.posFromIndex(pos + text.length)
+          toPos.external = true
           editor.replaceRange('', fromPos, toPos)
 
           if (pos < cursorPos) {
-            cursorPos -= d[1].length
+            cursorPos -= text.length
           }
         }
       } else { // INSERT
         if (text.length) {
           const fromPos = editor.posFromIndex(pos)
-          editor.replaceRange(d[1], fromPos)
+          fromPos.external = true
+          editor.replaceRange(text, fromPos)
 
           if (pos < cursorPos) {
-            cursorPos += d[1].length
+            cursorPos += text.length
           }
-
-          pos += d[1].length
         }
       }
     })
-    if (originalCursorPos !== cursorPos) {
-      editor.setCursor(editor.posFromIndex(cursorPos))
-    }
+    editor.setCursor(editor.posFromIndex(cursorPos))
     editorLocked = false
   }
 
@@ -161,6 +162,49 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
   titleEditor.addEventListener('input', onTitleEditorChanged)
 
+  const onCursorGossipMessage = (cursor, fromPeerId) => {
+    console.log(`cursor of ${fromPeerId} changed to `, cursor)
+    if (fromPeerId === thisPeerId) {
+      return
+    }
+
+    const previousMarkers = markers.get(fromPeerId)
+    if (previousMarkers) {
+      previousMarkers.forEach((marker) => marker.clear())
+    }
+
+    const color = peerColor(fromPeerId)
+
+    const [head, fromPos, toPos] = cursor
+
+    const widget = getCursorWidget(head, color)
+
+    const bookmark = editor.setBookmark(head, { widget })
+    const range = editor.markText(fromPos, toPos, {
+      css: `background-color: ${color}; opacity: 0.8`,
+      title: fromPeerId
+    })
+    markers.set(fromPeerId, [bookmark, range])
+  }
+
+  doc.gossip('cursors').then((_cursorGossip) => {
+    cursorGossip = _cursorGossip
+    cursorGossip.on('message', onCursorGossipMessage)
+  })
+
+  const onEditorCursorActivity = () => {
+    if (cursorGossip) {
+      const cursor = [
+        editor.getCursor('head'),
+        editor.getCursor('from'),
+        editor.getCursor('to')]
+      console.log('local cursor activity:', cursor)
+      cursorGossip.broadcast(cursor)
+    }
+  }
+
+  editor.on('cursorActivity', debounce(onEditorCursorActivity, DEBOUNCE_CUSOR_ACTIVITY_MS))
+
   initialised = true
 
   return () => {
@@ -171,6 +215,23 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     if (titleCollab) {
       titleCollab.removeListener('state changed', onTitleStateChanged)
     }
+    editor.off('cursorActivity', onEditorCursorActivity)
+    if (cursorGossip) {
+      cursorGossip.removeListener('message', onCursorGossipMessage)
+    }
+  }
+
+  function getCursorWidget (cursorPos, color) {
+    const cursorCoords = editor.cursorCoords(cursorPos)
+    const cursorElement = document.createElement('span')
+    cursorElement.style.borderLeftStyle = 'solid'
+    cursorElement.style.borderLeftWidth = '2px'
+    cursorElement.style.borderLeftColor = color
+    cursorElement.style.height = `${(cursorCoords.bottom - cursorCoords.top)}px`
+    cursorElement.style.padding = 0
+    cursorElement.style.zIndex = 0
+
+    return cursorElement
   }
 }
 
