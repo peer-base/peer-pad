@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { convert as convertMarkdown } from '../lib/markdown'
 import bindEditor from '../lib/bind-editor'
+import mergeAliases from '../lib/merge-aliases'
 
 import Header from './header/Header'
 import ViewMode from './header/ViewMode'
@@ -115,11 +116,16 @@ class Edit extends Component {
       })
   }
 
-  onAliasChange (alias) {
+  async onAliasChange (alias) {
     this.setState({ alias })
-    this.state.doc.peers.setPeerAlias(alias)
+    const doc = this.state.doc
     // cache globally for other pads to be able to use
     window.localStorage.setItem('alias', alias)
+    const aliasesCollab = await doc.sub('aliases', 'mvreg')
+    let aliases = mergeAliases(aliasesCollab.shared.value())
+    const myPeerId = (await doc.app.ipfs.id()).id
+    aliases[myPeerId] = alias
+    aliasesCollab.shared.write(aliases)
   }
 
   onDebuggingStart () {
@@ -266,6 +272,10 @@ class Edit extends Component {
         ipfs: {
           swarm: [ '/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star' ]
         }
+      })
+      this._backend.on('error', (err) => {
+        console.error(err)
+        window.alert(err.message)
       })
       await this._backend.start()
       this.props.onBackend(this._backend)

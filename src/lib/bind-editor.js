@@ -12,8 +12,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let editorLocked = false
   let markers = new Map()
 
-  console.log('titleEditor:', titleEditor.addListener)
-
   const onCodeMirrorChange = (editor, change) => {
     if (!initialised || editorLocked) {
       return
@@ -107,7 +105,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   const onTitleStateChanged = () => {
     const oldTitle = titleEditor.value
     const newTitle = titleCollab.shared.value().join('')
-    console.log('title changed to', newTitle)
     if (newTitle === oldTitle) {
       return
     }
@@ -119,7 +116,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     titleCollab = _titleCollab
     titleCollab.on('state changed', onTitleStateChanged)
     const title = titleCollab.shared.value().join('')
-    console.log('initial title is', title)
     titleEditor.value = title
   })
 
@@ -131,11 +127,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     const oldTitle = titleCollab.shared.value().join('')
     const newTitle = titleEditor.value
 
-    console.log('old title:', oldTitle)
-    console.log('new title:', newTitle)
-
     const diffs = Diff(oldTitle, newTitle)
-    console.log('diffs:', diffs)
 
     let pos = 0
     diffs.forEach((d) => {
@@ -163,7 +155,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   titleEditor.addEventListener('input', onTitleEditorChanged)
 
   const onCursorGossipMessage = (cursor, fromPeerId) => {
-    console.log(`cursor of ${fromPeerId} changed to `, cursor)
     if (fromPeerId === thisPeerId) {
       return
     }
@@ -198,12 +189,12 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
         editor.getCursor('head'),
         editor.getCursor('from'),
         editor.getCursor('to')]
-      console.log('local cursor activity:', cursor)
       cursorGossip.broadcast(cursor)
     }
   }
 
-  editor.on('cursorActivity', debounce(onEditorCursorActivity, DEBOUNCE_CUSOR_ACTIVITY_MS))
+  const onEditorCursorActivityDebounced = debounce(onEditorCursorActivity, DEBOUNCE_CUSOR_ACTIVITY_MS)
+  editor.on('cursorActivity', onEditorCursorActivityDebounced)
 
   initialised = true
 
@@ -215,7 +206,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     if (titleCollab) {
       titleCollab.removeListener('state changed', onTitleStateChanged)
     }
-    editor.off('cursorActivity', onEditorCursorActivity)
+    editor.off('cursorActivity', onEditorCursorActivityDebounced)
     if (cursorGossip) {
       cursorGossip.removeListener('message', onCursorGossipMessage)
     }
@@ -236,7 +227,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 }
 
 export default (doc, title, editor, type) => {
-  if (type === 'markdown') {
+  if (type === 'markdown' || type === 'math') {
     return bindCodeMirror(doc, title, editor)
   }
 
