@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
 import { UserIcon } from '../../icons'
+import peerColor from '../../../lib/peer-color'
 
 export default class PeersButton extends Component {
   constructor (props) {
@@ -122,7 +123,11 @@ const PeerItem = ({ id, last }) => {
       </span>
       <span
         className='flex-auto f6'
-        style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+        style={{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          borderBottom: `3px solid ${peerColor(id)}`
+        }}
         title={id}>
         {id}
       </span>
