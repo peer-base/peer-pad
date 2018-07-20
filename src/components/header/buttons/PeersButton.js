@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Dropdown, DropdownMenu } from '../../dropdown/Dropdown'
 import { UserIcon } from '../../icons'
 import peerColor from '../../../lib/peer-color'
+import mergeAliases from '../../../lib/merge-aliases'
 
 export default class PeersButton extends Component {
   constructor (props) {
@@ -24,6 +25,7 @@ export default class PeersButton extends Component {
 
     if (props.doc) {
       props.doc.on('membership changed', this.onPeersChange)
+      this.bindAliases()
     }
   }
 
@@ -33,6 +35,7 @@ export default class PeersButton extends Component {
       this.props.doc.removeListener('membership changed', this.onPeersChange)
       nextProps.doc.on('membership changed', this.onPeersChange)
       this.setState({ peers: nextProps.doc.peers() })
+      this.bindAliases()
     }
   }
 
@@ -52,6 +55,21 @@ export default class PeersButton extends Component {
 
   onDropdownDismiss () {
     this.setState({ dropdownOpen: false })
+  }
+
+  bindAliases () {
+    this.props.doc.sub('aliases', 'mvreg')
+      .then((aliasesCollab) => {
+        const aliases = mergeAliases(aliasesCollab.shared.value())
+        this.setState({ aliases })
+        aliasesCollab.on('state changed', () => {
+          const aliases = mergeAliases(aliasesCollab.shared.value())
+          this.setState({ aliases })
+        })
+      })
+      .catch((err) => {
+        console.error('error in aliases collaboration:', err)
+      })
   }
 
   onAliasChange (ev) {
@@ -91,6 +109,7 @@ export default class PeersButton extends Component {
                   <PeerItem
                     key={id}
                     id={id}
+                    alias={this.state.aliases[id]}
                     last={i === count - 1} />
                 ))}
               </ul>
@@ -114,7 +133,11 @@ PeersButton.propTypes = {
   onAliasChange: PropTypes.func
 }
 
-const PeerItem = ({ id, last }) => {
+const PeerItem = ({ id, alias, last }) => {
+  let aliasElem = (alias ? <span>{alias}</span> : '')
+  if (!aliasElem) {
+    aliasElem = id
+  }
   return (
     <li className={`flex flex-row ${last ? '' : 'mb2'} pointer`}>
       <span className='mr1'>
@@ -128,8 +151,8 @@ const PeerItem = ({ id, last }) => {
           textOverflow: 'ellipsis',
           borderBottom: `3px solid ${peerColor(id)}`
         }}
-        title={id}>
-        {id}
+        title={alias || id}>
+        {aliasElem}
       </span>
     </li>
   )
