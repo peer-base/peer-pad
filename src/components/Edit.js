@@ -208,7 +208,7 @@ class Edit extends Component {
               <NewButton />
             </span>
             <span className='mr0'>
-              <PeersButton doc={this.state.doc} alias={alias} onAliasChange={this.onAliasChange} />
+              <PeersButton doc={this.state.doc} alias={alias} onAliasChange={this.onAliasChange} canEdit={this.state.canEdit} />
             </span>
             <span>
               <NotificationsButton />

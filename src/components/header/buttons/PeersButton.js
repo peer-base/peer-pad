@@ -116,10 +116,14 @@ export default class PeersButton extends Component {
             ) : (
               <p className='f6 ma0'>No other peers</p>
             )}
-            <div className='f6 ma0 pa0'>
-              <input type='text' className='bn-m dib w-60 ph1 pv1 mr1' value={alias} placeholder='Your name' onChange={this.onAliasChange} />
-              <button type='button' className='button-reset dib w-30 pa0 ma0 white-lilac bg-bright-turquoise hover--white ba b--bright-turquoise ph2 pv1 bw0 ttu pointer br1' onClick={this.onSaveAlias}>SET</button>
-            </div>
+            {
+              this.props.canEdit ? (
+                <div className='f6 ma0 pa0'>
+                  <input type='text' className='bn-m dib w-60 ph1 pv1 mr1' value={alias} placeholder='Your name' onChange={this.onAliasChange} />
+                  <button type='button' className='button-reset dib w-30 pa0 ma0 white-lilac bg-bright-turquoise hover--white ba b--bright-turquoise ph2 pv1 bw0 ttu pointer br1' onClick={this.onSaveAlias}>SET</button>
+                </div>
+              ) : null
+            }
           </div>
         </DropdownMenu>
       </Dropdown>
