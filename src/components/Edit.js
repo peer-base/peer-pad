@@ -27,7 +27,7 @@ class Edit extends Component {
       documentText: '',
       status: 'offline',
       room: {},
-      canEdit: true,
+      canEdit: keys.split('-').length >= 2,
       encodedKeys: keys,
       viewMode: 'both',
       snapshots: [],
