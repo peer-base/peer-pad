@@ -15,6 +15,8 @@ import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
 import Warning from './Warning'
 
+const debugScope = 'peer-star:*'
+
 class Edit extends Component {
   constructor (props) {
     super(props)
@@ -34,7 +36,7 @@ class Edit extends Component {
       snapshots: [],
       alias: window.localStorage.getItem('alias'),
       doc: null,
-      isDebuggingEnabled: false
+      isDebuggingEnabled: !!localStorage.debug
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
@@ -140,41 +142,17 @@ class Edit extends Component {
     aliasesCollab.shared.write(aliases)
   }
 
-  onDebuggingStart () {
-    if (!this.state.doc) {
-      console.log('not started yet, try activating debugging after IPFS starts')
-      return // early
-    }
-    if (!this._networkObserver) {
-      this._networkObserver = this.state.doc.network.observe()
-      this._networkObserver.on('received message', (fromPeer, message) => {
-        console.log('received', {
-          from: fromPeer,
-          message
-        })
-      })
-      this._networkObserver.on('sent message', (toPeer, message) => {
-        console.log('sent', {
-          to: toPeer,
-          message
-        })
-      })
-      this._networkObserver.on('peer joined', (peer) => {
-        console.log('' + peer + ' joined')
-      })
-      this._networkObserver.on('peer left', (peer) => {
-        console.log('' + peer + ' left')
-      })
-    } else {
-      this._networkObserver.start()
-    }
+  async onDebuggingStart () {
+    (await import('peer-star-app')).debug.enable(debugScope)
+    localStorage.debug = debugScope
     console.log('debugging started')
     this.setState({isDebuggingEnabled: true})
   }
 
-  onDebuggingStop () {
+  async onDebuggingStop () {
+    (await import('peer-star-app')).debug.disable()
+    localStorage.debug = null
     console.log('debugging stopped')
-    this._networkObserver.stop()
     this.setState({isDebuggingEnabled: false})
   }
 
