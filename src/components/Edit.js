@@ -36,7 +36,7 @@ class Edit extends Component {
       snapshots: [],
       alias: window.localStorage.getItem('alias'),
       doc: null,
-      isDebuggingEnabled: !!localStorage.debug
+      isDebuggingEnabled: !!window.localStorage.getItem('debug')
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
@@ -53,7 +53,6 @@ class Edit extends Component {
   }
 
   onEditor (nextEditor) {
-    console.log('onEditor')
     const { doc } = this.state
 
     // Unbind current editor if we have a current editor and a document
@@ -103,7 +102,7 @@ class Edit extends Component {
     try {
       return JSON.parse(val)
     } catch (err) {
-      console.log('Failed to load snapshots for pad', key, err)
+      console.error('Failed to load snapshots for pad', key, err)
       // bad data. clear out for a better future.
       window.localStorage.removeItem(key)
       return []
@@ -144,14 +143,14 @@ class Edit extends Component {
 
   async onDebuggingStart () {
     (await import('peer-star-app')).debug.enable(debugScope)
-    localStorage.debug = debugScope
+    localStorage.setItem('debug', debugScope)
     console.log('debugging started')
     this.setState({isDebuggingEnabled: true})
   }
 
   async onDebuggingStop () {
     (await import('peer-star-app')).debug.disable()
-    localStorage.debug = null
+    localStorage.setItem('debug', '')
     console.log('debugging stopped')
     this.setState({isDebuggingEnabled: false})
   }
