@@ -16,10 +16,12 @@ Object.keys(converters).forEach((key) => {
   converters[key] = pify(converter.process.bind(converter))
 })
 
-export const convert = async (md, type) => {
+const convert = async (md, type) => {
   const converter = converters[type]
   if (!converter) {
     throw new Error('no converter for type ' + type)
   }
   return converter(md).then((result) => result.contents)
 }
+
+export { convert }

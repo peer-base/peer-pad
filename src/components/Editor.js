@@ -14,7 +14,7 @@ export default class Editor extends Component {
   }
 
   onRef (ref) {
-    const { type, onEditor, onChange } = this.props
+    const { onEditor, onChange } = this.props
     let editor
 
     if (ref) {
