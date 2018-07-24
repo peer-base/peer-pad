@@ -126,7 +126,7 @@ export default class PeersButton extends Component {
                   <PeerItem
                     key={id}
                     id={id}
-                    alias={this.state.aliases[id]}
+                    alias={this.state.aliases && this.state.aliases[id] || ''}
                     last={i === count - 1} />
                 ))}
               </ul>
