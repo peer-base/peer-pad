@@ -15,7 +15,7 @@ import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
 import Warning from './Warning'
 
-const debugScope = 'peer-star:*'
+const debugScope = 'peer-star:collaboration:*'
 
 class Edit extends Component {
   constructor (props) {
@@ -256,10 +256,14 @@ class Edit extends Component {
     const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
-      this._backend = PeerStar('peer-pad', {
+      this._backend = PeerStar('peer-pad/2', {
         ipfs: {
-          swarm: [ '/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star' ]
-        }
+          swarm: ['/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star']
+        },
+        transport: {
+          maxThrottleDelayMS: 0
+        },
+        maxDeltaRetention: 0
       })
       this._backend.on('error', (err) => {
         console.error(err)
@@ -313,7 +317,10 @@ class Edit extends Component {
   }
 
   componentWillUnmount () {
-    this.state.doc.stop()
+    if (this.state.doc) {
+      this.state.doc.stop()
+    }
+
     this._editor = null
   }
 
