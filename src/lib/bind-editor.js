@@ -236,32 +236,48 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   }
 
   function moveMarkerIfAfter (peer, peerMarkers, changePos, diff) {
-    let pos
-    let posIndex
-    let newMarkers = []
     peerMarkers.forEach((marker, index) => {
       const markerPos = marker.find()
       if (markerPos) {
-        console.log('marker:', marker)
-        pos = markerPos
-        posIndex = editor.indexFromPos(pos)
+        const posIndex = editor.indexFromPos(markerPos)
         if (posIndex >= changePos) {
-          peerMarkers.splice(index, 1)
           marker.clear()
-          posIndex += diff
-          const newPos = editor.posFromIndex(posIndex)
-          const color = peerColor(peer)
-          const widget = getCursorWidget(newPos, color)
-          const bookmark = editor.setBookmark(newPos, { widget })
-          newMarkers.push(bookmark)
         }
       } else {
-        newMarkers.push(marker)
+        marker.clear()
       }
     })
 
-    markers.set(peer, newMarkers)
+    markers.delete(peer)
   }
+
+//   function moveMarkerIfAfterBuggy (peer, peerMarkers, changePos, diff) {
+//     let pos
+//     let posIndex
+//     let newMarkers = []
+//     peerMarkers.forEach((marker, index) => {
+//       const markerPos = marker.find()
+//       if (markerPos) {
+//         console.log('marker:', marker)
+//         pos = markerPos
+//         posIndex = editor.indexFromPos(pos)
+//         if (posIndex >= changePos) {
+//           peerMarkers.splice(index, 1)
+//           marker.clear()
+//           posIndex += diff
+//           const newPos = editor.posFromIndex(posIndex)
+//           const color = peerColor(peer)
+//           const widget = getCursorWidget(newPos, color)
+//           const bookmark = editor.setBookmark(newPos, { widget })
+//           newMarkers.push(bookmark)
+//         }
+//       } else {
+//         newMarkers.push(marker)
+//       }
+//     })
+
+//     markers.set(peer, newMarkers)
+//   }
 }
 
 export default (doc, title, editor, type) => {
