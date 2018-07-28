@@ -49,12 +49,12 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   editor.on('change', onCodeMirrorChange)
 
   const onStateChanged = (fromSelf) => {
-    if (fromSelf || editorLocked) {
+    if (editorLocked) {
       return
     }
 
-    const oldText = editor.getValue()
-    const newText = doc.shared.value().join('')
+    let oldText = editor.getValue()
+    let newText = doc.shared.value().join('')
 
     if (oldText === newText) {
       return
@@ -99,6 +99,13 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     })
     editor.setCursor(editor.posFromIndex(cursorPos))
     editorLocked = false
+
+    oldText = editor.getValue()
+    newText = doc.shared.value().join('')
+
+    if (oldText !== newText) {
+      onStateChanged(fromSelf)
+    }
   }
 
   doc.on('state changed', onStateChanged)
