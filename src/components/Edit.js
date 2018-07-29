@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import config from '../config'
 import { convert as convertMarkdown } from '../lib/markdown'
 import bindEditor from '../lib/bind-editor'
 import mergeAliases from '../lib/merge-aliases'
@@ -256,17 +257,7 @@ class Edit extends Component {
     const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
-      this._backend = PeerStar('peer-pad/2', {
-        ipfs: {
-          // swarm: ['/dns4/ws-star2.sjc.dwebops.pub/tcp/443/wss/p2p-websocket-star']
-          swarm: ['/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star']
-          // swarm: ['/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star']
-        },
-        transport: {
-          maxThrottleDelayMS: 0
-        },
-        maxDeltaRetention: 0
-      })
+      this._backend = PeerStar('peer-pad/2', config.peerStar)
       this._backend.on('error', (err) => {
         console.error(err)
         window.alert(err.message)
