@@ -4,6 +4,7 @@ import peerColor from './peer-color'
 import functionQueue from './fn-queue'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
+const MAX_TEXT_INSERT_THRESHOLD = Infinity
 
 const bindCodeMirror = (doc, titleEditor, editor) => {
   const thisPeerId = doc.app.ipfs._peerInfo.id.toB58String()
@@ -14,31 +15,45 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let diffsToApply = []
   let queue = functionQueue()
 
-  const scheduleDiffApplication = debounce(() => {
-    const diffList = diffsToApply
-    diffsToApply = []
-    diffList.forEach((diffs) => {
-      let pos = 0
-      diffs.forEach((d) => {
-        if (d[0] === 0) { // EQUAL
-          pos += d[1].length
-        } else if (d[0] === -1) { // DELETE
-          const delText = d[1]
-          for (let i = delText.length - 1; i >=0; i--) {
-            try {
-              doc.shared.removeAt(pos + i)
-            } catch (err) {
-              console.error(err)
-              onStateChanged()
-            }
+  const applyDiffs = (pos, diffs) => {
+    diffs.forEach((d) => {
+      if (d[0] === 0) { // EQUAL
+        pos += d[1].length
+      } else if (d[0] === -1) { // DELETE
+        const delText = d[1]
+        for (let i = delText.length - 1; i >=0; i--) {
+          try {
+            doc.shared.removeAt(pos + i)
+          } catch (err) {
+            console.error(err)
+            onStateChanged()
           }
-        } else { // INSERT
-          d[1].split('').forEach((c) => {
-            doc.shared.insertAt(pos, c)
-            pos ++
+        }
+      } else { // INSERT
+        let insertText = d[1]
+        let rest
+        console.log('insertText:', insertText)
+        if (insertText.length > MAX_TEXT_INSERT_THRESHOLD) {
+          insertText = d[1].substring(0, MAX_TEXT_INSERT_THRESHOLD)
+          rest = d[1].substring(MAX_TEXT_INSERT_THRESHOLD)
+          console.log('rest:', rest)
+        }
+        doc.shared.insertAllAt(pos, insertText.split(''))
+        pos += insertText.length
+        if (rest) {
+          queue.unshift(() => {
+            applyDiffs(pos, [[1, rest]])
           })
         }
-      })
+      }
+    })
+  }
+
+  const scheduleDiffApplication = debounce(() => {
+    queue.push(() => {
+      const diffList = diffsToApply
+      diffsToApply = []
+      diffList.forEach((diffs) => applyDiffs(0, diffs))
     })
   })
 
