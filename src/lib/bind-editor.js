@@ -1,6 +1,7 @@
 import Diff from 'fast-diff'
 import debounce from 'lodash.debounce'
 import peerColor from './peer-color'
+import functionQueue from './fn-queue'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
@@ -9,103 +10,112 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let cursorGossip
   let titleCollab
   let initialised = false
-  let editorLocked = false
   let markers = new Map()
+  let diffsToApply = []
+  let queue = functionQueue()
 
-  const onCodeMirrorChange = (editor, change) => {
-    if (!initialised || editorLocked) {
-      return
-    }
-
-    editorLocked = true
-
-    const diffs = Diff(doc.shared.value().join(''), editor.getValue())
-
-    let pos = 0
-    diffs.forEach((d) => {
-      if (d[0] === 0) { // EQUAL
-        pos += d[1].length
-      } else if (d[0] === -1) { // DELETE
-        const delText = d[1]
-        for (let i = delText.length - 1; i >=0; i--) {
-          try {
-            doc.shared.removeAt(pos + i)
-          } catch (err) {
-            console.error(err)
-            onStateChanged()
+  const scheduleDiffApplication = debounce(() => {
+    const diffList = diffsToApply
+    diffsToApply = []
+    diffList.forEach((diffs) => {
+      let pos = 0
+      diffs.forEach((d) => {
+        if (d[0] === 0) { // EQUAL
+          pos += d[1].length
+        } else if (d[0] === -1) { // DELETE
+          const delText = d[1]
+          for (let i = delText.length - 1; i >=0; i--) {
+            try {
+              doc.shared.removeAt(pos + i)
+            } catch (err) {
+              console.error(err)
+              onStateChanged()
+            }
           }
+        } else { // INSERT
+          d[1].split('').forEach((c) => {
+            doc.shared.insertAt(pos, c)
+            pos ++
+          })
         }
-      } else { // INSERT
-        d[1].split('').forEach((c) => {
-          doc.shared.insertAt(pos, c)
-          pos ++
-        })
-      }
+      })
     })
+  })
 
-    editorLocked = false
+  const applyDiffsToShared = (diffs) => {
+    diffsToApply.push(diffs)
+    scheduleDiffApplication()
   }
 
-  editor.on('change', onCodeMirrorChange)
+  const onCodeMirrorChange = debounce((editor) => {
+    queue.push(() => {
+      if (!initialised) {
+        return
+      }
+      const diffs = Diff(doc.shared.value().join(''), editor.getValue())
+      applyDiffsToShared(diffs)
+    })
+  })
+
+  editor.on('change', debounce(onCodeMirrorChange, 1000))
 
   const onStateChanged = (fromSelf) => {
-    if (editorLocked) {
+    if (fromSelf) {
       return
     }
+    queue.push(() => {
+      let oldText = editor.getValue()
+      let newText = doc.shared.value().join('')
 
-    let oldText = editor.getValue()
-    let newText = doc.shared.value().join('')
+      if (oldText === newText) {
+        return
+      }
 
-    if (oldText === newText) {
-      return
-    }
-    editorLocked = true
+      const cursor = editor.getCursor()
+      let cursorPos = editor.indexFromPos(cursor)
 
-    const cursor = editor.getCursor()
-    let cursorPos = editor.indexFromPos(cursor)
+      const diffs = Diff(oldText, newText)
+      let pos = 0
+      diffs.forEach((d) => {
+        const [op, text] = d
+        if (op === 0) { // EQUAL
+          pos += text.length
+        } else if (op === -1) { // DELETE
+          if (text.length) {
+            const fromPos = editor.posFromIndex(pos)
+            fromPos.external = true
+            const toPos = editor.posFromIndex(pos + text.length)
+            toPos.external = true
+            editor.replaceRange('', fromPos, toPos)
 
-    const diffs = Diff(oldText, newText)
-    let pos = 0
-    diffs.forEach((d) => {
-      const [op, text] = d
-      if (op === 0) { // EQUAL
-        pos += text.length
-      } else if (op === -1) { // DELETE
-        if (text.length) {
-          const fromPos = editor.posFromIndex(pos)
-          fromPos.external = true
-          const toPos = editor.posFromIndex(pos + text.length)
-          toPos.external = true
-          editor.replaceRange('', fromPos, toPos)
+            if (pos < cursorPos) {
+              cursorPos -= text.length
+            }
 
-          if (pos < cursorPos) {
-            cursorPos -= text.length
+            moveMarkersIfAfter(pos, -text.length)
           }
+        } else { // INSERT
+          if (text.length) {
+            const fromPos = editor.posFromIndex(pos)
+            fromPos.external = true
+            editor.replaceRange(text, fromPos)
 
-          moveMarkersIfAfter(pos, -text.length)
-        }
-      } else { // INSERT
-        if (text.length) {
-          const fromPos = editor.posFromIndex(pos)
-          fromPos.external = true
-          editor.replaceRange(text, fromPos)
-
-          if (pos < cursorPos) {
-            cursorPos += text.length
+            if (pos < cursorPos) {
+              cursorPos += text.length
+            }
+            moveMarkersIfAfter(pos, text.length)
           }
-          moveMarkersIfAfter(pos, text.length)
         }
+      })
+      editor.setCursor(editor.posFromIndex(cursorPos))
+
+      oldText = editor.getValue()
+      newText = doc.shared.value().join('')
+
+      if (oldText !== newText) {
+        onStateChanged()
       }
     })
-    editor.setCursor(editor.posFromIndex(cursorPos))
-    editorLocked = false
-
-    oldText = editor.getValue()
-    newText = doc.shared.value().join('')
-
-    if (oldText !== newText) {
-      onStateChanged(fromSelf)
-    }
   }
 
   doc.on('state changed', onStateChanged)
