@@ -21,13 +21,13 @@ const Toolbar = ({
 }) => (
   <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
     <div className='mb3'>
+      <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} disabled />
+    </div>
+    <div className='mb3'>
       <LinkButton theme={theme} docType={docType} docName={docName} encodedKeys={encodedKeys} />
     </div>
     <div className='mb3'>
       <ToggleButton theme={theme} icon={DebugIcon} title='Enable / disable debugging' onClick={isDebuggingEnabled ? onDebuggingStop : onDebuggingStart} disabled={!isDebuggingEnabled} />
-    </div>
-    <div className='mb3'>
-      <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} disabled />
     </div>
     <div className='mb3'>
       <Button theme={theme} icon={DirectoryIcon} title='Coming soon: View directory' disabled />
