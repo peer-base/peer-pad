@@ -53,6 +53,7 @@ function  htmlForDoc (encryptedDoc, docScript, DocViewer) {
       encryptedDoc,
       docScript
     }))
+
   return Buffer.from(doc)
 }
 

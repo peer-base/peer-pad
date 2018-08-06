@@ -34,7 +34,7 @@ export default class SnapshotsButton extends Component {
 
     return (
       <Dropleft>
-        <Button theme={theme} icon={SnapshotIcon} title='Snapshots' onClick={onDropleftTriggerClick} />
+        <Button theme={theme} icon={SnapshotIcon} title='Snapshots' onClick={onDropleftTriggerClick} className='button-reset db bg-transparent bw0 pigeon-post pointer' />
         <DropleftMenu width={400} height={80} open={dropleftMenuOpen} onDismiss={onDropleftMenuDismiss}>
           <div className='pa4'>
             {snapshots.length ? (
