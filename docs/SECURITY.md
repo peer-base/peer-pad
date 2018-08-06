@@ -39,8 +39,6 @@ Upon reception, a node can validate the signature using the read key, thus valid
 
 ### User authentication and non-repudiation
 
-(this is not required for 0.2)
-
 Each message should come wrapped with the origin user identifier and a signature of the message. Upon reception, the node:
 
 * validates that the current has the right to send such a message
@@ -65,17 +63,3 @@ Participating nodes can also publish self-contained snapshots of the document. B
 ### Security of data at rest
 
 PeerPad uses the local store to store some records. These are the records that make up the CRDT and contain data and operations to the document. In order for this to be safe from people with access to the local store that don't have the key, these records are encrypted using a symmetric key derived from the "read key".
-
-### Access control
-
-You can give users permissions to read, write and admin.
-
-* "Read" permissions means that the users can read the document and follow the changes, but cannot make changes to the document.
-* "Write" permissions means that the user can make changes to the document, but cannot make changes to the access control list.
-* "Admin" permission means that the user can make changes to the access control list.
-
-A user is represented by a string, a unique identifier that can be easily transmitted off-band.
-
-This access control list is itself a CRDT shared amongst peers. When a peer creates a document, it is itself included in the list. By default, a node does not accept changes to this list from any other peer, unless it's already in the admin list. An node that is admin can add other nodes to the admin list.
-
-Nodes with admin right can also give other nodes and users the permission by changing the ACL CRDT.

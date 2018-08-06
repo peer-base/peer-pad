@@ -15,7 +15,7 @@
 
 **Test it live at https://peerpad.net or https://ipfs.io/ipns/peerpad.net**
 
-Docs: [Architecture](docs/ARCHITECTURE.md), [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
+Docs: [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
 
 ## 🔓 PeerPad is experimental software. It hasn't been audited, and as such shouldn't be used to create or share sensitive information.
 
