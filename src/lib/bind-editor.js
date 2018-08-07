@@ -12,7 +12,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let titleCollab
   let initialised = false
   let markers = new Map()
-  let diffsToApply = []
   let queue = functionQueue()
 
   const applyDiffs = (pos, diffs) => {
@@ -49,26 +48,13 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     })
   }
 
-  const scheduleDiffApplication = debounce(() => {
-    queue.push(() => {
-      const diffList = diffsToApply
-      diffsToApply = []
-      diffList.forEach((diffs) => applyDiffs(0, diffs))
-    })
-  })
-
-  const applyDiffsToShared = (diffs) => {
-    diffsToApply.push(diffs)
-    scheduleDiffApplication()
-  }
-
   const onCodeMirrorChange = debounce((editor) => {
     queue.push(() => {
       if (!initialised) {
         return
       }
       const diffs = Diff(doc.shared.value().join(''), editor.getValue())
-      applyDiffsToShared(diffs)
+      applyDiffs(0, diffs)
     })
   })
 
