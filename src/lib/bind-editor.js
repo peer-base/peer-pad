@@ -4,23 +4,23 @@ import peerColor from './peer-color'
 import functionQueue from './fn-queue'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
-const MAX_TEXT_INSERT_THRESHOLD = Infinity
 
 const bindCodeMirror = (doc, titleEditor, editor) => {
   const thisPeerId = doc.app.ipfs._peerInfo.id.toB58String()
   let cursorGossip
   let titleCollab
   let initialised = false
+  let locked = false
   let markers = new Map()
   let queue = functionQueue()
 
   const applyDiffs = (pos, diffs) => {
     diffs.forEach((d) => {
-      if (d[0] === 0) { // EQUAL
-        pos += d[1].length
-      } else if (d[0] === -1) { // DELETE
-        const delText = d[1]
-        for (let i = delText.length - 1; i >=0; i--) {
+      const [op, text] = d
+      if (op === 0) { // EQUAL
+        pos += text.length
+      } else if (op === -1) { // DELETE
+        for (let i = text.length - 1; i >= 0; i--) {
           try {
             doc.shared.removeAt(pos + i)
           } catch (err) {
@@ -29,28 +29,15 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
           }
         }
       } else { // INSERT
-        let insertText = d[1]
-        let rest
-        console.log('insertText:', insertText)
-        if (insertText.length > MAX_TEXT_INSERT_THRESHOLD) {
-          insertText = d[1].substring(0, MAX_TEXT_INSERT_THRESHOLD)
-          rest = d[1].substring(MAX_TEXT_INSERT_THRESHOLD)
-          console.log('rest:', rest)
-        }
-        doc.shared.insertAllAt(pos, insertText.split(''))
-        pos += insertText.length
-        if (rest) {
-          queue.unshift(() => {
-            applyDiffs(pos, [[1, rest]])
-          })
-        }
+        doc.shared.insertAllAt(pos, text.split(''))
+        pos += text.length
       }
     })
   }
 
   const onCodeMirrorChange = debounce((editor) => {
     queue.push(() => {
-      if (!initialised) {
+      if (!initialised || locked) {
         return
       }
       const diffs = Diff(doc.shared.value().join(''), editor.getValue())
@@ -71,6 +58,8 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
       if (oldText === newText) {
         return
       }
+
+      locked = true
 
       const cursor = editor.getCursor()
       let cursorPos = editor.indexFromPos(cursor)
@@ -112,6 +101,8 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
       oldText = editor.getValue()
       newText = doc.shared.value().join('')
+
+      locked = false
 
       if (oldText !== newText) {
         onStateChanged()
@@ -156,7 +147,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
         pos += d[1].length
       } else if (d[0] === -1) { // DELETE
         const delText = d[1]
-        for (let i = delText.length - 1; i >=0; i--) {
+        for (let i = delText.length - 1; i >= 0; i--) {
           try {
             titleCollab.shared.removeAt(pos + i)
           } catch (err) {
@@ -167,7 +158,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
       } else { // INSERT
         d[1].split('').forEach((c) => {
           titleCollab.shared.insertAt(pos, c)
-          pos ++
+          pos++
         })
       }
     })
@@ -305,4 +296,3 @@ export default (doc, title, editor, type) => {
 
   throw new Error('unsupported type ' + type)
 }
-
