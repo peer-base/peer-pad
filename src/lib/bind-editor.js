@@ -93,6 +93,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
             if (pos < cursorPos) {
               cursorPos += text.length
             }
+            pos += text.length
             moveMarkersIfAfter(pos, text.length)
           }
         }
