@@ -1,7 +1,6 @@
 'use strict'
 
 const ms = require('milliseconds')
-
 const Replica = require('./replica')
 
 module.exports = ({cluster, replicaCount, events}) => {
@@ -15,7 +14,7 @@ module.exports = ({cluster, replicaCount, events}) => {
       console.log('padURL:', padURL)
 
       while (replicaCount > 0) {
-        cluster.queue(padURL, Replica(events))
+        cluster.queue(padURL, Replica({ events }))
         replicaCount--
       }
     } catch (err) {
