@@ -1,32 +1,20 @@
 'use strict'
 
-const { Cluster } = require('puppeteer-cluster');
+const spawnCluster = require('./spawn-cluster')
 
-(async () => {
-  const cluster = await Cluster.launch({
-    concurrency: Cluster.CONCURRENCY_BROWSER,
-    maxConcurrency: 10,
+;(async () => {
+  const cluster = await spawnCluster()
+
+  cluster.on('message', (m) => {
+    console.log(m)
   })
 
-  let left = 10
+  cluster.once('bootstrapped', () => {
+    console.log('bootstrapped')
+  })
 
-  const bootstrap = async ({ page, data: url }) => {
-    console.log(url)
-    await page.goto(url)
-    console.log('got')
-    if ((--left) > 0) {
-      console.log('queueing')
-      cluster.queue('http://example.com/' + left, bootstrap)
-    } else {
-      (async () => {
-        await cluster.idle()
-        await cluster.close()
-      })()
-    }
-  }
-
-
-  await cluster.queue('http://example.com', bootstrap)
-  // many more pages
-
+  cluster.once('ended', () => {
+    console.log('ended')
+    cluster.close()
+  })
 })()
