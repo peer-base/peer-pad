@@ -17,14 +17,14 @@ process.once('uncaughtException', (err) => {
 
 ;(async () => {
   console.log('Building...')
-  // await build()
+  await build()
   console.log('Built.')
 
   console.log('Spawning server...')
   server = await spawnServer()
   console.log('Spawned.')
 
-  const cluster = await spawnCluster()
+  const cluster = await spawnCluster({replicaCount: 2})
 
   cluster.on('message', (m) => {
     console.log(m)

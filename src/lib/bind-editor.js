@@ -45,7 +45,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     })
   })
 
-  editor.on('change', debounce(onCodeMirrorChange, 1000))
+  editor.on('change', debounce(onCodeMirrorChange, 0))
 
   const onStateChanged = (fromSelf) => {
     if (fromSelf) {
@@ -82,7 +82,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
               cursorPos -= text.length
             }
 
-            moveMarkersIfAfter(pos, -text.length)
+            // moveMarkersIfAfter(pos, -text.length)
           }
         } else { // INSERT
           if (text.length) {
@@ -94,11 +94,11 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
               cursorPos += text.length
             }
             pos += text.length
-            moveMarkersIfAfter(pos, text.length)
+            // moveMarkersIfAfter(pos, text.length)
           }
         }
       })
-      editor.setCursor(editor.posFromIndex(cursorPos))
+      // editor.setCursor(editor.posFromIndex(cursorPos))
 
       oldText = editor.getValue()
       newText = doc.shared.value().join('')
@@ -193,7 +193,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
   doc.gossip('cursors').then((_cursorGossip) => {
     cursorGossip = _cursorGossip
-    cursorGossip.on('message', onCursorGossipMessage)
+    // cursorGossip.on('message', onCursorGossipMessage)
   })
 
   const onEditorCursorActivity = () => {
@@ -221,7 +221,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     }
     editor.off('cursorActivity', onEditorCursorActivityDebounced)
     if (cursorGossip) {
-      cursorGossip.removeListener('message', onCursorGossipMessage)
+      // cursorGossip.removeListener('message', onCursorGossipMessage)
     }
   }
 
