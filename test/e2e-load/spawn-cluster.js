@@ -12,7 +12,11 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
     concurrency: Cluster.CONCURRENCY_BROWSER,
     maxConcurrency: replicaCount,
     workerCreationDelay: 100,
-    monitor: false
+    monitor: false,
+    puppeteerOptions: {
+      headless: false,
+      timeout: 120000
+    }
   })
 
   events.close = () => cluster.close()
