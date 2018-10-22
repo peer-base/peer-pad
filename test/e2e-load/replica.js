@@ -1,7 +1,6 @@
 'use strict'
 
-module.exports = async ({ page, data: url }) => {
-  console.log(url)
+module.exports = ({events}) => async ({ page, data: url, worker }) => {
   await page.goto(url)
-  console.log('got')
+  page.on('console', (m) => events.emit('message', `[worker ${worker.id}]: ${m.text()}`))
 }

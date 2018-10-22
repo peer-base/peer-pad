@@ -3,6 +3,7 @@
 const EventEmitter = require('events')
 const { Cluster } = require('puppeteer-cluster');
 const Bootstrap = require('./bootstrap')
+// const printErrors = require('./print-errors')
 
 module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' } = {}) => {
   const events = new EventEmitter()
@@ -16,8 +17,7 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
   events.close = () => cluster.close()
   events.systemMonitor = cluster.systemMonitor
 
-  const bootstrap = Bootstrap({cluster, replicaCount})
-  cluster.queue(baseURL, bootstrap).then(() => {
+  cluster.queue(baseURL, Bootstrap({cluster, replicaCount, events})).then(() => {
     events.emit('bootstrapped')
   })
 
