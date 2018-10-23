@@ -35,6 +35,10 @@ module.exports = ({cluster, replicaCount, events}) => {
       console.log('=> BOOTSRAP DOOONE')
 
       Promise.all(replicas).then(() => events.emit('ended'))
+
+      await text.results()
+
+      console.log('ALL GOOD! :)')
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
       throw err

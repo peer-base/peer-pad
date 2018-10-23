@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 100, coolDownMS = 5000}) => {
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 40000, typeIntervalMS = 50, coolDownMS = 20000}) => {
 
   // // wait until everyone is onlube
   // const peersButton = await page.$('[data-peer-id]')
@@ -38,5 +38,6 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
     return Promise.resolve(window.__peerPadEditor.getValue())
   })
   console.log(`text in ${worker.id}: ${finalText}`)
+  text.submitResult(finalText)
 }
 
