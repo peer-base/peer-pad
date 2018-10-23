@@ -13,6 +13,9 @@ console.log('Going to test the most recent build...')
 
 process.once('uncaughtException', (err) => {
   console.log(err)
+  if (relay) {
+    relay.kill()
+  }
   if (server) {
     server.kill()
   }

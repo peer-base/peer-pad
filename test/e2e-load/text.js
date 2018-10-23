@@ -93,7 +93,7 @@ module.exports = () => {
       if (!size) {
         size = value.length
       } else if (size !== value.length) {
-        return result.eject(new Error(`result of replica ${replicaId} has different length from previous (${size}, ${value.length})`))
+        return result.reject(new Error(`result of replica ${replicaId} has different length from previous (${size}, ${value.length})`))
       }
 
       for (let [otherReplicaId, otherValue] of resultsByReplica) {
