@@ -1,7 +1,7 @@
 import Diff from 'fast-diff'
 import debounce from 'lodash.debounce'
 import peerColor from './peer-color'
-import functionQueue from './fn-queue'
+// import functionQueue from './fn-queue'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
@@ -12,7 +12,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let initialised = false
   let locked = false
   let markers = new Map()
-  let queue = functionQueue()
+  // let queue = functionQueue()
 
   const applyDiffs = (pos, diffs) => {
     diffs.forEach((d) => {
@@ -36,13 +36,13 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   }
 
   const onCodeMirrorChange = (editor) => {
-    queue.push(() => {
+    // queue.push(() => {
       if (!initialised || locked) {
         return
       }
       const diffs = Diff(doc.shared.value().join(''), editor.getValue())
       applyDiffs(0, diffs)
-    })
+    // })
   }
 
   editor.on('change', onCodeMirrorChange)
@@ -51,7 +51,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     if (fromSelf) {
       return
     }
-    queue.push(() => {
+    // queue.push(() => {
       let oldText = editor.getValue()
       let newText = doc.shared.value().join('')
 
@@ -105,10 +105,10 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
       locked = false
 
-      if (oldText !== newText) {
-        onStateChanged()
-      }
-    })
+      // if (oldText !== newText) {
+      //   onStateChanged()
+      // }
+    // })
   }
 
   doc.on('state changed', onStateChanged)
