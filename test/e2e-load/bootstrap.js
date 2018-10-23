@@ -4,10 +4,12 @@ const ms = require('milliseconds')
 const Replica = require('./replica')
 const replicaBehavior = require('./replica-behavior')
 const Text = require('./text')
+const injectConfig = require('./inject-config')
 
 module.exports = ({cluster, replicaCount, events}) => {
   return async ({ page, data: url, worker }) => {
     try {
+      await injectConfig(page)
       page.setDefaultNavigationTimeout(120000)
       await page.goto(url)
       page.on('console', (m) => events.emit('message', `[bootstrapper]: ${m.text()}`))
@@ -32,13 +34,20 @@ module.exports = ({cluster, replicaCount, events}) => {
 
       await me
 
-      console.log('=> BOOTSRAP DOOONE')
-
       Promise.all(replicas).then(() => events.emit('ended'))
 
-      await text.results()
+      let valid = false
+      try {
+        await text.results()
+        valid = true
+      } catch (err) {
+        console.error('Error in evaluating results:', err.message)
+        console.error(err)
+      }
 
-      console.log('ALL GOOD! :)')
+      if (valid) {
+        console.log('ALL GOOD! :)')
+      }
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
       throw err

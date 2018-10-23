@@ -21,7 +21,7 @@ process.once('uncaughtException', (err) => {
 
 ;(async () => {
   console.log('Building...')
-  // await build()
+  await build()
   console.log('Built.')
 
   console.log('Spawning relay...')
@@ -32,7 +32,7 @@ process.once('uncaughtException', (err) => {
   server = await spawnServer()
   console.log('Spawned server.')
 
-  const cluster = await spawnCluster({replicaCount: 3})
+  const cluster = await spawnCluster({replicaCount: 2})
 
   cluster.on('message', (m) => {
     console.log(m)

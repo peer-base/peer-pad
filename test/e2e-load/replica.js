@@ -1,10 +1,12 @@
 'use strict'
 
 const ms = require('milliseconds')
+const injectConfig = require('./inject-config')
 const replicaBehavior = require('./replica-behavior')
 
 module.exports = ({events, text}) => async ({ page, data: url, worker }) => {
   try {
+    await injectConfig(page)
     page.setDefaultNavigationTimeout(120000)
     await page.goto(url)
     page.on('console', (m) => events.emit('message', `[worker ${worker.id}]: ${m.text()}`))

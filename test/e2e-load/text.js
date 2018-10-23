@@ -31,6 +31,7 @@ module.exports = () => {
     }
 
     getText.finished = () => {
+      console.log(`replica ${replicaId} created ${byReplica.get(replicaId).length} characters`)
       notFinishedReplicas.delete(replicaId)
     }
 
@@ -84,6 +85,17 @@ module.exports = () => {
   }
 
   function evaluateResults () {
+    const expectedTotalLength = Array.from(byReplica.values()).reduce((acc, str) => acc + str.length, 0)
+    const totalLength = Array.from(resultsByReplica.values()).reduce((acc, str) => acc + str.length, 0)
+
+    if (!expectedTotalLength || !totalLength) {
+      return result.reject(new Error(`Result text has unexpected length 0`))
+    }
+
+    if (expectedTotalLength !== totalLength) {
+      return result.reject(new Error(`Result text has unexpected length. Expected ${expectedTotalLength} and had ${totalLength}`))
+    }
+
     let size
     for (let [replicaId, value] of resultsByReplica) {
       if (!value.length) {
@@ -92,7 +104,7 @@ module.exports = () => {
       if (!size) {
         size = value.length
       } else if (size !== value.length) {
-        return rresult.eject(new Error(`result of replica ${replicaId} has different length from previous (${size}, ${value.length})`))
+        return result.eject(new Error(`result of replica ${replicaId} has different length from previous (${size}, ${value.length})`))
       }
 
       for (let [otherReplicaId, otherValue] of resultsByReplica) {
@@ -103,11 +115,9 @@ module.exports = () => {
           return result.reject(new Error(`result of replica ${replicaId} has different content from ${otherReplicaId} (${value.length}, ${otherValue.length})`))
         }
       }
-
-      // TODO: test replica coherence
-
-      result.resolve()
     }
+
+    result.resolve()
   }
 
   function results () {

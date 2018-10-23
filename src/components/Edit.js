@@ -257,7 +257,9 @@ class Edit extends Component {
     const PeerStar = await import('peer-star-app')
 
     if (!this._backend) {
-      this._backend = PeerStar('peer-pad/2', config.peerStar)
+      const peerStarConfig = window.__peerStarConfig ? window.__peerStarConfig : config.peerStar
+      console.log('peer star config:', peerStarConfig)
+      this._backend = PeerStar('peer-pad/2', peerStarConfig)
       this._backend.on('error', (err) => {
         console.error(err)
         window.alert(err.message)
