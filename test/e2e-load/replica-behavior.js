@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 20000}) => {
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 30000}) => {
 
   // // wait until everyone is onlube
   // const peersButton = await page.$('[data-peer-id]')
