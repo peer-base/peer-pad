@@ -56,7 +56,7 @@ module.exports = () => {
 
     getText.submitResult = (result) => {
       resultsByReplica.set(replicaId, result)
-      maybeEvaluateResults()
+      maybeValidate()
     }
 
     return getText
@@ -78,24 +78,13 @@ module.exports = () => {
     return byReplica.size && (notFinishedReplicas.size === 0)
   }
 
-  function maybeEvaluateResults () {
+  function maybeValidate () {
     if (resultsByReplica.size === byReplica.size) {
-      evaluateResults ()
+      validate()
     }
   }
 
-  function evaluateResults () {
-    const expectedTotalLength = Array.from(byReplica.values()).reduce((acc, str) => acc + str.length, 0)
-    const totalLength = Array.from(resultsByReplica.values()).reduce((acc, str) => acc + str.length, 0)
-
-    if (!expectedTotalLength || !totalLength) {
-      return result.reject(new Error(`Result text has unexpected length 0`))
-    }
-
-    if (expectedTotalLength !== totalLength) {
-      return result.reject(new Error(`Result text has unexpected length. Expected ${expectedTotalLength} and had ${totalLength}`))
-    }
-
+  function validate () {
     let size
     for (let [replicaId, value] of resultsByReplica) {
       if (!value.length) {
@@ -114,6 +103,29 @@ module.exports = () => {
         if (otherValue !== value) {
           return result.reject(new Error(`result of replica ${replicaId} has different content from ${otherReplicaId} (${value.length}, ${otherValue.length})`))
         }
+      }
+    }
+
+    const expectedTotalLength = Array.from(byReplica.values()).reduce((acc, str) => acc + str.length, 0)
+    const finalText = Array.from(resultsByReplica.values())[0]
+    const totalLength = finalText.length
+
+    if (!expectedTotalLength || !totalLength) {
+      return result.reject(new Error(`Result text has unexpected length 0`))
+    }
+
+    if (expectedTotalLength !== totalLength) {
+      return result.reject(new Error(`Result text has unexpected length. Expected ${expectedTotalLength} and had ${totalLength}`))
+    }
+
+    for (let [replicaId, value] of byReplica) {
+      let text = finalText
+      for (let ch of value) {
+        const index = text.indexOf(ch)
+        if (index < 0) {
+          return result.reject(new Error(`Result text does not have input from replica ${replicaId}: ${ch}`))
+        }
+        text = text.substr(index + 1)
       }
     }
 
