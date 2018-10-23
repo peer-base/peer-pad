@@ -14,14 +14,14 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
     workerCreationDelay: 100,
     timeout: 3000000,
     // monitor: true,
-    puppeteerOptions: {
-      headless: false,
+    // puppeteerOptions: {
+      // headless: false,
     //   // devtools: false,
       // timeout: 300000,
     //   // dumpio: true,
     //   // // handleSIGINT: false,
     //   // pipe: true
-    }
+    // }
   })
 
   events.close = () => cluster.close()
