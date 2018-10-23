@@ -32,7 +32,7 @@ process.once('uncaughtException', (err) => {
   server = await spawnServer()
   console.log('Spawned server.')
 
-  const cluster = await spawnCluster({replicaCount: 2})
+  const cluster = await spawnCluster({replicaCount: 5})
 
   cluster.on('message', (m) => {
     console.log(m)
