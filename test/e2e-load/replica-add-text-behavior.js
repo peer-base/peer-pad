@@ -25,4 +25,3 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
   })
   text.submitResult(finalText)
 }
-

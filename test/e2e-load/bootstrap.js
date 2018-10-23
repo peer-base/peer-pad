@@ -2,7 +2,7 @@
 
 const ms = require('milliseconds')
 const Replica = require('./replica')
-const replicaBehavior = require('./replica-behavior')
+const replicaAddTextBehavior = require('./replica-add-text-behavior')
 const Text = require('./text')
 const injectConfig = require('./inject-config')
 
@@ -21,8 +21,6 @@ module.exports = ({cluster, replicaCount, events}) => {
 
       const text = Text()
 
-      const me = replicaBehavior({page, worker, text: text.forReplica(0)})
-
       const replicas = []
 
       while (replicaCount > 0) {
@@ -32,7 +30,7 @@ module.exports = ({cluster, replicaCount, events}) => {
         workerId ++
       }
 
-      await me
+      await replicaAddTextBehavior({page, worker, text: text.forReplica(0)})
 
       Promise.all(replicas).then(() => events.emit('ended'))
 
