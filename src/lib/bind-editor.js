@@ -1,7 +1,6 @@
 import Diff from 'fast-diff'
 import debounce from 'lodash.debounce'
 import peerColor from './peer-color'
-// import functionQueue from './fn-queue'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
@@ -12,7 +11,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let initialised = false
   let locked = false
   let markers = new Map()
-  // let queue = functionQueue()
 
   const applyDiffs = (pos, diffs) => {
     diffs.forEach((d) => {
@@ -36,79 +34,68 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   }
 
   const onCodeMirrorChange = (editor) => {
-    // queue.push(() => {
-      if (!initialised || locked) {
-        return
-      }
-      const diffs = Diff(doc.shared.value().join(''), editor.getValue())
-      applyDiffs(0, diffs)
-    // })
+    if (!initialised || locked) {
+      return
+    }
+    const diffs = Diff(doc.shared.value().join(''), editor.getValue())
+    applyDiffs(0, diffs)
   }
 
   editor.on('change', onCodeMirrorChange)
 
-  const onStateChanged = (fromSelf) => {
-    if (fromSelf) {
+  const onStateChanged = () => {
+    let oldText = editor.getValue()
+    let newText = doc.shared.value().join('')
+
+    if (oldText === newText) {
       return
     }
-    // queue.push(() => {
-      let oldText = editor.getValue()
-      let newText = doc.shared.value().join('')
 
-      if (oldText === newText) {
-        return
-      }
+    locked = true
 
-      locked = true
+    const cursor = editor.getCursor()
+    let cursorPos = editor.indexFromPos(cursor)
 
-      const cursor = editor.getCursor()
-      let cursorPos = editor.indexFromPos(cursor)
+    const diffs = Diff(oldText, newText)
+    let pos = 0
+    diffs.forEach((d) => {
+      const [op, text] = d
+      if (op === 0) { // EQUAL
+        pos += text.length
+      } else if (op === -1) { // DELETE
+        if (text.length) {
+          const fromPos = editor.posFromIndex(pos)
+          fromPos.external = true
+          const toPos = editor.posFromIndex(pos + text.length)
+          toPos.external = true
+          editor.replaceRange('', fromPos, toPos)
 
-      const diffs = Diff(oldText, newText)
-      let pos = 0
-      diffs.forEach((d) => {
-        const [op, text] = d
-        if (op === 0) { // EQUAL
-          pos += text.length
-        } else if (op === -1) { // DELETE
-          if (text.length) {
-            const fromPos = editor.posFromIndex(pos)
-            fromPos.external = true
-            const toPos = editor.posFromIndex(pos + text.length)
-            toPos.external = true
-            editor.replaceRange('', fromPos, toPos)
-
-            if (pos < cursorPos) {
-              cursorPos -= text.length
-            }
-
-            // moveMarkersIfAfter(pos, -text.length)
+          if (pos < cursorPos) {
+            cursorPos -= text.length
           }
-        } else { // INSERT
-          if (text.length) {
-            const fromPos = editor.posFromIndex(pos)
-            fromPos.external = true
-            editor.replaceRange(text, fromPos)
 
-            if (pos < cursorPos) {
-              cursorPos += text.length
-            }
-            pos += text.length
-            // moveMarkersIfAfter(pos, text.length)
-          }
+          // moveMarkersIfAfter(pos, -text.length)
         }
-      })
-      // editor.setCursor(editor.posFromIndex(cursorPos))
+      } else { // INSERT
+        if (text.length) {
+          const fromPos = editor.posFromIndex(pos)
+          fromPos.external = true
+          editor.replaceRange(text, fromPos)
 
-      oldText = editor.getValue()
-      newText = doc.shared.value().join('')
+          if (pos < cursorPos) {
+            cursorPos += text.length
+          }
+          pos += text.length
+          // moveMarkersIfAfter(pos, text.length)
+        }
+      }
+    })
+    // editor.setCursor(editor.posFromIndex(cursorPos))
 
-      locked = false
+    oldText = editor.getValue()
+    newText = doc.shared.value().join('')
 
-      // if (oldText !== newText) {
-      //   onStateChanged()
-      // }
-    // })
+    locked = false
   }
 
   doc.on('state changed', onStateChanged)
