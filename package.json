@@ -12,7 +12,8 @@
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
     "test:serve": "http-server -s -p 1337 build",
     "serve:build": "http-server -p 1337 build",
-    "deploy:ipfs": "ipfs add -r build/"
+    "deploy:ipfs": "ipfs add -r build/",
+    "start:rendezvous": "rendezvous"
   },
   "dependencies": {
     "autoprefixer": "7.1.2",
@@ -90,6 +91,7 @@
     "enzyme-to-json": "^3.3.4",
     "http-server": "^0.11.1",
     "identity-obj-proxy": "^3.0.0",
+    "libp2p-websocket-star-rendezvous": "^0.2.4",
     "npm-run-all": "^4.1.2",
     "puppeteer": "^1.9.0",
     "puppeteer-cluster": "^0.11.2",

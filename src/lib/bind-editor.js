@@ -45,7 +45,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     })
   }
 
-  editor.on('change', debounce(onCodeMirrorChange))
+  editor.on('change', onCodeMirrorChange)
 
   const onStateChanged = (fromSelf) => {
     if (fromSelf) {
