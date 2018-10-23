@@ -6,7 +6,7 @@ const replicaBehavior = require('./replica-behavior')
 const Text = require('./text')
 
 module.exports = ({cluster, replicaCount, events}) => {
-  return async ({ page, data: url }) => {
+  return async ({ page, data: url, worker }) => {
     try {
       page.setDefaultNavigationTimeout(120000)
       await page.goto(url)
@@ -19,16 +19,24 @@ module.exports = ({cluster, replicaCount, events}) => {
 
       const text = Text()
 
+      const me = replicaBehavior({page, worker, text: text.forReplica(0)})
+
+      const replicas = []
+
       while (replicaCount > 0) {
-        cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
+        const replica = cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
+        replicas.push(replica)
         replicaCount --
         workerId ++
       }
 
-      await replicaBehavior({page, text: text.forReplica(0)})
+      await me
 
+      console.log('=> BOOTSRAP DOOONE')
+
+      Promise.all(replicas).then(() => events.emit('ended'))
     } catch (err) {
-      console.error(err)
+      console.error(`error in worker ${worker.id}:`, err)
       throw err
     }
 

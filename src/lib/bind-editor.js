@@ -35,7 +35,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     })
   }
 
-  const onCodeMirrorChange = debounce((editor) => {
+  const onCodeMirrorChange = (editor) => {
     queue.push(() => {
       if (!initialised || locked) {
         return
@@ -43,9 +43,9 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
       const diffs = Diff(doc.shared.value().join(''), editor.getValue())
       applyDiffs(0, diffs)
     })
-  })
+  }
 
-  editor.on('change', debounce(onCodeMirrorChange, 0))
+  editor.on('change', debounce(onCodeMirrorChange))
 
   const onStateChanged = (fromSelf) => {
     if (fromSelf) {

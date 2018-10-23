@@ -273,7 +273,7 @@ class Edit extends Component {
       'rga',
       {
         keys,
-        maxDeltaRetention: 0
+        // maxDeltaRetention: 0
       })
 
     this.setState({ doc })
