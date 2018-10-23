@@ -12,21 +12,30 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
     concurrency: Cluster.CONCURRENCY_BROWSER,
     maxConcurrency: replicaCount,
     workerCreationDelay: 100,
-    monitor: false,
-    puppeteerOptions: {
-      headless: false,
-      timeout: 120000
-    }
+    timeout: 3000000,
+    // monitor: true,
+    // puppeteerOptions: {
+    //   // headless: false,
+    //   // devtools: false,
+      // timeout: 300000,
+    //   // dumpio: true,
+    //   // // handleSIGINT: false,
+    //   // pipe: true
+    // }
   })
 
   events.close = () => cluster.close()
   events.systemMonitor = cluster.systemMonitor
+  events.idle = () => cluster.idle()
 
-  cluster.queue(baseURL, Bootstrap({cluster, replicaCount, events})).then(() => {
-    events.emit('bootstrapped')
+  cluster.on('taskerror', (err, data) => {
+    events.emit('error', err)
   })
 
-  cluster.idle().then(() => events.emit('ended'))
+  cluster.queue(baseURL, Bootstrap({cluster, replicaCount, events})).then(() => {
+    console.log('BOOTSTRAPPED')
+    events.emit('bootstrapped')
+  })
 
   return events
 }

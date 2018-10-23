@@ -1,8 +1,13 @@
 'use strict'
 
-const delay = require('delay')
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 100, coolDownMS = 5000}) => {
 
-module.exports = async ({page, text, sessionDurationMS = 20000, typeIntervalMS = 100, coolDownMS = 60000}) => {
+  // // wait until everyone is onlube
+  // const peersButton = await page.$('[data-peer-id]')
+  // const peerId = await page.evaluate(el => el.dataset.peerId, peersButton)
+
+  page.waitFor(beforeWaitMS)
+
   const editorSelector = '[class=CodeMirror-code][contenteditable=true]'
   const startedAt = Date.now()
   const endAt = startedAt + sessionDurationMS
@@ -18,6 +23,20 @@ module.exports = async ({page, text, sessionDurationMS = 20000, typeIntervalMS =
   await text.allDone()
   console.log('ALL DONE')
 
+  console.log('cooling down...')
   await page.waitFor(coolDownMS)
+  console.log('colled down.')
+
+  // const editor = await page.$(editorSelector)
+  // const content = await editor.toString()
+  // console.log('content:', content)
+
+  await page.waitFor(1000)
+  await page.waitFor(1000)
+  console.log(`${worker.id} waited 1000`)
+  const finalText = await page.evaluate(() => {
+    return Promise.resolve(window.__peerPadEditor.getValue())
+  })
+  console.log(`text in ${worker.id}: ${finalText}`)
 }
 

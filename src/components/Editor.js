@@ -40,6 +40,8 @@ export default class Editor extends Component {
         editor.on('change', () => {
           if (onChange) onChange(editor.getValue(), editor)
         })
+
+        window.__peerPadEditor = editor
       // }
     }
 
