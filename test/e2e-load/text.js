@@ -1,5 +1,7 @@
 'use strict'
 
+const All = require('./text-all')
+
 module.exports = () => {
   let codePoint = 32
   const codeBreakPoints = {
@@ -57,6 +59,10 @@ module.exports = () => {
     getText.submitResult = (result) => {
       resultsByReplica.set(replicaId, result)
       maybeValidate()
+    }
+
+    getText.all = () => {
+      return All(replicaId, Array.from(resultsByReplica.values())[0])
     }
 
     return getText
