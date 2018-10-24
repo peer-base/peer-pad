@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 40000}) => {
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 30000, typeIntervalMS = 50, coolDownMS = 40000}) => {
 
   // // wait until everyone is onlube
   // const peersButton = await page.$('[data-peer-id]')
@@ -13,7 +13,12 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
   const endAt = startedAt + sessionDurationMS
 
   while (Date.now() < endAt) {
-    await page.waitFor(typeIntervalMS)
+    if (Math.random() < 0.1) {
+      await page.waitFor(2000)
+    } else {
+      await page.waitFor(typeIntervalMS)
+    }
+
     await page.type(editorSelector, text())
   }
 
@@ -21,7 +26,7 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
   await text.allDone()
   await page.waitFor(coolDownMS)
   const finalText = await page.evaluate(() => {
-    return Promise.resolve(window.__peerPadEditor.getValue())
+    return window.__peerPadEditor.getValue()
   })
   text.submitResult(finalText)
 }
