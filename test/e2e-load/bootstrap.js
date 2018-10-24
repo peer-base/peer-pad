@@ -3,6 +3,7 @@
 const ms = require('milliseconds')
 const Replica = require('./replica')
 const replicaAddTextBehavior = require('./replica-add-text-behavior')
+const replicaChangeTextBehavior = require('./replica-change-text-behavior')
 const Text = require('./text')
 const injectConfig = require('./inject-config')
 
@@ -30,7 +31,8 @@ module.exports = ({cluster, replicaCount, events}) => {
         workerId ++
       }
 
-      await replicaAddTextBehavior({page, worker, text: text.forReplica(0)})
+      const myText = text.forReplica(0)
+      await replicaAddTextBehavior({page, worker, text: myText})
 
       Promise.all(replicas).then(() => events.emit('ended'))
 
@@ -44,8 +46,10 @@ module.exports = ({cluster, replicaCount, events}) => {
       }
 
       if (valid) {
-        console.log('ALL GOOD! :)')
+        console.log('ALL GOOD so far! :)')
       }
+
+      await replicaChangeTextBehavior({page, worker, text: myText.all()})
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
       throw err
