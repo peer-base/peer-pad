@@ -4,10 +4,41 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
 
   const startedAt = Date.now()
   const endAt = startedAt + sessionDurationMS
+  let insertOp = false
 
   while (Date.now() < endAt) {
-    const removal = text.randomChar()
-    const [pos, char] = removal
+    if (insertOp) {
+      await insert()
+    } else {
+      await remove()
+    }
+
+    insertOp = !insertOp
+
+    await page.waitFor(typeIntervalMS)
+  }
+
+  async function insert () {
+    const [pos, char] = text.randomNewChar()
+    const [added, currentText] = await page.evaluate((pos, char) => {
+      const editor = window.__peerPadEditor
+      if (editor.getValue().length < pos) {
+        return [false, editor.getValue()]
+      } else {
+        const fromPos = editor.posFromIndex(pos)
+        editor.replaceRange(char, fromPos)
+        return [true, editor.getValue()]
+      }
+    }, pos, char)
+
+    if (added) {
+      text.addOp(['+', pos, char])
+    }
+    text.setCurrent(currentText)
+  }
+
+  async function remove () {
+    const [pos, char] = text.randomRemovableChar()
     const [removed, currentText] = await page.evaluate((pos, char) => {
       const editor = window.__peerPadEditor
       const text = editor.getValue()
@@ -23,10 +54,8 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
     }, pos, char)
 
     if (removed) {
-      text.addRemoval(removal)
+      text.addOp(['-', pos, char])
     }
     text.setCurrent(currentText)
-
-    await page.waitFor(typeIntervalMS)
   }
 }

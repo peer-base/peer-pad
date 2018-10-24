@@ -2,24 +2,35 @@
 
 module.exports = (replicaId, text) => {
 
-  const removals = []
-  function addRemoval (removal) {
-    console.log('added removal', removal)
-    removals.push(removal)
+  const startCodePoint = 32
+  const endCodePoint = 126
+  const originalText = text
+
+  const ops = []
+  function addOp (op) {
+    console.log('added op', op)
+    ops.push(op)
   }
 
-  function randomChar () {
+  function randomRemovableChar () {
     const pos = Math.floor(Math.random() * text.length)
     return [pos, text.charAt(pos)]
   }
 
-  function setCurrent (_text) {
-    text = _text
+  function randomNewChar () {
+    const pos = Math.floor(Math.random() * text.length)
+    const codePoint = Math.floor(Math.random() * (endCodePoint - startCodePoint)) + startCodePoint
+    return [pos, String.fromCodePoint(codePoint)]
+  }
+
+  function setCurrent (currentText) {
+    text = currentText
   }
 
   return {
-    randomChar,
-    addRemoval,
+    randomRemovableChar,
+    randomNewChar,
+    addOp,
     setCurrent
   }
 }
