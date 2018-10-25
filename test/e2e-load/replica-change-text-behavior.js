@@ -1,7 +1,6 @@
 'use strict'
 
 module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 40000}) => {
-
   const startedAt = Date.now()
   const endAt = startedAt + sessionDurationMS
   let insertOp = false
@@ -15,8 +14,19 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
 
     insertOp = !insertOp
 
-    await page.waitFor(typeIntervalMS)
+    if (Math.random() < 0.1) {
+      await page.waitFor(4000)
+    } else {
+      await page.waitFor(typeIntervalMS)
+    }
   }
+
+  await page.waitFor(coolDownMS)
+  const finalText = await page.evaluate(() => {
+    return window.__peerPadEditor.getValue()
+  })
+
+  text.setFinal(finalText)
 
   async function insert () {
     const [pos, char] = text.randomNewChar()

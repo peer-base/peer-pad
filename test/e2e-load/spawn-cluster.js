@@ -1,7 +1,7 @@
 'use strict'
 
 const EventEmitter = require('events')
-const { Cluster } = require('puppeteer-cluster');
+const { Cluster } = require('puppeteer-cluster')
 const Bootstrap = require('./bootstrap')
 // const printErrors = require('./print-errors')
 
@@ -15,7 +15,7 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
     timeout: 3000000,
     // monitor: true,
     puppeteerOptions: {
-      headless: false,
+      headless: false
     //   // devtools: false,
       // timeout: 300000,
     //   // dumpio: true,

@@ -13,7 +13,7 @@ module.exports = ({events, text}) => async ({ page, data: url, worker }) => {
     page.on('console', (m) => events.emit('message', `[worker ${worker.id}]: ${m.text()}`))
     await page.waitForSelector('[data-id=ipfs-status][data-value=online]', {timeout: ms.minutes(2)})
     await replicaAddTextBehavior({page, worker, text})
-    await replicaChangeTextBehavior({page, worker, text: text.all()})
+    await replicaChangeTextBehavior({page, worker, text: text.mutable()})
   } catch (err) {
     console.error(`error in worker ${worker.id}:`, err)
     throw err
