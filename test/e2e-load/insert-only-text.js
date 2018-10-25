@@ -1,6 +1,6 @@
 'use strict'
 
-const All = require('./text-all')
+const MutableText = require('./mutable-text')
 
 module.exports = () => {
   let codePoint = 32
@@ -19,6 +19,8 @@ module.exports = () => {
   })
 
   let allDone
+
+  let mutableText
 
   const forReplica = (replicaId) => {
     const replica = ensureReplica(replicaId)
@@ -61,8 +63,11 @@ module.exports = () => {
       maybeValidate()
     }
 
-    getText.all = () => {
-      return All(replicaId, Array.from(resultsByReplica.values())[0])
+    getText.mutable = () => {
+      if (!mutableText) {
+        mutableText = MutableText(Array.from(resultsByReplica.values())[0])
+      }
+      return mutableText.forReplica(replicaId)
     }
 
     return getText

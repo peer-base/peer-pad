@@ -4,7 +4,7 @@ const ms = require('milliseconds')
 const Replica = require('./replica')
 const replicaAddTextBehavior = require('./replica-add-text-behavior')
 const replicaChangeTextBehavior = require('./replica-change-text-behavior')
-const Text = require('./text')
+const InsertOnlyText = require('./insert-only-text')
 const injectConfig = require('./inject-config')
 
 module.exports = ({cluster, replicaCount, events}) => {
@@ -20,15 +20,15 @@ module.exports = ({cluster, replicaCount, events}) => {
       const padURL = await createNewPad()
       console.log('padURL:', padURL)
 
-      const text = Text()
+      const text = InsertOnlyText()
 
       const replicas = []
 
       while (replicaCount > 0) {
         const replica = cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
         replicas.push(replica)
-        replicaCount --
-        workerId ++
+        replicaCount--
+        workerId++
       }
 
       const myText = text.forReplica(0)
@@ -49,7 +49,22 @@ module.exports = ({cluster, replicaCount, events}) => {
         console.log('ALL GOOD so far! :)')
       }
 
-      await replicaChangeTextBehavior({page, worker, text: myText.all()})
+      const mutableText = myText.mutable()
+
+      await replicaChangeTextBehavior({page, worker, text: mutableText})
+
+      valid = false
+      try {
+        await mutableText.validate()
+        valid = true
+      } catch (err) {
+        console.error('Error in evaluating results:', err.message)
+        console.error(err)
+      }
+
+      if (valid) {
+        console.log('ALL GOOD! :)')
+      }
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
       throw err
@@ -66,4 +81,3 @@ module.exports = ({cluster, replicaCount, events}) => {
     }
   }
 }
-
