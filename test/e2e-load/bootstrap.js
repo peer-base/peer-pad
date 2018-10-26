@@ -4,7 +4,7 @@ const ms = require('milliseconds')
 const Replica = require('./replica')
 const replicaAddTextBehavior = require('./replica-add-text-behavior')
 const replicaChangeTextBehavior = require('./replica-change-text-behavior')
-const InsertOnlyText = require('./insert-only-text')
+const InsertOnlyText = require('./text/insert-only-text')
 const injectConfig = require('./inject-config')
 
 module.exports = ({cluster, replicaCount, events}) => {
