@@ -1,10 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 30000, typeIntervalMS = 50, coolDownMS = 40000}) => {
-  // // wait until everyone is onlube
-  // const peersButton = await page.$('[data-peer-id]')
-  // const peerId = await page.evaluate(el => el.dataset.peerId, peersButton)
-
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 30000, typeIntervalMS = 50, coolDownMS = 30000}) => {
   page.waitFor(beforeWaitMS)
 
   const editorSelector = '[class=CodeMirror-code][contenteditable=true]'

@@ -8,11 +8,15 @@ const spawnCluster = require('./spawn-cluster')
 
 let relay
 let server
+let cluster
 
 console.log('Going to test the most recent build...')
 
 process.once('uncaughtException', (err) => {
   console.log(err)
+  if (cluster) {
+    cluster.close()
+  }
   if (relay) {
     relay.kill()
   }
@@ -35,7 +39,7 @@ process.once('uncaughtException', (err) => {
   server = await spawnServer()
   console.log('Spawned server.')
 
-  const cluster = await spawnCluster({replicaCount: 2})
+  cluster = await spawnCluster({replicaCount: 2})
 
   cluster.on('message', (m) => {
     console.log(m)

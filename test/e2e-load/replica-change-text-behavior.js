@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 40000}) => {
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 20000, typeIntervalMS = 50, coolDownMS = 30000}) => {
   const startedAt = Date.now()
   const endAt = startedAt + sessionDurationMS
   let insertOp = false
@@ -14,7 +14,7 @@ module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurati
 
     insertOp = !insertOp
 
-    if (Math.random() < 0.1) {
+    if (Math.random() < 0.05) {
       await page.waitFor(4000)
     } else {
       await page.waitFor(typeIntervalMS)
