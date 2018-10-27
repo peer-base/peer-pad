@@ -11,6 +11,14 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   let initialised = false
   let locked = false
   let markers = new Map()
+  let editorValueCache
+
+  const getEditorValue = () => {
+    if (!editorValueCache) {
+      editorValueCache = editor.getValue()
+    }
+    return editorValueCache
+  }
 
   const applyDiffs = (pos, diffs) => {
     diffs.forEach((d) => {
@@ -34,17 +42,18 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
   }
 
   const onCodeMirrorChange = (editor) => {
+    editorValueCache = undefined
     if (!initialised || locked) {
       return
     }
-    const diffs = Diff(doc.shared.value().join(''), editor.getValue())
+    const diffs = Diff(doc.shared.value().join(''), getEditorValue())
     applyDiffs(0, diffs)
   }
 
   editor.on('change', onCodeMirrorChange)
 
   const onStateChanged = () => {
-    let oldText = editor.getValue()
+    let oldText = getEditorValue()
     let newText = doc.shared.value().join('')
 
     if (oldText === newText) {
@@ -58,6 +67,8 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
     const diffs = Diff(oldText, newText)
     let pos = 0
+    editorValueCache = undefined
+
     diffs.forEach((d) => {
       const [op, text] = d
       if (op === 0) { // EQUAL
@@ -91,9 +102,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
       }
     })
     // editor.setCursor(editor.posFromIndex(cursorPos))
-
-    oldText = editor.getValue()
-    newText = doc.shared.value().join('')
 
     locked = false
   }
