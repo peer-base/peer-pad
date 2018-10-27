@@ -56,24 +56,24 @@ module.exports = (text) => {
       allOps = allOps.concat(result.ops)
     }
 
-    let replicaOps
+    // let replicaOps
 
-    for (let [replicaId, result] of replicas) {
-      const { diffs } = result
-      replicaOps = allOps
-      for (let diff of diffs) {
-        for (let [diffOp, text] of diff) {
-          if (diffOp !== 0) { // add or remove
-            console.log('validating diff [%j, %j]', diffOp, text)
-            for (let t of text.split('')) {
-              findAndRemoveOpForDiff(diffOp, t)
-            }
-          }
-        }
-      }
+    // for (let [replicaId, result] of replicas) {
+    //   const { diffs } = result
+    //   replicaOps = allOps
+    //   for (let diff of diffs) {
+    //     for (let [diffOp, text] of diff) {
+    //       if (diffOp !== 0) { // add or remove
+    //         console.log('validating diff [%j, %j]', diffOp, text)
+    //         for (let t of text.split('')) {
+    //           findAndRemoveOpForDiff(diffOp, t)
+    //         }
+    //       }
+    //     }
+    //   }
 
-      console.log('remaining ops:', replicaOps)
-    }
+    //   console.log('remaining ops:', replicaOps)
+    // }
 
     resolve()
 

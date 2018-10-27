@@ -101,6 +101,12 @@ To run the e2e test against a deployed version, just pass the url as an env var
 URL=https://peerpad.net npm run test:e2e
 ```
 
+To run the **e2e load tests**:
+
+```bash
+npm run test:e2e:load
+```
+
 ## Deploy
 
 You can self-host your own PeerPad. For that, run `npm run build` and deploy the `build` directory to a web-server
