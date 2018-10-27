@@ -109,7 +109,7 @@ exports[`can create document via button 1`] = `
                 >
                   <a
                     className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
-                    href="#about"
+                    href="/#about"
                     onClick={[Function]}
                     title="About"
                   >
@@ -133,7 +133,7 @@ exports[`can create document via button 1`] = `
                 >
                   <a
                     className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
-                    href="#features"
+                    href="/#features"
                     onClick={[Function]}
                     title="Features"
                   >
@@ -157,7 +157,7 @@ exports[`can create document via button 1`] = `
                 >
                   <a
                     className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
-                    href="#how-it-works"
+                    href="/#how-it-works"
                     onClick={[Function]}
                     title="How it works"
                   >
@@ -181,7 +181,7 @@ exports[`can create document via button 1`] = `
                 >
                   <a
                     className="hoverUnderlineThick white f6 f5-l fw3 db dib-ns mr3-ns pa3"
-                    href="#benefits"
+                    href="/#benefits"
                     onClick={[Function]}
                     title="Benefits"
                   >
@@ -296,7 +296,7 @@ exports[`can create document via button 1`] = `
             className="fw4 caribbeanGreenGlow"
           >
             <a
-              href="http://y-js.org/"
+              href="https://github.com/ipfs-shipyard/peer-star-app"
               style={
                 Object {
                   "borderBottom": 0,
@@ -362,22 +362,6 @@ exports[`can create document via button 1`] = `
                         </option>
                       </DocTypeOption>
                       <DocTypeOption
-                        text="Rich text pad"
-                        value="richtext"
-                      >
-                        <option
-                          className="black"
-                          style={
-                            Object {
-                              "fontSize": "18px",
-                            }
-                          }
-                          value="richtext"
-                        >
-                          Rich text pad
-                        </option>
-                      </DocTypeOption>
-                      <DocTypeOption
                         text="Math pad"
                         value="math"
                       >
@@ -431,12 +415,6 @@ exports[`can create document via button 1`] = `
           href="//ipfs.io"
         >
           IPFS
-        </a>
-         and 
-        <a
-          href="http://y-js.org/"
-        >
-          Y.js
         </a>
         . It uses no second or third-party: all participating nodes talk directly to each other without a central service. PeerPad is 
         <a
@@ -1039,7 +1017,7 @@ exports[`can create document via button 1`] = `
               >
                 <a
                   className="hoverUnderlineThick white f6 fw3 dib mr4 m3t pb2"
-                  href="#about"
+                  href="/#about"
                   onClick={[Function]}
                   title="About"
                 >
@@ -1061,7 +1039,7 @@ exports[`can create document via button 1`] = `
               >
                 <a
                   className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
-                  href="#features"
+                  href="/#features"
                   onClick={[Function]}
                   title="Features"
                 >
@@ -1083,7 +1061,7 @@ exports[`can create document via button 1`] = `
               >
                 <a
                   className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
-                  href="#how-it-works"
+                  href="/#how-it-works"
                   onClick={[Function]}
                   title="How it works"
                 >
@@ -1105,7 +1083,7 @@ exports[`can create document via button 1`] = `
               >
                 <a
                   className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
-                  href="#benefits"
+                  href="/#benefits"
                   onClick={[Function]}
                   title="What you can do with PeerPad"
                 >
