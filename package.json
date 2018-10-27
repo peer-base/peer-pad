@@ -10,6 +10,7 @@
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
+    "test:e2e:load": "node test/e2e-load",
     "test:serve": "http-server -s -p 1337 build",
     "serve:build": "http-server -p 1337 build",
     "deploy:ipfs": "ipfs add -r build/",
