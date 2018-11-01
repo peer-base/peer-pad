@@ -29,10 +29,6 @@ Docs: [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
 - [Contribute](#contribute)
 - [License](#license)
 
-## Lead Maintainer
-
-[Jacob Heun](https://github.com/jacobheun)
-
 ## Install
 
 With the following installed:
