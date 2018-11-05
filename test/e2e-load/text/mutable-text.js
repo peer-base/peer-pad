@@ -156,13 +156,18 @@ module.exports = (text) => {
       finalize(replicaId, finalText, ops, diffs)
     }
 
+    function getFinal () {
+      return text
+    }
+
     return {
       randomRemovableChar,
       randomNewChar,
       addOp,
       setCurrent,
       validate,
-      setFinal
+      setFinal,
+      getFinal
     }
   }
 

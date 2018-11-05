@@ -6,6 +6,7 @@ const replicaAddTextBehavior = require('./replica-add-text-behavior')
 const replicaChangeTextBehavior = require('./replica-change-text-behavior')
 const InsertOnlyText = require('./text/insert-only-text')
 const injectConfig = require('./inject-config')
+const ReadOnlyReplica = require('./read-only-replica')
 
 module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
   return async ({ page, data: url, worker }) => {
@@ -18,6 +19,23 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
       page.on('console', (m) => events.emit('message', `[bootstrapper]: ${m.text()}`))
       replicaCount-- // self
       let workerId = 1
+      let workerPendingEnd = 0
+
+      events.on('worker ended', () => {
+        workerPendingEnd --
+        if (!workerPendingEnd) {
+          events.emit('all workers ended')
+        }
+      })
+
+      const allWorkersEnded = () => {
+        return new Promise((resolve, reject) => {
+          if (!workerPendingEnd) {
+            return resolve()
+          }
+          events.once('all workers ended', resolve)
+        })
+      }
 
       const padURL = await createNewPad()
       console.log('padURL:', padURL)
@@ -35,14 +53,13 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
       while (replicaCount > 0) {
         const replica = cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
         replicas.push(replica)
+        workerPendingEnd ++
         replicaCount--
         workerId++
       }
 
       const myText = text.forReplica(0)
       await replicaAddTextBehavior({page, worker, text: myText})
-
-      Promise.all(replicas).then(() => events.emit('ended'))
 
       let valid = false
       try {
@@ -55,6 +72,8 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
 
       if (valid) {
         console.log('ALL GOOD so far! :)')
+      } else {
+        throw new Error('append-only text validation failed!')
       }
 
       const mutableText = myText.mutable()
@@ -72,6 +91,24 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
 
       if (valid) {
         console.log('ALL GOOD! :)')
+      } else {
+        throw new Error('mutable text validation failed!')
+      }
+
+      // validate that pinner got the latest state
+      if (pinner) {
+        await allWorkersEnded()
+        console.log('all workers ended')
+        const readOnlyReplica = ReadOnlyReplica({ events })
+        cluster.queue(padURL, readOnlyReplica)
+        const result = await events.waitFor('worker ended')
+        console.log('read-only replica result:', result)
+        if (result !== mutableText.getFinal()) {
+          throw new Error('read-only text is not the expected final mutable text')
+        } else {
+          console.log('read-only text looks OK :)')
+        }
+        events.emit('ended')
       }
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)

@@ -7,6 +7,11 @@ const Pinner = require('./spawn-pinner')
 
 module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337', spawnPinner = false } = {}) => {
   const events = new EventEmitter()
+  events.waitFor = (eventName) => {
+    return new Promise((resolve) => {
+      events.once(eventName, resolve)
+    })
+  }
 
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_BROWSER,
