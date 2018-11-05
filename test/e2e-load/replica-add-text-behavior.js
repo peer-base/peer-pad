@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 30000, typeIntervalMS = 50, coolDownMS = 30000}) => {
+module.exports = async ({page, worker, text, beforeWaitMS = 10000, sessionDurationMS = 30000, typeIntervalMS = 50, coolDownMS = 60000}) => {
   page.waitFor(beforeWaitMS)
 
   const editorSelector = '[class=CodeMirror-code][contenteditable=true]'

@@ -104,11 +104,11 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
         const result = await events.waitFor('worker ended')
         console.log('read-only replica result:', result)
         if (result !== mutableText.getFinal()) {
+          pinner.kill()
           throw new Error('read-only text is not the expected final mutable text')
         } else {
           console.log('read-only text looks OK :)')
         }
-        events.emit('ended')
       }
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
@@ -118,6 +118,8 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
     if (pinner) {
       pinner.kill()
     }
+
+    events.emit('ended')
 
     async function createNewPad () {
       console.log('going to create new pad...')

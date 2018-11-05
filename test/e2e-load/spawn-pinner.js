@@ -13,7 +13,7 @@ module.exports = () => {
         started = true
         resolve(pinner)
       }
-      process.stdout.write(d)
+      process.stdout.write('pinner: ' + d)
     })
   })
 }
