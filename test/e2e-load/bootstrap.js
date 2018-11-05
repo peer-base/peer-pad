@@ -7,8 +7,10 @@ const replicaChangeTextBehavior = require('./replica-change-text-behavior')
 const InsertOnlyText = require('./text/insert-only-text')
 const injectConfig = require('./inject-config')
 
-module.exports = ({cluster, replicaCount, events}) => {
+module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
   return async ({ page, data: url, worker }) => {
+    let pinner
+
     try {
       await injectConfig(page)
       page.setDefaultNavigationTimeout(120000)
@@ -23,6 +25,12 @@ module.exports = ({cluster, replicaCount, events}) => {
       const text = InsertOnlyText()
 
       const replicas = []
+
+      if (pinnerSpawner) {
+        console.log('spawning pinner...')
+        pinner = await pinnerSpawner()
+        console.log('spawned pinner.')
+      }
 
       while (replicaCount > 0) {
         const replica = cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
@@ -68,6 +76,10 @@ module.exports = ({cluster, replicaCount, events}) => {
     } catch (err) {
       console.error(`error in worker ${worker.id}:`, err)
       throw err
+    }
+
+    if (pinner) {
+      pinner.kill()
     }
 
     async function createNewPad () {

@@ -3,9 +3,9 @@
 const EventEmitter = require('events')
 const { Cluster } = require('puppeteer-cluster')
 const Bootstrap = require('./bootstrap')
-// const printErrors = require('./print-errors')
+const Pinner = require('./spawn-pinner')
 
-module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' } = {}) => {
+module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337', spawnPinner = false } = {}) => {
   const events = new EventEmitter()
 
   const cluster = await Cluster.launch({
@@ -32,7 +32,9 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337' }
     events.emit('error', err)
   })
 
-  cluster.queue(baseURL, Bootstrap({cluster, replicaCount, events})).then(() => {
+  const pinnerSpawner = spawnPinner ? Pinner : null
+
+  cluster.queue(baseURL, Bootstrap({cluster, replicaCount, events, pinnerSpawner})).then(() => {
     events.emit('bootstrapped')
   })
 
