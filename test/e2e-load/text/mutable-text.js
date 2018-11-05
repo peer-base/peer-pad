@@ -77,28 +77,28 @@ module.exports = (text) => {
 
     resolve()
 
-    function findAndRemoveOpForDiff (diffOp, text) {
-      console.log(`Looking for [${diffOp}, ${text}]`)
-      const lookingForOp = diffOp === -1 ? '-' : '+'
-      const op = replicaOps.find(([op, opPos, opText]) => (op === lookingForOp) && opText.includes(text))
+    // function findAndRemoveOpForDiff (diffOp, text) {
+    //   console.log(`Looking for [${diffOp}, ${text}]`)
+    //   const lookingForOp = diffOp === -1 ? '-' : '+'
+    //   const op = replicaOps.find(([op, opPos, opText]) => (op === lookingForOp) && opText.includes(text))
 
-      if (!op) {
-        throw new Error(`could not find op for [${diffOp}, ${text}]`)
-      }
+    //   if (!op) {
+    //     throw new Error(`could not find op for [${diffOp}, ${text}]`)
+    //   }
 
-      console.log('op for [%j, %j]: %j', diffOp, text, op)
-      let [opCode, opPos, opText] = op
+    //   console.log('op for [%j, %j]: %j', diffOp, text, op)
+    //   let [opCode, opPos, opText] = op
 
-      const index = opText.indexOf(text)
-      opText = opText.substring(0, index) + opText.substring(index + 1)
-      const opIndex = replicaOps.indexOf(op)
-      console.log('opIndx:', opIndex)
-      if (opText) {
-        replicaOps[opIndex] = [opcode, opPos, opText]
-      } else {
-        replicaOps.splice(opIndex, 1)
-      }
-    }
+    //   const index = opText.indexOf(text)
+    //   opText = opText.substring(0, index) + opText.substring(index + 1)
+    //   const opIndex = replicaOps.indexOf(op)
+    //   console.log('opIndx:', opIndex)
+    //   if (opText) {
+    //     replicaOps[opIndex] = [opcode, opPos, opText]
+    //   } else {
+    //     replicaOps.splice(opIndex, 1)
+    //   }
+    // }
 
 
     // let expectedLength = initialText.length + Array.from(replicas.values()).reduce((acc, result) => {
@@ -131,7 +131,6 @@ module.exports = (text) => {
     const diffs = []
 
     function addOp (op) {
-      console.log('added op', op)
       ops.push(op)
     }
 
@@ -148,7 +147,6 @@ module.exports = (text) => {
 
     function setCurrent (newText) {
       const diff = Diff(text, newText)
-      console.log('diff in %j:', replicaId, diff)
       diffs.push(diff)
       text = newText
     }
@@ -158,13 +156,18 @@ module.exports = (text) => {
       finalize(replicaId, finalText, ops, diffs)
     }
 
+    function getFinal () {
+      return text
+    }
+
     return {
       randomRemovableChar,
       randomNewChar,
       addOp,
       setCurrent,
       validate,
-      setFinal
+      setFinal,
+      getFinal
     }
   }
 
