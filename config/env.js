@@ -14,6 +14,8 @@ if (!NODE_ENV) {
   );
 }
 
+const GIT_COMMIT = process.env.GIT_COMMIT || 'dev'
+
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 var dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
@@ -74,6 +76,9 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
+
+        // Which git commit we're currently building from
+        GIT_COMMIT
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin

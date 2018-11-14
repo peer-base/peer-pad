@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -10,6 +11,8 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin')
+
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const baseCreateStyleRule = require('./createStyleRule');
@@ -34,6 +37,18 @@ const env = getClientEnvironment(publicUrl);
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
+
+const envVarsToCheck = [
+  // TODO currently skipping check as source maps will not be uploaded on CI yet
+  // 'ROLLBAR_ACCESS_TOKEN',
+  'GIT_COMMIT'
+]
+
+envVarsToCheck.forEach((envVar) => {
+  if (!process.env[envVar]) {
+    throw new Error(`Seems the environment variable ${envVar} is missing but it's required. Please make sure it's set before building.`)
+  }
+})
 
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
@@ -305,7 +320,13 @@ module.exports = {
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new RollbarSourceMapPlugin({
+      accessToken: process.env.ROLLBAR_ACCESS_TOKEN || 'non-existing',
+      version: process.env.GIT_COMMIT,
+      publicPath: publicPath,
+      ignoreErrors: true
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

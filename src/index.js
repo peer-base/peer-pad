@@ -1,4 +1,4 @@
-import rollbar from 'rollbar-browser'
+import rollbar from 'rollbar'
 import React from 'react'
 import ReactDOM from 'react-dom'
 // TODO: register service worker:
@@ -17,7 +17,14 @@ const rollbarConfig = {
   captureUncaught: true,
   captureUnhandledRejections: true,
   payload: {
-    environment: process.env.NODE_ENV
+    environment: process.env.NODE_ENV,
+    client: {
+      javascript: {
+        source_map_enabled: true,
+        code_version: process.env.GIT_COMMIT,
+        guess_uncaught_frames: true
+      }
+    }
   }
 }
 const Rollbar = rollbar.init(rollbarConfig)
