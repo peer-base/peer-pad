@@ -5,7 +5,7 @@
   "leadMaintainer": "Jacob Heun <jacobheun@gmail.com>",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "PUBLIC_URL='./' node scripts/build.js",
+    "build": "GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
     "lint": "standard 'src/**/*.js' 'test/**/*.js'",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
@@ -98,6 +98,8 @@
     "puppeteer": "^1.9.0",
     "puppeteer-cluster": "^0.11.2",
     "react-test-renderer": "^15.6.2",
+    "rollbar": "^2.5.0",
+    "rollbar-sourcemap-webpack-plugin": "^2.4.0",
     "standard": "^11.0.1"
   },
   "jest": {

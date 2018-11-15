@@ -1,3 +1,5 @@
+.PHONY: build
+
 build:
 	npm --version
 	# Pin the npm version to 6.0.0
