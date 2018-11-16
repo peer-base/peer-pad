@@ -29,6 +29,10 @@ Docs: [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
 - [Contribute](#contribute)
 - [License](#license)
 
+## Lead Maintainer
+
+[Jim Pick](https://github.com/jimpick)
+
 ## Install
 
 With the following installed:
