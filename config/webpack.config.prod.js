@@ -245,6 +245,7 @@ module.exports = {
       // see: https://github.com/webpack-contrib/uglifyjs-webpack-plugin#options
       cache: true,
       parallel: true,
+      sourceMap: shouldUseSourceMap,
 
       // see: https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
       uglifyOptions: {
@@ -272,7 +273,6 @@ module.exports = {
           // https://github.com/facebookincubator/create-react-app/issues/2488
           ascii_only: true,
         },
-        sourceMap: shouldUseSourceMap,
       }
     }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
@@ -324,7 +324,7 @@ module.exports = {
     new RollbarSourceMapPlugin({
       accessToken: process.env.ROLLBAR_ACCESS_TOKEN || 'non-existing',
       version: process.env.GIT_COMMIT,
-      publicPath: publicPath,
+      publicPath: 'https://peerpad.net',
       ignoreErrors: true
     })
   ],
