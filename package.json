@@ -5,7 +5,7 @@
   "leadMaintainer": "Jacob Heun <jacobheun@gmail.com>",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
+    "build": "GENERATE_SOURCEMAP=true GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
     "lint": "standard 'src/**/*.js' 'test/**/*.js'",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
