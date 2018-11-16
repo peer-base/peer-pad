@@ -248,9 +248,8 @@ class Home extends Component {
                 <Link to='#benefits' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mt3 pb2`} title='What you can do with PeerPad'>Benefits</Link>
               </div>
               <div>
-                <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='Architecture'>Architecture</a>
                 <a href='https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mr4 mt3 pb2`} title='Security'>Security</a>
-                <a href='https://github.com/ipfs-shipyard/peerpad' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mt3 pb2`} title='Open Source'>Open Source</a>
+                <a href='https://github.com/ipfs-shipyard/peer-pad' className={`${styles.hoverUnderlineThick} white f6 fw3 dib mt3 pb2`} title='Open Source'>Open Source</a>
               </div>
             </nav>
             <small className='fl db w-100 w-50-l tr-l f7 f6-ns pv4 pv0-l lh-copy mt3'>
