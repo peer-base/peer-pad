@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "GENERATE_SOURCEMAP=true GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
-    "lint": "standard 'src/**/*.js' 'test/**/*.js'",
+    "lint": "standard",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
@@ -146,7 +146,12 @@
     "extends": "react-app"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "test/e2e-load/",
+      "scripts/",
+      "config/"
+    ]
   },
   "homepage": "./"
 }
