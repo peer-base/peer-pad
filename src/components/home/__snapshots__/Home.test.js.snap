@@ -1095,13 +1095,6 @@ exports[`can create document via button 1`] = `
           <div>
             <a
               className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
-              href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/ARCHITECTURE.md"
-              title="Architecture"
-            >
-              Architecture
-            </a>
-            <a
-              className="hoverUnderlineThick white f6 fw3 dib mr4 mt3 pb2"
               href="https://github.com/ipfs-shipyard/peerpad/blob/master/docs/SECURITY.md"
               title="Security"
             >
@@ -1109,7 +1102,7 @@ exports[`can create document via button 1`] = `
             </a>
             <a
               className="hoverUnderlineThick white f6 fw3 dib mt3 pb2"
-              href="https://github.com/ipfs-shipyard/peerpad"
+              href="https://github.com/ipfs-shipyard/peer-pad"
               title="Open Source"
             >
               Open Source
