@@ -1,16 +1,13 @@
 import Diff from 'fast-diff'
 import debounce from 'lodash.debounce'
-import peerColor from './peer-color'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
 const bindCodeMirror = (doc, titleEditor, editor) => {
-  const thisPeerId = doc.app.ipfs._peerInfo.id.toB58String()
   let cursorGossip
   let titleCollab
   let initialised = false
   let locked = false
-  let markers = new Map()
   let editorValueCache
 
   const getEditorValue = () => {
@@ -84,8 +81,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
           if (pos < cursorPos) {
             cursorPos -= text.length
           }
-
-          // moveMarkersIfAfter(pos, -text.length)
         }
       } else { // INSERT
         if (text.length) {
@@ -97,11 +92,9 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
             cursorPos += text.length
           }
           pos += text.length
-          // moveMarkersIfAfter(pos, text.length)
         }
       }
     })
-    // editor.setCursor(editor.posFromIndex(cursorPos))
 
     locked = false
   }
@@ -191,70 +184,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     }
     editor.off('cursorActivity', onEditorCursorActivityDebounced)
   }
-
-  function getCursorWidget (cursorPos, color) {
-    const cursorCoords = editor.cursorCoords(cursorPos)
-    const cursorElement = document.createElement('span')
-    cursorElement.style.borderLeftStyle = 'solid'
-    cursorElement.style.borderLeftWidth = '2px'
-    cursorElement.style.borderLeftColor = color
-    cursorElement.style.height = `${(cursorCoords.bottom - cursorCoords.top)}px`
-    cursorElement.style.padding = 0
-    cursorElement.style.zIndex = 0
-
-    return cursorElement
-  }
-
-  function moveMarkersIfAfter (pos, diff) {
-    for (let peer of markers.keys()) {
-      const peerMarkers = markers.get(peer)
-      moveMarkerIfAfter(peer, peerMarkers, pos, diff)
-    }
-  }
-
-  function moveMarkerIfAfter (peer, peerMarkers, changePos, diff) {
-    peerMarkers.forEach((marker, index) => {
-      const markerPos = marker.find()
-      if (markerPos) {
-        const posIndex = editor.indexFromPos(markerPos)
-        if (posIndex >= changePos) {
-          marker.clear()
-        }
-      } else {
-        marker.clear()
-      }
-    })
-
-    markers.delete(peer)
-  }
-
-//   function moveMarkerIfAfterBuggy (peer, peerMarkers, changePos, diff) {
-//     let pos
-//     let posIndex
-//     let newMarkers = []
-//     peerMarkers.forEach((marker, index) => {
-//       const markerPos = marker.find()
-//       if (markerPos) {
-//         console.log('marker:', marker)
-//         pos = markerPos
-//         posIndex = editor.indexFromPos(pos)
-//         if (posIndex >= changePos) {
-//           peerMarkers.splice(index, 1)
-//           marker.clear()
-//           posIndex += diff
-//           const newPos = editor.posFromIndex(posIndex)
-//           const color = peerColor(peer)
-//           const widget = getCursorWidget(newPos, color)
-//           const bookmark = editor.setBookmark(newPos, { widget })
-//           newMarkers.push(bookmark)
-//         }
-//       } else {
-//         newMarkers.push(marker)
-//       }
-//     })
-
-//     markers.set(peer, newMarkers)
-//   }
 }
 
 export default (doc, title, editor, type) => {
