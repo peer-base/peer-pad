@@ -22,7 +22,7 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
       let workerPendingEnd = 0
 
       events.on('worker ended', () => {
-        workerPendingEnd --
+        workerPendingEnd--
         if (!workerPendingEnd) {
           events.emit('all workers ended')
         }
@@ -53,7 +53,7 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
       while (replicaCount > 0) {
         const replica = cluster.queue(padURL, Replica({ events, text: text.forReplica(workerId) }))
         replicas.push(replica)
-        workerPendingEnd ++
+        workerPendingEnd++
         replicaCount--
         workerId++
       }

@@ -52,7 +52,7 @@ export default class CreateDocumentContainer extends Component {
       this.setState({redirect: url})
     } catch (err) {
       window.alert(
-          'An error occurred while trying to create pad for you.\n' +
+        'An error occurred while trying to create pad for you.\n' +
           'This may be because you may be using a non-compatible browser.\n' +
           'If this is the case, please try, if you can, with latest Firefox or Chrome.')
       throw err

@@ -27,7 +27,7 @@ module.exports = (text) => {
 
   function validateAll () {
     if (!validation) {
-      validation = new Promise((_resolve, _reject) => {
+      validation = new Promise((resolve, reject) => {
         resolve = _resolve
         reject = _reject
       })
@@ -100,19 +100,17 @@ module.exports = (text) => {
     //   }
     // }
 
-
     // let expectedLength = initialText.length + Array.from(replicas.values()).reduce((acc, result) => {
     //   return result.ops.reduce((op) => op[0] === '-' ? -1 : 1, 0)
     // }, 0)
     // if (expectedLength !== size) {
     //   return reject(new Error(`after processing ops, final text length is not the expected. Expected ${expectedLength} and have ${size}`))
     // }
-
   }
 
   function validate () {
     if (!validation) {
-      validation = new Promise((_resolve, _reject) => {
+      validation = new Promise((resolve, reject) => {
         resolve = _resolve
         reject = _reject
       })

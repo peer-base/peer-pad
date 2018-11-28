@@ -92,7 +92,7 @@ class Edit extends Component {
       this.storeSnapshot(snapshot)
     } catch (err) {
       console.error(err)
-      alert('Error taking snapshot: ' +  err.message)
+      alert('Error taking snapshot: ' + err.message)
     }
   }
 
@@ -217,7 +217,7 @@ class Edit extends Component {
                     placeholder='Document Title'
                     readOnly={!canEdit}
                     data-id='document-title-input'
-                   />
+                  />
                 </div>
                 <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
@@ -238,7 +238,7 @@ class Edit extends Component {
               onDebuggingStart={onDebuggingStart}
               onDebuggingStop={onDebuggingStop}
               isDebuggingEnabled={isDebuggingEnabled}
-              />
+            />
           </div>
         </div>
       </div>
@@ -274,7 +274,7 @@ class Edit extends Component {
       this.state.name,
       'rga',
       {
-        keys,
+        keys
         // maxDeltaRetention: 0
       })
 

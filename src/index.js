@@ -30,6 +30,5 @@ const rollbarConfig = {
 const Rollbar = rollbar.init(rollbarConfig)
 window.Rollbar = Rollbar
 
-
 ReactDOM.render(<App />, document.getElementById('root'))
 // registerServiceWorker()

@@ -47,7 +47,7 @@ export default async (keys, doc, options) => {
   })
 }
 
-function  htmlForDoc (encryptedDoc, docScript, DocViewer) {
+function htmlForDoc (encryptedDoc, docScript, DocViewer) {
   const doc = '<!doctype html>\n' +
     renderToString(React.createElement(DocViewer, {
       encryptedDoc,
@@ -56,4 +56,3 @@ function  htmlForDoc (encryptedDoc, docScript, DocViewer) {
 
   return Buffer.from(doc)
 }
-
