@@ -92,7 +92,7 @@ class Edit extends Component {
       this.storeSnapshot(snapshot)
     } catch (err) {
       console.error(err)
-      alert('Error taking snapshot: ' + err.message)
+      window.alert('Error taking snapshot: ' + err.message)
     }
   }
 
@@ -144,14 +144,14 @@ class Edit extends Component {
 
   async onDebuggingStart () {
     (await import('peer-star-app')).debug.enable(debugScope)
-    localStorage.setItem('debug', debugScope)
+    window.localStorage.setItem('debug', debugScope)
     console.log('debugging started')
     this.setState({isDebuggingEnabled: true})
   }
 
   async onDebuggingStop () {
     (await import('peer-star-app')).debug.disable()
-    localStorage.setItem('debug', '')
+    window.localStorage.setItem('debug', '')
     console.log('debugging stopped')
     this.setState({isDebuggingEnabled: false})
   }
