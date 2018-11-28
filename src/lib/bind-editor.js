@@ -162,33 +162,8 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
   titleEditor.addEventListener('input', onTitleEditorChanged)
 
-  const onCursorGossipMessage = (cursor, fromPeerId) => {
-    if (fromPeerId === thisPeerId) {
-      return
-    }
-
-    const previousMarkers = markers.get(fromPeerId)
-    if (previousMarkers) {
-      previousMarkers.forEach((marker) => marker.clear())
-    }
-
-    const color = peerColor(fromPeerId)
-
-    const [head, fromPos, toPos] = cursor
-
-    const widget = getCursorWidget(head, color)
-
-    const bookmark = editor.setBookmark(head, { widget })
-    const range = editor.markText(fromPos, toPos, {
-      css: `background-color: ${color}; opacity: 0.8`,
-      title: fromPeerId
-    })
-    markers.set(fromPeerId, [bookmark, range])
-  }
-
   doc.gossip('cursors').then((_cursorGossip) => {
     cursorGossip = _cursorGossip
-    // cursorGossip.on('message', onCursorGossipMessage)
   })
 
   const onEditorCursorActivity = () => {
@@ -215,9 +190,6 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
       titleCollab.removeListener('state changed', onTitleStateChanged)
     }
     editor.off('cursorActivity', onEditorCursorActivityDebounced)
-    if (cursorGossip) {
-      // cursorGossip.removeListener('message', onCursorGossipMessage)
-    }
   }
 
   function getCursorWidget (cursorPos, color) {
