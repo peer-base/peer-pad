@@ -1,4 +1,4 @@
-import initRollbar from 'rollbar'
+import initRollbar from './rollbar'
 import React from 'react'
 import ReactDOM from 'react-dom'
 // TODO: register service worker:

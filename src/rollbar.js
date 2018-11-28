@@ -6,7 +6,7 @@ const rollbarTransformer = (payload) => {
   payload.request.url = payload.request.url.split('/').slice(0, -1).join('/')
 }
 
-module.exports = (hostname) => {
+export default (hostname) => {
   const rollbarConfig = {
     // Only enable error reporting if user is loading the website via peerpad.net
     enabled: hostname === 'peerpad.net',
