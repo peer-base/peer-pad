@@ -26,7 +26,7 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337', 
     //   dumpio: true,
     //   handleSIGINT: false,
     //   pipe: true
-    }
+    // }
   })
 
   events.close = () => cluster.close()
