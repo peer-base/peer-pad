@@ -14,9 +14,21 @@ import EditorArea from './EditorArea'
 import Status from './Status'
 import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
-import Warning from './Warning'
 
 const debugScope = 'peer-star:collaboration:*'
+
+const initialDocument = `
+#### Welcome to PeerPad
+
+This service allows you to write, collaborate and export markdown documents
+directly in your browser!
+
+Get started by start typing in the blue-pane to the right of this text. This
+area will automatically start to reflect your new changes.
+
+If you find any issues, please report them via GitHub here:
+https://github.com/ipfs-shipyard/peer-pad/issues/new
+`
 
 class Edit extends Component {
   constructor (props) {
@@ -28,7 +40,7 @@ class Edit extends Component {
     this.state = {
       name: decodeURIComponent(name),
       type: type,
-      documentText: '',
+      documentText: initialDocument,
       status: 'offline',
       room: {},
       canEdit: keys.split('-').length >= 2,
@@ -183,7 +195,6 @@ class Edit extends Component {
 
     return (
       <div>
-        <Warning />
         <Header>
           <div className='flex-auto'>
             {type === 'richtext' ? null : (
