@@ -17,11 +17,15 @@ export default class CreateDocumentContainer extends Component {
     this.onCreateDocument = this.onCreateDocument.bind(this)
   }
 
+  componentDidUpdate() {
+      if (this.state.redirect) {
+        this.setState({ redirect: null })
+      }
+  }
+
   render () {
     if (this.state.redirect) {
-      const redir = this.state.redirect
-      this.setState({ redirect: null })
-      return (<Redirect to={redir} push />)
+      return (<Redirect to={this.state.redirect} push />)
     }
 
     return this.props.children({
@@ -42,9 +46,9 @@ export default class CreateDocumentContainer extends Component {
 
   async onCreateDocument () {
     try {
-      const generateRandomKeys = await import('peer-star-app/src/keys/generate')
-      const generateRandomName = await import('peer-star-app/src/keys/generate-random-name')
-      const uriEncodeKey = await import('peer-star-app/src/keys/uri-encode')
+      const generateRandomKeys = (await import('peer-star-app/src/keys/generate')).default
+      const generateRandomName = (await import('peer-star-app/src/keys/generate-random-name')).default
+      const uriEncodeKey = (await import('peer-star-app/src/keys/uri-encode')).default
       const type = encodeURIComponent(this.state.type || 'markdown')
       const name = encodeURIComponent(this.state.name || generateRandomName())
       const keys = await generateRandomKeys()

@@ -69,7 +69,7 @@ class Home extends Component {
             <div className='mt6'>
               <CreateDocument />
               {this.state.error ? (
-                <p className='f4 fw3 lh-copy tracked--1 razzmatazz'>{this.state.error}</p>
+                <p className='f4 fw3 lh-copy tracked--1 razzmatazz'>{this.state.error.toString()}</p>
               ) : null}
             </div>
           </div>
