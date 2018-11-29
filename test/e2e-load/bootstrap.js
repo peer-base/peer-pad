@@ -123,8 +123,6 @@ module.exports = ({cluster, replicaCount, events, pinnerSpawner}) => {
 
     async function createNewPad () {
       console.log('going to create new pad...')
-      await page.waitForSelector('[data-id=start-button]')
-      await page.click('[data-id=start-button]')
       // wait for IPFS to boot
       await page.waitForSelector('[data-id=ipfs-status][data-value=online]', {timeout: ms.minutes(2)})
       console.log('created new pad', page.url())

@@ -27,7 +27,7 @@ module.exports = (text) => {
 
   function validateAll () {
     if (!validation) {
-      validation = new Promise((resolve, reject) => {
+      validation = new Promise((_resolve, _reject) => {
         resolve = _resolve
         reject = _reject
       })
@@ -110,7 +110,7 @@ module.exports = (text) => {
 
   function validate () {
     if (!validation) {
-      validation = new Promise((resolve, reject) => {
+      validation = new Promise((_resolve, _reject) => {
         resolve = _resolve
         reject = _reject
       })
