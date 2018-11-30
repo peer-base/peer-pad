@@ -31,7 +31,7 @@ Docs: [Security](docs/SECURITY.md), [Technology](docs/TECHNOLOGY.md)
 
 ## Lead Maintainer
 
-[Jacob Heun](https://github.com/jacobheun)
+[Jim Pick](https://github.com/jimpick)
 
 ## Install
 

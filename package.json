@@ -2,11 +2,11 @@
   "name": "peerpad",
   "version": "0.3.1",
   "private": true,
-  "leadMaintainer": "Jacob Heun <jacobheun@gmail.com>",
+  "leadMaintainer": "Jim Pick <jim@jimpick.com>",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
-    "lint": "standard 'src/**/*.js' 'test/**/*.js'",
+    "build": "GENERATE_SOURCEMAP=true GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
+    "lint": "standard",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
@@ -15,7 +15,7 @@
     "serve:build": "http-server -p 1337 build",
     "deploy:ipfs": "ipfs add -r build/",
     "start:rendezvous": "rendezvous",
-    "start:test:pinner": "pinner peer-pad/2 /dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star"
+    "start:test:pinner": "PEER_STAR_SWARM_ADDRESS=/dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star PEER_STAR_APP_NAME=peer-pad/2 pinner"
   },
   "dependencies": {
     "autoprefixer": "7.1.2",
@@ -51,7 +51,7 @@
     "lodash.debounce": "^4.0.8",
     "milliseconds": "^1.0.3",
     "object-assign": "4.1.1",
-    "peer-star-app": "^0.9.1",
+    "peer-star-app": "^0.10.3",
     "pify": "^3.0.0",
     "postcss-css-variables": "^0.8.0",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -94,7 +94,7 @@
     "http-server": "^0.11.1",
     "identity-obj-proxy": "^3.0.0",
     "libp2p-websocket-star-rendezvous": "^0.2.4",
-    "npm-run-all": "^4.1.2",
+    "npm-run-all": "^4.1.5",
     "puppeteer": "^1.9.0",
     "puppeteer-cluster": "^0.11.2",
     "react-test-renderer": "^15.6.2",
@@ -146,7 +146,12 @@
     "extends": "react-app"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "test/e2e-load/",
+      "scripts/",
+      "config/"
+    ]
   },
   "homepage": "./"
 }

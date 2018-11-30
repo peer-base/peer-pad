@@ -34,7 +34,7 @@ const EditorArea = ({
       onDebuggingStart={onDebuggingStart}
       onDebuggingStop={onDebuggingStop}
       isDebuggingEnabled={isDebuggingEnabled}
-      />
+    />
   )
 
   // No preview for richtext, source and preview are the same thing
