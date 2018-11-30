@@ -14,9 +14,21 @@ import EditorArea from './EditorArea'
 import Status from './Status'
 import DocViewer from './DocViewer'
 import { toSnapshotUrl } from './SnapshotLink'
-import Warning from './Warning'
 
 const debugScope = 'peer-star:collaboration:*'
+
+const initialDocument = `
+#### Welcome to PeerPad
+
+This service allows you to write, collaborate and export markdown documents
+directly in your browser!
+
+Get started by start typing in the blue-pane to the right of this text. This
+area will automatically start to reflect your new changes.
+
+If you find any issues, please report them via GitHub here:
+https://github.com/ipfs-shipyard/peer-pad/issues/new
+`
 
 class Edit extends Component {
   constructor (props) {
@@ -28,7 +40,7 @@ class Edit extends Component {
     this.state = {
       name: decodeURIComponent(name),
       type: type,
-      documentText: '',
+      documentText: initialDocument,
       status: 'offline',
       room: {},
       canEdit: keys.split('-').length >= 2,
@@ -92,7 +104,7 @@ class Edit extends Component {
       this.storeSnapshot(snapshot)
     } catch (err) {
       console.error(err)
-      alert('Error taking snapshot: ' +  err.message)
+      window.alert('Error taking snapshot: ' + err.message)
     }
   }
 
@@ -144,14 +156,14 @@ class Edit extends Component {
 
   async onDebuggingStart () {
     (await import('peer-star-app')).debug.enable(debugScope)
-    localStorage.setItem('debug', debugScope)
+    window.localStorage.setItem('debug', debugScope)
     console.log('debugging started')
     this.setState({isDebuggingEnabled: true})
   }
 
   async onDebuggingStop () {
     (await import('peer-star-app')).debug.disable()
-    localStorage.setItem('debug', '')
+    window.localStorage.setItem('debug', '')
     console.log('debugging stopped')
     this.setState({isDebuggingEnabled: false})
   }
@@ -183,7 +195,6 @@ class Edit extends Component {
 
     return (
       <div>
-        <Warning />
         <Header>
           <div className='flex-auto'>
             {type === 'richtext' ? null : (
@@ -217,7 +228,7 @@ class Edit extends Component {
                     placeholder='Document Title'
                     readOnly={!canEdit}
                     data-id='document-title-input'
-                   />
+                  />
                 </div>
                 <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
@@ -238,7 +249,7 @@ class Edit extends Component {
               onDebuggingStart={onDebuggingStart}
               onDebuggingStop={onDebuggingStop}
               isDebuggingEnabled={isDebuggingEnabled}
-              />
+            />
           </div>
         </div>
       </div>
@@ -274,7 +285,7 @@ class Edit extends Component {
       this.state.name,
       'rga',
       {
-        keys,
+        keys
         // maxDeltaRetention: 0
       })
 
