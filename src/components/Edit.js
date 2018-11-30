@@ -30,6 +30,45 @@ If you find any issues, please report them via GitHub here:
 https://github.com/ipfs-shipyard/peer-pad/issues/new
 `
 
+// Status messages for the user to know what's going on
+const stateStatuses = {
+  IDLE: 'IDLE',
+  SAVING: 'Saving...',
+  SAVED: 'Saved!',
+  TIMEOUT: 'Save timed out (NOT saved)',
+  RECEIVING: 'Receiving data'
+}
+
+// How long time in MS we should wait before assuming the pinner timed out
+const SAVE_TIMEOUT_MS = 1000 * 10
+
+const stateColors = {
+  [stateStatuses.SAVING]: '#e67e22',
+  [stateStatuses.SAVED]: '#2ecc71',
+  [stateStatuses.TIMEOUT]: '#e74c3c',
+  [stateStatuses.RECEIVING]: '#3498db'
+}
+
+const StatusIcon = ({stateStatus}) => {
+  const size = '10px'
+  return <div style={{
+    display: 'inline-block',
+    height: size,
+    width: size,
+    lineHeight: size,
+    borderRadius: size,
+    backgroundColor: stateColors[stateStatus],
+    border: '1px solid rgba(0,0,0,0.2)'
+  }}></div>
+}
+
+const SavedStatus = ({stateStatus}) => {
+  if (stateStatus === stateStatuses.IDLE) {
+    return <div></div>
+  }
+  return <div><StatusIcon stateStatus={stateStatus}/> {stateStatus}</div>
+}
+
 class Edit extends Component {
   constructor (props) {
     super(props)
@@ -49,7 +88,8 @@ class Edit extends Component {
       snapshots: [],
       alias: window.localStorage.getItem('alias'),
       doc: null,
-      isDebuggingEnabled: !!window.localStorage.getItem('debug')
+      isDebuggingEnabled: !!window.localStorage.getItem('debug'),
+      stateStatus: stateStatuses.IDLE
     }
 
     this.onViewModeChange = this.onViewModeChange.bind(this)
@@ -233,6 +273,7 @@ class Edit extends Component {
                 <div className='dn f7 pigeon-post'>
                   <b className='fw5'>Last change:</b> today, 12:00AM
                 </div>
+                <SavedStatus stateStatus={this.state.stateStatus} />
               </div>
             </div>
             <EditorArea
@@ -288,6 +329,24 @@ class Edit extends Component {
         keys
         // maxDeltaRetention: 0
       })
+
+    let timeoutID = null
+    doc.on('state changed', (fromSelf) => {
+      if (fromSelf) {
+        this.setState({stateStatus: stateStatuses.SAVING})
+        clearTimeout(timeoutID)
+        timeoutID = setTimeout(() => {
+          this.setState({stateStatus: stateStatuses.TIMEOUT})
+        }, SAVE_TIMEOUT_MS)
+      } else {
+        this.setState({stateStatus: stateStatuses.RECEIVING})
+      }
+    })
+
+    doc.replication.on('pinned', () => {
+      clearTimeout(timeoutID)
+      this.setState({stateStatus: stateStatuses.SAVED})
+    })
 
     this.setState({ doc })
 
