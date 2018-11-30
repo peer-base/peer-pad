@@ -15,7 +15,7 @@
     "serve:build": "http-server -p 1337 build",
     "deploy:ipfs": "ipfs add -r build/",
     "start:rendezvous": "rendezvous",
-    "start:test:pinner": "pinner peer-pad/2 /dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star"
+    "start:test:pinner": "PEER_STAR_APP_NAME=peer-pad/2 PEER_STAR_SWARM_ADDRESS=/dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star pinner"
   },
   "dependencies": {
     "autoprefixer": "7.1.2",
