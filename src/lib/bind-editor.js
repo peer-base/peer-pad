@@ -99,7 +99,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
     locked = false
   }
 
-  doc.on('state changed', onStateChanged)
+  doc.shared.on('state changed', onStateChanged)
 
   editor.setValue(doc.shared.value().join(''))
 
