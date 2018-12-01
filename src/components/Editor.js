@@ -13,11 +13,19 @@ export default class Editor extends Component {
     this.onRef = this.onRef.bind(this)
   }
 
+  shouldComponentUpdate () {
+    return false
+  }
+
   onRef (ref) {
+    this.editorEle = ref
+  }
+
+  componentDidMount () {
     const { onEditor, onChange } = this.props
     let editor
 
-    if (ref) {
+    if (this.editorEle) {
       // if (type === 'richtext') {
       //   editor = new Quill(ref, {
       //     theme: 'bubble'
@@ -26,7 +34,7 @@ export default class Editor extends Component {
       //   editor.disable()
       // } else {
       // See: http://codemirror.net/doc/manual.html#config
-      editor = CodeMirror(ref, {
+      editor = CodeMirror(this.editorEle, {
         autofocus: true,
         inputStyle: 'contenteditable',
         lineNumbers: true,
