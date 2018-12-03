@@ -297,14 +297,6 @@ class Edit extends Component {
     )
   }
 
-  componentDidUpdate () {
-    // Force codemirror to update to help avoid render / write order issues
-    if (this._editor && this._editor.refresh) {
-      this._editor.refresh()
-      this._editor.setOption('readOnly', !this.state.canEdit)
-    }
-  }
-
   async componentDidMount () {
     const PeerStar = await import('peer-star-app')
 
@@ -398,6 +390,10 @@ class Edit extends Component {
   maybeActivateEditor () {
     if (!this._editorBinding && this._editor) {
       this._editorBinding = bindEditor(this.state.doc, this._titleRef, this._editor, this.state.type)
+      if (this.state.canEdit) {
+        this._editor.setOption('readOnly', false)
+      }
+      this._editor.refresh()
     }
 
     // if (this._editor && this.state.canEdit) {
