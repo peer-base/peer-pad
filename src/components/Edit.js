@@ -327,7 +327,7 @@ class Edit extends Component {
     let timeoutID = null
     doc.on('state changed', (fromSelf) => {
       if (fromSelf) {
-        this.setState({stateStatus: stateStatuses.DIRTY})
+        this.setState({stateStatus: stateStatuses.NEEDS_SAVING})
       }
     })
 
