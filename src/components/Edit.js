@@ -323,16 +323,22 @@ class Edit extends Component {
       })
 
     let timeoutID = null
-    doc.on('state changed', (fromSelf) => {
+    doc.shared.on('state changed', (fromSelf) => {
       if (fromSelf) {
         this.setState({stateStatus: stateStatuses.SAVING})
         clearTimeout(timeoutID)
         timeoutID = setTimeout(() => {
           this.setState({stateStatus: stateStatuses.TIMEOUT})
         }, SAVE_TIMEOUT_MS)
-      } else {
-        this.setState({stateStatus: stateStatuses.RECEIVING})
       }
+    })
+
+    doc.replication.on('pinning', () => {
+      this.setState({stateStatus: stateStatuses.SAVING})
+    })
+
+    doc.replication.on('receiving', () => {
+      this.setState({stateStatus: stateStatuses.RECEIVING})
     })
 
     doc.replication.on('pinned', () => {
