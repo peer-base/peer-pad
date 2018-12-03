@@ -33,6 +33,7 @@ https://github.com/ipfs-shipyard/peer-pad/issues/new
 // Status messages for the user to know what's going on
 const stateStatuses = {
   IDLE: 'IDLE',
+  NEEDS_SAVING: 'Needs saving...',
   SAVING: 'Saving...',
   SAVED: 'Saved!',
   TIMEOUT: 'Save timed out (NOT saved)',
@@ -43,6 +44,7 @@ const stateStatuses = {
 const SAVE_TIMEOUT_MS = 1000 * 10
 
 const stateColors = {
+  [stateStatuses.NEEDS_SAVING]: '#e67e22',
   [stateStatuses.SAVING]: '#e67e22',
   [stateStatuses.SAVED]: '#2ecc71',
   [stateStatuses.TIMEOUT]: '#e74c3c',
@@ -323,18 +325,18 @@ class Edit extends Component {
       })
 
     let timeoutID = null
-    doc.shared.on('state changed', (fromSelf) => {
+    doc.on('state changed', (fromSelf) => {
       if (fromSelf) {
-        this.setState({stateStatus: stateStatuses.SAVING})
-        clearTimeout(timeoutID)
-        timeoutID = setTimeout(() => {
-          this.setState({stateStatus: stateStatuses.TIMEOUT})
-        }, SAVE_TIMEOUT_MS)
+        this.setState({stateStatus: stateStatuses.DIRTY})
       }
     })
 
     doc.replication.on('pinning', () => {
       this.setState({stateStatus: stateStatuses.SAVING})
+      clearTimeout(timeoutID)
+      timeoutID = setTimeout(() => {
+        this.setState({stateStatus: stateStatuses.TIMEOUT})
+      }, SAVE_TIMEOUT_MS)
     })
 
     doc.replication.on('receiving', () => {
