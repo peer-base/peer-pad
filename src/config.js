@@ -1,11 +1,23 @@
+const NODE_ENV = process.env.NODE_ENV
+
+const isDev = NODE_ENV === 'development'
+
+const defaultSwarmAddresses = {
+  development: '/ip4/0.0.0.0/tcp/9090/ws/p2p-websocket-star',
+  production: '/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star'
+}
+
+const swarmAddress = defaultSwarmAddresses[NODE_ENV]
+
+if (!swarmAddress) {
+  throw new Error(`Could not find default swarm address for ${NODE_ENV} NODE_ENV`)
+}
+
 module.exports = {
   peerStar: {
     ipfs: {
-      // swarm: []
-      swarm: ['/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star'],
-      // swarm: ['/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star']
-      // swarm: ['/dns4/ws-star2.sjc.dwebops.pub/tcp/443/wss/p2p-websocket-star'],
-      bootstrap: [
+      swarm: [swarmAddress],
+      bootstrap: isDev ? [] : [
         '/dns4/ams-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd',
         '/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3',
         '/dns4/sfo-3.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM',
