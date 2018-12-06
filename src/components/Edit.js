@@ -34,6 +34,7 @@ https://github.com/ipfs-shipyard/peer-pad/issues/new
 const stateStatuses = {
   IDLE: 'IDLE',
   NEEDS_SAVING: 'Needs saving...',
+  WILL_SAVE: 'Will save soon...',
   SAVING: 'Saving...',
   SAVED: 'Saved!',
   TIMEOUT: 'Save timed out (NOT saved)',
@@ -45,6 +46,7 @@ const SAVE_TIMEOUT_MS = 1000 * 10
 
 const stateColors = {
   [stateStatuses.NEEDS_SAVING]: '#e67e22',
+  [stateStatuses.WILL_SAVE]: '#e67e22',
   [stateStatuses.SAVING]: '#e67e22',
   [stateStatuses.SAVED]: '#2ecc71',
   [stateStatuses.TIMEOUT]: '#e74c3c',
@@ -61,14 +63,14 @@ const StatusIcon = ({stateStatus}) => {
     borderRadius: size,
     backgroundColor: stateColors[stateStatus],
     border: '1px solid rgba(0,0,0,0.2)'
-  }}></div>
+  }} />
 }
 
 const SavedStatus = ({stateStatus}) => {
   if (stateStatus === stateStatuses.IDLE) {
-    return <div></div>
+    return <div />
   }
-  return <div><StatusIcon stateStatus={stateStatus}/> {stateStatus}</div>
+  return <div><StatusIcon stateStatus={stateStatus} /> {stateStatus}</div>
 }
 
 class Edit extends Component {
@@ -327,7 +329,15 @@ class Edit extends Component {
     let timeoutID = null
     doc.on('state changed', (fromSelf) => {
       if (fromSelf) {
-        this.setState({stateStatus: stateStatuses.NEEDS_SAVING})
+        if (doc.replication.pinnerPeers().size) {
+          if (doc.replication.isCurrentStatePersistedOnPinner()) {
+            this.setState({stateStatus: stateStatuses.SAVED})
+          } else {
+            this.setState({stateStatus: stateStatuses.WILL_SAVE})
+          }
+        } else {
+          this.setState({stateStatus: stateStatuses.NEEDS_SAVING})
+        }
       }
     })
 
