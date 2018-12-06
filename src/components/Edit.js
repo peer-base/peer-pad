@@ -120,7 +120,7 @@ class Edit extends Component {
 
     // Bind new editor if not null and we have a document
     if (doc && nextEditor) {
-      this._editorBinding = bindEditor(doc, this._titleRef, nextEditor, this.state.type)
+      this.maybeActivateEditor()
     }
   }
 
