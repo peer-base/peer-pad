@@ -9,14 +9,14 @@ const rollbarTransformer = (payload) => {
 export default (hostname) => {
   const rollbarConfig = {
     // Only enable error reporting if user is loading the website via peerpad.net
-    enabled: hostname === 'peerpad.net',
+    enabled: hostname === 'peerpad.net' || hostname === 'dev.peerpad.net',
     captureIp: false,
     accessToken: '2eaed8c2c5e243af8497d15ea90b407e',
     captureUncaught: true,
     captureUnhandledRejections: true,
     transform: rollbarTransformer,
     payload: {
-      environment: process.env.NODE_ENV,
+      environment: hostname,
       client: {
         javascript: {
           source_map_enabled: true,
