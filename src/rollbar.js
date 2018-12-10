@@ -16,7 +16,7 @@ export default (hostname) => {
     captureUnhandledRejections: true,
     transform: rollbarTransformer,
     payload: {
-      environment: process.env.NODE_ENV,
+      environment: hostname,
       client: {
         javascript: {
           source_map_enabled: true,
