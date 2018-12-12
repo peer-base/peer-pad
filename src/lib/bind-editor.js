@@ -1,5 +1,6 @@
 import Diff from 'fast-diff'
 import debounce from 'lodash.debounce'
+import bindDebugDumper from './debug-dumper'
 
 const DEBOUNCE_CUSOR_ACTIVITY_MS = 2000
 
@@ -188,6 +189,7 @@ const bindCodeMirror = (doc, titleEditor, editor) => {
 
 export default (doc, title, editor, type) => {
   if (type === 'markdown' || type === 'math') {
+    bindDebugDumper(doc)
     return bindCodeMirror(doc, title, editor)
   }
 

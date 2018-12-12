@@ -1,0 +1,22 @@
+#! /usr/bin/env node
+
+const CRDTs = require('delta-crdts')
+const { decode } = require('delta-crdts-msgpack-codec')
+const concat = require('concat-stream')
+
+process.stdin.pipe(concat(buffer => {
+  // console.log('Buffer', buffer)
+  const encoded = Buffer.from(buffer.toString(), 'base64')
+  // console.log('Encoded', encoded)
+  const decoded = decode(encoded)
+  // console.log('Decoded', decoded)
+  const RGA = CRDTs('rga')
+  const collaboration = RGA('imported')
+  collaboration.apply(decoded)
+  console.log('Value:\n')
+  console.log(collaboration.value().join(''))
+}))
+process.stdin.on('error', err => {
+  console.error(err)
+  process.exit(1)
+})
