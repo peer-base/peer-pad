@@ -140,7 +140,7 @@ class Edit extends Component {
         docScript,
         DocViewer
       }
-      const keys = (await import('peer-star-app')).keys
+      const keys = (await import('peer-base')).keys
       const snapshot = await takeSnapshot(keys, this.state.doc, options)
       snapshot.createdAt = new Date().toISOString()
       this.setState(({ snapshots }) => ({ snapshots: [snapshot, ...snapshots] }))
@@ -199,14 +199,14 @@ class Edit extends Component {
   }
 
   async onDebuggingStart () {
-    (await import('peer-star-app')).debug.enable(debugScope)
+    (await import('peer-base')).debug.enable(debugScope)
     window.localStorage.setItem('debug', debugScope)
     console.log('debugging started')
     this.setState({isDebuggingEnabled: true})
   }
 
   async onDebuggingStop () {
-    (await import('peer-star-app')).debug.disable()
+    (await import('peer-base')).debug.disable()
     window.localStorage.setItem('debug', '')
     console.log('debugging stopped')
     this.setState({isDebuggingEnabled: false})
@@ -302,7 +302,7 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-    const PeerStar = await import('peer-star-app')
+    const PeerStar = await import('peer-base')
 
     if (!this._backend) {
       const peerStarConfig = window.__peerStarConfig ? window.__peerStarConfig : config.peerStar
