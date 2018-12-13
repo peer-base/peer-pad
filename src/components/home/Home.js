@@ -10,9 +10,9 @@ class Home extends Component {
   }
   async componentDidMount () {
     try {
-      const generateRandomKeys = await import('peer-star-app/src/keys/generate')
-      const generateRandomName = await import('peer-star-app/src/keys/generate-random-name')
-      const uriEncodeKey = await import('peer-star-app/src/keys/uri-encode')
+      const generateRandomKeys = await import('peer-base/src/keys/generate')
+      const generateRandomName = await import('peer-base/src/keys/generate-random-name')
+      const uriEncodeKey = await import('peer-base/src/keys/uri-encode')
       const type = encodeURIComponent('markdown')
       const name = encodeURIComponent(generateRandomName())
       const keys = await generateRandomKeys()
