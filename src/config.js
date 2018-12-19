@@ -13,15 +13,10 @@ if (!swarmAddress) {
   throw new Error(`Could not find default swarm address for ${NODE_ENV} NODE_ENV`)
 }
 
-const swarmAddresses = [
-  '/ip4/0.0.0.0/tcp/9090/ws/p2p-websocket-star',
-  '/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star'
-]
-
 module.exports = {
   peerStar: {
     ipfs: {
-      swarm: swarmAddresses,
+      swarm: [swarmAddress],
       bootstrap: isDev ? [] : [
         '/dns4/ams-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd',
         '/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3',
