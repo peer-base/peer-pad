@@ -12,7 +12,7 @@ let cluster
 
 console.log('Going to test the most recent build...')
 
-process.once('uncaughtException', (err) => {
+const onFatalError = (err) => {
   console.log(err)
   if (cluster) {
     cluster.close()
@@ -24,7 +24,10 @@ process.once('uncaughtException', (err) => {
     server.kill()
   }
   throw err
-})
+}
+
+process.once('unhandledRejection', onFatalError)
+process.once('uncaughtException', onFatalError)
 
 ;(async () => {
   console.log('Building...')
