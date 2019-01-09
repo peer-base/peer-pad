@@ -6,8 +6,8 @@
   "leadMaintainer": "Jim Pick <jim@jimpick.com>",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "GIT_COMMIT=$(git rev-parse HEAD) node scripts/build.js",
-    "lint": "standard 'src/**/*.js' 'test/**/*.js'",
+    "build": "GENERATE_SOURCEMAP=true GIT_COMMIT=$(git rev-parse HEAD) PUBLIC_URL='./' node scripts/build.js",
+    "lint": "standard",
     "test": "jest --no-cache --env=jsdom",
     "test:e2e": "jest --testMatch **/test/e2e/**/*.js",
     "test:e2e:ci": "NO_SANDBOX=true URL=http://localhost:1337 run-p --race test:serve test:e2e",
@@ -16,7 +16,10 @@
     "serve:build": "http-server -p 1337 build",
     "deploy:ipfs": "ipfs add -r build/",
     "start:rendezvous": "rendezvous",
-    "start:test:pinner": "pinner peer-pad/2 /dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star"
+    "start:test:pinner": "PEER_STAR_SWARM_ADDRESS=/dns4/127.0.0.1/tcp/9090/ws/p2p-websocket-star PEER_STAR_APP_NAME=peer-pad/2 pinner"
+  },
+  "bin": {
+    "peerpad-print-dump": "bin/peerpad-print-dump"
   },
   "dependencies": {
     "@babel/core": "7.1.0",
@@ -34,7 +37,9 @@
     "classnames": "^2.2.5",
     "codemirror": "^5.30.0",
     "color-hash": "^1.0.3",
+    "concat-stream": "^1.6.2",
     "css-loader": "1.0.0",
+    "delta-crdts-msgpack-codec": "^0.2.0",
     "dotenv": "6.1.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.6.0",
@@ -44,6 +49,7 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
+    "extract-text-webpack-plugin": "3.0.0",
     "fast-diff": "^1.1.2",
     "file-loader": "2.0.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
@@ -59,14 +65,18 @@
     "lodash.debounce": "^4.0.8",
     "milliseconds": "^1.0.3",
     "mini-css-extract-plugin": "0.4.3",
+    "object-assign": "4.1.1",
     "optimize-css-assets-webpack-plugin": "5.0.1",
-    "peer-star-app": "^0.10.0",
+    "peer-base": "^0.12.0-rc3",
     "pify": "^4.0.1",
     "pnp-webpack-plugin": "1.1.0",
+    "postcss-css-variables": "^0.8.0",
     "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-import": "^11.0.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.0.6",
     "postcss-safe-parser": "4.0.1",
+    "promise": "8.0.1",
     "prop-types": "^15.6.0",
     "quill": "^1.3.2",
     "quill-delta-to-html": "^0.10.6",
@@ -167,5 +177,17 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "test/e2e-load/",
+      "scripts/",
+      "config/"
+    ]
+  },
+  "homepage": "./"
 }

@@ -5,7 +5,7 @@ const injectConfig = require('./inject-config')
 const replicaAddTextBehavior = require('./replica-add-text-behavior')
 const replicaChangeTextBehavior = require('./replica-change-text-behavior')
 
-module.exports = ({events, coolDownMS = 15000}) => async ({ page, data: url, worker }) => {
+module.exports = ({events, coolDownMS = 120000}) => async ({ page, data: url, worker }) => {
   try {
     console.log('starting new read only replica')
     await injectConfig(page)

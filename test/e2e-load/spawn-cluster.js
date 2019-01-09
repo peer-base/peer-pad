@@ -16,11 +16,11 @@ module.exports = async ({ replicaCount = 10, baseURL = 'http://localhost:1337', 
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_BROWSER,
     maxConcurrency: replicaCount,
-    workerCreationDelay: 100,
+    // workerCreationDelay: 100,
     timeout: 3000000,
     // monitor: true,
     // puppeteerOptions: {
-    //   headless: false
+      // headless: false
     //   devtools: false,
     //   timeout: 300000,
     //   dumpio: true,
