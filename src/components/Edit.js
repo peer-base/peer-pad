@@ -302,7 +302,7 @@ class Edit extends Component {
   }
 
   async componentDidMount () {
-    const PeerStar = await import('peer-base')
+    const PeerStar = (await import('peer-base')).default
 
     if (!this._backend) {
       const peerStarConfig = window.__peerStarConfig ? window.__peerStarConfig : config.peerStar
