@@ -16,7 +16,7 @@ jobs:
 
   deploy:
     docker:
-      - image: olizilla/ipfs-dns-deploy:1.0
+      - image: olizilla/ipfs-dns-deploy:1.1
         environment:
           DOMAIN: peerpad.net
           DEV_DOMAIN: dev.peerpad.net
@@ -25,19 +25,20 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Pin website, post notification for PRs or update DNS on master
+          name: Deploy website to IPFS
           command: |
-            # Upload build dir to cluster.ipfs.io and update PR status with preview link
             pin_name="$DOMAIN build $CIRCLE_BUILD_NUMBER"
+
             hash=$(pin-to-cluster.sh "$pin_name" /tmp/workspace/$BUILD_DIR)
+
             echo "Website added to IPFS: https://ipfs.io/ipfs/$hash"
 
-            # Update dnslink for prod or dev domain
             if [ "$CIRCLE_BRANCH" == "production" ] ; then
               dnslink-dnsimple -d $DOMAIN -r _dnslink -l /ipfs/$hash
 
             elif [ "$CIRCLE_BRANCH" == "master" ] ; then
               dnslink-dnsimple -d $DEV_DOMAIN -r _dnslink -l /ipfs/$hash
+
             fi
 
 workflows:
