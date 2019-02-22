@@ -16,7 +16,7 @@ jobs:
 
   deploy:
     docker:
-      - image: olizilla/ipfs-dns-deploy
+      - image: olizilla/ipfs-dns-deploy:1.0
         environment:
           DOMAIN: peerpad.net
           DEV_DOMAIN: dev.peerpad.net
