@@ -501,12 +501,14 @@ module.exports = {
       ],
     }),
     // Add rollbar integration
+    /* Temporarily disable on CircleCI until we install token
     new RollbarSourceMapPlugin({
       accessToken: process.env.ROLLBAR_ACCESS_TOKEN || 'non-existing',
       version: process.env.GIT_COMMIT,
       publicPath: publicPath,
       ignoreErrors: true
     }),
+    */
     // TypeScript type checking
     fs.existsSync(paths.appTsConfig) &&
       new ForkTsCheckerWebpackPlugin({
