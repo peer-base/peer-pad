@@ -37,7 +37,7 @@ jobs:
               dnslink-dnsimple -d $DOMAIN -r _dnslink -l /ipfs/$hash
 
             elif [ "$CIRCLE_BRANCH" == "master" ] ; then
-              dnslink-dnsimple -d $DEV_DOMAIN -r _dnslink -l /ipfs/$hash
+              dnslink-dnsimple -d $DOMAIN -r _dnslink.dev -l /ipfs/$hash
 
             fi
 
