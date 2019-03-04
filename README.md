@@ -127,7 +127,7 @@ Read the PeerPad [contributing.md](docs/CONTRIBUTING.md) for details on the late
 
 ### Want to hack on PeerPad?
 
-[![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/contributing.md)
+[![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](docs/CONTRIBUTING.md)
 
 ## License
 
