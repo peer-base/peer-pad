@@ -15,19 +15,29 @@ const Toolbar = ({
   onDebuggingStop,
   isDebuggingEnabled,
   snapshots
-}) => (
-  <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
+}) => {
+  const debugging =
     <div className='mb3'>
-      <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} disabled />
+      <ToggleButton
+        theme={theme}
+        icon={DebugIcon}
+        title='Enable / disable debugging'
+        onClick={isDebuggingEnabled ? onDebuggingStop : onDebuggingStart}
+        disabled={!isDebuggingEnabled} />
     </div>
-    <div className='mb3'>
-      <LinkButton theme={theme} docType={docType} docName={docName} encodedKeys={encodedKeys} />
+
+  return (
+    <div className={`${theme === 'light' ? 'bg-white' : 'bg-cloud-burst'} pt1`}>
+      <div className='mb3'>
+        <SnapshotsButton theme={theme} onTakeSnapshot={onTakeSnapshot} snapshots={snapshots} disabled />
+      </div>
+      <div className='mb3'>
+        <LinkButton theme={theme} docType={docType} docName={docName} encodedKeys={encodedKeys} />
+      </div>
+      {false && debugging}
     </div>
-    <div className='mb3'>
-      <ToggleButton theme={theme} icon={DebugIcon} title='Enable / disable debugging' onClick={isDebuggingEnabled ? onDebuggingStop : onDebuggingStart} disabled={!isDebuggingEnabled} />
-    </div>
-  </div>
-)
+  )
+}
 
 Toolbar.propTypes = {
   theme: PropTypes.oneOf(['light', 'dark']),

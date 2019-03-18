@@ -261,7 +261,7 @@ class Edit extends Component {
           </div>
         </Header>
         <div className='ph3'>
-          <div className='mw8 center'>
+          <div style={{marginRight: '2rem'}}>
             <div className='mb4 pb3 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>

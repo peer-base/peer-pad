@@ -79,6 +79,7 @@ const Doc = ({html = '', className = 'Doc', ...props}) => (
         margin: 0 -0.1rem;
         font-size: 85%;
         font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        overflow: scroll;
       }
 
       .Doc pre code {
