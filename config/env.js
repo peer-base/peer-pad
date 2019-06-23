@@ -80,7 +80,9 @@ function getClientEnvironment(publicUrl) {
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
         // Which git commit we're currently building from
-        GIT_COMMIT
+        GIT_COMMIT,
+        WEBSOCKET_STAR: process.env.WEBSOCKET_STAR,
+        APP_NAME: process.env.APP_NAME
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
