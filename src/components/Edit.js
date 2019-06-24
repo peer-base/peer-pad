@@ -262,7 +262,7 @@ class Edit extends Component {
         </Header>
         <div className='ph3 flex-auto'>
           <div className='flex flex-column h-100'>
-            <div className='mb4 pb3 bb b--pigeon-post'>
+            <div className='mt3 mb3 pb2 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>
                   <input
