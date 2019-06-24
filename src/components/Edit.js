@@ -238,7 +238,7 @@ class Edit extends Component {
     } = this
 
     return (
-      <div>
+      <div className='flex flex-column vh-100'>
         <Header>
           <div className='flex-auto'>
             {type === 'richtext' ? null : (
@@ -260,8 +260,8 @@ class Edit extends Component {
             </span>
           </div>
         </Header>
-        <div className='ph3'>
-          <div style={{marginRight: '2rem'}}>
+        <div className='ph3 flex-auto'>
+          <div className='flex flex-column h-100'>
             <div className='mb4 pb3 bb b--pigeon-post'>
               <div className='flex flex-row items-center'>
                 <div className='flex-auto'>
