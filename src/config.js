@@ -3,8 +3,6 @@ const NODE_ENV = process.env.NODE_ENV
 const isDev = NODE_ENV === 'development'
 
 const websocketStar = process.env.WEBSOCKET_STAR ||
-  process.env.WEBSOCKET_STAR_DEV ||
-  process.env.WEBSOCKET_STAR_PROD ||
   '/ip4/0.0.0.0/tcp/9090/ws/p2p-websocket-star'
 
 const defaultSwarmAddresses = {
