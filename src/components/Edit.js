@@ -307,7 +307,15 @@ class Edit extends Component {
     if (!this._backend) {
       const peerStarConfig = window.__peerStarConfig ? window.__peerStarConfig : config.peerStar
       console.log('peer star config:', peerStarConfig)
-      this._backend = PeerStar(process.env.APP_NAME || 'peer-pad-dev', peerStarConfig)
+      this._backend = PeerStar(
+        (
+          process.env.APP_NAME ||
+          process.env.APP_NAME_DEV ||
+          process.env.APP_NAME_PROD ||
+          'peer-pad-dev'
+        ),
+        peerStarConfig
+      )
       this._backend.on('error', (err) => {
         console.error(err)
         window.alert(err.message)
