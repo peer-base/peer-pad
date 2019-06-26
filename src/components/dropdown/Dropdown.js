@@ -42,11 +42,12 @@ const MenuArrowUp = ({height = 12, align = 'center', marginLeft = 'auto', margin
     <div style={{
       zIndex: 600,
       position: 'absolute',
-      width: '100%',
       height: `${height}px`,
       top: `-${height}px`,
       textAlign: align,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '30px',
+      right: 0
     }}>
       <div style={{
         display: 'inline-block',
@@ -104,7 +105,7 @@ const MenuPosition = ({width, left = `calc(50% - ${width / 2}px)`, children}) =>
   <div style={{
     position: 'absolute',
     width: `${width}px`,
-    left
+    right: 0
   }}>
     {children}
   </div>
