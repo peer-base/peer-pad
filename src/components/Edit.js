@@ -23,7 +23,7 @@ const initialDocument = `
 This service allows you to write, collaborate and export markdown documents
 directly in your browser!
 
-Get started by start typing in the blue-pane to the right of this text. This
+Get started by start typing in the blue-pane to the left of this text. This
 area will automatically start to reflect your new changes.
 
 If you find any issues, please report them via GitHub here:
