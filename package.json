@@ -89,6 +89,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-hash-link": "^1.1.1",
     "remark": "^10.0.1",
+    "remark-external-links": "^5.0.0",
     "remark-html": "^9.0.0",
     "remark-html-katex": "^1.1.1",
     "remark-math": "^1.0.4",

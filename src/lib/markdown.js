@@ -1,11 +1,14 @@
 const pify = require('pify')
 const Remark = require('remark')
+const RemarkExternalLinks = require('remark-external-links')
 const RemarkHtml = require('remark-html')
 const RemarkMath = require('remark-math')
 const RemarkHtmlKatex = require('remark-html-katex')
 
 const converters = {
-  markdown: Remark().use(RemarkHtml, { sanitize: true }),
+  markdown: Remark()
+    .use(RemarkHtml, { sanitize: true })
+    .use(RemarkExternalLinks, { rel: false }),
   math: Remark()
     .use(RemarkMath)
     .use(RemarkHtmlKatex)
